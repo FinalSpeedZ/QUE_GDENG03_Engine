@@ -18,31 +18,9 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	// Rainbow Quad
-	std::vector<vertex> listRQ =
-	{
-		{-0.9f,0.1f,0.0f, 1.0f, 0.0f, 0.0f}, // V1
-		{-0.9f,0.8f,0.0f, 0.0f, 1.0f, 0.0f}, // V2
-		{ -0.1f,0.1f,0.0f, 0.0f, 0.0f, 1.0f}, // V3
-		{-0.1f,0.8f,0.0f, 1.0f, 1.0f, 0.0f} // V4
-	};
-
-	// Rainbow Triangle
-	std::vector<vertex> listRT =
-	{
-		{0.1f, 0.1f, 0.0f, 1.0f, 0.0f, 0.0f}, // V1
-		{0.5f, 0.8f, 0.0f, 0.0f, 1.0f, 0.0f}, // V2
-		{0.9f, 0.1f, 0.0f, 0.0f, 0.0f, 1.0f}  // V3
-	};
-
-	// Green Quad
-	std::vector<vertex> listGQ = 
-	{
-		{-0.4f,-0.8f,0.0f, 0.0f, 1.0f, 0.0f}, // V1
-		{-0.4f,-0.1f,0.0f, 0.0f, 1.0f, 0.0f}, // V2
-		{ 0.4f,-0.8f,0.0f, 0.0f, 1.0f, 0.0f}, // V3
-		{0.4f,-0.1f,0.0f, 0.0f, 1.0f, 0.0f} // V4
-	};
+	vec3 origin(0, 0.0, 0.0);
+	vec3 fillColor(1.0, 0.0, 0.0);
+	gameObjects.push_back(std::make_unique<Quad>(0.5f, 0.3f, origin, fillColor));
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -51,20 +29,11 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	// Vertex Buffer for Rainbow Quad
-	m_vbRQ = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listRQ = listRQ.size();
-	m_vbRQ->load(listRQ, sizeof(vertex), size_listRQ, shader_byte_code, size_shader);
-
-	// Vertex Buffer for Rainbow Triangle
-	m_vbRT = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listRT = listRT.size();
-	m_vbRT->load(listRT, sizeof(vertex), size_listRT, shader_byte_code, size_shader);
-
-	// Vertex Buffer for Green Quad
-	m_vbGQ = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listGQ = listGQ.size();
-	m_vbGQ->load(listGQ, sizeof(vertex), size_listGQ, shader_byte_code, size_shader);
+	// Vertex Buffer
+	for (const auto& gameObject : gameObjects)
+	{
+		gameObject->load(shader_byte_code, size_shader);
+	}
 	
 	// Pixel Shader
 	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
@@ -86,25 +55,10 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
-	// Draw Rainbow Quad
-	if (m_vbRQ) 
+	// Draw Quad
+	for (const auto& gameObject : gameObjects)
 	{
-		GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vbRQ);
-		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vbRQ->getSizeVertexList(), 0);
-	}
-
-	// Draw Rainbow Triangle
-	if (m_vbRT)
-	{
-		GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vbRT);
-		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vbRT->getSizeVertexList(), 0);
-	}
-
-	// Draw Green Quad
-	if (m_vbGQ)
-	{
-		GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vbGQ);
-		GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vbGQ->getSizeVertexList(), 0);
+		gameObject->draw(); 
 	}
 
 	m_swap_chain->present(true);
@@ -113,15 +67,6 @@ void AppWindow::onUpdate()
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
-
-	if (m_vbRQ)
-		m_vbRQ->release();
-
-	if (m_vbRT)
-		m_vbRT->release();
-
-	if (m_vbGQ)
-		m_vbGQ->release();
 
 	m_swap_chain->release();
 	m_vs->release();

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "memory"
 #include "vector"
 
 #include "Window.h"
@@ -10,6 +11,9 @@
 #include "VertexBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+
+#include "GameObject.h"
+#include "Quad.h"
 
 #include "Vertex.h"
 
@@ -26,9 +30,7 @@ public:
 private:
 	SwapChain* m_swap_chain;
 
-	VertexBuffer* m_vbRQ; // Vertex Buffer for Rainbow Quad
-	VertexBuffer* m_vbRT; // Vertex Buffer for Rainbow Triangle
-	VertexBuffer* m_vbGQ; // Vertex Buffer for Green Quad
+	std::vector<std::unique_ptr<GameObject>> gameObjects; // Use smart pointers
 
 	// Vertex and Pixel Shaders
 	VertexShader* m_vs;

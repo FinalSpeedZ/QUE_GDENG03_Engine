@@ -4,6 +4,7 @@ Quad::Quad(float width, float height, const vec3& origin, const vec3& fillColor)
 	: m_width(width), m_height(height)
 {
 	m_origin = origin;
+    m_fillColor = fillColor;
     this->generateVertices();
 }
 

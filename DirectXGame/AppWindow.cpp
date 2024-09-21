@@ -18,9 +18,9 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	vec3 origin(0, 0.0, 0.0);
-	vec3 fillColor(1.0, 0.0, 0.0);
-	gameObjects.push_back(std::make_unique<Quad>(0.5f, 0.3f, origin, fillColor));
+	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0, 0, 0), vec3(1, 0, 0)));
+	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(-0.5f, -0.6f, 0), vec3(0, 1, 0)));
+	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0.5f, 0.6f, 0), vec3(0, 0, 1)));
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;

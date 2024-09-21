@@ -1,11 +1,11 @@
 #include "VertexBuffer.h"
-#include "GraphicsEngine.h"
+
 
 VertexBuffer::VertexBuffer() :m_layout(0), m_buffer(0)
 {
 }
 
-bool VertexBuffer::load(void* list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, UINT size_byte_shader)
+bool VertexBuffer::load(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, UINT size_byte_shader)
 {
 
 	if (m_buffer)
@@ -21,7 +21,7 @@ bool VertexBuffer::load(void* list_vertices, UINT size_vertex, UINT size_list, v
 	buff_desc.MiscFlags = 0;
 
 	D3D11_SUBRESOURCE_DATA init_data = {};
-	init_data.pSysMem = list_vertices;
+	init_data.pSysMem = list_vertices.data();
 
 	m_size_vertex = size_vertex;
 	m_size_list = size_list;

@@ -1,6 +1,5 @@
 #include "AppWindow.h"
 
-
 AppWindow::AppWindow()
 {
 }
@@ -20,7 +19,7 @@ void AppWindow::onCreate()
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	// Rainbow Quad
-	vertex listRQ[] =
+	std::vector<vertex> listRQ =
 	{
 		{-0.9f,0.1f,0.0f, 1.0f, 0.0f, 0.0f}, // V1
 		{-0.9f,0.8f,0.0f, 0.0f, 1.0f, 0.0f}, // V2
@@ -29,7 +28,7 @@ void AppWindow::onCreate()
 	};
 
 	// Rainbow Triangle
-	vertex listRT[] =
+	std::vector<vertex> listRT =
 	{
 		{0.1f, 0.1f, 0.0f, 1.0f, 0.0f, 0.0f}, // V1
 		{0.5f, 0.8f, 0.0f, 0.0f, 1.0f, 0.0f}, // V2
@@ -37,7 +36,7 @@ void AppWindow::onCreate()
 	};
 
 	// Green Quad
-	vertex listGQ[] = 
+	std::vector<vertex> listGQ = 
 	{
 		{-0.4f,-0.8f,0.0f, 0.0f, 1.0f, 0.0f}, // V1
 		{-0.4f,-0.1f,0.0f, 0.0f, 1.0f, 0.0f}, // V2
@@ -54,17 +53,17 @@ void AppWindow::onCreate()
 
 	// Vertex Buffer for Rainbow Quad
 	m_vbRQ = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listRQ = ARRAYSIZE(listRQ);
+	UINT size_listRQ = listRQ.size();
 	m_vbRQ->load(listRQ, sizeof(vertex), size_listRQ, shader_byte_code, size_shader);
 
 	// Vertex Buffer for Rainbow Triangle
 	m_vbRT = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listRT = ARRAYSIZE(listRT);
+	UINT size_listRT = listRT.size();
 	m_vbRT->load(listRT, sizeof(vertex), size_listRT, shader_byte_code, size_shader);
 
 	// Vertex Buffer for Green Quad
 	m_vbGQ = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_listGQ = ARRAYSIZE(listGQ);
+	UINT size_listGQ = listGQ.size();
 	m_vbGQ->load(listGQ, sizeof(vertex), size_listGQ, shader_byte_code, size_shader);
 	
 	// Pixel Shader

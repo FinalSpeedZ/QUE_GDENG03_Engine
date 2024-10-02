@@ -32,6 +32,16 @@ void Drawable::setOrigin(const vec3& origin)
 	m_origin = origin;
 }
 
+void Drawable::setBlendState(BlendState* blendState)
+{
+	m_blendState = blendState;
+}
+
+BlendState* Drawable::getBlendState()
+{
+	return m_blendState;
+}
+
 void Drawable::load(void* shader_byte_code, UINT size_byte_shader)
 {
 	if (!m_vb)

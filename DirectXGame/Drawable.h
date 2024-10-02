@@ -21,6 +21,8 @@ protected:
 
     std::vector<vertex> m_vertices;
 
+    BlendState* m_blendState;
+
 public:
     Drawable();
     virtual ~Drawable();
@@ -28,6 +30,9 @@ public:
     void setPosition(const vec3& position);
     void setScale(const vec3& scale);
     void setOrigin(const vec3& origin);
+
+    void setBlendState(BlendState* blendState);
+    BlendState* getBlendState();
 
     virtual void load(void* shader_byte_code, UINT size_byte_shader);
 

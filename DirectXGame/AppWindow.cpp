@@ -24,9 +24,27 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0, 0, 0), vec4(1, 0, 0, 0.5)));
-	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(-0.5, -0.6, 0), vec4(1, 0, 0, 0.1)));
-	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0.5, 0.6, 0), vec4(1, 0, 0, 1)));
+	// Blend State
+	BlendStateManager* blendStateManager = new BlendStateManager();
+	blendStateManager->initBlendStates();
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0, 0.3, 0), vec4(1, 0.5, 0.5, 1)));
+	drawables.back()->setBlendState(blendStateManager->getBlendState("AlphaBlend")); 
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(-0.6, 0.3, 0), vec4(1, 0.5, 0.5, 1))); 
+	drawables.back()->setBlendState(blendStateManager->getBlendState("NoBlend"));
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0.6, 0.3, 0), vec4(1, 0.5, 0.5, 1)));
+	drawables.back()->setBlendState(blendStateManager->getBlendState("CustomBlend1"));
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0, -0.3, 0), vec4(1, 0.5, 0.5, 1)));
+	drawables.back()->setBlendState(blendStateManager->getBlendState("CustomBlend2"));
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(-0.6, -0.3, 0), vec4(1, 0.5, 0.5, 1)));
+	drawables.back()->setBlendState(blendStateManager->getBlendState("CustomBlend3"));
+
+	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0.6, -0.3, 0), vec4(1, 0.5, 0.5, 1)));
+	drawables.back()->setBlendState(blendStateManager->getBlendState("CustomBlend4"));
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -46,9 +64,6 @@ void AppWindow::onCreate()
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
-	//Blend State
-	m_bs = GraphicsEngine::get()->createBlendState();
-
 	// Constant Buffer
 	constant cc;
 	cc.m_angle = 0;
@@ -60,7 +75,7 @@ void AppWindow::onUpdate()
 {
 	Window::onUpdate();
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0.5f, 0.5f, 0.9f, 1.0f);
+		0.0f, 0.5f, 0.9f, 1.0f);
 
 	// Set Viewport
 	RECT rc = this->getClientWindowRect();
@@ -70,7 +85,7 @@ void AppWindow::onUpdate()
 	unsigned long new_time = 0;
 	if (m_old_time)
 		new_time = ::GetTickCount() - m_old_time;
-	m_delta_time = new_time / 1000.0f;
+	m_delta_time = new_time / 1500.0f;
 	m_old_time = ::GetTickCount();
 
 	m_angle += 1.57f * m_delta_time;
@@ -82,17 +97,20 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);
 
-	// Use BlendState
-	GraphicsEngine::get()->applyBlendState(m_bs);
 
 	// Set Default Shader 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
-
 	// Draw Quad
 	for (const auto& drawable : drawables)
 	{
+		if (drawable->getBlendState() != nullptr)
+		{
+			GraphicsEngine::get()->applyBlendState(drawable->getBlendState());
+		}
+
+		// Draw the drawable
 		drawable->draw();
 	}
 

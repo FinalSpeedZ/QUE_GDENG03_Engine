@@ -40,7 +40,7 @@ public:
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);
 
 	ID3D11Device* getDevice();
-	BlendState* createBlendState();
+
 	void applyBlendState(BlendState* m_bs, float blendFactor[4] = nullptr, UINT sampleMask = 0xffffffff);
 
 public:

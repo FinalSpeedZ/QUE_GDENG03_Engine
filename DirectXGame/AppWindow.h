@@ -13,6 +13,10 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 
+#include "BlendState.h"
+#include "BlendStateManager.h"
+
+
 #include "Drawable.h"
 #include "Quad.h"
 

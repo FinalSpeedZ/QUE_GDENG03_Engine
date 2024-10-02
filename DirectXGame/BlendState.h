@@ -13,9 +13,7 @@ public:
 
 	void release();
 	void apply(float blendFactor[4] = nullptr, UINT sampleMask = 0xffffffff);
-
-private:
-	bool init();
+	bool init(const D3D11_BLEND_DESC& desc);
 
 private:
 	D3D11_BLEND_DESC blendDesc;

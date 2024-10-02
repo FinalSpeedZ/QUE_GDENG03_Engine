@@ -3,19 +3,7 @@
 
 BlendState::BlendState()
 {
-	blendDesc = { 0 };
-
-	blendDesc.AlphaToCoverageEnable = false;
-	blendDesc.IndependentBlendEnable = false;
-
-	blendDesc.RenderTarget[0].BlendEnable = true;
-	blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-	blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	blendDesc = {};
 }
 
 BlendState::~BlendState()
@@ -39,8 +27,9 @@ void BlendState::apply(float blendFactor[4], UINT sampleMask)
 }
 
 
-bool BlendState::init()
+bool BlendState::init(const D3D11_BLEND_DESC& desc)
 {
+	blendDesc = desc;
 	if (!SUCCEEDED(GraphicsEngine::get()->m_d3d_device->CreateBlendState(&blendDesc, &m_bs)))
 		return false;
 

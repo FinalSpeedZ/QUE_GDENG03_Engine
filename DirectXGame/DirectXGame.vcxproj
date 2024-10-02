@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="AppWindow.cpp" />
     <ClCompile Include="BlendState.cpp" />
+    <ClCompile Include="BlendStateManager.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="DeviceContext.cpp" />
     <ClCompile Include="Drawable.cpp" />
@@ -145,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="AppWindow.h" />
     <ClInclude Include="BlendState.h" />
+    <ClInclude Include="BlendStateManager.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DeviceContext.h" />
     <ClInclude Include="Drawable.h" />

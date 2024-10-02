@@ -119,19 +119,6 @@ ID3D11Device* GraphicsEngine::getDevice()
 	return m_d3d_device;
 }
 
-BlendState* GraphicsEngine::createBlendState()
-{
-	BlendState* bs = new BlendState();
-
-	if (!bs->init())
-	{
-		bs->release();
-		return nullptr;
-	}
-
-	return bs;
-}
-
 void GraphicsEngine::applyBlendState(BlendState* m_bs, float blendFactor[4], UINT sampleMask)
 {
 	m_bs->apply(blendFactor, sampleMask);

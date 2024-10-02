@@ -12,7 +12,7 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 
-#include "GameObject.h"
+#include "Drawable.h"
 #include "Quad.h"
 
 #include "Vertex.h"
@@ -30,7 +30,7 @@ public:
 private:
 	SwapChain* m_swap_chain;
 
-	std::vector<std::unique_ptr<GameObject>> gameObjects; // Use smart pointers
+	std::vector<std::unique_ptr<Drawable>> drawables; // Use smart pointers
 
 	// Vertex and Pixel Shaders
 	VertexShader* m_vs;

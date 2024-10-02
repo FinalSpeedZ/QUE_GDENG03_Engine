@@ -1,10 +1,10 @@
 #pragma once
 
-#include "GameObject.h"
+#include "Drawable.h"
 
 #include <vector>
 
-class Quad : public GameObject
+class Quad : public Drawable
 {
 private:
     float m_width;

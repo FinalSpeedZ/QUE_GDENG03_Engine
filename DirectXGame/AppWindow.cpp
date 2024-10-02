@@ -18,9 +18,9 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0, 0, 0), vec3(1, 0, 0)));
-	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(-0.5f, -0.6f, 0), vec3(0, 1, 0)));
-	gameObjects.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0.5f, 0.6f, 0), vec3(0, 0, 1)));
+	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0, 0, 0), vec4(1, 0, 0, 0.5)));
+	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(-0.5, -0.6, 0), vec4(1, 0, 0, 0.1)));
+	drawables.push_back(std::make_unique<Quad>(0.7f, 0.5f, vec3(0.5, 0.6, 0), vec4(1, 0, 0, 1)));
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -30,7 +30,7 @@ void AppWindow::onCreate()
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
 	// Vertex Buffer
-	for (const auto& gameObject : gameObjects)
+	for (const auto& gameObject : drawables)
 	{
 		gameObject->load(shader_byte_code, size_shader);
 	}
@@ -39,6 +39,24 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
+
+
+	D3D11_BLEND_DESC transparentDesc = { 0 };
+	ZeroMemory(&transparentDesc, sizeof(transparentDesc));
+
+	transparentDesc.AlphaToCoverageEnable = false;
+	transparentDesc.IndependentBlendEnable = false;
+
+	transparentDesc.RenderTarget[0].BlendEnable = true;
+	transparentDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	transparentDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	transparentDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	transparentDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	transparentDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	transparentDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	transparentDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	HRESULT hr = GraphicsEngine::get()->getDevice()->CreateBlendState(&transparentDesc, &TransparentBS);
 }
 
 void AppWindow::onUpdate()
@@ -51,14 +69,18 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
+	float blendFactors[] = { 0, 0, 0, 0 };
+	GraphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext()->OMSetBlendState(TransparentBS, blendFactors, 0xffffffff);
+
 	// Set Default Shader 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
+
 	// Draw Quad
-	for (const auto& gameObject : gameObjects)
+	for (const auto& drawable : drawables)
 	{
-		gameObject->draw(); 
+		drawable->draw();
 	}
 
 	m_swap_chain->present(true);

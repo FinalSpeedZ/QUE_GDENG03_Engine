@@ -8,7 +8,7 @@
 
 #include "Vertex.h"
 
-class GameObject
+class Drawables
 {
 protected:
     VertexBuffer* m_vb;
@@ -17,13 +17,13 @@ protected:
     vec3 m_scale;      
     vec3 m_origin;
 
-    vec3 m_fillColor;
+    vec4 m_rgba;
 
     std::vector<vertex> m_vertices;
 
 public:
-    GameObject();
-    virtual ~GameObject();
+    Drawables();
+    virtual ~Drawables();
 
     void setPosition(const vec3& position);
     void setScale(const vec3& scale);

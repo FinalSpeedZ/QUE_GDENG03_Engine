@@ -1,10 +1,10 @@
 #include "Quad.h"
 
-Quad::Quad(float width, float height, const vec3& origin, const vec3& fillColor)
+Quad::Quad(float width, float height, const vec3& origin, const vec4& rgba)
 	: m_width(width), m_height(height)
 {
 	m_origin = origin;
-    m_fillColor = fillColor;
+    m_rgba = rgba;
     this->generateVertices();
 }
 
@@ -20,10 +20,10 @@ void Quad::generateVertices()
 
     m_vertices = 
     {
-        { vec3(m_origin.x - halfWidth, m_origin.y - halfHeight, m_origin.z), m_fillColor }, // Bottom Left
-        { vec3(m_origin.x - halfWidth, m_origin.y + halfHeight, m_origin.z), m_fillColor }, // Top Left
-        { vec3(m_origin.x + halfWidth, m_origin.y - halfHeight, m_origin.z), m_fillColor }, // Bottom Right
-        { vec3(m_origin.x + halfWidth, m_origin.y + halfHeight, m_origin.z), m_fillColor }  // Top Right
+        { vec3(m_origin.x - halfWidth, m_origin.y - halfHeight, m_origin.z), m_rgba }, // Bottom Left
+        { vec3(m_origin.x - halfWidth, m_origin.y + halfHeight, m_origin.z), m_rgba }, // Top Left
+        { vec3(m_origin.x + halfWidth, m_origin.y - halfHeight, m_origin.z), m_rgba }, // Bottom Right
+        { vec3(m_origin.x + halfWidth, m_origin.y + halfHeight, m_origin.z), m_rgba }  // Top Right
     };
 
 }

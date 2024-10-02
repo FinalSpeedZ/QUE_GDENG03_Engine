@@ -1,38 +1,38 @@
-#include "GameObject.h"
+#include "Drawables.h"
 
 #include <iostream>
 
-GameObject::GameObject()
+Drawables::Drawables()
     : m_vb(nullptr),
 	  m_position(0.0f, 0.0f, 0.0f),
       m_scale(1.0f, 1.0f, 1.0f),
 	  m_origin(0.0f, 0.0f, 0.0f),
-      m_fillColor(1, 0, 0)
+      m_rgba(1, 0, 0, 1)
 {
 }
 
-GameObject::~GameObject()
+Drawables::~Drawables()
 {
 	if (m_vb)
 		m_vb->release();
 }
 
-void GameObject::setPosition(const vec3& position)
+void Drawables::setPosition(const vec3& position)
 {
 	m_position = position;
 }
 
-void GameObject::setScale(const vec3& scale)
+void Drawables::setScale(const vec3& scale)
 {
 	m_scale = scale;
 }
 
-void GameObject::setOrigin(const vec3& origin)
+void Drawables::setOrigin(const vec3& origin)
 {
 	m_origin = origin;
 }
 
-void GameObject::load(void* shader_byte_code, UINT size_byte_shader)
+void Drawables::load(void* shader_byte_code, UINT size_byte_shader)
 {
 	if (!m_vb)
 	{
@@ -42,7 +42,7 @@ void GameObject::load(void* shader_byte_code, UINT size_byte_shader)
 	}
 }
 
-void GameObject::draw()
+void Drawables::draw()
 {
 	if (m_vb)
 	{

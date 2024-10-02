@@ -55,6 +55,11 @@ void DeviceContext::setPixelShader(PixelShader* pixel_shader)
 	m_device_context->PSSetShader(pixel_shader->m_ps, nullptr, 0);
 }
 
+ID3D11DeviceContext* DeviceContext::getDeviceContext()
+{
+	return m_device_context;
+}
+
 
 bool DeviceContext::release()
 {

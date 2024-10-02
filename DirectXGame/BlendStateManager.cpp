@@ -139,7 +139,6 @@ void BlendStateManager::initBlendStates()
     createBlendState("CustomBlend4", blendDesc);
 }
 
-
 BlendState* BlendStateManager::getBlendState(const std::string& stateName) const {
     auto bs = m_blendStates.find(stateName);
     if (bs != m_blendStates.end()) {

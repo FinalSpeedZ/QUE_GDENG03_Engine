@@ -41,22 +41,22 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->releaseCompiledShader();
 
 
-	D3D11_BLEND_DESC transparentDesc = { 0 };
-	ZeroMemory(&transparentDesc, sizeof(transparentDesc));
+	//D3D11_BLEND_DESC blendDesc = { 0 };
 
-	transparentDesc.AlphaToCoverageEnable = false;
-	transparentDesc.IndependentBlendEnable = false;
+	//blendDesc.AlphaToCoverageEnable = false;
+	//blendDesc.IndependentBlendEnable = false;
 
-	transparentDesc.RenderTarget[0].BlendEnable = true;
-	transparentDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	transparentDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	transparentDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	transparentDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	transparentDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-	transparentDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	transparentDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	//blendDesc.RenderTarget[0].BlendEnable = true;
+	//blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	//blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	//blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	//blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	//blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	//blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	//blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
-	HRESULT hr = GraphicsEngine::get()->getDevice()->CreateBlendState(&transparentDesc, &TransparentBS);
+	//GraphicsEngine::get()->getDevice()->CreateBlendState(&blendDesc, &TransparentBS);
+	m_bs = GraphicsEngine::get()->createBlendState();
 }
 
 void AppWindow::onUpdate()
@@ -69,8 +69,8 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	float blendFactors[] = { 0, 0, 0, 0 };
-	GraphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext()->OMSetBlendState(TransparentBS, blendFactors, 0xffffffff);
+	// Use BlendState
+	GraphicsEngine::get()->applyBlendState(m_bs);
 
 	// Set Default Shader 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);

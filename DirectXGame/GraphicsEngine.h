@@ -1,5 +1,13 @@
 #pragma once
 #include <d3d11.h>
+#include <d3dcompiler.h>
+
+#include "SwapChain.h"
+#include "DeviceContext.h"
+#include "VertexBuffer.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
+#include "BlendState.h"
 
 
 class SwapChain;
@@ -7,6 +15,9 @@ class DeviceContext;
 class VertexBuffer;
 class VertexShader;
 class PixelShader;
+class PixelShader;
+
+class BlendState;
 
 class GraphicsEngine
 {
@@ -26,8 +37,9 @@ public:
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);
 
-
 	ID3D11Device* getDevice();
+	BlendState* createBlendState();
+	void applyBlendState(BlendState* m_bs, float blendFactor[4] = nullptr, UINT sampleMask = 0xffffffff);
 
 public:
 	bool compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size);
@@ -63,5 +75,7 @@ private:
 	friend class VertexBuffer;
 	friend class VertexShader;
 	friend class PixelShader;
+
+	friend class BlendState;
 };
 

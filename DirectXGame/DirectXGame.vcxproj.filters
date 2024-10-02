@@ -34,8 +34,14 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject">
       <UniqueIdentifier>{239dea9c-a2b8-4162-bfdc-5f42656b3c48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives">
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
       <UniqueIdentifier>{416333ac-550d-43b3-b394-d9e89a28e926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable\Primitive">
+      <UniqueIdentifier>{2694d93e-c5ee-4fe6-9770-a89b7d33f91a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\BlendState">
+      <UniqueIdentifier>{ae0f441e-c73c-46d5-bc09-3f0a59598d74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,10 +72,15 @@
     <ClCompile Include="PixelShader.cpp">
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Quad.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendState.cpp">
+      <Filter>GameEngine\GraphicsEngine\BlendState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -99,10 +110,15 @@
     <ClInclude Include="Vertex.h">
       <Filter>HelperFiles</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    <ClInclude Include="Drawable.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h" />
+    <ClInclude Include="Quad.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendState.h">
+      <Filter>GameEngine\GraphicsEngine\BlendState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

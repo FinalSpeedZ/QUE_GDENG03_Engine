@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "Drawables.h"
+#include "Drawable.h"
 
-class Quad : public Drawables
+class Quad : public Drawable
 {
 private:
     float m_width;

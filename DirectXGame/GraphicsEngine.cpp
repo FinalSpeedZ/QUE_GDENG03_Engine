@@ -1,12 +1,5 @@
 #include "GraphicsEngine.h"
-#include "SwapChain.h"
-#include "DeviceContext.h"
-#include "VertexBuffer.h"
-#include "VertexShader.h"
-#include "PixelShader.h"
 
-#include <d3d11.h>
-#include <d3dcompiler.h>
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -119,6 +112,24 @@ PixelShader* GraphicsEngine::createPixelShader(const void* shader_byte_code, siz
 ID3D11Device* GraphicsEngine::getDevice()
 {
 	return m_d3d_device;
+}
+
+BlendState* GraphicsEngine::createBlendState()
+{
+	BlendState* bs = new BlendState();
+
+	if (!bs->init())
+	{
+		bs->release();
+		return nullptr;
+	}
+
+	return bs;
+}
+
+void GraphicsEngine::applyBlendState(BlendState* m_bs, float blendFactor[4], UINT sampleMask)
+{
+	m_bs->apply(blendFactor, sampleMask);
 }
 
 bool GraphicsEngine::compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size)

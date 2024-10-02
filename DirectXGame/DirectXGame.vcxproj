@@ -129,8 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="BlendState.cpp" />
     <ClCompile Include="DeviceContext.cpp" />
-    <ClCompile Include="Drawables.cpp" />
+    <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PixelShader.cpp" />
@@ -142,8 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h" />
+    <ClInclude Include="BlendState.h" />
     <ClInclude Include="DeviceContext.h" />
-    <ClInclude Include="Drawables.h" />
+    <ClInclude Include="Drawable.h" />
     <ClInclude Include="GraphicsEngine.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Quad.h" />

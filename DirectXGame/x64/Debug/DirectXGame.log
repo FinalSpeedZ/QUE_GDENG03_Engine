@@ -1,2 +1,5 @@
-﻿  BlendState.cpp
+﻿  main.cpp
+  VertexBuffer.cpp
+  VertexShader.cpp
+  Generating Code...
   DirectXGame.vcxproj -> C:\Users\asus\Coding\GDENG03\DirectXGame\x64\Debug\DirectXGame.exe

@@ -17,5 +17,7 @@ struct vec4
 struct vertex
 {
 	vec3 position;
+	vec3 position1;
 	vec4 rgba;
+	vec4 rgba1;
 };

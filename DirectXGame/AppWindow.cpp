@@ -1,5 +1,11 @@
 #include "AppWindow.h"
 
+__declspec(align(16))
+struct constant
+{
+	float m_angle;
+};
+
 AppWindow::AppWindow()
 {
 }
@@ -40,23 +46,14 @@ void AppWindow::onCreate()
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
 
-
-	//D3D11_BLEND_DESC blendDesc = { 0 };
-
-	//blendDesc.AlphaToCoverageEnable = false;
-	//blendDesc.IndependentBlendEnable = false;
-
-	//blendDesc.RenderTarget[0].BlendEnable = true;
-	//blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	//blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	//blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	//blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	//blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
-	//blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	//blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-
-	//GraphicsEngine::get()->getDevice()->CreateBlendState(&blendDesc, &TransparentBS);
+	//Blend State
 	m_bs = GraphicsEngine::get()->createBlendState();
+
+	// Constant Buffer
+	constant cc;
+	cc.m_angle = 0;
+	m_cb = GraphicsEngine::get()->createConstantBuffer();
+	m_cb->load(&cc, sizeof(constant));
 }
 
 void AppWindow::onUpdate()
@@ -68,6 +65,22 @@ void AppWindow::onUpdate()
 	// Set Viewport
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+
+	// Constant Buffer
+	unsigned long new_time = 0;
+	if (m_old_time)
+		new_time = ::GetTickCount() - m_old_time;
+	m_delta_time = new_time / 1000.0f;
+	m_old_time = ::GetTickCount();
+
+	m_angle += 1.57f * m_delta_time;
+	constant cc;
+	cc.m_angle = m_angle;
+
+	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
+
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);
 
 	// Use BlendState
 	GraphicsEngine::get()->applyBlendState(m_bs);

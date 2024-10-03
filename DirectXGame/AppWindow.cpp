@@ -75,7 +75,7 @@ void AppWindow::onUpdate()
 {
 	Window::onUpdate();
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0.0f, 0.5f, 0.9f, 1.0f);
+		0.5f, 0.5f, 0.9f, 1.0f);
 
 	// Set Viewport
 	RECT rc = this->getClientWindowRect();

@@ -1,5 +1,7 @@
 #include "GraphicsEngine.h"
 
+#include <iostream>
+
 
 GraphicsEngine::GraphicsEngine()
 {
@@ -121,7 +123,13 @@ ID3D11Device* GraphicsEngine::getDevice()
 
 void GraphicsEngine::applyBlendState(BlendState* m_bs, float blendFactor[4], UINT sampleMask)
 {
-	m_bs->apply(blendFactor, sampleMask);
+	if (m_bs)
+		m_bs->apply(blendFactor, sampleMask);
+
+	else
+	{
+		getImmediateDeviceContext()->getDeviceContext()->OMSetBlendState(nullptr, blendFactor, sampleMask);
+	}
 }
 
 bool GraphicsEngine::compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size)

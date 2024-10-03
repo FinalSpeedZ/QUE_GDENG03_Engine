@@ -28,12 +28,12 @@ void AppWindow::onCreate()
 	BlendStateManager* blendStateManager = new BlendStateManager();
 	blendStateManager->initBlendStates();
 
+
 	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0, 0.3, 0), vec4(1, 0.5, 0.5, 1)));
-	drawables.back()->setBlendState(blendStateManager->getBlendState("AlphaBlend")); 
+	drawables.back()->setBlendState(blendStateManager->getBlendState("AlphaBlend"));
 
 	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(-0.6, 0.3, 0), vec4(1, 0.5, 0.5, 1))); 
-	drawables.back()->setBlendState(blendStateManager->getBlendState("NoBlend"));
-
+	drawables.back()->setBlendState(nullptr);
 	drawables.push_back(std::make_unique<Quad>(0.5f, 0.5f, vec3(0.6, 0.3, 0), vec4(1, 0.5, 0.5, 1)));
 	drawables.back()->setBlendState(blendStateManager->getBlendState("CustomBlend1"));
 
@@ -105,10 +105,7 @@ void AppWindow::onUpdate()
 	// Draw Quad
 	for (const auto& drawable : drawables)
 	{
-		if (drawable->getBlendState() != nullptr)
-		{
-			GraphicsEngine::get()->applyBlendState(drawable->getBlendState());
-		}
+		GraphicsEngine::get()->applyBlendState(drawable->getBlendState());
 
 		// Draw the drawable
 		drawable->draw();

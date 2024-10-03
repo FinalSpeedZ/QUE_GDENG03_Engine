@@ -1,7 +1,7 @@
 ﻿  AppWindow.cpp
-C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(31,65): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(34,68): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(34,63): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(32,65): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(35,68): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(35,63): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(37,67): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(37,62): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(40,66): warning C4305: 'argument': truncation from 'double' to 'const float'
@@ -10,4 +10,7 @@ C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(43,63): warni
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(46,68): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(46,62): warning C4305: 'argument': truncation from 'double' to 'const float'
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(59,38): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+  BlendStateManager.cpp
+  GraphicsEngine.cpp
+  Generating Code...
   DirectXGame.vcxproj -> C:\Users\asus\Coding\GDENG03\DirectXGame\x64\Debug\DirectXGame.exe

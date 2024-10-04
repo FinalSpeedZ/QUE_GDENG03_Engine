@@ -1,16 +1,6 @@
 ﻿  AppWindow.cpp
 C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\AppWindow.cpp(35,36): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
-  DeviceContext.cpp
-  Drawable.cpp
-C:\Users\asus\Coding\GDENG03\DirectXGame\DirectXGame\Drawable.cpp(40,18): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
-  GraphicsEngine.cpp
-  PixelShader.cpp
-  Quad.cpp
-  SwapChain.cpp
-  VertexBuffer.cpp
-  VertexShader.cpp
   Window.cpp
-  main.cpp
   Generating Code...
   LINK : C:\Users\asus\Coding\GDENG03\DirectXGame\x64\Debug\DirectXGame.exe not found or not built by the last incremental link; performing full link
   DirectXGame.vcxproj -> C:\Users\asus\Coding\GDENG03\DirectXGame\x64\Debug\DirectXGame.exe

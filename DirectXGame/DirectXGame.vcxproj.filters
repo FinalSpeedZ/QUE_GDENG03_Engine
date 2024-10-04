@@ -93,7 +93,7 @@
       <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
     </ClInclude>
     <ClInclude Include="PixelShader.h">
-      <Filter>GameEngine\GraphicsEngine\PixelShader</Filtaer>
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>HelperFiles</Filter>

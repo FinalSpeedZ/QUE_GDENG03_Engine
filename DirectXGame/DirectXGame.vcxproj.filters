@@ -28,9 +28,6 @@
     <Filter Include="GameEngine\GraphicsEngine\PixelShader">
       <UniqueIdentifier>{bbe09c82-6cb9-4d3d-866d-8a2e87f69d59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HelperFiles">
-      <UniqueIdentifier>{3769b455-7a51-44ea-a288-91e2acf27b07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\GameObject">
       <UniqueIdentifier>{239dea9c-a2b8-4162-bfdc-5f42656b3c48}</UniqueIdentifier>
     </Filter>

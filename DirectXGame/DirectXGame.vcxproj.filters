@@ -28,6 +28,9 @@
     <Filter Include="GameEngine\GraphicsEngine\PixelShader">
       <UniqueIdentifier>{bbe09c82-6cb9-4d3d-866d-8a2e87f69d59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HelperFiles">
+      <UniqueIdentifier>{3769b455-7a51-44ea-a288-91e2acf27b07}</UniqueIdentifier>
+    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\GameObject">
       <UniqueIdentifier>{239dea9c-a2b8-4162-bfdc-5f42656b3c48}</UniqueIdentifier>
     </Filter>
@@ -39,6 +42,12 @@
     </Filter>
     <Filter Include="GameEngine\GraphicsEngine\BlendState">
       <UniqueIdentifier>{ae0f441e-c73c-46d5-bc09-3f0a59598d74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\ConstantBuffer">
+      <UniqueIdentifier>{de376c06-c4fe-4664-a2a2-20310b29b3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\BlendState\Manager">
+      <UniqueIdentifier>{c69cbab4-c84e-4acd-b3f2-9e10a579d962}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +87,12 @@
     <ClCompile Include="BlendState.cpp">
       <Filter>GameEngine\GraphicsEngine\BlendState</Filter>
     </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="BlendStateManager.cpp">
+      <Filter>GameEngine\GraphicsEngine\BlendState\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -115,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="BlendState.h">
       <Filter>GameEngine\GraphicsEngine\BlendState</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="BlendStateManager.h">
+      <Filter>GameEngine\GraphicsEngine\BlendState\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

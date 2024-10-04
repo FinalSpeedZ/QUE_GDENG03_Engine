@@ -19,6 +19,7 @@ bool BlendStateManager::createBlendState(const std::string& stateName, const D3D
         return false;
     }
 
+
     m_blendStates[stateName] = blendState;
     return true;
 }

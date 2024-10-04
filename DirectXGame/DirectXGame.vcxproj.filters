@@ -33,8 +33,11 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject">
       <UniqueIdentifier>{239dea9c-a2b8-4162-bfdc-5f42656b3c48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives">
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
       <UniqueIdentifier>{416333ac-550d-43b3-b394-d9e89a28e926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable\Primitive">
+      <UniqueIdentifier>{6bd54302-acf8-4262-a094-387985ae4854}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,10 +68,12 @@
     <ClCompile Include="PixelShader.cpp">
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Quad.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable\Primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -98,10 +103,12 @@
     <ClInclude Include="Vertex.h">
       <Filter>HelperFiles</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    <ClInclude Include="Drawable.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h" />
+    <ClInclude Include="Quad.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable\Primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">

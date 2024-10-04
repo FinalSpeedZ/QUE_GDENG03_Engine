@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="App">
       <UniqueIdentifier>{03c384f4-9a6c-4d05-8e43-fc2a62360875}</UniqueIdentifier>
@@ -112,4 +111,3 @@
       <Filter>App</Filter>
     </FxCompile>
   </ItemGroup>
-</Project>

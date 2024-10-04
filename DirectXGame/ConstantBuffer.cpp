@@ -37,7 +37,6 @@ bool ConstantBuffer::release()
 	return true;
 }
 
-
 ConstantBuffer::~ConstantBuffer()
 {
 }

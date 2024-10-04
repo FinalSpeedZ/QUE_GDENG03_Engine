@@ -127,7 +127,9 @@ void BlendStateManager::initBlendStates()
 }
 
 BlendState* BlendStateManager::getBlendState(const std::string& stateName) const {
-    auto bs = m_blendStates.find(stateName);
+
+	auto bs = m_blendStates.find(stateName);
+
     if (bs != m_blendStates.end()) {
         return bs->second;
     }

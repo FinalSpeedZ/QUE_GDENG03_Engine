@@ -6,6 +6,10 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 
+#include "GameObject.h"
+#include "Drawable.h"
+#include "Triangle.h"
+
 #include "Vector3D.h"
 
 #include "Vec.h"
@@ -37,4 +41,6 @@ public:
 
 private:
 	SwapChain* m_swap_chain;
+
+	std::vector<std::unique_ptr<GameObject>> drawables;
 };

@@ -2,6 +2,9 @@
 
 #include "Vertex.h"
 
+const Vector3D Vector3D::zeroes = Vector3D(0.0f, 0.0f, 0.0f);
+const Vector3D Vector3D::ones = Vector3D(1.0f, 1.0f, 1.0f);
+
 Vector3D::Vector3D()
 	: m_x(0), m_y(0), m_z(0)
 {
@@ -14,11 +17,6 @@ Vector3D::Vector3D(float x, float y, float z)
 
 Vector3D::Vector3D(const Vector3D& vector)
 	: m_x(vector.m_x), m_y(vector.m_y), m_z(vector.m_z)
-{
-}
-
-Vector3D::Vector3D(vec3 vector)
-	: m_x(vector.x), m_y(vector.y), m_z(vector.z)
 {
 }
 

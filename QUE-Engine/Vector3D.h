@@ -14,6 +14,9 @@ public:
 
 	static Vector3D lerp(const Vector3D& start, const Vector3D& end, float delta);
 
+	static const Vector3D zeroes;
+	static const Vector3D ones;
+
 public:
 	float m_x, m_y, m_z;
 };

@@ -4,6 +4,6 @@
 
 struct vertex
 {
-	vec3 position;
+	Vector3D position;
 	vec4 rgba;
 };

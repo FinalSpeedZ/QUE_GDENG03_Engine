@@ -28,6 +28,27 @@
     <Filter Include="GameEngine\Math">
       <UniqueIdentifier>{da8a9cba-26ed-400b-a874-201b8f008c0e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject">
+      <UniqueIdentifier>{d2898102-0647-4ef9-908a-f18e66c1681e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\VertexBuffer">
+      <UniqueIdentifier>{2c0617b2-e440-44b1-890e-6143c08fd2f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive">
+      <UniqueIdentifier>{2a414c1f-7eba-4bce-b7af-ba02aac1d911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive\Triangle">
+      <UniqueIdentifier>{dc74f862-ab67-4f1a-8ab9-ef51444af66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\VertexShader">
+      <UniqueIdentifier>{8cc0d468-bd91-4d37-beb0-b08a871c1a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\PixelShader">
+      <UniqueIdentifier>{39439e83-e6d0-43ab-be8a-4c74805e36c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
+      <UniqueIdentifier>{0243aacb-1d5e-4c85-8bad-6a7b6afe9484}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -53,6 +74,24 @@
     </ClCompile>
     <ClCompile Include="Vector3D.cpp">
       <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,11 +119,37 @@
     <ClInclude Include="Vec.h">
       <Filter>HelperFiles</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>HelperFiles</Filter>
-    </ClInclude>
     <ClInclude Include="Vector3D.h">
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>App</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>App</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

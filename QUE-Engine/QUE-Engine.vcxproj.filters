@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{f0bdbe2d-5be1-4909-af97-e0951c35dd8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{c8466b10-f9c6-48e3-a10a-a28abb976a76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\WindowingSystem">
+      <UniqueIdentifier>{f0c90e97-a3fc-4e51-8391-ffd998a0ef6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\EngineTime">
+      <UniqueIdentifier>{9646258e-0a7b-49e0-bbaf-5f53e3644082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine">
+      <UniqueIdentifier>{72d26da3-2b18-4d9f-a636-af650f82ccd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\SwapChain">
+      <UniqueIdentifier>{4f88f815-8ec0-4fac-bb15-4ec097f4a2ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\DeviceContext">
+      <UniqueIdentifier>{e5d5a809-891c-488a-9f9f-5aae555e0f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HelperFiles">
+      <UniqueIdentifier>{d6ebac9f-41ae-49c6-b2f2-74a70225be29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Math">
+      <UniqueIdentifier>{da8a9cba-26ed-400b-a874-201b8f008c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject">
+      <UniqueIdentifier>{d2898102-0647-4ef9-908a-f18e66c1681e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\VertexBuffer">
+      <UniqueIdentifier>{2c0617b2-e440-44b1-890e-6143c08fd2f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\VertexShader">
+      <UniqueIdentifier>{8cc0d468-bd91-4d37-beb0-b08a871c1a6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\PixelShader">
+      <UniqueIdentifier>{39439e83-e6d0-43ab-be8a-4c74805e36c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
+      <UniqueIdentifier>{0243aacb-1d5e-4c85-8bad-6a7b6afe9484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D">
+      <UniqueIdentifier>{2a414c1f-7eba-4bce-b7af-ba02aac1d911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle">
+      <UniqueIdentifier>{dc74f862-ab67-4f1a-8ab9-ef51444af66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad">
+      <UniqueIdentifier>{585887f7-73dc-473c-aaed-81a71f78711e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle">
+      <UniqueIdentifier>{8dde6dfd-2087-4117-8535-3c74ec6371c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\ConstantBuffer">
+      <UniqueIdentifier>{c2512d6a-ca9e-4adf-be3f-28ef71edbfcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D">
+      <UniqueIdentifier>{25481b37-713a-4a29-bb4c-a0eb8d4af36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube">
+      <UniqueIdentifier>{677ea818-69b7-4fce-adbb-a909647f5425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\IndexBuffer">
+      <UniqueIdentifier>{b624d3da-f08e-41b5-8d32-06f017869323}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>GameEngine\WindowingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>GameEngine\EngineTime</Filter>
+    </ClCompile>
+    <ClCompile Include="AppWindow.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsEngine.cpp">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SwapChain.cpp">
+      <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceContext.cpp">
+      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
+      <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Drawable.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4x4.cpp">
+      <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Window.h">
+      <Filter>GameEngine\WindowingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTime.h">
+      <Filter>GameEngine\EngineTime</Filter>
+    </ClInclude>
+    <ClInclude Include="AppWindow.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsEngine.h">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SwapChain.h">
+      <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceContext.h">
+      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>App</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>App</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

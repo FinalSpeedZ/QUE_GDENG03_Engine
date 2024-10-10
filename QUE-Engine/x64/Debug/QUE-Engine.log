@@ -1,0 +1,4 @@
+﻿  Cube.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(15,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(18,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+  QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

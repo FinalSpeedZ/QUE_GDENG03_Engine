@@ -30,6 +30,7 @@ void Triangle::onDestroy()
 	if (m_vs)
 		m_vs->release();
 
+
 	if (m_ps)
 		m_ps->release();
 }

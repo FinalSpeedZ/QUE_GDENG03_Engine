@@ -73,3 +73,8 @@ void Circle::updateConstantBuffer(float deltaTime)
 	Drawable::updateConstantBuffer(deltaTime);
 }
 
+void Circle::projectionMat()
+{
+	Drawable::projectionMat();
+}
+

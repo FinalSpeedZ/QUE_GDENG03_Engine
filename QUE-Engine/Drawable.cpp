@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "AppWindow.h"
+
+
 Drawable::Drawable(std::string name)
 	: GameObject(name)
 {
@@ -37,6 +40,7 @@ void Drawable::onUpdate(float deltatime)
 
 	updateConstantBuffer(deltatime);
 	draw();
+	projectionMat();
 }
 
 void Drawable::onDestroy()
@@ -65,5 +69,21 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	time += animSpeed * deltaTime;
 
 	cc.m_time = time;
+
+}
+
+void Drawable::projectionMat()
+{
+	cc.m_world.setScale(Vector3D(1, 1, 1));
+
+	RECT rc = AppWindow::getInstance()->getClientWindowRect();
+	cc.m_view.setIdentity();
+	cc.m_projection.setOrthoLH
+	(
+		(rc.right - rc.left) / 300.0f,
+		(rc.bottom - rc.top) / 300.0f,
+		-4.0f,
+		4.0f
+	);
 }
 

@@ -70,3 +70,8 @@ void Triangle::updateConstantBuffer(float deltaTime)
 	Drawable::updateConstantBuffer(deltaTime);
 }
 
+void Triangle::projectionMat()
+{
+	Drawable::projectionMat();
+}
+

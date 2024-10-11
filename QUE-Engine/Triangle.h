@@ -26,6 +26,7 @@ public:
 private:
 	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;
+	void projectionMat() override;
 
 private:
 	std::vector<vec4> colors;

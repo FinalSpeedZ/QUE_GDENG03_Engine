@@ -13,11 +13,8 @@ void Circle::onCreate()
 
 void Circle::onUpdate(float deltaTime)
 {
-	Drawable::deltaTime = deltaTime;
-
-	draw();
+	Drawable::onUpdate(deltaTime);
 }
-
 
 void Circle::onDestroy()
 {
@@ -60,14 +57,19 @@ void Circle::calculateVertices()
 		float x = radius * cos(angle);
 		float y = radius * sin(angle);
 
-		vertices.push_back({ Vector3D(x, y, 0.0f), Colors::WHITE });
+		vertices.push_back({ Vector3D(x, y, 0.0f), Colors::WHITE, Colors::RED});
 
 		if (i > 0)
 		{
-			vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
+			vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED, Colors::WHITE}); 
 		}
 	}
 
-	vertices.push_back({ Vector3D(radius, 0.0f, 0.0f), Colors::WHITE });
+	vertices.push_back({ Vector3D(radius, 0.0f, 0.0f), Colors::WHITE, Colors::RED});
+}
+
+void Circle::updateConstantBuffer(float deltaTime)
+{
+	Drawable::updateConstantBuffer(deltaTime);
 }
 

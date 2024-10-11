@@ -5,14 +5,23 @@
 #include "SwapChain.h"
 
 #include "VertexBuffer.h"
+#include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
 
 #include "Vec.h"
 #include "Colors.h"
 
+#include "SwapChain.h"
+#include "VertexBuffer.h"
+#include "VertexShader.h"
+#include "PixelShader.h"
+
 class SwapChain;
 class VertexBuffer;
+class ConstantBuffer;
+class VertexShader;
+class PixelShader;
 
 class DeviceContext
 {
@@ -24,6 +33,10 @@ public:
 	bool release();
 
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
+
+	void setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* buffer);
+	void setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* buffer);
+
 	void setVertexShader(VertexShader* vertex_shader);
 	void setPixelShader(PixelShader* pixel_shader);
 
@@ -34,4 +47,7 @@ public:
 
 private:
 	ID3D11DeviceContext* m_device_context;
+
+private:
+	friend class ConstantBuffer;
 };

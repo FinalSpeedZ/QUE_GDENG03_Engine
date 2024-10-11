@@ -16,9 +16,7 @@ void Triangle::onCreate()
 
 void Triangle::onUpdate(float deltaTime)
 {
-	Drawable::deltaTime = deltaTime;
-
-	draw();
+	Drawable::onUpdate(deltaTime);
 }
 
 
@@ -62,7 +60,13 @@ void Triangle::calculateVertices()
 {
 	vertices.clear();
 
-	vertices.push_back({ Vector3D(-base / 2, -height / 2, 0.0f), Colors::YELLOW }); // Bottom left
-	vertices.push_back({ Vector3D(0.0f, height / 2, 0.0f), Colors::RED });          // Top
-	vertices.push_back({ Vector3D(base / 2, -height / 2, 0.0f), Colors::BLUE });    // Bottom right   // Bottom right
+	vertices.push_back({ Vector3D(-base / 2, -height / 2, 0.0f), Colors::YELLOW, Colors::ORANGE}); // Bottom left
+	vertices.push_back({ Vector3D(0.0f, height / 2, 0.0f), Colors::RED, Colors::WHITE });          // Top
+	vertices.push_back({ Vector3D(base / 2, -height / 2, 0.0f), Colors::BLUE, Colors::GREEN });    // Bottom right   // Bottom right
 }
+
+void Triangle::updateConstantBuffer(float deltaTime)
+{
+	Drawable::updateConstantBuffer(deltaTime);
+}
+

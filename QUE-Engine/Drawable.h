@@ -5,6 +5,13 @@
 #include "GameObject.h"
 #include "VertexBuffer.h"
 
+__declspec(align(16))
+struct constant
+{
+	float m_time;
+};
+
+
 class Drawable : public  GameObject
 {
 
@@ -20,18 +27,22 @@ public:
 protected:
 	virtual void draw();
 
-private:
+protected:
 	virtual void calculateVertices() {};
+	virtual void updateConstantBuffer(float deltaTime);
 
 protected:
 	std::vector<vertex> vertices;
 
+	constant cc;
+
 	VertexBuffer* m_vb;
+	ConstantBuffer* m_cb;
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 
-	float deltaTime = 0.0f;
-	float animSpeed = 10.0f;
+	float time = 0.0f;
+	float animSpeed = 1.0f;
 
 };
 

@@ -23,6 +23,16 @@ void DeviceContext::setVertexBuffer(VertexBuffer* vertex_buffer)
 	m_device_context->IASetInputLayout(vertex_buffer->m_layout);
 }
 
+void DeviceContext::setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* buffer)
+{
+	m_device_context->VSSetConstantBuffers(0, 1, &buffer->m_buffer);
+}
+
+void DeviceContext::setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* buffer)
+{
+	m_device_context->PSSetConstantBuffers(0, 1, &buffer->m_buffer);
+}
+
 void DeviceContext::setVertexShader(VertexShader* vertex_shader)
 {
 	m_device_context->VSSetShader(vertex_shader->m_vs, nullptr, 0);

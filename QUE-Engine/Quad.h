@@ -23,7 +23,9 @@ public:
 	void setWidth(float width);
 	void setHeight(float height);
 
+private:
 	void calculateVertices() override;
+	void updateConstantBuffer(float deltaTime) override;
 
 private:
 	std::vector<vec4> colors;

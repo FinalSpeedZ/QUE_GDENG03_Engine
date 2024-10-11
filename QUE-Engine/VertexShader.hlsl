@@ -1,14 +1,23 @@
 struct VS_INPUT
 {
     float4 position : POSITION;
-    float3 color : COLOR;
+    float4 color : COLOR;
+    float4 color1 : COLOR1;
 };
 
 struct VS_OUTPUT
 {
     float4 position : SV_POSITION;
-    float3 color : COLOR;
+    float4 color : COLOR;
+    float4 color1 : COLOR1;
 };
+
+
+cbuffer constant : register(b0)
+{
+    float m_time;
+};
+
 
 
 VS_OUTPUT vsmain(VS_INPUT input)
@@ -17,6 +26,6 @@ VS_OUTPUT vsmain(VS_INPUT input)
 	
     output.position = input.position;
     output.color = input.color;
-
+    output.color1 = input.color1;
     return output;
 }

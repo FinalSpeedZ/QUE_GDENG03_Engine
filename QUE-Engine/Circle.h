@@ -21,7 +21,9 @@ protected:
 public:
     void setRadius(float radius);
 
+private:
     void calculateVertices() override;
+    void updateConstantBuffer(float deltaTime) override;
 
 private:
     std::vector<vec4> colors; 

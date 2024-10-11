@@ -25,9 +25,9 @@ void AppWindow::onCreate()
 
 	//drawables.push_back(std::make_unique<Triangle>("Triangle " + std::to_string(drawables.size() + 1)));
 
-	//drawables.push_back(std::make_unique<Quad>("Quad " + std::to_string(drawables.size() + 1)));
+	drawables.push_back(std::make_unique<Quad>("Quad " + std::to_string(drawables.size() + 1)));
 
-	drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
+	//drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 
 	for (const auto& drawable : drawables)
 	{
@@ -40,7 +40,7 @@ void AppWindow::onUpdate()
 {
 	Window::onUpdate();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0.5f, 0.5f, 0.9f, 1);
+		0.0f, 0.0f, 0.0f, 1);
 
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);

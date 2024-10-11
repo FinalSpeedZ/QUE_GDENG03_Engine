@@ -16,9 +16,7 @@ void Quad::onCreate()
 
 void Quad::onUpdate(float deltaTime)
 {
-	Drawable::deltaTime = deltaTime;
-
-	draw();
+	Drawable::onUpdate(deltaTime);
 }
 
 
@@ -76,9 +74,15 @@ void Quad::calculateVertices()
 
 	vertices =
 	{
-		{ initPositions[0], Colors::RED}, // Bottom Left
-		{ initPositions[1], Colors::YELLOW}, // Top Left
-		{ initPositions[2], Colors::GREEN}, // Bottom Right
-		{ initPositions[3], Colors::BLUE}  // Top Right
+		{ initPositions[0], Colors::RED, Colors::BLUE}, // Bottom Left
+		{ initPositions[1], Colors::YELLOW, Colors::GREEN}, // Top Left
+		{ initPositions[2], Colors::GREEN, Colors::YELLOW}, // Bottom Right
+		{ initPositions[3], Colors::BLUE, Colors::RED}  // Top Right
 	};
 }
+
+void Quad::updateConstantBuffer(float deltaTime)
+{
+	Drawable::updateConstantBuffer(deltaTime);
+}
+

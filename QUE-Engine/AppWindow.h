@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "Drawable.h"
 #include "Triangle.h"
+#include "Quad.h"
 
 #include "Vector3D.h"
 

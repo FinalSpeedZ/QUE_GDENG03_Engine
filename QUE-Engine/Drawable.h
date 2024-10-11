@@ -19,7 +19,9 @@ public:
 
 protected:
 	virtual void draw();
-	
+
+private:
+	virtual void calculateVertices() {};
 
 protected:
 	std::vector<vertex> vertices;

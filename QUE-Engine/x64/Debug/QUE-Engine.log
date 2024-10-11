@@ -1,2 +1,7 @@
-﻿  Triangle.cpp
+﻿  AppWindow.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(47,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Quad.cpp
+  Triangle.cpp
+  main.cpp
+  Generating Code...
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

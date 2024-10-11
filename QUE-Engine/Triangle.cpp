@@ -46,12 +46,16 @@ void Triangle::setBase(float base)
 {
 	this->base = base;
 	calculateVertices();
+
+	onCreate();
 }
 
 void Triangle::setHeight(float height)
 {
 	this->height = height;
 	calculateVertices();
+
+	onCreate();
 }
 
 void Triangle::calculateVertices()

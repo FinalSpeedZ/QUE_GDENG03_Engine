@@ -1,6 +1,5 @@
 #include "AppWindow.h"
 
-
 AppWindow* AppWindow::sharedInstance = NULL;
 
 AppWindow* AppWindow::getInstance()
@@ -24,7 +23,9 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	drawables.push_back(std::make_unique<Triangle>("Test"));
+	//drawables.push_back(std::make_unique<Triangle>("Triangle " + std::to_string(drawables.size() + 1)));
+
+	drawables.push_back(std::make_unique<Quad>("Quad " + std::to_string(drawables.size() + 1)));
 
 	for (const auto& drawable : drawables)
 	{

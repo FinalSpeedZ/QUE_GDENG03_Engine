@@ -49,6 +49,9 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
       <UniqueIdentifier>{0243aacb-1d5e-4c85-8bad-6a7b6afe9484}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive\Quad">
+      <UniqueIdentifier>{585887f7-73dc-473c-aaed-81a71f78711e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="PixelShader.cpp">
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Quad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="PixelShader.h">
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Quad</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

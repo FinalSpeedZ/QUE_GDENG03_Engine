@@ -23,7 +23,7 @@ public:
 	void setBase(float base);
 	void setHeight(float height);
 
-	void calculateVertices();
+	void calculateVertices() override;
 
 private:
 	std::vector<vec4> colors;

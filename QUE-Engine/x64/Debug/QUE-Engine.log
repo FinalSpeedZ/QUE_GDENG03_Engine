@@ -1,6 +1,4 @@
-﻿  Circle.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp(8,43): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp(8,38): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp(9,43): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp(9,38): warning C4305: 'argument': truncation from 'double' to 'float'
+﻿  AppWindow.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(22,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(63,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

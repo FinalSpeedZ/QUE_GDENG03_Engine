@@ -65,6 +65,7 @@ void AppWindow::onUpdate()
 
 		m_swap_chain->present(true);
 	}
+
 }
 
 void AppWindow::onDestroy()
@@ -88,7 +89,11 @@ void AppWindow::onDestroy()
 
 void AppWindow::onKeyDown(int key)
 {
-
+	// Esc
+	if (key == 27)
+	{
+		onDestroy();
+	}
 }
 
 void AppWindow::onKeyUp(int key)
@@ -98,8 +103,6 @@ void AppWindow::onKeyUp(int key)
 	{
 		drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 		drawables.back()->onCreate();
-
-		std::cout << "Drawables: " << drawables.size() << std::endl;
 	}
 
 	// Backspace
@@ -110,8 +113,8 @@ void AppWindow::onKeyUp(int key)
 			drawables.back()->onDestroy();
 			drawables.pop_back();
 
-			std::cout << "Drawables: " << drawables.size() << std::endl;
 		}
+
 	}
 
 	// Esc
@@ -129,12 +132,8 @@ void AppWindow::onKeyUp(int key)
 		}
 		drawables.clear();
 
-		std::cout << "Drawables: " << drawables.size() << std::endl;
 	}
-	else 
-	{
-		std::cout << "Other key pressed: " << key << std::endl;
-	}
+
 }
 
 

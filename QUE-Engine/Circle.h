@@ -27,12 +27,13 @@ private:
     void projectionMat() override;
 
     float getRandomFloat(float min, float max);
+    void randomColor();
 
 private:
-    std::vector<vec4> colors; 
+    vec4 color; 
 
     float radius;
-    int numSegments = 360;
+    int numSegments = 100;
 
     float velocityX;
     float velocityY;

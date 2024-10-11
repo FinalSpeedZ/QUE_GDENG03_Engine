@@ -11,6 +11,12 @@ Circle::Circle(std::string name, float radius)
 	velocityX = getRandomFloat(-1, 1);
 	velocityY = getRandomFloat(-1, 1);
 
+	color.x = getRandomFloat(0, 1);
+	color.y = getRandomFloat(0, 1);
+	color.z = getRandomFloat(0, 1);
+	color.w = 1;
+
+
 	if (localPosition.m_x > 0)
 		localPosition.m_x -= radius;
 	else if (localPosition.m_x < 0)
@@ -38,24 +44,28 @@ void Circle::onUpdate(float deltaTime)
 	{
 		this->velocityX = -velocityX; // reverse
 		this->localPosition.m_x = 1 - this->radius; // fix pos
+		randomColor(); // change color
 	}
 
 	if (this->localPosition.m_x <= -1 + this->radius)
 	{
 		this->velocityX = -velocityX; // reverse
 		this->localPosition.m_x = -1 + this->radius; // fix pos
+		randomColor(); // change color
 	}
 
 	if (this->localPosition.m_y >= 1 - this->radius)
 	{
 		this->velocityY = -velocityY; // reverse 
 		this->localPosition.m_y = 1 - this->radius; // fix pos
+		randomColor(); // change color
 	}
 
 	if (this->localPosition.m_y <= -1 + this->radius)
 	{
 		this->velocityY = -velocityY; // reverse
 		this->localPosition.m_y = -1 + this->radius; // fix pos
+		randomColor(); // change color
 	}
 
 	calculateVertices();
@@ -90,9 +100,7 @@ void Circle::calculateVertices()
 {
 	vertices.clear();
 
-	float angleIncrement = 2 * 3.14159f / numSegments;
-
-	vertices.push_back({ Vector3D(localPosition.m_x, localPosition.m_y, 0.0f), Colors::WHITE, Colors::WHITE });
+	float angleIncrement = 3.14159f / numSegments;
 
 	for (int i = 0; i <= numSegments; ++i)
 	{
@@ -103,10 +111,10 @@ void Circle::calculateVertices()
 		float y = radius * sin(angle);
 
 		// Add vertices for the circle
-		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y + y, 0.0f), Colors::RED, Colors::hexToVec3("#e5eba9")});
-		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y + y, 0.0f), Colors::GREEN, Colors::hexToVec3("#86b8cf") });
-		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y - y, 0.0f), Colors::BLUE, Colors::hexToVec3("#86cf9b") });
-		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y - y, 0.0f), Colors::YELLOW, Colors::hexToVec3("#d17b7b") });
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y + y, 0.0f), color, color });
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y + y, 0.0f), color, color });
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y - y, 0.0f), color, color });
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y - y, 0.0f), color, color });
 	}
 }
 
@@ -127,4 +135,12 @@ float Circle::getRandomFloat(float min, float max)
 	random = min + random;
 
 	return random;
+}
+
+void Circle::randomColor()
+{
+	color.x = getRandomFloat(0, 1);
+	color.y = getRandomFloat(0, 1);
+	color.z = getRandomFloat(0, 1);
+	color.w = 1;
 }

@@ -2,11 +2,17 @@
 
 #include <iostream>
 
+#include "AppWindow.h"
+
 Circle::Circle(std::string name, float radius)
 	: Drawable(name), radius(radius)
 {
-	localPosition.m_x = getRandomFloat(-0.9, 0.9);
-	localPosition.m_y = getRandomFloat(-0.9, 0.9);
+	RECT rc = AppWindow::getInstance()->getClientWindowRect();
+	float width = (rc.right - rc.left) / 300.0f;  
+	float height = (rc.bottom - rc.top) / 300.0f; 
+
+	localPosition.m_x = getRandomFloat(-width / 2 + radius, width / 2 - radius);
+	localPosition.m_y = getRandomFloat(-height / 2 + radius, height / 2 - radius);
 
 	velocityX = getRandomFloat(-1, 1);
 	velocityY = getRandomFloat(-1, 1);
@@ -37,35 +43,41 @@ void Circle::onCreate()
 
 void Circle::onUpdate(float deltaTime)
 {
-	this->localPosition.m_x += this->velocityX * deltaTime;
-	this->localPosition.m_y += this->velocityY * deltaTime;
+	//this->localPosition.m_x += this->velocityX * deltaTime;
+	//this->localPosition.m_y += this->velocityY * deltaTime;
 
-	if (this->localPosition.m_x >= 1 - this->radius)
+	RECT rc = AppWindow::getInstance()->getClientWindowRect();
+	float width = (rc.right - rc.left) / 300.0f;  
+	float height = (rc.bottom - rc.top) / 300.0f; 
+
+	// Check bounds for X coordinate
+	if (this->localPosition.m_x >= (width / 2) - this->radius)
 	{
-		this->velocityX = -velocityX; // reverse
-		this->localPosition.m_x = 1 - this->radius; // fix pos
-		randomColor(); // change color
+		this->velocityX = -velocityX; // Reverse velocity
+		this->localPosition.m_x = (width / 2) - this->radius; // Fix position
+		randomColor(); // Change color
 	}
 
-	if (this->localPosition.m_x <= -1 + this->radius)
+	if (this->localPosition.m_x <= (-width / 2) + this->radius)
 	{
-		this->velocityX = -velocityX; // reverse
-		this->localPosition.m_x = -1 + this->radius; // fix pos
-		randomColor(); // change color
+		this->velocityX = -velocityX; // Reverse velocity
+		this->localPosition.m_x = (-width / 2) + this->radius; // Fix position
+		randomColor(); // Change color
 	}
 
-	if (this->localPosition.m_y >= 1 - this->radius)
+	// Check bounds for Y coordinate
+	if (this->localPosition.m_y >= (height / 2) - this->radius)
 	{
-		this->velocityY = -velocityY; // reverse 
-		this->localPosition.m_y = 1 - this->radius; // fix pos
-		randomColor(); // change color
+		this->velocityY = -velocityY; // Reverse velocity
+		this->localPosition.m_y = (height / 2) - this->radius; // Fix position
+		randomColor(); // Change color
 	}
 
-	if (this->localPosition.m_y <= -1 + this->radius)
+	if (this->localPosition.m_y <= (-height / 2) + this->radius)
 	{
-		this->velocityY = -velocityY; // reverse
-		this->localPosition.m_y = -1 + this->radius; // fix pos
-		randomColor(); // change color
+		this->velocityY = -velocityY; // Reverse velocity
+		this->localPosition.m_y = (-height / 2) + this->radius; // Fix position
+		randomColor(); // Change color
 	}
 
 	calculateVertices();

@@ -7,7 +7,7 @@
 class Circle : public Drawable
 {
 public:
-    Circle(std::string name, float radius = 0.1f);
+    Circle(std::string name, float radius = 0.15f);
     ~Circle() {}
 
 public:

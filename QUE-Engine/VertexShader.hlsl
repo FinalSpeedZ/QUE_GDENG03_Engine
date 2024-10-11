@@ -14,16 +14,25 @@ struct VS_OUTPUT
 
 cbuffer constant : register(b0)
 {
-    float m_time;
+    row_major float4x4 m_world;
+    row_major float4x4 m_view;
+    row_major float4x4 m_proj;
+    unsigned int m_time;
 };
 
 VS_OUTPUT vsmain(VS_INPUT input)
 {
     VS_OUTPUT output = (VS_OUTPUT) 0;
-	
-    output.position = input.position;
+
+	//WORLD SPACE
+    output.position = mul(input.position, m_world);
+	//VIEW SPACE
+    output.position = mul(output.position, m_view);
+	//SCREEN SPACE
+    output.position = mul(output.position, m_proj);
+
+
     output.color = input.color;
     output.color1 = input.color1;
-
     return output;
 }

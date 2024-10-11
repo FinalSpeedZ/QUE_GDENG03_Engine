@@ -18,14 +18,8 @@ void Circle::onUpdate(float deltaTime)
 
 void Circle::onDestroy()
 {
-	if (m_vb)
-		m_vb->release();
+	Drawable::onDestroy();
 
-	if (m_vs)
-		m_vs->release();
-
-	if (m_ps)
-		m_ps->release();
 }
 
 void Circle::draw()
@@ -46,7 +40,7 @@ void Circle::setRadius(float radius)
 
 void Circle::calculateVertices()
 {
-	float angleIncrement = 2.0f * 3.14159f / numSegments;
+	float angleIncrement = 0.25f * 3.14159f / numSegments;
 
 	vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
 
@@ -57,15 +51,17 @@ void Circle::calculateVertices()
 		float x = radius * cos(angle);
 		float y = radius * sin(angle);
 
-		vertices.push_back({ Vector3D(x, y, 0.0f), Colors::WHITE, Colors::RED});
+		vertices.push_back({ Vector3D(x, y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(-x, y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(x, -y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(-x, -y, 0.0f), Colors::WHITE, Colors::RED });
 
-		if (i > 0)
-		{
-			vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED, Colors::WHITE}); 
-		}
+		vertices.push_back({ Vector3D( y,x, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(-y, x, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(y, -x, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(-y, -x, 0.0f), Colors::WHITE, Colors::RED });
+
 	}
-
-	vertices.push_back({ Vector3D(radius, 0.0f, 0.0f), Colors::WHITE, Colors::RED});
 }
 
 void Circle::updateConstantBuffer(float deltaTime)

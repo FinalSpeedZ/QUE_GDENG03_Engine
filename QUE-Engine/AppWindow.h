@@ -13,13 +13,15 @@
 #include "Circle.h"
 #include "Cube.h"
 
+#include "InputListener.h"
+
 #include "Vector3D.h"
 
 #include "Vec.h"
 #include "Colors.h"
 #include "Vertex.h"
 
-class AppWindow : public Window
+class AppWindow : public Window, public InputListener
 {
 
 private:
@@ -42,8 +44,12 @@ public:
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
 
+	virtual void onKeyDown(int key) override;
+	virtual void onKeyUp(int key) override;
+
 private:
 	SwapChain* m_swap_chain;
 
 	std::vector<std::unique_ptr<GameObject>> drawables;
+
 };

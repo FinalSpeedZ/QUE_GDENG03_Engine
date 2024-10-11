@@ -46,6 +46,18 @@ void Drawable::onUpdate(float deltatime)
 void Drawable::onDestroy()
 {
 	GameObject::onDestroy();
+
+	if (m_vb)
+		m_vb->release();
+
+	if (m_vs)
+		m_vs->release();
+
+	if (m_ps)
+		m_ps->release();
+
+	if (m_cb)
+		m_cb->release();
 }
 
 void Drawable::draw()

@@ -1,5 +1,7 @@
 #include "AppWindow.h"
 
+#include "InputSystem.h"
+
 AppWindow* AppWindow::sharedInstance = NULL;
 
 AppWindow* AppWindow::getInstance()
@@ -16,6 +18,10 @@ void AppWindow::initialize()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
+
+	InputSystem::getInstance()->initialize();
+	InputSystem::getInstance()->addListener(this->getInstance());
+
 	GraphicsEngine::initialize();
 
 	m_swap_chain = GraphicsEngine::getInstance()->createSwapChain();
@@ -25,7 +31,7 @@ void AppWindow::onCreate()
 
 	//drawables.push_back(std::make_unique<Triangle>("Triangle " + std::to_string(drawables.size() + 1)));
 
-	drawables.push_back(std::make_unique<Cube>("Cube " + std::to_string(drawables.size() + 1)));
+	drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 
 	//drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 
@@ -38,28 +44,96 @@ void AppWindow::onCreate()
 
 void AppWindow::onUpdate()
 {
+
 	Window::onUpdate();
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0.0f, 0.0f, 0.0f, 1);
 
-	RECT rc = this->getClientWindowRect();
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+	InputSystem::getInstance()->update();
 
-	for (const auto& drawable : drawables)
+	if (m_is_run)
 	{
-		drawable->onUpdate(EngineTime::getDeltaTime());
-	}
+		GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
+			0.0f, 0.0f, 0.0f, 1);
 
-	m_swap_chain->present(true);
+		RECT rc = this->getClientWindowRect();
+		GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+
+		for (const auto& drawable : drawables)
+		{
+			drawable->onUpdate(EngineTime::getDeltaTime());
+		}
+
+		m_swap_chain->present(true);
+	}
 }
 
 void AppWindow::onDestroy()
 {
-	Window::onDestroy();
+	if (m_swap_chain) {
+		m_swap_chain->release(); 
+		m_swap_chain = nullptr; 
+	}
 
-	m_swap_chain->release();
+	for (const auto& drawable : drawables)
+	{
+		drawable->onDestroy();
+	}
 
-	GraphicsEngine::getInstance()->release();
+	if (GraphicsEngine::getInstance()) {
+		GraphicsEngine::getInstance()->release();
+	}
+
+	Window::onDestroy(); // Call the base class cleanup
+}
+
+void AppWindow::onKeyDown(int key)
+{
+
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	// Space
+	if (key == ' ') 
+	{
+		drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
+		drawables.back()->onCreate();
+
+		std::cout << "Drawables: " << drawables.size() << std::endl;
+	}
+
+	// Backspace
+	else if (key == '\b') 
+	{
+		if (drawables.size() > 0)
+		{
+			drawables.back()->onDestroy();
+			drawables.pop_back();
+
+			std::cout << "Drawables: " << drawables.size() << std::endl;
+		}
+	}
+
+	// Esc
+	else if (key == 27) 
+	{
+		onDestroy();
+	}
+
+	// Del
+	else if (key == 46)
+	{
+		for (const auto& drawable : drawables)
+		{
+			drawable->onDestroy();
+		}
+		drawables.clear();
+
+		std::cout << "Drawables: " << drawables.size() << std::endl;
+	}
+	else 
+	{
+		std::cout << "Other key pressed: " << key << std::endl;
+	}
 }
 
 

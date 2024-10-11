@@ -82,6 +82,7 @@ bool GraphicsEngine::release()
 	m_imm_device_context->release();
 
 	m_d3d_device->Release();
+
 	return true;
 }
 

@@ -1,8 +1,26 @@
 #include "Circle.h"
 
+#include <iostream>
+
 Circle::Circle(std::string name, float radius)
 	: Drawable(name), radius(radius)
 {
+	localPosition.m_x = getRandomFloat(-0.9, 0.9);
+	localPosition.m_y = getRandomFloat(-0.9, 0.9);
+
+	velocityX = getRandomFloat(-1, 1);
+	velocityY = getRandomFloat(-1, 1);
+
+	if (localPosition.m_x > 0)
+		localPosition.m_x -= radius;
+	else if (localPosition.m_x < 0)
+		localPosition.m_x += radius;
+
+	if (localPosition.m_y > 0)
+		localPosition.m_y -= radius;
+	else if (localPosition.m_y < 0)
+		localPosition.m_y += radius;
+
 	calculateVertices();
 }
 
@@ -13,6 +31,37 @@ void Circle::onCreate()
 
 void Circle::onUpdate(float deltaTime)
 {
+	this->localPosition.m_x += this->velocityX * deltaTime;
+	this->localPosition.m_y += this->velocityY * deltaTime;
+
+	if (this->localPosition.m_x >= 1 - this->radius)
+	{
+		this->velocityX = -velocityX; // reverse
+		this->localPosition.m_x = 1 - this->radius; // fix pos
+	}
+
+	if (this->localPosition.m_x <= -1 + this->radius)
+	{
+		this->velocityX = -velocityX; // reverse
+		this->localPosition.m_x = -1 + this->radius; // fix pos
+	}
+
+	if (this->localPosition.m_y >= 1 - this->radius)
+	{
+		this->velocityY = -velocityY; // reverse 
+		this->localPosition.m_y = 1 - this->radius; // fix pos
+	}
+
+	if (this->localPosition.m_y <= -1 + this->radius)
+	{
+		this->velocityY = -velocityY; // reverse
+		this->localPosition.m_y = -1 + this->radius; // fix pos
+	}
+
+	calculateVertices();
+
+	onCreate();
+
 	Drawable::onUpdate(deltaTime);
 }
 
@@ -40,28 +89,27 @@ void Circle::setRadius(float radius)
 
 void Circle::calculateVertices()
 {
-	float angleIncrement = 0.25f * 3.14159f / numSegments;
+	vertices.clear();
 
-	vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
+	float angleIncrement = 2 * 3.14159f / numSegments;
+
+	vertices.push_back({ Vector3D(localPosition.m_x, localPosition.m_y, 0.0f), Colors::RED, Colors::WHITE});
 
 	for (int i = 0; i <= numSegments; ++i)
 	{
 		float angle = i * angleIncrement;
 
+		// Calculate x and y using radius for the current angle
 		float x = radius * cos(angle);
 		float y = radius * sin(angle);
 
-		vertices.push_back({ Vector3D(x, y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(-x, y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(x, -y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(-x, -y, 0.0f), Colors::WHITE, Colors::RED });
-
-		vertices.push_back({ Vector3D( y,x, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(-y, x, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(y, -x, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(-y, -x, 0.0f), Colors::WHITE, Colors::RED });
-
+		// Add vertices for the circle
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y + y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y + y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y - y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y - y, 0.0f), Colors::WHITE, Colors::RED });
 	}
+
 }
 
 void Circle::updateConstantBuffer(float deltaTime)
@@ -74,3 +122,11 @@ void Circle::projectionMat()
 	Drawable::projectionMat();
 }
 
+float Circle::getRandomFloat(float min, float max)
+{
+	float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));
+
+	random = min + random;
+
+	return random;
+}

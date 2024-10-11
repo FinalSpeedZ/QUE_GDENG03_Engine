@@ -2,6 +2,9 @@
 
 #include "Window.h"
 
+#include <cstdlib> 
+#include <ctime> 
+
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
 #include "DeviceContext.h"

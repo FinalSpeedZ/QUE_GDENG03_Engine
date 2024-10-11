@@ -8,12 +8,11 @@
 Drawable::Drawable(std::string name)
 	: GameObject(name)
 {
+	cc.m_time = 0.0f;
 }
 
 void Drawable::onCreate()
 {
-	cc.m_time = 0.0f;
-
 	m_cb = GraphicsEngine::getInstance()->createConstantBuffer();
 	m_cb->load(&cc, sizeof(constant));
 
@@ -62,7 +61,6 @@ void Drawable::onDestroy()
 
 void Drawable::draw()
 {
-
 	m_cb->update(GraphicsEngine::getInstance()->getImmediateDeviceContext(), &cc);
 
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
@@ -86,14 +84,13 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 void Drawable::projectionMat()
 {
-	cc.m_world.setScale(Vector3D(1, 1, 1));
-
 	RECT rc = AppWindow::getInstance()->getClientWindowRect();
+
 	cc.m_view.setIdentity();
 	cc.m_projection.setOrthoLH
 	(
-		(rc.right - rc.left) / 300.0f,
-		(rc.bottom - rc.top) / 300.0f,
+		(rc.right - rc.left) / 400.0f,
+		(rc.bottom - rc.top) / 400.0f,
 		-4.0f,
 		4.0f
 	);

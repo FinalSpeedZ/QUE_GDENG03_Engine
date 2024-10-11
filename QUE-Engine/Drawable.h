@@ -7,7 +7,6 @@
 
 #include "Matrix4x4.h"
 
-
 __declspec(align(16))
 struct constant
 {
@@ -48,7 +47,7 @@ protected:
 	PixelShader* m_ps;
 
 	float time = 0.0f;
-	float animSpeed = 1.0f;
+	float animSpeed = 1.f;
 
 };
 

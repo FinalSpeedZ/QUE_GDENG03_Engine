@@ -19,6 +19,8 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 
+	srand(time(0));
+
 	InputSystem::getInstance()->initialize();
 	InputSystem::getInstance()->addListener(this->getInstance());
 
@@ -39,7 +41,6 @@ void AppWindow::onCreate()
 	{
 		drawable->onCreate();
 	}
-
 }
 
 void AppWindow::onUpdate()

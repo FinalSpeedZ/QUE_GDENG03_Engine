@@ -11,6 +11,7 @@
 #include "Triangle.h"
 #include "Quad.h"
 #include "Circle.h"
+#include "Cube.h"
 
 #include "Vector3D.h"
 

@@ -1,10 +1,12 @@
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\AppWindow.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Circle.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\ConstantBuffer.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\ConstantBuffer.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Cube.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\DeviceContext.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\DeviceContext.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\EngineTime.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\EngineTime.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\GameObject.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\GameObject.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\GraphicsEngine.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\GraphicsEngine.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\IndexBuffer.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\IndexBuffer.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\main.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\main.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Matrix4x4.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PixelShader.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PixelShader.obj

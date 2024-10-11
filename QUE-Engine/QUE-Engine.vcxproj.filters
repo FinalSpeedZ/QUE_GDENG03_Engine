@@ -58,6 +58,15 @@
     <Filter Include="GameEngine\GraphicsEngine\ConstantBuffer">
       <UniqueIdentifier>{c2512d6a-ca9e-4adf-be3f-28ef71edbfcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D">
+      <UniqueIdentifier>{25481b37-713a-4a29-bb4c-a0eb8d4af36f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube">
+      <UniqueIdentifier>{677ea818-69b7-4fce-adbb-a909647f5425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\IndexBuffer">
+      <UniqueIdentifier>{b624d3da-f08e-41b5-8d32-06f017869323}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +122,12 @@
     </ClCompile>
     <ClCompile Include="Matrix4x4.cpp">
       <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +190,12 @@
     </ClInclude>
     <ClInclude Include="Matrix4x4.h">
       <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Cube</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

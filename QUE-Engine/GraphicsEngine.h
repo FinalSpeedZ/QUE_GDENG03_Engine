@@ -6,6 +6,7 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
@@ -43,6 +44,7 @@ public:
 	DeviceContext* getImmediateDeviceContext();
 
 	VertexBuffer* createVertexBuffer();
+	IndexBuffer* createIndexBuffer();
 	ConstantBuffer* createConstantBuffer();
 
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
@@ -76,6 +78,7 @@ private:
 private:
 	friend class SwapChain;
 	friend class VertexBuffer;
+	friend class IndexBuffer;
 	friend class ConstantBuffer;
 	friend class VertexShader;
 	friend class PixelShader;

@@ -10,6 +10,11 @@ Vector3D::Vector3D()
 {
 }
 
+Vector3D::Vector3D(float x)
+	: m_x(x), m_y(x), m_z(x)
+{
+}
+
 Vector3D::Vector3D(float x, float y, float z)
 	: m_x(x), m_y(y), m_z(z)
 {

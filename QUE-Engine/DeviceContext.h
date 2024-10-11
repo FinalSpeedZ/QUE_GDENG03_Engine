@@ -5,6 +5,7 @@
 #include "SwapChain.h"
 
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
@@ -12,13 +13,9 @@
 #include "Vec.h"
 #include "Colors.h"
 
-#include "SwapChain.h"
-#include "VertexBuffer.h"
-#include "VertexShader.h"
-#include "PixelShader.h"
-
 class SwapChain;
 class VertexBuffer;
+class IndexBuffer;
 class ConstantBuffer;
 class VertexShader;
 class PixelShader;
@@ -34,6 +31,8 @@ public:
 
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
 
+	void setIndexBuffer(IndexBuffer* index_buffer);
+
 	void setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* buffer);
 	void setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* buffer);
 
@@ -42,6 +41,7 @@ public:
 
 	void drawTriangleList(UINT vertex_count, UINT start_vertex_index);
 	void drawTriangleStrip(UINT vertex_count, UINT start_vertex_index);
+	void drawIndexedTriangleList(UINT index_count, UINT start_vertex_index, UINT start_index_location);
 
 	void setViewportSize(UINT width, UINT height);
 

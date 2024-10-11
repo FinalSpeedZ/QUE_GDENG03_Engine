@@ -25,7 +25,7 @@ void AppWindow::onCreate()
 
 	//drawables.push_back(std::make_unique<Triangle>("Triangle " + std::to_string(drawables.size() + 1)));
 
-	drawables.push_back(std::make_unique<Quad>("Quad " + std::to_string(drawables.size() + 1)));
+	drawables.push_back(std::make_unique<Cube>("Cube " + std::to_string(drawables.size() + 1)));
 
 	//drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 

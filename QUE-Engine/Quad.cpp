@@ -61,6 +61,8 @@ void Quad::setHeight(float height)
 
 void Quad::calculateVertices()
 {
+	vertices.clear();
+
 	float halfWidth = width / 2.0f;
 	float halfHeight = height / 2.0f;
 
@@ -74,9 +76,9 @@ void Quad::calculateVertices()
 
 	vertices =
 	{
-		{ initPositions[0], RED}, // Bottom Left
-		{ initPositions[1], YELLOW}, // Top Left
-		{ initPositions[2], GREEN}, // Bottom Right
-		{ initPositions[3], BLUE}  // Top Right
+		{ initPositions[0], Colors::RED}, // Bottom Left
+		{ initPositions[1], Colors::YELLOW}, // Top Left
+		{ initPositions[2], Colors::GREEN}, // Bottom Right
+		{ initPositions[3], Colors::BLUE}  // Top Right
 	};
 }

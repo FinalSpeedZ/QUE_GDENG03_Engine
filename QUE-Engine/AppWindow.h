@@ -10,6 +10,7 @@
 #include "Drawable.h"
 #include "Triangle.h"
 #include "Quad.h"
+#include "Circle.h"
 
 #include "Vector3D.h"
 

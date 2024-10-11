@@ -34,12 +34,6 @@
     <Filter Include="GameEngine\GraphicsEngine\VertexBuffer">
       <UniqueIdentifier>{2c0617b2-e440-44b1-890e-6143c08fd2f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive">
-      <UniqueIdentifier>{2a414c1f-7eba-4bce-b7af-ba02aac1d911}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive\Triangle">
-      <UniqueIdentifier>{dc74f862-ab67-4f1a-8ab9-ef51444af66a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\VertexShader">
       <UniqueIdentifier>{8cc0d468-bd91-4d37-beb0-b08a871c1a6d}</UniqueIdentifier>
     </Filter>
@@ -49,8 +43,17 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject\Drawable">
       <UniqueIdentifier>{0243aacb-1d5e-4c85-8bad-6a7b6afe9484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive\Quad">
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D">
+      <UniqueIdentifier>{2a414c1f-7eba-4bce-b7af-ba02aac1d911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle">
+      <UniqueIdentifier>{dc74f862-ab67-4f1a-8ab9-ef51444af66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad">
       <UniqueIdentifier>{585887f7-73dc-473c-aaed-81a71f78711e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle">
+      <UniqueIdentifier>{8dde6dfd-2087-4117-8535-3c74ec6371c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +91,7 @@
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Triangle</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle</Filter>
     </ClCompile>
     <ClCompile Include="VertexShader.cpp">
       <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
@@ -97,7 +100,10 @@
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp">
-      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Quad</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,9 +134,6 @@
     <ClInclude Include="Vector3D.h">
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>HelperFiles</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
     </ClInclude>
@@ -141,7 +144,7 @@
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
     </ClInclude>
     <ClInclude Include="Triangle.h">
-      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Triangle</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Triangle</Filter>
     </ClInclude>
     <ClInclude Include="VertexShader.h">
       <Filter>GameEngine\GraphicsEngine\VertexShader</Filter>
@@ -150,7 +153,13 @@
       <Filter>GameEngine\GraphicsEngine\PixelShader</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h">
-      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive\Quad</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

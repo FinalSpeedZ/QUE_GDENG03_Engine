@@ -92,6 +92,8 @@ void AppWindow::onKeyDown(int key)
 	// Esc
 	if (key == 27)
 	{
+		std::cout << "Press Esc" << std::endl;
+		/*Sleep(1000);*/
 		onDestroy();
 	}
 }
@@ -103,6 +105,8 @@ void AppWindow::onKeyUp(int key)
 	{
 		drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
 		drawables.back()->onCreate();
+
+		std::cout << "Press Space: " << drawables.size() << std::endl;
 	}
 
 	// Backspace
@@ -115,13 +119,10 @@ void AppWindow::onKeyUp(int key)
 
 		}
 
+		std::cout << "Press Backspace: " << drawables.size() << std::endl;
+
 	}
 
-	// Esc
-	else if (key == 27) 
-	{
-		onDestroy();
-	}
 
 	// Del
 	else if (key == 46)
@@ -132,6 +133,7 @@ void AppWindow::onKeyUp(int key)
 		}
 		drawables.clear();
 
+		std::cout << "Press Del: " << drawables.size() << std::endl;
 	}
 
 }

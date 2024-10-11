@@ -68,7 +68,6 @@ void Circle::onUpdate(float deltaTime)
 void Circle::onDestroy()
 {
 	Drawable::onDestroy();
-
 }
 
 void Circle::draw()
@@ -93,7 +92,7 @@ void Circle::calculateVertices()
 
 	float angleIncrement = 2 * 3.14159f / numSegments;
 
-	vertices.push_back({ Vector3D(localPosition.m_x, localPosition.m_y, 0.0f), Colors::RED, Colors::WHITE});
+	vertices.push_back({ Vector3D(localPosition.m_x, localPosition.m_y, 0.0f), Colors::WHITE, Colors::WHITE });
 
 	for (int i = 0; i <= numSegments; ++i)
 	{
@@ -104,12 +103,11 @@ void Circle::calculateVertices()
 		float y = radius * sin(angle);
 
 		// Add vertices for the circle
-		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y + y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y + y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y - y, 0.0f), Colors::WHITE, Colors::RED });
-		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y - y, 0.0f), Colors::WHITE, Colors::RED });
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y + y, 0.0f), Colors::RED, Colors::hexToVec3("#e5eba9")});
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y + y, 0.0f), Colors::GREEN, Colors::hexToVec3("#86b8cf") });
+		vertices.push_back({ Vector3D(localPosition.m_x + x, localPosition.m_y - y, 0.0f), Colors::BLUE, Colors::hexToVec3("#86cf9b") });
+		vertices.push_back({ Vector3D(localPosition.m_x - x, localPosition.m_y - y, 0.0f), Colors::YELLOW, Colors::hexToVec3("#d17b7b") });
 	}
-
 }
 
 void Circle::updateConstantBuffer(float deltaTime)

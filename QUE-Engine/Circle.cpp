@@ -43,8 +43,8 @@ void Circle::onCreate()
 
 void Circle::onUpdate(float deltaTime)
 {
-	//this->localPosition.m_x += this->velocityX * deltaTime;
-	//this->localPosition.m_y += this->velocityY * deltaTime;
+	this->localPosition.m_x += this->velocityX * deltaTime;
+	this->localPosition.m_y += this->velocityY * deltaTime;
 
 	RECT rc = AppWindow::getInstance()->getClientWindowRect();
 	float width = (rc.right - rc.left) / 300.0f;  

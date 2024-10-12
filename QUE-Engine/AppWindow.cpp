@@ -100,42 +100,6 @@ void AppWindow::onKeyDown(int key)
 
 void AppWindow::onKeyUp(int key)
 {
-	// Space
-	if (key == ' ') 
-	{
-		drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
-		drawables.back()->onCreate();
-
-		std::cout << "Press Space: " << drawables.size() << std::endl;
-	}
-
-	// Backspace
-	else if (key == '\b') 
-	{
-		if (drawables.size() > 0)
-		{
-			drawables.back()->onDestroy();
-			drawables.pop_back();
-
-		}
-
-		std::cout << "Press Backspace: " << drawables.size() << std::endl;
-
-	}
-
-
-	// Del
-	else if (key == 46)
-	{
-		for (const auto& drawable : drawables)
-		{
-			drawable->onDestroy();
-		}
-		drawables.clear();
-
-		std::cout << "Press Del: " << drawables.size() << std::endl;
-	}
-
 }
 
 

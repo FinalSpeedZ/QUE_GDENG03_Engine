@@ -30,12 +30,7 @@ private:
     void randomColor();
 
 private:
-    vec4 color; 
-
     float radius;
     int numSegments = 100;
-
-    float velocityX;
-    float velocityY;
 
 };

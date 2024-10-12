@@ -127,7 +127,7 @@ void Cube::calculateVertices()
 	};
 }
 
-void Cube::updateConstantBuffer(float deltaTime)
+void Cube::updateConstantBuffer(float deltaTime)	
 {
 	Drawable::updateConstantBuffer(deltaTime);
 

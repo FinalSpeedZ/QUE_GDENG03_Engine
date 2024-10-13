@@ -3,9 +3,29 @@
 #include <iostream>
 #include <list>
 
+#include "AppWindow.h"
+
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
+	RECT rc = AppWindow::getInstance()->getClientWindowRect();
+	float width = (rc.right - rc.left) / 300.0f;
+	float height = (rc.bottom - rc.top) / 300.0f;
+
+	float xPadding = 0.4;
+	float yPadding = 0.1;
+
+	localPosition.m_x = randomFloat(-width / 2 + length / 2 + xPadding, width / 2 - length / 2 - xPadding);
+	localPosition.m_y = randomFloat(-height / 2 + length / 2 + yPadding, height / 2 - length / 2 - yPadding);
+
+	//localRotation.m_x = randomFloat(0.0f, 360.0f);
+	//localRotation.m_y = randomFloat(0.0f, 360.0f);
+	//localRotation.m_z = randomFloat(0.0f, 360.0f);
+
+	do {
+		animSpeed = randomFloat(-1.5f, 1.5f);
+	} while (abs(animSpeed) < 0.4);
+
 	calculateVertices();
 }
 
@@ -50,8 +70,7 @@ void Cube::onDestroy()
 	Drawable::onDestroy();
 
 	if (m_ib)
-		onDestroy();
-
+		m_ib->release();
 }
 
 void Cube::draw()
@@ -80,15 +99,17 @@ void Cube::calculateVertices()
 
 	Vector3D initPositions[8] =
 	{
-		Vector3D(-halfLength, -halfLength, -0.5f),
-		Vector3D(-halfLength, halfLength, -0.5f),
-		Vector3D(halfLength, halfLength, -0.5f),
-		Vector3D(halfLength, -halfLength, -0.5f),
+		// Front face
+		Vector3D(-halfLength, -halfLength, -halfLength) + localPosition, // Front bottom left
+		Vector3D(-halfLength, halfLength, -halfLength) + localPosition,  // Front top left
+		Vector3D(halfLength, halfLength, -halfLength) + localPosition,   // Front top right
+		Vector3D(halfLength, -halfLength, -halfLength) + localPosition,  // Front bottom right
 
-		Vector3D(halfLength, -halfLength, 0.5f),
-		Vector3D(halfLength, halfLength, 0.5f),
-		Vector3D(-halfLength, halfLength, 0.5f),
-		Vector3D(-halfLength, -halfLength, 0.5f),
+		// Back face
+		Vector3D(halfLength, -halfLength, halfLength) + localPosition,   // Back bottom right
+		Vector3D(halfLength, halfLength, halfLength) + localPosition,    // Back top right
+		Vector3D(-halfLength, halfLength, halfLength) + localPosition,   // Back top left
+		Vector3D(-halfLength, -halfLength, halfLength) + localPosition   // Back bottom left
 	};
 
 	vertices =
@@ -133,18 +154,41 @@ void Cube::updateConstantBuffer(float deltaTime)
 
 	Matrix4x4 temp;
 
-	cc.m_world.setScale(Vector3D(1));
+	temp.setIdentity();
+	temp.setTranslation(Vector3D(-localPosition.m_x, -localPosition.m_y, -localPosition.m_z));
+	cc.m_world *= temp;
+
+	if (AppWindow::getInstance()->isStartAnim())
+	{
+
+		localRotation.m_x += animSpeed * deltaTime;
+		localRotation.m_y += animSpeed * deltaTime;
+		localRotation.m_z += animSpeed * deltaTime;
+	}
+
+	localRotation.m_x = fmod(localRotation.m_x, 360.0f);
+	localRotation.m_y = fmod(localRotation.m_y, 360.0f);
+	localRotation.m_z = fmod(localRotation.m_z, 360.0f);
 
 	temp.setIdentity();
-	temp.setRotationZ(time);
+	temp.setRotationZ(localRotation.m_z);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(time);
+	temp.setRotationY(localRotation.m_y);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(time);
+	temp.setRotationX(localRotation.m_x);
+	cc.m_world *= temp;
+
+	float scaleFactor = 0.9f + 0.2f * (sin(time) + 1.0f) / 2.0f;
+	temp.setIdentity();
+	temp.setScale(Vector3D(scaleFactor, scaleFactor, scaleFactor));
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(localPosition);
 	cc.m_world *= temp;
 }
 

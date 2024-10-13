@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "VertexBuffer.h"
 
+#include "GameObjectManager.h"
+
 #include "Matrix4x4.h"
 
 __declspec(align(16))
@@ -15,6 +17,8 @@ struct constant
 	Matrix4x4 m_projection;
 	float m_time;
 };
+
+class GameObjectManager;
 
 class Drawable : public  GameObject
 {
@@ -28,13 +32,17 @@ public:
 	virtual void onUpdate(float deltatime) override;
 	virtual void onDestroy() override;
 
-protected:
+public:
 	virtual void draw();
 
 protected:
 	virtual void calculateVertices() {};
 	virtual void updateConstantBuffer(float deltaTime);
 	virtual void projectionMat();
+
+protected:
+	float randomFloat(float min, float max);
+	vec4 randomColor();
 
 protected:
 	std::vector<vertex> vertices;
@@ -48,6 +56,5 @@ protected:
 
 	float time = 0.0f;
 	float animSpeed = 1.f;
-
 };
 

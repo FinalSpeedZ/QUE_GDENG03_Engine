@@ -15,6 +15,11 @@ public:
 
 	static Vector3D lerp(const Vector3D& start, const Vector3D& end, float delta);
 
+	Vector3D operator+(const Vector3D& other) const;
+	Vector3D operator-(const Vector3D& other) const;
+	Vector3D& operator+=(const Vector3D& other);
+	Vector3D& operator-=(const Vector3D& other);
+
 	static const Vector3D zeroes;
 	static const Vector3D ones;
 

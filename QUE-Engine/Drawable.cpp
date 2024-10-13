@@ -78,7 +78,8 @@ void Drawable::updateConstantBuffer(float deltaTime)
 {
 	cc.m_time = 0.0f;
 
-	time += animSpeed * deltaTime;
+	if (AppWindow::getInstance()->isStartAnim())
+		time += animSpeed * deltaTime;
 
 	cc.m_time = time;
 
@@ -97,4 +98,21 @@ void Drawable::projectionMat()
 		-4.0f,
 		4.0f
 	);
+}
+
+float Drawable::randomFloat(float min, float max)
+{
+	float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));
+
+	random = min + random;
+
+	return random;
+}
+
+vec4 Drawable::randomColor()
+{
+	return vec4(randomFloat(0.0f, 1.0f),
+		randomFloat(0.0f, 1.0f),
+		randomFloat(0.0f, 1.0f),
+		1.0f);
 }

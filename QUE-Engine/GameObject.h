@@ -24,6 +24,9 @@ public:
 	void setScale(Vector3D scale);
 	Vector3D getLocalScale();
 
+	void setName(std::string name);
+	std::string getName();
+
 public:
 	virtual void onCreate() {};
 	virtual void onUpdate(float deltatime) {};

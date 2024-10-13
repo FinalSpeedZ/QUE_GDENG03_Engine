@@ -25,22 +25,17 @@ void AppWindow::onCreate()
 	InputSystem::getInstance()->addListener(this->getInstance());
 
 	GraphicsEngine::initialize();
+	GameObjectManager::initialize();
 
 	m_swap_chain = GraphicsEngine::getInstance()->createSwapChain();
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	//drawables.push_back(std::make_unique<Triangle>("Triangle " + std::to_string(drawables.size() + 1)));
+	GameObjectManager::getInstance()->addPrimitives(PrimitiveType::CUBE, 100);
 
-	drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
+	std::cout << "Press Space to start animation\n";
 
-	//drawables.push_back(std::make_unique<Circle>("Circle " + std::to_string(drawables.size() + 1)));
-
-	for (const auto& drawable : drawables)
-	{
-		drawable->onCreate();
-	}
 }
 
 void AppWindow::onUpdate()
@@ -58,10 +53,7 @@ void AppWindow::onUpdate()
 		RECT rc = this->getClientWindowRect();
 		GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-		for (const auto& drawable : drawables)
-		{
-			drawable->onUpdate(EngineTime::getDeltaTime());
-		}
+		GameObjectManager::getInstance()->updateAllPrimitives(EngineTime::getDeltaTime());
 
 		m_swap_chain->present(true);
 	}
@@ -70,17 +62,16 @@ void AppWindow::onUpdate()
 
 void AppWindow::onDestroy()
 {
-	if (m_swap_chain) {
+	if (m_swap_chain) 
+	{
 		m_swap_chain->release(); 
 		m_swap_chain = nullptr; 
 	}
 
-	for (const auto& drawable : drawables)
-	{
-		drawable->onDestroy();
-	}
+	GameObjectManager::getInstance()->destroyAllPrimitives();
 
-	if (GraphicsEngine::getInstance()) {
+	if (GraphicsEngine::getInstance()) 
+	{
 		GraphicsEngine::getInstance()->release();
 	}
 
@@ -92,14 +83,22 @@ void AppWindow::onKeyDown(int key)
 	// Esc
 	if (key == 27)
 	{
-		std::cout << "Press Esc" << std::endl;
-		/*Sleep(1000);*/
 		onDestroy();
 	}
 }
 
 void AppWindow::onKeyUp(int key)
 {
+	// Start animation
+	if (key == ' ')
+	{
+		startAnim = true;
+	}
+}
+
+bool AppWindow::isStartAnim()
+{
+	return startAnim;
 }
 
 

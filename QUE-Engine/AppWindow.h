@@ -9,12 +9,7 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 
-#include "GameObject.h"
-#include "Drawable.h"
-#include "Triangle.h"
-#include "Quad.h"
-#include "Circle.h"
-#include "Cube.h"
+#include "GameObjectManager.h"
 
 #include "InputListener.h"
 
@@ -53,6 +48,7 @@ public:
 private:
 	SwapChain* m_swap_chain;
 
-	std::vector<std::unique_ptr<GameObject>> drawables;
-
+	bool startAnim = false;
+public:
+	bool isStartAnim();
 };

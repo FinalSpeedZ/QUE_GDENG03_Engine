@@ -1,6 +1,5 @@
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vc143.pdb
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vc143.idb
-c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vertexshader.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vertexbuffer.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vector3d.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\triangle.obj
@@ -13,6 +12,7 @@ c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\main.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\inputsystem.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\indexbuffer.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\graphicsengine.obj
+c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\gameobjectmanager.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\gameobject.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\enginetime.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\devicecontext.obj
@@ -21,8 +21,9 @@ c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\constantbuf
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\circle.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\appwindow.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\window.obj
-c:\users\asus\coding\gdeng03\que_gdeng03_engine\x64\debug\que-engine.exe
+c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\vertexshader.obj
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\que-engine.ilk
+c:\users\asus\coding\gdeng03\que_gdeng03_engine\x64\debug\que-engine.exe
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\x64\debug\que-engine.pdb
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\que-engine.tlog\cl.command.1.tlog
 c:\users\asus\coding\gdeng03\que_gdeng03_engine\que-engine\x64\debug\que-engine.tlog\cl.items.tlog

@@ -143,6 +143,15 @@ void Cube::updateConstantBuffer(float deltaTime)
 	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
 	cc.m_world *= temp;
 
+	localRotation.x += animSpeed * deltaTime;
+	localRotation.y += animSpeed * deltaTime;
+	localRotation.z += animSpeed * deltaTime;
+
+	localRotation.x = fmod(localRotation.x, 360.0f);
+	localRotation.y = fmod(localRotation.y, 360.0f);
+	localRotation.z = fmod(localRotation.z, 360.0f);
+
+
 	localRotation.x = fmod(localRotation.x, 360.0f);
 	localRotation.y = fmod(localRotation.y, 360.0f);
 	localRotation.z = fmod(localRotation.z, 360.0f);

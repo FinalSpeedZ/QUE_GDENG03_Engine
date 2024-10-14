@@ -29,7 +29,9 @@ public:
 
 	void addListener(InputListener* listener);
 	void removeListener(InputListener* listener);
-	void clear();
+
+	void setCursorPosition(const Point& pos);
+	void showCursor(bool show);
 
 private:
 	std::unordered_set<InputListener*> m_set_listeners;
@@ -37,6 +39,7 @@ private:
 	unsigned char m_old_keys_state[256] = {};
 
 	Point old_mouse_pos;
+
 	bool first_time = true;
 };
 

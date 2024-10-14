@@ -73,6 +73,9 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Plane">
       <UniqueIdentifier>{0d3184ba-d1ed-42fc-9cac-95efeae35f07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\Camera">
+      <UniqueIdentifier>{ac879478-7049-4f06-ba74-6640010a783f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +149,12 @@
     </ClCompile>
     <ClCompile Include="Point.cpp">
       <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4D.cpp">
+      <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\GraphicsEngine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,6 +238,12 @@
     </ClInclude>
     <ClInclude Include="Point.h">
       <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\GraphicsEngine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

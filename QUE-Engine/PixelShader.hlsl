@@ -17,7 +17,5 @@ float4 psmain(PS_INPUT input) : SV_TARGET
 {
     float time = (sin(m_time) + 1.0f) / 2.0f;
 
-    float remappedTime = lerp(0.2f, 0.8f, time);
-
-    return lerp(input.color, input.color1, remappedTime);
+    return lerp(input.color, input.color1, time);
 }

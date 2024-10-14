@@ -6,6 +6,7 @@
 #include "Drawable.h"
 #include "Circle.h"
 #include "Cube.h"
+#include "Plane.h"
 #include "Quad.h"
 #include "Triangle.h"
 
@@ -18,7 +19,6 @@ GameObjectManager* GameObjectManager::getInstance()
 
 void GameObjectManager::initialize()
 {
-
     sharedInstance = new GameObjectManager();
 }
 
@@ -31,8 +31,13 @@ void GameObjectManager::addPrimitives(PrimitiveType type, int count)
             drawables.back()->onCreate();
             break;
 
+        case PrimitiveType::PLANE:
+            drawables.push_back(std::make_unique<Plane>("Plane " + std::to_string(drawables.size() + 1)));
+            drawables.back()->onCreate();
+            break;
+
         case PrimitiveType::QUAD:
-            drawables.push_back(std::make_unique<Quad>("Triangle " + std::to_string(drawables.size() + 1)));
+            drawables.push_back(std::make_unique<Quad>("Quad " + std::to_string(drawables.size() + 1)));
             drawables.back()->onCreate();
         	break;
 
@@ -59,7 +64,8 @@ void GameObjectManager::removePrimitives(PrimitiveType type, int count)
 
 	switch (type)
 	{
-		case PrimitiveType::CUBE: typeName = "Cube"; break;
+	    case PrimitiveType::CUBE: typeName = "Cube"; break;
+	    case PrimitiveType::PLANE: typeName = "Plane"; break;
 		case PrimitiveType::QUAD: typeName = "Quad"; break;
 		case PrimitiveType::TRIANGLE: typeName = "Triangle"; break;
 		case PrimitiveType::CIRCLE: typeName = "Circle"; break;
@@ -102,6 +108,7 @@ void GameObjectManager::rotatePrimitiveType(PrimitiveType type, float rot_x, flo
     switch (type)
     {
     case PrimitiveType::CUBE: typeName = "Cube"; break;
+    case PrimitiveType::PLANE: typeName = "Plane"; break;
     case PrimitiveType::QUAD: typeName = "Quad"; break;
     case PrimitiveType::TRIANGLE: typeName = "Triangle"; break;
     case PrimitiveType::CIRCLE: typeName = "Circle"; break;
@@ -118,6 +125,8 @@ void GameObjectManager::rotatePrimitiveType(PrimitiveType type, float rot_x, flo
         	animSpeed = it->get()->getAnimSpeed();
 
             Vector3D newRot = it->get()->getLocalRotation() + (Vector3D(rot_x, rot_y, rot_z) * animSpeed);
+
+            std::cout << newRot.y << std::endl;
 
             it->get()->setRotation(newRot);
         }

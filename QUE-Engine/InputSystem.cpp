@@ -49,27 +49,27 @@ void InputSystem::update()
             // Key is down
             if (m_keys_state[i] & 0x80)
             {
-                if (!(m_old_keys_state[i] & 0x80)) // Only register the key down if it was previously up
+                std::unordered_set<InputListener*>::iterator it = m_set_listeners.begin();
+
+                while (it != m_set_listeners.end())
                 {
-                    std::unordered_set<InputListener*>::iterator it = m_set_listeners.begin();
-                    while (it != m_set_listeners.end())
+                    if (i == VK_LBUTTON)
                     {
-                        if (i == VK_LBUTTON)
-                        {
-                            if (m_keys_state[i] != m_old_keys_state[i])
-                                (*it)->onLeftMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
-                        }
-                        else if (i == VK_RBUTTON)
-                        {
-                            if (m_keys_state[i] != m_old_keys_state[i])
-                                (*it)->onRightMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
-                        }
-                        else
-							(*it)->onKeyDown(i);
-                        ++it;
+                        if (m_keys_state[i] != m_old_keys_state[i])
+                            (*it)->onLeftMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
                     }
+                    else if (i == VK_RBUTTON)
+                    {
+                        if (m_keys_state[i] != m_old_keys_state[i])
+                            (*it)->onRightMouseDown(Point(current_mouse_pos.x, current_mouse_pos.y));
+                    }
+                    else
+                        (*it)->onKeyDown(i);
+
+                    ++it;
                 }
             }
+
             else // Key is up
             {
                 if (m_old_keys_state[i] & 0x80) // Only register the key up if it was previously down
@@ -103,8 +103,13 @@ void InputSystem::removeListener(InputListener* listener)
 	m_set_listeners.erase(listener);
 }
 
-void InputSystem::clear()
+void InputSystem::setCursorPosition(const Point& pos)
 {
-	std::memset(sharedInstance->m_keys_state, 0, sizeof(sharedInstance->m_keys_state));
-	std::memset(sharedInstance->m_old_keys_state, 0, sizeof(sharedInstance->m_old_keys_state));
+    ::SetCursorPos(pos.x, pos.y);
 }
+
+void InputSystem::showCursor(bool show)
+{
+    ::ShowCursor(show);
+}
+

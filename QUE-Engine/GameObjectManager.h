@@ -13,7 +13,8 @@ enum class PrimitiveType
 	CIRCLE,
 
 	// 3D Primitives
-	CUBE
+	CUBE,
+	PLANE
 };
 
 class Drawable;

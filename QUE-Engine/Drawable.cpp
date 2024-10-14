@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "AppWindow.h"
+#include "Camera.h"
 
 
 Drawable::Drawable(std::string name)
@@ -90,13 +91,16 @@ void Drawable::projectionMat()
 
 	RECT rc = AppWindow::getInstance()->getClientWindowRect();
 	cc.m_view.setIdentity();
-	cc.m_projection.setOrthoLH
-	(
-		(rc.right - rc.left) / 300.0f,
-		(rc.bottom - rc.top) / 300.0f,
-		-4.0f,
-		4.0f
-	);
+
+	int width = (rc.right - rc.left);
+	int height = (rc.bottom - rc.top);
+
+	Vector3D cameraPosition = Camera::getInstance()->getLocalPosition(); 
+
+	cc.m_view = Camera::getInstance()->generateWorldMatrix();
+
+	cc.m_projection = Camera::getInstance()->perspective();
+
 }
 
 float Drawable::randomFloat(float min, float max)

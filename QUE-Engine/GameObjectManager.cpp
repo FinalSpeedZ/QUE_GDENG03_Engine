@@ -51,12 +51,12 @@ void GameObjectManager::addPrimitives(PrimitiveType type, int count)
         }
     }
 
-    std::cout << "Count of Drawables: " << drawables.size() << std::endl;
 }
 
 void GameObjectManager::removePrimitives(PrimitiveType type, int count)
 {
 	std::string typeName;
+
 	switch (type)
 	{
 		case PrimitiveType::CUBE: typeName = "Cube"; break;
@@ -70,7 +70,7 @@ void GameObjectManager::removePrimitives(PrimitiveType type, int count)
 	{
 	    if ((*it)->getName().find(typeName) != std::string::npos)
 	    {
-	        it = std::vector<std::unique_ptr<GameObject>>::reverse_iterator(drawables.erase(std::next(it).base()));
+	        it = std::vector<std::unique_ptr<Drawable>>::reverse_iterator(drawables.erase(std::next(it).base()));
 	    }
 	    else
 	    {
@@ -92,6 +92,36 @@ void GameObjectManager::destroyAllPrimitives()
         drawable->onDestroy();
     }
     drawables.clear();
+}
+
+void GameObjectManager::rotatePrimitiveType(PrimitiveType type, float rot_x, float rot_y, float rot_z)
+{
+    std::string typeName;
+
+    // Map the PrimitiveType to corresponding names
+    switch (type)
+    {
+    case PrimitiveType::CUBE: typeName = "Cube"; break;
+    case PrimitiveType::QUAD: typeName = "Quad"; break;
+    case PrimitiveType::TRIANGLE: typeName = "Triangle"; break;
+    case PrimitiveType::CIRCLE: typeName = "Circle"; break;
+    default: return;
+    }
+
+    // Iterate over the drawables in reverse
+    for (auto it = drawables.rbegin(); it != drawables.rend(); ++it)
+    {
+        if ((*it)->getName().find(typeName) != std::string::npos)
+        {
+            float animSpeed = 1.0f;
+
+        	animSpeed = it->get()->getAnimSpeed();
+
+            Vector3D newRot = it->get()->getLocalRotation() + (Vector3D(rot_x, rot_y, rot_z) * animSpeed);
+
+            it->get()->setRotation(newRot);
+        }
+    }
 }
 
 

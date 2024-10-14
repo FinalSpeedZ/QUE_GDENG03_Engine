@@ -70,6 +70,9 @@
     <Filter Include="GameEngine\InputSystem">
       <UniqueIdentifier>{a97713b4-686d-4bc9-8339-79469ebfff35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive2D\Plane">
+      <UniqueIdentifier>{0d3184ba-d1ed-42fc-9cac-95efeae35f07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -137,6 +140,12 @@
     </ClCompile>
     <ClCompile Include="InputSystem.cpp">
       <Filter>GameEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>GameEngine\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +223,12 @@
     </ClInclude>
     <ClInclude Include="InputSystem.h">
       <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>GameEngine\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

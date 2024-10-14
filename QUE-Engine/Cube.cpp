@@ -8,23 +8,8 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	RECT rc = AppWindow::getInstance()->getClientWindowRect();
-	float width = (rc.right - rc.left) / 300.0f;
-	float height = (rc.bottom - rc.top) / 300.0f;
 
-	float xPadding = 0.4;
-	float yPadding = 0.1;
-
-	localPosition.m_x = randomFloat(-width / 2 + length / 2 + xPadding, width / 2 - length / 2 - xPadding);
-	localPosition.m_y = randomFloat(-height / 2 + length / 2 + yPadding, height / 2 - length / 2 - yPadding);
-
-	//localRotation.m_x = randomFloat(0.0f, 360.0f);
-	//localRotation.m_y = randomFloat(0.0f, 360.0f);
-	//localRotation.m_z = randomFloat(0.0f, 360.0f);
-
-	do {
-		animSpeed = randomFloat(-1.5f, 1.5f);
-	} while (abs(animSpeed) < 0.4);
+	animSpeed = 0.5f;
 
 	calculateVertices();
 }
@@ -155,36 +140,23 @@ void Cube::updateConstantBuffer(float deltaTime)
 	Matrix4x4 temp;
 
 	temp.setIdentity();
-	temp.setTranslation(Vector3D(-localPosition.m_x, -localPosition.m_y, -localPosition.m_z));
+	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
 	cc.m_world *= temp;
 
-	if (AppWindow::getInstance()->isStartAnim())
-	{
-
-		localRotation.m_x += animSpeed * deltaTime;
-		localRotation.m_y += animSpeed * deltaTime;
-		localRotation.m_z += animSpeed * deltaTime;
-	}
-
-	localRotation.m_x = fmod(localRotation.m_x, 360.0f);
-	localRotation.m_y = fmod(localRotation.m_y, 360.0f);
-	localRotation.m_z = fmod(localRotation.m_z, 360.0f);
+	localRotation.x = fmod(localRotation.x, 360.0f);
+	localRotation.y = fmod(localRotation.y, 360.0f);
+	localRotation.z = fmod(localRotation.z, 360.0f);
 
 	temp.setIdentity();
-	temp.setRotationZ(localRotation.m_z);
+	temp.setRotationZ(localRotation.z);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(localRotation.m_y);
+	temp.setRotationY(localRotation.y);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(localRotation.m_x);
-	cc.m_world *= temp;
-
-	float scaleFactor = 0.9f + 0.2f * (sin(time) + 1.0f) / 2.0f;
-	temp.setIdentity();
-	temp.setScale(Vector3D(scaleFactor, scaleFactor, scaleFactor));
+	temp.setRotationX(localRotation.x);
 	cc.m_world *= temp;
 
 	temp.setIdentity();

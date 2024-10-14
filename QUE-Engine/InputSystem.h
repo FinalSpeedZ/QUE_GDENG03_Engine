@@ -4,6 +4,8 @@
 
 #include "GraphicsEngine.h"
 
+#include "Point.h"
+
 #include "InputListener.h"
 
 class InputSystem
@@ -34,6 +36,7 @@ private:
 	unsigned char m_keys_state[256] = {};
 	unsigned char m_old_keys_state[256] = {};
 
-	bool initialUpdate = true;
+	Point old_mouse_pos;
+	bool first_time = true;
 };
 

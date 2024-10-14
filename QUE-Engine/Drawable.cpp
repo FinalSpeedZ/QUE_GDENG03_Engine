@@ -78,8 +78,7 @@ void Drawable::updateConstantBuffer(float deltaTime)
 {
 	cc.m_time = 0.0f;
 
-	if (AppWindow::getInstance()->isStartAnim())
-		time += animSpeed * deltaTime;
+	time += animSpeed * deltaTime;
 
 	cc.m_time = time;
 
@@ -116,3 +115,10 @@ vec4 Drawable::randomColor()
 		randomFloat(0.0f, 1.0f),
 		1.0f);
 }
+
+float Drawable::getAnimSpeed()
+{
+	return animSpeed;
+}
+
+

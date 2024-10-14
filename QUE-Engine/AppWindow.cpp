@@ -21,9 +21,7 @@ void AppWindow::onCreate()
 
 	srand(time(0));
 
-	InputSystem::getInstance()->initialize();
-	InputSystem::getInstance()->addListener(this->getInstance());
-
+	InputSystem::initialize();
 	GraphicsEngine::initialize();
 	GameObjectManager::initialize();
 
@@ -32,10 +30,7 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	GameObjectManager::getInstance()->addPrimitives(PrimitiveType::CUBE, 100);
-
-	std::cout << "Press Space to start animation\n";
-
+	GameObjectManager::getInstance()->addPrimitives(PrimitiveType::CUBE, 1);
 }
 
 void AppWindow::onUpdate()
@@ -78,6 +73,20 @@ void AppWindow::onDestroy()
 	Window::onDestroy(); // Call the base class cleanup
 }
 
+void AppWindow::onFocus()
+{
+	Window::onFocus();
+
+	InputSystem::getInstance()->addListener(this);
+}
+
+void AppWindow::onKillFocus()
+{
+	Window::onKillFocus();
+
+	InputSystem::getInstance()->removeListener(this);
+}
+
 void AppWindow::onKeyDown(int key)
 {
 	// Esc
@@ -89,16 +98,31 @@ void AppWindow::onKeyDown(int key)
 
 void AppWindow::onKeyUp(int key)
 {
-	// Start animation
-	if (key == ' ')
-	{
-		startAnim = true;
-	}
 }
 
-bool AppWindow::isStartAnim()
+void AppWindow::onMouseMove(const Point& delta_mouse_pos)
 {
-	return startAnim;
+	GameObjectManager::getInstance()->rotatePrimitiveType(PrimitiveType::CUBE,
+													(-delta_mouse_pos.y * EngineTime::getDeltaTime()),
+													(-delta_mouse_pos.x * EngineTime::getDeltaTime()),
+													0);
 }
+
+void AppWindow::onLeftMouseDown(const Point& mouse_pos)
+{
+}
+
+void AppWindow::onLeftMouseUp(const Point& mouse_pos)
+{
+}
+
+void AppWindow::onRightMouseDown(const Point& mouse_pos)
+{
+}
+
+void AppWindow::onRightMouseUp(const Point& mouse_pos)
+{
+}
+
 
 

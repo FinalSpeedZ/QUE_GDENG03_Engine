@@ -14,18 +14,18 @@ void Matrix4x4::setTranslation(const Vector3D& translation)
 {
 	setIdentity();
 
-	m_mat[3][0] = translation.m_x;
-	m_mat[3][1] = translation.m_y;
-	m_mat[3][2] = translation.m_z;
+	m_mat[3][0] = translation.x;
+	m_mat[3][1] = translation.y;
+	m_mat[3][2] = translation.z;
 }
 
 void Matrix4x4::setScale(const Vector3D& scale)
 {
 	setIdentity();
 
-	m_mat[0][0] = scale.m_x;
-	m_mat[1][1] = scale.m_y;
-	m_mat[2][2] = scale.m_z;
+	m_mat[0][0] = scale.x;
+	m_mat[1][1] = scale.y;
+	m_mat[2][2] = scale.z;
 }
 
 void Matrix4x4::setRotationX(float x)

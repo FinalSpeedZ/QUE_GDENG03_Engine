@@ -34,6 +34,8 @@
     <ClCompile Include="Matrix4x4.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Drawable.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Point.cpp" />
     <ClCompile Include="Quad.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Triangle.cpp" />
@@ -59,6 +61,8 @@
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Point.h" />
     <ClInclude Include="Quad.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Triangle.h" />

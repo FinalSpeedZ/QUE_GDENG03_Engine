@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-#include "GameObject.h"
+#include "Drawable.h"
 
 enum class PrimitiveType
 {
@@ -16,7 +16,7 @@ enum class PrimitiveType
 	CUBE
 };
 
-class GameObject;
+class Drawable;
 
 class GameObjectManager
 {
@@ -42,7 +42,10 @@ public:
 	void updateAllPrimitives(float deltaTime);
 	void destroyAllPrimitives();
 
+public:
+	void rotatePrimitiveType(PrimitiveType type, float rot_x, float rot_y, float rot_z);
+
 private:
-	std::vector<std::unique_ptr<GameObject>> drawables;
+	std::vector<std::unique_ptr<Drawable>> drawables;
 };
 

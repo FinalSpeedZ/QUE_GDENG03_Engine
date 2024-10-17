@@ -8,7 +8,7 @@ class Quad : public Drawable
 {
 
 public:
-	Quad(std::string name, float width = 1.0f, float height = 1.0f);
+	Quad(std::string name = "Quad", float width = 1.0f, float height = 1.0f);
 	~Quad() {};
 
 public:
@@ -29,8 +29,6 @@ private:
 	void projectionMat() override;
 
 private:
-	std::vector<vec4> colors;
-
 	float width;
 	float height;
 };

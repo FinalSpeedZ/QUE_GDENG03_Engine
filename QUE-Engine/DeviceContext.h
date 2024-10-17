@@ -10,7 +10,6 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 
-#include "Vec.h"
 #include "Colors.h"
 
 class SwapChain;

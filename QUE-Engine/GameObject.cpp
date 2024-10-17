@@ -8,6 +8,16 @@ GameObject::GameObject(std::string name)
 	this->localScale = Vector3D::ones;
 }
 
+std::string GameObject::getName()
+{
+	return this->name;
+}
+
+void GameObject::setName(std::string name)
+{
+	this->name = name;
+}
+
 void GameObject::setPosition(float x, float y, float z)
 {
 	this->localPosition = Vector3D(x, y, z);
@@ -52,3 +62,10 @@ Vector3D GameObject::getLocalScale()
 {
 	return this->localScale;
 }
+
+void GameObject::onDestroy()
+{
+	delete this;
+}
+
+

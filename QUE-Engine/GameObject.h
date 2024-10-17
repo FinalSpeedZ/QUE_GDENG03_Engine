@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 
 #include "Vector3D.h"
@@ -12,6 +13,9 @@ public:
 	~GameObject() {};
 
 public:
+	std::string getName();
+	void setName(std::string name);
+
 	void setPosition(float x, float y, float z);
 	void setPosition(Vector3D pos);
 	Vector3D getLocalPosition();
@@ -27,7 +31,7 @@ public:
 public:
 	virtual void onCreate() {};
 	virtual void onUpdate(float deltatime) {};
-	virtual void onDestroy() {};
+	virtual void onDestroy();
 
 protected:
 	std::string name;

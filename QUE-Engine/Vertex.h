@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Vec.h"
+#include "Vector4D.h"
+#include "Vector3D.h"
 
 struct vertex
 {
 	Vector3D position;
-	vec4 rgba;
-	vec4 rgba1;
+	Vector4D rgba;
+	Vector4D rgba1;
 };

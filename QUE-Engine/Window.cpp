@@ -25,6 +25,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		break;
 	}
 
+	case WM_SETFOCUS:
+	{
+		// Event fired when the window on focus
+		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		window->onFocus();
+		break;
+	}
+
+	case WM_KILLFOCUS:
+	{
+		// Event fired when the window out off focus
+		Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+		window->onKillFocus();
+		break;
+	}
+
 	default:
 		return ::DefWindowProc(hwnd, msg, wparam, lparam);
 	}
@@ -52,9 +68,6 @@ bool Window::init()
 	// if the registration of class will fail, the function will return false
 	if (!::RegisterClassEx(&wc))
 		return false;
-
-	//if (!window)
-	//	window = this;
 
 	//Creation of the window
 	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"QUE_DirectX Application",
@@ -129,4 +142,3 @@ void Window::onDestroy()
 {
 	m_is_run = false;
 }
-

@@ -1,5 +1,8 @@
 #include "Circle.h"
 
+#define _USE_MATH_DEFINES
+#include "math.h"
+
 Circle::Circle(std::string name, float radius)
 	: Drawable(name), radius(radius)
 {
@@ -18,14 +21,7 @@ void Circle::onUpdate(float deltaTime)
 
 void Circle::onDestroy()
 {
-	if (m_vb)
-		m_vb->release();
-
-	if (m_vs)
-		m_vs->release();
-
-	if (m_ps)
-		m_ps->release();
+	Drawable::onDestroy();
 }
 
 void Circle::draw()
@@ -46,7 +42,7 @@ void Circle::setRadius(float radius)
 
 void Circle::calculateVertices()
 {
-	float angleIncrement = 2.0f * 3.14159f / numSegments;
+	float angleIncrement = 2.0f * M_PI / numSegments;
 
 	vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
 

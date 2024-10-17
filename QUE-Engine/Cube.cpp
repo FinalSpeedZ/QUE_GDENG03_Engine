@@ -47,14 +47,10 @@ void Cube::onUpdate(float deltaTime)
 
 void Cube::onDestroy()
 {
-	if (m_vb)
-		m_vb->release();
+	Drawable::onDestroy();
 
-	if (m_vs)
-		m_vs->release();
-
-	if (m_ps)
-		m_ps->release();
+	if (m_ib)
+		m_ib->release();
 }
 
 void Cube::draw()

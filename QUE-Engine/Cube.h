@@ -8,7 +8,7 @@ class Cube : public Drawable
 {
 
 public:
-	Cube(std::string name, float length = 1.0f);
+	Cube(std::string name = "Cube", float length = 1.0f);
 	~Cube() {};
 
 public:
@@ -28,8 +28,6 @@ private:
 	void projectionMat() override;
 
 private:
-	std::vector<vec4> colors;
-
 	IndexBuffer* m_ib;
 	std::vector<unsigned int> index_list;
 

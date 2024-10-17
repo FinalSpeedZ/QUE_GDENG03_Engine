@@ -22,14 +22,7 @@ void Quad::onUpdate(float deltaTime)
 
 void Quad::onDestroy()
 {
-	if (m_vb)
-		m_vb->release();
-
-	if (m_vs)
-		m_vs->release();
-
-	if (m_ps)
-		m_ps->release();
+	Drawable::onDestroy();
 }
 
 void Quad::draw()

@@ -39,6 +39,7 @@ protected:
 
 protected:
 	std::vector<vertex> vertices;
+	std::vector<Vector4D> colors;
 
 	constant cc;
 
@@ -49,6 +50,5 @@ protected:
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;
-
 };
 

@@ -8,7 +8,7 @@ class Triangle : public Drawable
 {
 
 public:
-	Triangle(std::string name, float base = 1.0f, float height = 1.0f);
+	Triangle(std::string name = "Triangle", float base = 1.0f, float height = 1.0f);
 	~Triangle() {};
 
 public:
@@ -29,8 +29,6 @@ private:
 	void projectionMat() override;
 
 private:
-	std::vector<vec4> colors;
-
 	float base;
 	float height;
 };

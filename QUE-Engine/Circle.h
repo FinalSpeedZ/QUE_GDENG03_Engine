@@ -7,7 +7,7 @@
 class Circle : public Drawable
 {
 public:
-    Circle(std::string name, float radius = 0.25f);
+    Circle(std::string name = "Circle", float radius = 0.25f);
     ~Circle() {}
 
 public:
@@ -27,8 +27,6 @@ private:
     void projectionMat() override;
 
 private:
-    std::vector<vec4> colors; 
-
     float radius;
     int numSegments = 360; 
 };

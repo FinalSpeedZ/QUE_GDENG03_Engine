@@ -67,6 +67,12 @@
     <Filter Include="GameEngine\GraphicsEngine\IndexBuffer">
       <UniqueIdentifier>{b624d3da-f08e-41b5-8d32-06f017869323}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\InputSystem">
+      <UniqueIdentifier>{8d4f8e21-08a2-4d46-bf21-ab2862c40140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D\Plane">
+      <UniqueIdentifier>{4aca81bb-593a-46be-ae55-d0ded2fa49cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -129,6 +135,21 @@
     <ClCompile Include="IndexBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4D.cpp">
+      <Filter>GameEngine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -150,9 +171,6 @@
       <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
     </ClInclude>
     <ClInclude Include="Colors.h">
-      <Filter>HelperFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec.h">
       <Filter>HelperFiles</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
@@ -179,9 +197,6 @@
     <ClInclude Include="Quad.h">
       <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Quad</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>HelperFiles</Filter>
-    </ClInclude>
     <ClInclude Include="Circle.h">
       <Filter>GameEngine\GraphicsEngine\GameObject\Primitive2D\Circle</Filter>
     </ClInclude>
@@ -196,6 +211,27 @@
     </ClInclude>
     <ClInclude Include="IndexBuffer.h">
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>HelperFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>GameEngine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>GameEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

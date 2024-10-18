@@ -22,6 +22,9 @@ public:
 
 	void setRotation(float x, float y, float z);
 	void setRotation(Vector3D rot);
+	void setRotationX(float x);
+	void setRotationY(float y);
+	void setRotationZ(float z);
 	Vector3D getLocalRotation();
 
 	void setScale(float x, float y, float z);

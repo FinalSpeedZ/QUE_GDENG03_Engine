@@ -81,6 +81,33 @@ void AppWindow::onKeyDown(int key)
 		onDestroy();
 	}
 
+	else if (key == 'W')
+	{
+		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		rotX += EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+	}
+
+	else if (key == 'S')
+	{
+		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		rotX -= EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+	}
+
+	else if (key == 'A')
+	{
+		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		rotY += EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+	}
+
+	else if (key == 'D')
+	{
+		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		rotY -= EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+	}
 }
 
 void AppWindow::onKeyUp(int key)

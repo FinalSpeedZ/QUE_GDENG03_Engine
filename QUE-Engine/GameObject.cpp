@@ -43,6 +43,21 @@ void GameObject::setRotation(Vector3D rot)
 	this->localRotation = rot;
 }
 
+void GameObject::setRotationX(float x)
+{
+	this->localRotation = Vector3D(x, this->localRotation.y, this->localRotation.z);
+}
+
+void GameObject::setRotationY(float y)
+{
+	this->localRotation = Vector3D(this->localRotation.x, y, this->localRotation.z);
+}
+
+void GameObject::setRotationZ(float z)
+{
+	this->localRotation = Vector3D(this->localRotation.x, this->localRotation.y, z);
+}
+
 Vector3D GameObject::getLocalRotation()
 {
 	return this->localRotation;

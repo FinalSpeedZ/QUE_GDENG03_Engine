@@ -135,15 +135,15 @@ void Cube::updateConstantBuffer(float deltaTime)
 	cc.m_world.setScale(Vector3D(1));
 
 	temp.setIdentity();
-	temp.setRotationZ(time);
+	temp.setRotationZ(getLocalRotation().z);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(time);
+	temp.setRotationY(getLocalRotation().y);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(time);
+	temp.setRotationX(getLocalRotation().x);
 	cc.m_world *= temp;
 }
 

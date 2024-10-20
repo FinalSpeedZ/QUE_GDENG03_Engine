@@ -8,7 +8,7 @@ class Plane : public Drawable
 {
 
 public:
-	Plane(std::string name = "Plane", float width = 1.5f, float height = 1.5f);
+	Plane(std::string name = "Plane", float width = 5.0f, float depth = 5.0f);
 	~Plane() {};
 
 public:
@@ -21,7 +21,7 @@ protected:
 
 public:
 	void setWidth(float width);
-	void setHeight(float height);
+	void setDepth(float depth);
 
 private:
 	void calculateVertices() override;
@@ -30,7 +30,7 @@ private:
 
 private:
 	float width;
-	float height;
+	float depth;
 
 	IndexBuffer* m_ib;
 	std::vector<unsigned int> index_list;

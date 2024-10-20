@@ -38,7 +38,6 @@ void AppWindow::onCreate()
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
-	GameObjectManager::getInstance()->getLastObject()->setRotationX(60 * M_PI / 180.0f);
 
 }
 
@@ -144,6 +143,24 @@ void AppWindow::onKeyDown(int key)
 			cam->rightward = 1.0f;
 		}
 	}
+
+	else if (key == 'Q')
+	{
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->upward = 1.0f;
+		}
+	}
+
+	else if (key == 'E')
+	{
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->upward = -1.0f;
+		}
+	}
 }
 
 void AppWindow::onKeyUp(int key)
@@ -152,7 +169,8 @@ void AppWindow::onKeyUp(int key)
 	if (cam)
 	{
 		cam->forward = 0.0f;
-		cam->rightward	 = 0.0f;
+		cam->rightward = 0.0f;
+		cam->upward = 0.0f;
 	}
 }
 

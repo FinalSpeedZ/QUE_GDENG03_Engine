@@ -1,9 +1,3 @@
-﻿  AppWindow.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(41,76): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(58,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(169,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(170,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(174,78): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  DeviceContext.cpp
-  Generating Code...
+﻿  Camera.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(99,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

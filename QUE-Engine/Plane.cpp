@@ -3,8 +3,8 @@
 #define _USE_MATH_DEFINES
 #include "math.h"
 
-Plane::Plane(std::string name, float width, float height)
-	: Drawable(name), width(width), height(height)
+Plane::Plane(std::string name, float width, float depth)
+	: Drawable(name), width(width), depth(depth)
 {
 }
 
@@ -66,16 +66,16 @@ void Plane::draw()
 
 void Plane::setWidth(float width)
 {
-	this->width = height;
+	this->width = width;
 
 	calculateVertices();
 
 	onCreate();
 }
 
-void Plane::setHeight(float height)
+void Plane::setDepth(float depth)
 {
-	this->height = height;
+	this->depth = depth;
 
 	calculateVertices();
 
@@ -88,15 +88,15 @@ void Plane::calculateVertices()
 	vertices.clear();
 
 	float halfWidth = width / 2.0f;
-	float halfHeight = height / 2.0f;
+	float halfDepth = depth / 2.0f;
 
 	Vector3D initPositions[4] =
 	{
 		// Front plane vertices
-		Vector3D(-halfWidth, 0.0f, -halfHeight) + localPosition, // Bottom Left Front
-		Vector3D(-halfWidth, 0.0f, halfHeight) + localPosition,  // Top Left Front
-		Vector3D(halfWidth, 0.0f, -halfHeight) + localPosition,   // Bottom Right Front
-		Vector3D(halfWidth, 0.0f, halfHeight) + localPosition,    // Top Right Front
+		Vector3D(-halfWidth, 0.0f, -halfDepth) + localPosition, // Bottom Left Front
+		Vector3D(-halfWidth, 0.0f, halfDepth) + localPosition,  // Top Left Front
+		Vector3D(halfWidth, 0.0f, -halfDepth) + localPosition,   // Bottom Right Front
+		Vector3D(halfWidth, 0.0f, halfDepth) + localPosition,    // Top Right Front
 	};
 
 	vertices =

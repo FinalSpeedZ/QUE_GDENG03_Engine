@@ -7,7 +7,7 @@
 Camera::Camera()
 	: GameObject("Camera")
 {
-	worldCam.setTranslation(Vector3D(0, 0, -2));
+	worldCam.setTranslation(Vector3D(0, 0, -5));
 }
 
 Camera::Camera(std::string name)
@@ -52,6 +52,7 @@ void Camera::updateMatrix()
 	tempworldCam *= temp;
 
 	Vector3D newPos = worldCam.getTranslation() + tempworldCam.getZDirection() * (forward * 0.3f);
+	newPos = newPos + tempworldCam.getYDirection() * (upward * 0.3f);
 	newPos = newPos + tempworldCam.getXDirection() * (rightward * 0.3f);
 
 	tempworldCam.setTranslation(newPos);

@@ -29,6 +29,7 @@ private:
 public:
 	float forward = 0.0f;
 	float rightward = 0.0f;
+	float upward = 0.0f;
 
 };
 

@@ -1,7 +1,7 @@
-﻿  AppWindow.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(50,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(87,35): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(94,35): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(101,35): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(108,35): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+﻿  Cube.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(15,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(18,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+  Drawable.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp(21,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+  Generating Code...
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

@@ -132,7 +132,7 @@ void Cube::updateConstantBuffer(float deltaTime)
 
 	Matrix4x4 temp;
 
-	cc.m_world.setScale(Vector3D(1));
+	cc.m_world.setScale(getLocalScale());
 
 	temp.setIdentity();
 	temp.setRotationZ(getLocalRotation().z);

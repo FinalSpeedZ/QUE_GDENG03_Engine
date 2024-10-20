@@ -28,10 +28,10 @@ public:
 
 private:
 	std::unordered_set<InputListener*> setListeners;
-	unsigned char m_keys_state[256] = {};
-	unsigned char m_old_keys_state[256] = {};
+	unsigned char keysState[256] = {};
+	unsigned char oldKeysState[256] = {};
 
-	Vector2D old_mouse_pos;
-	bool first_time = true;
+	Vector2D oldMousePos;
+	bool firstTime = true;
 };
 

@@ -43,6 +43,13 @@ public:
 	virtual void onKeyDown(int key) override;
 	virtual void onKeyUp(int key) override;
 
+	// MOUSE
+	virtual void onMouseMove(const Vector2D& deltaMousePos) override;
+	virtual void onLeftMouseDown(const Vector2D& mousePos) override;
+	virtual void onLeftMouseUp(const Vector2D& mousePos) override;
+	virtual void onRightMouseDown(const Vector2D& mousePos) override;
+	virtual void onRightMouseUp(const Vector2D& mousePos) override;
+
 private:
 	SwapChain* m_swap_chain;
 

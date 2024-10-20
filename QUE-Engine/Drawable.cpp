@@ -86,7 +86,7 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 void Drawable::projectionMat()
 {
-	cc.m_world.setScale(Vector3D(1, 1, 1));
+	cc.m_world.setScale(getLocalScale());
 
 	RECT rc = AppWindow::getInstance()->getClientWindowRect();
 	cc.m_view.setIdentity();

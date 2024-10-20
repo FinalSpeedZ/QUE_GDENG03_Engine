@@ -21,7 +21,6 @@ void AppWindow::onCreate()
 	GraphicsEngine::initialize();
 
 	InputSystem::initialize();
-	InputSystem::getInstance()->addListener(this);
 
 	GameObjectManager::initialize();
 
@@ -65,11 +64,15 @@ void AppWindow::onDestroy()
 void AppWindow::onFocus()
 {
 	Window::onFocus();
+
+	InputSystem::getInstance()->addListener(this);
 }
 
 void AppWindow::onKillFocus()
 {
 	Window::onKillFocus();
+
+	InputSystem::getInstance()->removeListener(this);
 }
 
 void AppWindow::onKeyDown(int key)
@@ -113,6 +116,57 @@ void AppWindow::onKeyDown(int key)
 void AppWindow::onKeyUp(int key)
 {
 
+}
+
+void AppWindow::onMouseMove(const Vector2D& deltaMousePos)
+{
+	float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+	float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+	float rotZ = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().z;
+
+	rotX -= deltaMousePos.y * EngineTime::getDeltaTime();
+	rotY -= deltaMousePos.x * EngineTime::getDeltaTime();
+
+	GameObjectManager::getInstance()->getLastObject()->setRotation(rotX, rotY, rotZ);
+
+}
+
+void AppWindow::onLeftMouseDown(const Vector2D& mousePos)
+{
+	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
+
+	scaleX = 0.5;
+
+	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+
+	std::cout << "Here";
+}
+
+void AppWindow::onLeftMouseUp(const Vector2D& mousePos)
+{
+	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
+
+	scaleX = 1;
+
+	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+}
+
+void AppWindow::onRightMouseDown(const Vector2D& mousePos)
+{
+	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
+
+	scaleX = 2;
+
+	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+}
+
+void AppWindow::onRightMouseUp(const Vector2D& mousePos)
+{
+	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
+
+	scaleX = 1;
+
+	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 

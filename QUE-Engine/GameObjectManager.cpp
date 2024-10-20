@@ -34,7 +34,6 @@ void GameObjectManager::updateAll(float deltaTime)
 	{
 		if (object) 
 		{
-			/*std::cout << "Updating GameObject: " << object->getName() << std::endl;*/
 			object->onUpdate(deltaTime);
 		}
 	}

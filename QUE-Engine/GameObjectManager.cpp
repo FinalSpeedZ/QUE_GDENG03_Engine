@@ -1,5 +1,6 @@
 #include "GameObjectManager.h"
 
+#include "Camera.h"
 #include "GameObject.h"
 #include "Drawable.h"
 #include "Triangle.h"
@@ -77,10 +78,40 @@ void GameObjectManager::addGameObject(GameObject* gameObject)
 
 void GameObjectManager::createPrimitive(PrimitiveType primitive)
 {
-	if (primitive == PrimitiveType::CUBE)
+	if (primitive == PrimitiveType::CAMERA)
+	{
+		Camera* camera = new Camera();
+		addGameObject(camera);
+	}
+
+	else if (primitive == PrimitiveType::QUAD)
+	{
+		Quad* quad = new Quad();
+		addGameObject(quad);
+	}
+
+	else if (primitive == PrimitiveType::TRIANGLE)
+	{
+		Triangle* triangle = new Triangle();
+		addGameObject(triangle);
+	}
+
+	else if (primitive == PrimitiveType::CIRCLE)
+	{
+		Circle* circle = new Circle();
+		addGameObject(circle);
+	}
+
+	else if (primitive == PrimitiveType::CUBE)
 	{
 		Cube* cube = new Cube();
 		addGameObject(cube);
+	}
+
+	else if (primitive == PrimitiveType::PLANE)
+	{
+		Plane* plane = new Plane();
+		addGameObject(plane);
 	}
 }
 

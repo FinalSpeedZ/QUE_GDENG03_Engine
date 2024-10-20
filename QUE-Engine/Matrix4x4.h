@@ -18,10 +18,18 @@ public:
 	void setRotationY(float y);
 	void setRotationZ(float z);
 
+	void inverse();
+
 	void setOrthoLH(float width, float height, float near_plane, float far_plane);
 
 	void operator*=(const Matrix4x4& matrix);
+
+	void setMatrix(const Matrix4x4& matrix);
+
 private:
-	float m_mat[4][4];
+	float getDeterminant();
+
+private:
+	float mat[4][4];
 };
 

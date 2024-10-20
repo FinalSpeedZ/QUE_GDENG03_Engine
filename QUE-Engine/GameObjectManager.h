@@ -6,6 +6,8 @@
 
 enum class PrimitiveType
 {
+	CAMERA,
+
 	// 2D Primitives
 	QUAD,
 	TRIANGLE,

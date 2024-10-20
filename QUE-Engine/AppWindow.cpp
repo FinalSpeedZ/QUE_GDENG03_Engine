@@ -30,6 +30,7 @@ void AppWindow::onCreate()
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CAMERA);
 
 }
 

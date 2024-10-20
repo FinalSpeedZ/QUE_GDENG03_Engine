@@ -12,6 +12,7 @@ public:
 	Vector4D(const Vector4D& vector);
 
 	static Vector4D lerp(const Vector4D& start, const Vector4D& end, float delta);
+	void cross(Vector4D& v1, Vector4D& v2, Vector4D& v3);
 
 	Vector4D operator+(const Vector4D& other) const;
 	Vector4D operator-(const Vector4D& other) const;

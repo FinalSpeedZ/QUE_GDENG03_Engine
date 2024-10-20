@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "AppWindow.h"
+#include "Camera.h"
 
 
 Drawable::Drawable(std::string name)
@@ -86,16 +87,10 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 void Drawable::projectionMat()
 {
-	cc.m_world.setScale(getLocalScale());
-
-	RECT rc = AppWindow::getInstance()->getClientWindowRect();
-	cc.m_view.setIdentity();
-	cc.m_projection.setOrthoLH
-	(
-		(rc.right - rc.left) / 300.0f,
-		(rc.bottom - rc.top) / 300.0f,
-		-4.0f,
-		4.0f
-	);
+	Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+	if (cam)
+	{
+		cc = cam->getUpdatedConstantData();
+	}
 }
 

@@ -73,6 +73,9 @@
     <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitive3D\Plane">
       <UniqueIdentifier>{4aca81bb-593a-46be-ae55-d0ded2fa49cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Camera">
+      <UniqueIdentifier>{90569895-0e77-454b-b075-a2031b934c32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -149,6 +152,9 @@
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>GameEngine\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +238,9 @@
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>GameEngine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

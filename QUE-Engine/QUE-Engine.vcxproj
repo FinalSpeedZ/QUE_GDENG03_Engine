@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="Cube.cpp" />
@@ -47,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="ConstantBuffer.h" />

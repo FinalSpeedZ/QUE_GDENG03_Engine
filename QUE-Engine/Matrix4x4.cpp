@@ -1,65 +1,97 @@
 #include "Matrix4x4.h"
 
+#include "Vector4D.h"
+
 void Matrix4x4::setIdentity()
 {
-	::memset(m_mat, 0, sizeof(float) * 16);
+	::memset(mat, 0, sizeof(float) * 16);
 
-	m_mat[0][0] = 1;
-	m_mat[1][1] = 1;
-	m_mat[2][2] = 1;
-	m_mat[3][3] = 1;
+	mat[0][0] = 1;
+	mat[1][1] = 1;
+	mat[2][2] = 1;
+	mat[3][3] = 1;
 }
 
 void Matrix4x4::setTranslation(const Vector3D& translation)
 {
-	setIdentity();
-
-	m_mat[3][0] = translation.x;
-	m_mat[3][1] = translation.y;
-	m_mat[3][2] = translation.z;
+	mat[3][0] = translation.x;
+	mat[3][1] = translation.y;
+	mat[3][2] = translation.z;
 }
 
 void Matrix4x4::setScale(const Vector3D& scale)
 {
-	setIdentity();
-
-	m_mat[0][0] = scale.x;
-	m_mat[1][1] = scale.y;
-	m_mat[2][2] = scale.z;
+	mat[0][0] = scale.x;
+	mat[1][1] = scale.y;
+	mat[2][2] = scale.z;
 }
 
 void Matrix4x4::setRotationX(float x)
 {
-	m_mat[1][1] = cos(x);
-	m_mat[1][2] = sin(x);
-	m_mat[2][1] = -sin(x);
-	m_mat[2][2] = cos(x);
+	mat[1][1] = cos(x);
+	mat[1][2] = sin(x);
+	mat[2][1] = -sin(x);
+	mat[2][2] = cos(x);
 }
 
 void Matrix4x4::setRotationY(float y)
 {
-	m_mat[0][0] = cos(y);
-	m_mat[0][2] = -sin(y);
-	m_mat[2][0] = sin(y);
-	m_mat[2][2] = cos(y);
+	mat[0][0] = cos(y);
+	mat[0][2] = -sin(y);
+	mat[2][0] = sin(y);
+	mat[2][2] = cos(y);
 }
 
 void Matrix4x4::setRotationZ(float z)
 {
-	m_mat[0][0] = cos(z);
-	m_mat[0][1] = sin(z);
-	m_mat[1][0] = -sin(z);
-	m_mat[1][1] = cos(z);
+	mat[0][0] = cos(z);
+	mat[0][1] = sin(z);
+	mat[1][0] = -sin(z);
+	mat[1][1] = cos(z);
+}
+
+void Matrix4x4::inverse()
+{
+	int a, i, j;
+	Matrix4x4 out;
+	Vector4D v, vec[3];
+	float det = 0.0f;
+
+	det = this->getDeterminant();
+	if (!det) return;
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 4; j++)
+		{
+			if (j != i)
+			{
+				a = j;
+				if (j > i) a = a - 1;
+				vec[a].x = (this->mat[j][0]);
+				vec[a].y = (this->mat[j][1]);
+				vec[a].z = (this->mat[j][2]);
+				vec[a].w = (this->mat[j][3]);
+			}
+		}
+		v.cross(vec[0], vec[1], vec[2]);
+
+		out.mat[0][i] = pow(-1.0f, i) * v.x / det;
+		out.mat[1][i] = pow(-1.0f, i) * v.y / det;
+		out.mat[2][i] = pow(-1.0f, i) * v.z / det;
+		out.mat[3][i] = pow(-1.0f, i) * v.w / det;
+	}
+
+	this->setMatrix(out);
 }
 
 void Matrix4x4::setOrthoLH(float width, float height, float near_plane, float far_plane)
 {
 	setIdentity();
 
-	m_mat[0][0] = 2.0f / width;
-	m_mat[1][1] = 2.0f / height;
-	m_mat[2][2] = 1.0f / (far_plane - near_plane);
-	m_mat[3][2] = -(near_plane / (far_plane - near_plane));
+	mat[0][0] = 2.0f / width;
+	mat[1][1] = 2.0f / height;
+	mat[2][2] = 1.0f / (far_plane - near_plane);
+	mat[3][2] = -(near_plane / (far_plane - near_plane));
 }
 
 void Matrix4x4::operator*=(const Matrix4x4& matrix)
@@ -69,11 +101,32 @@ void Matrix4x4::operator*=(const Matrix4x4& matrix)
 	{
 		for (int j = 0; j < 4; j++)
 		{
-			out.m_mat[i][j] =
-				m_mat[i][0] * matrix.m_mat[0][j] + m_mat[i][1] * matrix.m_mat[1][j] +
-				m_mat[i][2] * matrix.m_mat[2][j] + m_mat[i][3] * matrix.m_mat[3][j];
+			out.mat[i][j] =
+				mat[i][0] * matrix.mat[0][j] + mat[i][1] * matrix.mat[1][j] +
+				mat[i][2] * matrix.mat[2][j] + mat[i][3] * matrix.mat[3][j];
 		}
 	}
 
-	::memcpy(m_mat, out.m_mat, sizeof(float) * 16);
+	::memcpy(mat, out.mat, sizeof(float) * 16);
+}
+
+void Matrix4x4::setMatrix(const Matrix4x4& matrix)
+{
+	::memcpy(mat, matrix.mat, sizeof(float) * 16);
+}
+
+float Matrix4x4::getDeterminant()
+{
+	Vector4D minor, v1, v2, v3;
+	float det;
+
+	v1 = Vector4D(this->mat[0][0], this->mat[1][0], this->mat[2][0], this->mat[3][0]);
+	v2 = Vector4D(this->mat[0][1], this->mat[1][1], this->mat[2][1], this->mat[3][1]);
+	v3 = Vector4D(this->mat[0][2], this->mat[1][2], this->mat[2][2], this->mat[3][2]);
+
+
+	minor.cross(v1, v2, v3);
+	det = -(this->mat[0][3] * minor.x + this->mat[1][3] * minor.y + this->mat[2][3] * minor.z +
+		this->mat[3][3] * minor.w);
+	return det;
 }

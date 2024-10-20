@@ -1,5 +1,7 @@
 #include "Matrix4x4.h"
 
+#include <iostream>
+
 #include "Vector4D.h"
 
 void Matrix4x4::setIdentity()
@@ -50,6 +52,26 @@ void Matrix4x4::setRotationZ(float z)
 	mat[1][1] = cos(z);
 }
 
+Vector3D Matrix4x4::getXDirection()
+{
+	return Vector3D(mat[0][0], mat[0][1], mat[0][2]);
+}
+
+Vector3D Matrix4x4::getYDirection()
+{
+	return Vector3D(mat[1][0], mat[1][1], mat[1][2]);
+}
+
+Vector3D Matrix4x4::getZDirection()
+{
+	return Vector3D(mat[2][0], mat[2][1], mat[2][2]);
+}
+
+Vector3D Matrix4x4::getTranslation()
+{
+	return Vector3D(mat[3][0], mat[3][1], mat[3][2]);
+}
+
 void Matrix4x4::inverse()
 {
 	int a, i, j;
@@ -92,6 +114,20 @@ void Matrix4x4::setOrthoLH(float width, float height, float near_plane, float fa
 	mat[1][1] = 2.0f / height;
 	mat[2][2] = 1.0f / (far_plane - near_plane);
 	mat[3][2] = -(near_plane / (far_plane - near_plane));
+}
+
+void Matrix4x4::setPerspectiveFovLH(float fov, float aspect, float znear, float zfar)
+{
+	setIdentity();
+
+	float yscale = 1.0f / tan(fov / 2.0f);
+	float xscale = yscale / aspect;
+
+	mat[0][0] = xscale;
+	mat[1][1] = yscale;
+	mat[2][2] = zfar / (zfar - znear);
+	mat[2][3] = 1.0f;
+	mat[3][2] = (-znear * zfar) / (zfar - znear);
 }
 
 void Matrix4x4::operator*=(const Matrix4x4& matrix)

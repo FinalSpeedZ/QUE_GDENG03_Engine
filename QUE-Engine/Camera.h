@@ -14,12 +14,21 @@ public:
 	virtual void onUpdate(float deltatime) override;
 	virtual void onDestroy() override;
 
-public:
+private:
 	void updateMatrix();
+	Matrix4x4 getOrthoMatrix();
+	Matrix4x4 getPersMatrix();
+
+public:
 	constant getUpdatedConstantData();
 
 private:
-	constant cc;
+	constant worldViewProj;
+	Matrix4x4 worldCam;
+
+public:
+	float forward = 0.0f;
+	float rightward = 0.0f;
 
 };
 

@@ -18,9 +18,15 @@ public:
 	void setRotationY(float y);
 	void setRotationZ(float z);
 
+	Vector3D getXDirection();
+	Vector3D getYDirection();
+	Vector3D getZDirection();
+	Vector3D getTranslation();
+
 	void inverse();
 
 	void setOrthoLH(float width, float height, float near_plane, float far_plane);
+	void setPerspectiveFovLH(float fov, float aspect, float znear, float zfar);
 
 	void operator*=(const Matrix4x4& matrix);
 

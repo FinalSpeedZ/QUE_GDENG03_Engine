@@ -1,5 +1,6 @@
 #include "AppWindow.h"
 
+#include "Camera.h"
 #include "InputSystem.h"
 
 AppWindow* AppWindow::sharedInstance = NULL;
@@ -42,7 +43,7 @@ void AppWindow::onUpdate()
 	if (isRunning())
 	{
 		GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-			0.0f, 0.0f, 0.0f, 1);
+			0.5f, 0.5f, 0.8f, 1);
 
 		RECT rc = this->getClientWindowRect();
 		GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
@@ -87,36 +88,65 @@ void AppWindow::onKeyDown(int key)
 
 	else if (key == 'W')
 	{
-		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
-		rotX += EngineTime::getDeltaTime();
-		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+		//float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		//rotX += EngineTime::getDeltaTime();
+		//GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->forward = 1.0f;
+		}
 	}
 
 	else if (key == 'S')
 	{
-		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
-		rotX -= EngineTime::getDeltaTime();
-		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+		//float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		//rotX -= EngineTime::getDeltaTime();
+		//GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->forward = -1.0f;
+		}
 	}
 
 	else if (key == 'A')
 	{
-		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
-		rotY += EngineTime::getDeltaTime();
-		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+		//float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		//rotY += EngineTime::getDeltaTime();
+		//GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->rightward = -1.0f;
+		}
 	}
 
 	else if (key == 'D')
 	{
-		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
-		rotY -= EngineTime::getDeltaTime();
-		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+		//float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		//rotY -= EngineTime::getDeltaTime();
+		//GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+
+		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		if (cam)
+		{
+			cam->rightward = 1.0f;
+		}
 	}
 }
 
 void AppWindow::onKeyUp(int key)
 {
-
+	Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+	if (cam)
+	{
+		cam->forward = 0.0f;
+		cam->rightward	 = 0.0f;
+	}
 }
 
 void AppWindow::onMouseMove(const Vector2D& deltaMousePos)
@@ -125,8 +155,8 @@ void AppWindow::onMouseMove(const Vector2D& deltaMousePos)
 	float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
 	float rotZ = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().z;
 
-	rotX -= deltaMousePos.y * EngineTime::getDeltaTime();
-	rotY -= deltaMousePos.x * EngineTime::getDeltaTime();
+	rotX += 0.1f * deltaMousePos.y * EngineTime::getDeltaTime();
+	rotY += 0.1f * deltaMousePos.x * EngineTime::getDeltaTime();
 
 	GameObjectManager::getInstance()->getLastObject()->setRotation(rotX, rotY, rotZ);
 
@@ -138,9 +168,8 @@ void AppWindow::onLeftMouseDown(const Vector2D& mousePos)
 
 	scaleX = 0.5;
 
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+	//GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 
-	std::cout << "Here";
 }
 
 void AppWindow::onLeftMouseUp(const Vector2D& mousePos)
@@ -149,7 +178,7 @@ void AppWindow::onLeftMouseUp(const Vector2D& mousePos)
 
 	scaleX = 1;
 
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+	//GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 void AppWindow::onRightMouseDown(const Vector2D& mousePos)
@@ -158,7 +187,7 @@ void AppWindow::onRightMouseDown(const Vector2D& mousePos)
 
 	scaleX = 2;
 
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+	//GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 void AppWindow::onRightMouseUp(const Vector2D& mousePos)
@@ -167,7 +196,7 @@ void AppWindow::onRightMouseUp(const Vector2D& mousePos)
 
 	scaleX = 1;
 
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
+	//GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 

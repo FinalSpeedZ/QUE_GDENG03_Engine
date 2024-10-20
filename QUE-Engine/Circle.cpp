@@ -6,7 +6,6 @@
 Circle::Circle(std::string name, float radius)
 	: Drawable(name), radius(radius)
 {
-	calculateVertices();
 }
 
 void Circle::onCreate()

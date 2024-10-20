@@ -6,7 +6,6 @@
 Quad::Quad(std::string name, float width, float height)
 	: Drawable(name), width(width), height(height)
 {
-	calculateVertices();
 }
 
 void Quad::onCreate()

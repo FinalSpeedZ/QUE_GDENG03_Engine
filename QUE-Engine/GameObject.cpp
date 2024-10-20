@@ -21,11 +21,13 @@ void GameObject::setName(std::string name)
 void GameObject::setPosition(float x, float y, float z)
 {
 	this->localPosition = Vector3D(x, y, z);
+	onCreate();
 }
 
 void GameObject::setPosition(Vector3D pos)
 {
 	this->localPosition = pos;
+	onCreate();
 }
 
 Vector3D GameObject::getLocalPosition()

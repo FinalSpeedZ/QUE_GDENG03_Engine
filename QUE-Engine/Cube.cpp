@@ -6,11 +6,12 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	calculateVertices();
 }
 
 void Cube::onCreate()
 {
+	calculateVertices();
+
 	m_vb = GraphicsEngine::getInstance()->createVertexBuffer();
 	UINT size_list = vertices.size();
 
@@ -129,22 +130,6 @@ void Cube::calculateVertices()
 void Cube::updateConstantBuffer(float deltaTime)
 {
 	Drawable::updateConstantBuffer(deltaTime);
-
-	Matrix4x4 temp;
-
-	cc.m_world.setScale(getLocalScale());
-
-	temp.setIdentity();
-	temp.setRotationZ(getLocalRotation().z);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(getLocalRotation().y);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationX(getLocalRotation().x);
-	cc.m_world *= temp;
 }
 
 void Cube::projectionMat()

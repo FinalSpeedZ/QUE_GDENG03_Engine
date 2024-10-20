@@ -1,5 +1,7 @@
 #include "AppWindow.h"
 
+#include <corecrt_math_defines.h>
+
 #include "Camera.h"
 #include "InputSystem.h"
 
@@ -31,8 +33,12 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CAMERA);
+
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+	GameObjectManager::getInstance()->getLastObject()->setRotationX(60 * M_PI / 180.0f);
 
 }
 
@@ -156,14 +162,14 @@ void AppWindow::onMouseMove(const Vector2D& mousePos)
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
 
-	float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
-	float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
-	float rotZ = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().z;
+	float rotX = GameObjectManager::getInstance()->findGameObjectByName("Camera")->getLocalRotation().x;
+	float rotY = GameObjectManager::getInstance()->findGameObjectByName("Camera")->getLocalRotation().y;
+	float rotZ = GameObjectManager::getInstance()->findGameObjectByName("Camera")->getLocalRotation().z;
 
 	rotX += 0.1f * (mousePos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
 	rotY += 0.1f * (mousePos.x - (width / 2.0f)) * EngineTime::getDeltaTime();
 
-	GameObjectManager::getInstance()->getLastObject()->setRotation(rotX, rotY, rotZ);
+	GameObjectManager::getInstance()->findGameObjectByName("Camera")->setRotation(rotX, rotY, rotZ);
 
 	InputSystem::getInstance()->setCursorPosition(Vector2D(width / 2.0f, height / 2.0));
 

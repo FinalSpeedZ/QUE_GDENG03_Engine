@@ -6,11 +6,12 @@
 Plane::Plane(std::string name, float width, float height)
 	: Drawable(name), width(width), height(height)
 {
-	calculateVertices();
 }
 
 void Plane::onCreate()
 {
+	calculateVertices();
+
 	m_vb = GraphicsEngine::getInstance()->createVertexBuffer();
 	UINT size_list = vertices.size();
 
@@ -83,6 +84,7 @@ void Plane::setHeight(float height)
 
 void Plane::calculateVertices()
 {
+
 	vertices.clear();
 
 	float halfWidth = width / 2.0f;
@@ -112,26 +114,12 @@ void Plane::calculateVertices()
 		2, 1, 0,
 		2, 3, 1
 	};
+
 }
 
 void Plane::updateConstantBuffer(float deltaTime)
 {
 	Drawable::updateConstantBuffer(deltaTime);
-
-	Matrix4x4 temp;
-
-	temp.setIdentity();
-
-	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationX(90 * M_PI / 180);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setTranslation(localPosition);
-	cc.m_world *= temp;
 }
 
 void Plane::projectionMat()

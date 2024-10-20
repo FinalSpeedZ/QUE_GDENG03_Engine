@@ -13,6 +13,8 @@ Drawable::Drawable(std::string name)
 
 void Drawable::onCreate()
 {
+	calculateVertices();
+
 	cc.m_time = 0.0f;
 
 	m_cb = GraphicsEngine::getInstance()->createConstantBuffer();
@@ -63,7 +65,6 @@ void Drawable::onDestroy()
 
 void Drawable::draw()
 {
-
 	m_cb->update(GraphicsEngine::getInstance()->getImmediateDeviceContext(), &cc);
 
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setConstantBuffer(m_vs, m_cb);
@@ -82,6 +83,22 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	time += animSpeed * deltaTime;
 
 	cc.m_time = time;
+
+	Matrix4x4 temp;
+
+	cc.m_world.setScale(getLocalScale());
+
+	temp.setIdentity();
+	temp.setRotationZ(getLocalRotation().z);
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(getLocalRotation().y);
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(getLocalRotation().x);
+	cc.m_world *= temp;
 
 }
 

@@ -6,7 +6,6 @@
 Triangle::Triangle(std::string name, float base, float height)
 	: Drawable(name), base(base), height(height)
 {
-	calculateVertices();
 }
 
 void Triangle::onCreate()

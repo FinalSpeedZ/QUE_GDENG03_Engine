@@ -1,24 +1,9 @@
 ﻿  AppWindow.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(52,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(163,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(164,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(168,78): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  InputSystem.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(35,54): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(35,38): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(46,60): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(46,44): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(50,53): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(50,37): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(67,68): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(67,52): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(72,69): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(72,53): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(89,66): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(89,50): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(91,67): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(91,51): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(118,27): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(118,20): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(41,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(58,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(169,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(170,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(174,78): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  DeviceContext.cpp
   Generating Code...
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

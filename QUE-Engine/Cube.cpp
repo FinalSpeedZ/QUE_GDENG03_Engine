@@ -75,6 +75,7 @@ void Cube::setLength(float length)
 void Cube::calculateVertices()
 {
 	vertices.clear();
+	index_list.clear();
 
 	float halfLength = length / 2.0f;
 

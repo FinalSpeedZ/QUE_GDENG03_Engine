@@ -8,6 +8,7 @@
 #include "Circle.h"
 #include "Cube.h"
 #include "Plane.h"
+#include "Sphere.h"
 
 GameObjectManager* GameObjectManager::sharedInstance = NULL;
 
@@ -112,6 +113,12 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive)
 	{
 		Plane* plane = new Plane();
 		addGameObject(plane);
+	}
+
+	else if (primitive == PrimitiveType::SPHERE)
+	{
+		Sphere* sphere = new Sphere();
+		addGameObject(sphere);
 	}
 }
 

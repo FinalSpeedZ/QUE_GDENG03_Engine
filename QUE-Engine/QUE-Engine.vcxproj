@@ -37,6 +37,7 @@
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector2D.h" />

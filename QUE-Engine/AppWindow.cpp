@@ -35,9 +35,11 @@ void AppWindow::onCreate()
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CAMERA);
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::SPHERE);
 
 }
 
@@ -94,54 +96,54 @@ void AppWindow::onKeyDown(int key)
 
 	else if (key == 'W')
 	{
-		//float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
-		//rotX += EngineTime::getDeltaTime();
-		//GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		rotX += EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
 
-		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
-		if (cam)
-		{
-			cam->forward = 1.0f;
-		}
+		//Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		//if (cam)
+		//{
+		//	cam->forward = 1.0f;
+		//}
 	}
 
 	else if (key == 'S')
 	{
-		//float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
-		//rotX -= EngineTime::getDeltaTime();
-		//GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
+		float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
+		rotX -= EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationX(rotX);
 
-		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
-		if (cam)
-		{
-			cam->forward = -1.0f;
-		}
+		//Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		//if (cam)
+		//{
+		//	cam->forward = -1.0f;
+		//}
 	}
 
 	else if (key == 'A')
 	{
-		//float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
-		//rotY += EngineTime::getDeltaTime();
-		//GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		rotY += EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
 
-		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
-		if (cam)
-		{
-			cam->rightward = -1.0f;
-		}
+		//Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		//if (cam)
+		//{
+		//	cam->rightward = -1.0f;
+		//}
 	}
 
 	else if (key == 'D')
 	{
-		//float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
-		//rotY -= EngineTime::getDeltaTime();
-		//GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
+		float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
+		rotY -= EngineTime::getDeltaTime();
+		GameObjectManager::getInstance()->getLastObject()->setRotationY(rotY);
 
-		Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
-		if (cam)
-		{
-			cam->rightward = 1.0f;
-		}
+		//Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
+		//if (cam)
+		//{
+		//	cam->rightward = 1.0f;
+		//}
 	}
 
 	else if (key == 'Q')

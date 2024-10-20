@@ -26,6 +26,9 @@ public:
 	void addListener(InputListener* listener);
 	void removeListener(InputListener* listener);
 
+	void setCursorPosition(const Vector2D& pos);
+	void showCursor(bool show);
+
 private:
 	std::unordered_set<InputListener*> setListeners;
 	unsigned char keysState[256] = {};

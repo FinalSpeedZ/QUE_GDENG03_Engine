@@ -22,6 +22,7 @@ void AppWindow::onCreate()
 	GraphicsEngine::initialize();
 
 	InputSystem::initialize();
+	InputSystem::getInstance()->showCursor(false);
 
 	GameObjectManager::initialize();
 
@@ -149,16 +150,22 @@ void AppWindow::onKeyUp(int key)
 	}
 }
 
-void AppWindow::onMouseMove(const Vector2D& deltaMousePos)
+void AppWindow::onMouseMove(const Vector2D& mousePos)
 {
+	RECT rc = this->getClientWindowRect();
+	int width = rc.right - rc.left;
+	int height = rc.bottom - rc.top;
+
 	float rotX = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().x;
 	float rotY = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().y;
 	float rotZ = GameObjectManager::getInstance()->getLastObject()->getLocalRotation().z;
 
-	rotX += 0.1f * deltaMousePos.y * EngineTime::getDeltaTime();
-	rotY += 0.1f * deltaMousePos.x * EngineTime::getDeltaTime();
+	rotX += 0.1f * (mousePos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
+	rotY += 0.1f * (mousePos.x - (width / 2.0f)) * EngineTime::getDeltaTime();
 
 	GameObjectManager::getInstance()->getLastObject()->setRotation(rotX, rotY, rotZ);
+
+	InputSystem::getInstance()->setCursorPosition(Vector2D(width / 2.0f, height / 2.0));
 
 }
 

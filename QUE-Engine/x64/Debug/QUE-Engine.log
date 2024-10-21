@@ -1,4 +1,52 @@
-﻿  Cube.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(17,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(20,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+﻿  AppWindow.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(47,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(49,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(50,160): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(52,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(53,164): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(55,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(56,164): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(58,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(59,164): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(61,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(62,161): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(64,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(65,166): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(65,157): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(67,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(68,166): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(68,157): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(70,75): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(71,162): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(71,157): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(73,77): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(74,159): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(76,76): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(77,168): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(77,159): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(79,77): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(80,164): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(80,159): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(83,166): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(84,164): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(84,159): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(101,71): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(153,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(174,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(195,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(216,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(237,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(258,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(279,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(292,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(304,38): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(316,38): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(359,49): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(360,48): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp(364,79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Camera.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(11,41): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(12,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(115,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

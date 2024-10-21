@@ -4,6 +4,8 @@
 #include <iostream>
 #include <list>
 
+#include "AppWindow.h"
+
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
@@ -142,6 +144,13 @@ void Cube::updateConstantBuffer(float deltaTime)
 	//this->setScale(Vector3D::lerp(Vector3D(1.0f), Vector3D(0.25f), (sin(time * 2.0f) + 1.0f) / 2.0f));
 
 	//this->setPosition(Vector3D::lerp(Vector3D(-3.0f, -3.0f, 0.0f), Vector3D(3.0f, 3.0f, 0.0f), (sin(time) + 1.0f) / 2.0f));
+
+	/* TEST CASE 5 */
+	//if (AppWindow::getInstance()->startAnim)
+	//{
+	//	if (time <= 1)
+	//		this->localScale = Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(5, 0.01, 5), time);
+	//}
 
 	Drawable::updateConstantBuffer(deltaTime);
 }

@@ -80,7 +80,10 @@ void Drawable::updateConstantBuffer(float deltaTime)
 {
 	cc.m_time = 0.0f;
 
-	time += animSpeed * deltaTime;
+	//if (AppWindow::getInstance()->startAnim)
+	//{
+		time += animSpeed * deltaTime;
+	//}
 
 	cc.m_time = time;
 

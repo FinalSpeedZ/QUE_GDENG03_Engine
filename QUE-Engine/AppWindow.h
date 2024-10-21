@@ -55,5 +55,7 @@ private:
 
 	bool moveCamera = false;
 
+//public:
+//	bool startAnim = false;
 
 };

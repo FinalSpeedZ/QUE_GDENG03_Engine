@@ -279,7 +279,6 @@ void AppWindow::onKeyDown(int key)
 			rot.x += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setRotationX(rot.x);
 
-			std::cout << rot.y << std::endl;
 
 		}
 	}
@@ -321,6 +320,10 @@ void AppWindow::onKeyDown(int key)
 		}
 	}
 
+	//else if (key == ' ')
+	//{
+	//	startAnim = true;
+	//}
 
 }
 

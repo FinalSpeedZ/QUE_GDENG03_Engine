@@ -77,49 +77,80 @@ void GameObjectManager::addGameObject(GameObject* gameObject)
 	gameObject->onCreate();
 }
 
-void GameObjectManager::createPrimitive(PrimitiveType primitive)
+void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string name)
 {
+
 	if (primitive == PrimitiveType::CAMERA)
 	{
-		Camera* camera = new Camera();
+		Camera* camera;
+		if (name.empty())
+			camera = new Camera();
+		else
+			camera = new Camera(name);
+
 		addGameObject(camera);
 	}
 
 	else if (primitive == PrimitiveType::QUAD)
 	{
-		Quad* quad = new Quad();
+		Quad* quad;
+		if (name.empty())
+			quad = new Quad();
+		else
+			quad = new Quad(name);
+
 		addGameObject(quad);
 	}
 
 	else if (primitive == PrimitiveType::TRIANGLE)
 	{
-		Triangle* triangle = new Triangle();
+		Triangle* triangle;
+		if (name.empty())
+			triangle = new Triangle();
+		else 
+			triangle = new Triangle(name);
+
 		addGameObject(triangle);
 	}
 
 	else if (primitive == PrimitiveType::CIRCLE)
 	{
-		Circle* circle = new Circle();
+		Circle* circle;
+		if (name.empty())
+			circle = new Circle();
+		else
+			circle = new Circle(name);
+
 		addGameObject(circle);
 	}
 
 	else if (primitive == PrimitiveType::CUBE)
 	{
-		Cube* cube = new Cube();
+		Cube* cube;
+		if (name.empty())
+			cube = new Cube();
+		else
+			cube = new Cube(name);
+
 		addGameObject(cube);
 	}
 
 	else if (primitive == PrimitiveType::PLANE)
 	{
-		Plane* plane = new Plane();
+		Plane* plane;
+		if (name.empty())
+			plane = new Plane();
+		else
+			plane = new Plane(name);
+
 		addGameObject(plane);
 	}
 
-	else if (primitive == PrimitiveType::SPHERE)
-	{
-		Sphere* sphere = new Sphere();
-		addGameObject(sphere);
-	}
+	//else if (primitive == PrimitiveType::SPHERE)
+	//{
+	//	Sphere* sphere = new Sphere();
+	//	addGameObject(sphere);
+	//}
 }
 
 void GameObjectManager::deleteGameObject(GameObject* gameObject)

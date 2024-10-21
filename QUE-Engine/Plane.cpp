@@ -6,6 +6,7 @@
 Plane::Plane(std::string name, float width, float depth)
 	: Drawable(name), width(width), depth(depth)
 {
+	localRotation.y = M_PI;
 }
 
 void Plane::onCreate()

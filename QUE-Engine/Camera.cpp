@@ -7,7 +7,9 @@
 Camera::Camera()
 	: GameObject("Camera")
 {
-	worldCam.setTranslation(Vector3D(0, 0, -5));
+	worldCam.setTranslation(Vector3D(0, 0, -5.0f));
+	//worldCam.setTranslation(Vector3D(3.9f, 3.30, 2.0f));
+	//localRotation = Vector3D(0.31833f, -2.2, 0.0f);
 }
 
 Camera::Camera(std::string name)
@@ -44,12 +46,24 @@ void Camera::updateMatrix()
 	tempworldCam.setIdentity();
 
 	temp.setIdentity();
+	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setScale(localScale);
+	cc.m_world *= temp;
+
+	temp.setIdentity();
 	temp.setRotationX(localRotation.x);
 	tempworldCam *= temp;
 
 	temp.setIdentity();
 	temp.setRotationY(localRotation.y);
 	tempworldCam *= temp;
+
+	temp.setIdentity();
+	temp.setRotationZ(localRotation.z);
+	cc.m_world *= temp;
 
 	Vector3D newPos = worldCam.getTranslation() + tempworldCam.getZDirection() * (forward * 0.3f);
 	newPos = newPos + tempworldCam.getYDirection() * (upward * 0.3f);
@@ -67,6 +81,8 @@ void Camera::updateMatrix()
 	cc.m_projection = getPersMatrix();
 
 	worldViewProj = cc;
+
+	//std::cout << newPos.z << std::endl;
 }
 
 Matrix4x4 Camera::getOrthoMatrix()

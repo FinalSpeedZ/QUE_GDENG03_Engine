@@ -37,9 +37,51 @@ void AppWindow::onCreate()
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 
-	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
 
-	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::SPHERE);
+	/* TEST CASE 7 */
+	//for (int i = 0; i < 15; i++)
+	//{
+	//	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+	//}
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(1)->setRotationX(M_PI / 2.5);
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(2)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(2)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(2)->getLocalPosition() + Vector3D(0, 0, 0.6));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(3)->setRotationX(M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(3)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(3)->getLocalPosition() + Vector3D(0, 0, 0.6 * 2));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(4)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(4)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(4)->getLocalPosition() + Vector3D(0, 0, 0.6 * 3));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(5)->setRotationX(M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(5)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(5)->getLocalPosition() + Vector3D(0, 0, 0.6 * 4));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(6)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(6)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(6)->getLocalPosition() + Vector3D(0, 0, -0.6));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(7)->setRotationX(M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(7)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(7)->getLocalPosition() + Vector3D(0, 1.9, 0.6 * 3));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(8)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(8)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(8)->getLocalPosition() + Vector3D(0, 1.9, 0.6 * 2));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(9)->setRotationX(M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(9)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(9)->getLocalPosition() + Vector3D(0, 1.9, 0.6));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(10)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(10)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(10)->getLocalPosition() + Vector3D(0, 1.9, 0));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(11)->setRotationX(M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(11)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(11)->getLocalPosition() + Vector3D(0, 3.8, 0.6 * 2));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(12)->setRotationX(-M_PI / 2.5);
+	//GameObjectManager::getInstance()->getObjectAtIndex(12)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(12)->getLocalPosition() + Vector3D(0, 3.8, 0.6));
+
+	//GameObjectManager::getInstance()->getObjectAtIndex(13)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(13)->getLocalPosition() + Vector3D(0, 1, 0));
+	//GameObjectManager::getInstance()->getObjectAtIndex(14)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(14)->getLocalPosition() + Vector3D(0, 1, 0.6 * 3));
+	//GameObjectManager::getInstance()->getObjectAtIndex(15)->setPosition(GameObjectManager::getInstance()->getObjectAtIndex(15)->getLocalPosition() + Vector3D(0, 2.8, 0.8));
 
 }
 
@@ -105,10 +147,11 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.z += EngineTime::getDeltaTime();
-			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
 
+			Vector3D pos = drawable->getLocalPosition();
+			pos.z += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
+			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
 		else if (moveCamera)
@@ -125,8 +168,10 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.z -= EngineTime::getDeltaTime();
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D pos = drawable->getLocalPosition();
+			pos.z -= drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
@@ -144,8 +189,10 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.x -= EngineTime::getDeltaTime();
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D pos = drawable->getLocalPosition();
+			pos.x -= drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
@@ -163,8 +210,10 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.x += EngineTime::getDeltaTime();
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D pos = drawable->getLocalPosition();
+			pos.x += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
@@ -182,8 +231,10 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.y += EngineTime::getDeltaTime();
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D pos = drawable->getLocalPosition();
+			pos.y += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
@@ -201,8 +252,10 @@ void AppWindow::onKeyDown(int key)
 	{
 		if (!moveCamera)
 		{
-			Vector3D pos = GameObjectManager::getInstance()->getLastObject()->getLocalPosition();
-			pos.y -= EngineTime::getDeltaTime();
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D pos = drawable->getLocalPosition();
+			pos.y -= drawable->getAnimSpeed() * EngineTime::getDeltaTime();
 			GameObjectManager::getInstance()->getLastObject()->setPosition(pos);
 		}
 
@@ -215,6 +268,60 @@ void AppWindow::onKeyDown(int key)
 			}
 		}
 	}
+
+	else if (key == 'I')
+	{
+		if (!moveCamera)
+		{
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D rot = drawable->getLocalRotation();
+			rot.x += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
+			GameObjectManager::getInstance()->getLastObject()->setRotationX(rot.x);
+
+			std::cout << rot.y << std::endl;
+
+		}
+	}
+
+	else if (key == 'K')
+	{
+		if (!moveCamera)
+		{
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D rot = drawable->getLocalRotation();
+			rot.x -= drawable->getAnimSpeed() * EngineTime::getDeltaTime();
+			GameObjectManager::getInstance()->getLastObject()->setRotationX(rot.x);
+		}
+	}
+
+	else if (key == 'J')
+	{
+		if (!moveCamera)
+		{
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D rot = drawable->getLocalRotation();
+			rot.y += drawable->getAnimSpeed() * EngineTime::getDeltaTime();
+			GameObjectManager::getInstance()->getLastObject()->setRotationY(rot.y);
+		}
+	}
+
+	else if (key == 'L')
+	{
+		if (!moveCamera)
+		{
+			Drawable* drawable = dynamic_cast<Drawable*>(GameObjectManager::getInstance()->getLastObject());
+
+			Vector3D rot = drawable->getLocalRotation();
+			rot.y -= drawable->getAnimSpeed() * EngineTime::getDeltaTime();
+			GameObjectManager::getInstance()->getLastObject()->setRotationY(rot.y);
+
+		}
+	}
+
+
 }
 
 void AppWindow::onKeyUp(int key)
@@ -259,39 +366,22 @@ void AppWindow::onMouseMove(const Vector2D& mousePos)
 
 void AppWindow::onLeftMouseDown(const Vector2D& mousePos)
 {
-	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
-
-	scaleX = 0.5;
-
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 
 }
 
 void AppWindow::onLeftMouseUp(const Vector2D& mousePos)
 {
-	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
 
-	scaleX = 1;
-
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 void AppWindow::onRightMouseDown(const Vector2D& mousePos)
 {
-	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
 
-	scaleX = 2;
-
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 void AppWindow::onRightMouseUp(const Vector2D& mousePos)
 {
-	float scaleX = GameObjectManager::getInstance()->getLastObject()->getLocalScale().x;
 
-	scaleX = 1;
-
-	GameObjectManager::getInstance()->getLastObject()->setScale(scaleX);
 }
 
 

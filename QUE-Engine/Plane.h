@@ -8,7 +8,7 @@ class Plane : public Drawable
 {
 
 public:
-	Plane(std::string name = "Plane", float width = 5.0f, float depth = 5.0f);
+	Plane(std::string name = "Plane", float width = 1.0f, float depth = 2.0f);
 	~Plane() {};
 
 public:

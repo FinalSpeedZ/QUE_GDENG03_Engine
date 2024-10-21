@@ -43,7 +43,7 @@ public:
 	GameObject* findGameObjectByName(std::string name);
 
 	void addGameObject(GameObject* gameObject);
-	void createPrimitive(PrimitiveType primitive);
+	void createPrimitive(PrimitiveType primitive, std::string name = "");
 
 	void deleteGameObject(GameObject* gameObject);
 	void deleteGameObjectByName(std::string name);

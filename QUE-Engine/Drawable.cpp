@@ -1,5 +1,6 @@
 #include "Drawable.h"
 
+#include <corecrt_math_defines.h>
 #include <iostream>
 
 #include "AppWindow.h"
@@ -40,9 +41,9 @@ void Drawable::onUpdate(float deltatime)
 {
 	GameObject::onUpdate(deltatime);
 
+	projectionMat();
 	updateConstantBuffer(deltatime);
 	draw();
-	projectionMat();
 }
 
 void Drawable::onDestroy()
@@ -85,7 +86,15 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 	Matrix4x4 temp;
 
-	cc.m_world.setScale(getLocalScale());
+	cc.m_world.setIdentity();
+
+	temp.setIdentity();
+	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setScale(getLocalScale());
+	cc.m_world *= temp;
 
 	temp.setIdentity();
 	temp.setRotationZ(getLocalRotation().z);
@@ -99,6 +108,9 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	temp.setRotationX(getLocalRotation().x);
 	cc.m_world *= temp;
 
+	temp.setIdentity();
+	temp.setTranslation(localPosition);
+	cc.m_world *= temp;
 }
 
 void Drawable::projectionMat()
@@ -106,7 +118,30 @@ void Drawable::projectionMat()
 	Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
 	if (cam)
 	{
-		cc = cam->getUpdatedConstantData();
+		cc.m_view = cam->getUpdatedConstantData().m_view;
+		cc.m_projection = cam->getUpdatedConstantData().m_projection;
 	}
+}
+
+float Drawable::getAnimSpeed()
+{
+	return animSpeed;
+}
+
+float Drawable::randomFloat(float min, float max)
+{
+	float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));
+
+	random = min + random;
+
+	return random;
+}
+
+Vector4D Drawable::randomColor()
+{
+	return Vector4D(randomFloat(0.0f, 1.0f),
+		randomFloat(0.0f, 1.0f),
+		randomFloat(0.0f, 1.0f),
+		1.0f);
 }
 

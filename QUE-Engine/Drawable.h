@@ -28,6 +28,13 @@ protected:
 	virtual void updateConstantBuffer(float deltaTime);
 	virtual void projectionMat();
 
+public:
+	float getAnimSpeed();
+
+protected:
+	float randomFloat(float min, float max);
+	Vector4D randomColor();
+
 protected:
 	std::vector<vertex> vertices;
 	std::vector<Vector4D> colors;
@@ -41,5 +48,6 @@ protected:
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;
+
 };
 

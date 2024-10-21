@@ -8,7 +8,7 @@ class Cube : public Drawable
 {
 
 public:
-	Cube(std::string name = "Cube", float length = 1.0f);
+	Cube(std::string name = "Cube", float length = 2.0f);
 	~Cube() {};
 
 public:

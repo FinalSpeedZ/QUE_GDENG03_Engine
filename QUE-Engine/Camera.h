@@ -16,6 +16,8 @@ public:
 
 private:
 	void updateMatrix();
+
+public:
 	Matrix4x4 getOrthoMatrix();
 	Matrix4x4 getPersMatrix();
 

@@ -1,11 +1,13 @@
 #include "Cube.h"
 
+#include <corecrt_math_defines.h>
 #include <iostream>
 #include <list>
 
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
+	//animSpeed = 3.0f;
 }
 
 void Cube::onCreate()
@@ -81,28 +83,28 @@ void Cube::calculateVertices()
 
 	Vector3D initPositions[8] =
 	{
-		Vector3D(-halfLength, -halfLength, -0.5f) + localPosition,
-		Vector3D(-halfLength, halfLength, -0.5f) + localPosition,
-		Vector3D(halfLength, halfLength, -0.5f) + localPosition,
-		Vector3D(halfLength, -halfLength, -0.5f) + localPosition,
+		Vector3D(-halfLength, -halfLength, -halfLength) + localPosition,
+		Vector3D(-halfLength, halfLength, -halfLength) + localPosition,
+		Vector3D(halfLength, halfLength, -halfLength) + localPosition,
+		Vector3D(halfLength, -halfLength, -halfLength) + localPosition,
 
-		Vector3D(halfLength, -halfLength, 0.5f) + localPosition,
-		Vector3D(halfLength, halfLength, 0.5f) + localPosition,
-		Vector3D(-halfLength, halfLength, 0.5f) + localPosition,
-		Vector3D(-halfLength, -halfLength, 0.5f) + localPosition,
+		Vector3D(halfLength, -halfLength, halfLength) + localPosition,
+		Vector3D(halfLength, halfLength, halfLength) + localPosition,
+		Vector3D(-halfLength, halfLength, halfLength) + localPosition,
+		Vector3D(-halfLength, -halfLength, halfLength) + localPosition,
 	};
 
 	vertices =
 	{
-		{ initPositions[0], Colors::RED, Colors::BLUE}, 
-		{ initPositions[1], Colors::YELLOW, Colors::GREEN},
-		{ initPositions[2], Colors::GREEN, Colors::YELLOW},
-		{ initPositions[3], Colors::BLUE, Colors::RED},
+		{ initPositions[0], Colors::RED, Colors::RED},
+		{ initPositions[1], Colors::YELLOW, Colors::YELLOW},
+		{ initPositions[2], Colors::GREEN, Colors::GREEN},
+		{ initPositions[3], Colors::BLUE, Colors::BLUE},
 
-		{ initPositions[4], Colors::RED, Colors::BLUE},
-		{ initPositions[5], Colors::YELLOW, Colors::GREEN},
-		{ initPositions[6], Colors::GREEN, Colors::YELLOW},
-		{ initPositions[7], Colors::BLUE, Colors::RED},
+		{ initPositions[4], Colors::RED, Colors::RED},
+		{ initPositions[5], Colors::YELLOW, Colors::YELLOW},
+		{ initPositions[6], Colors::GREEN, Colors::GREEN},
+		{ initPositions[7], Colors::BLUE, Colors::BLUE},
 	};
 
 	index_list =
@@ -130,6 +132,17 @@ void Cube::calculateVertices()
 
 void Cube::updateConstantBuffer(float deltaTime)
 {
+	// Continuous Rotation XYZ
+	//this->setRotationX(fmod(localRotation.x, 2 * M_PI));
+	//this->setRotationY(fmod(localRotation.y, 2 * M_PI));
+	//this->setRotationZ(fmod(localRotation.z, 2 * M_PI));
+
+
+	/* TEST CASE 3 */
+	//this->setScale(Vector3D::lerp(Vector3D(1.0f), Vector3D(0.25f), (sin(time * 2.0f) + 1.0f) / 2.0f));
+
+	//this->setPosition(Vector3D::lerp(Vector3D(-3.0f, -3.0f, 0.0f), Vector3D(3.0f, 3.0f, 0.0f), (sin(time) + 1.0f) / 2.0f));
+
 	Drawable::updateConstantBuffer(deltaTime);
 }
 

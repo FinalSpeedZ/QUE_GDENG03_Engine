@@ -53,4 +53,6 @@ public:
 private:
 	SwapChain* m_swap_chain;
 
+	bool moveCamera = false;
+
 };

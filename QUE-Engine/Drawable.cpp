@@ -34,7 +34,6 @@ void Drawable::onCreate()
 	GraphicsEngine::getInstance()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::getInstance()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::getInstance()->releaseCompiledShader();
-
 }
 
 void Drawable::onUpdate(float deltatime)

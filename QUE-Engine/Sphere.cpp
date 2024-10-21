@@ -36,10 +36,14 @@ void Sphere::onCreate()
 
     constant cc;
     cc.m_time = 0;
-
+     
     m_cb = GraphicsEngine::getInstance()->createConstantBuffer();
     m_cb->load(&cc, sizeof(constant));
+
+    
 }
+
+
 
 void Sphere::onUpdate(float deltaTime)
 {
@@ -87,6 +91,15 @@ void Sphere::calculateVertices()
 
             vertices.push_back({ Vector3D(x, y, z), Colors::WHITE, Colors::RED });
         }
+    }
+
+    for (int i = 0; i < vertices.size(); i++)
+    {
+	    if (i % 2 == 1)
+	    {
+            vertices[i].rgba = Colors::BLUE;
+            vertices[i].rgba1 = Colors::WHITE;
+	    }
     }
 
     // Generate indices for a triangle list

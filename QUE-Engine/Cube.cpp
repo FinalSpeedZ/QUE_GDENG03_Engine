@@ -81,15 +81,15 @@ void Cube::calculateVertices()
 
 	Vector3D initPositions[8] =
 	{
-		Vector3D(-halfLength, -halfLength, -0.5f),
-		Vector3D(-halfLength, halfLength, -0.5f),
-		Vector3D(halfLength, halfLength, -0.5f),
-		Vector3D(halfLength, -halfLength, -0.5f),
+		Vector3D(-halfLength, -halfLength, -0.5f) + localPosition,
+		Vector3D(-halfLength, halfLength, -0.5f) + localPosition,
+		Vector3D(halfLength, halfLength, -0.5f) + localPosition,
+		Vector3D(halfLength, -halfLength, -0.5f) + localPosition,
 
-		Vector3D(halfLength, -halfLength, 0.5f),
-		Vector3D(halfLength, halfLength, 0.5f),
-		Vector3D(-halfLength, halfLength, 0.5f),
-		Vector3D(-halfLength, -halfLength, 0.5f),
+		Vector3D(halfLength, -halfLength, 0.5f) + localPosition,
+		Vector3D(halfLength, halfLength, 0.5f) + localPosition,
+		Vector3D(-halfLength, halfLength, 0.5f) + localPosition,
+		Vector3D(-halfLength, -halfLength, 0.5f) + localPosition,
 	};
 
 	vertices =

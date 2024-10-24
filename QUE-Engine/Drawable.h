@@ -26,7 +26,7 @@ protected:
 protected:
 	virtual void calculateVertices() {};
 	virtual void updateConstantBuffer(float deltaTime);
-	virtual void projectionMat();
+	virtual void projectionViewMatrix();
 
 public:
 	float getAnimSpeed();

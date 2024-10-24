@@ -19,6 +19,7 @@ public:
 	Vector3D& operator+=(const Vector3D& other);
 	Vector3D& operator-=(const Vector3D& other);
 	Vector3D& operator*=(float scalar);
+	bool operator!=(const Vector3D& other);
 
 	static const Vector3D zeroes;
 	static const Vector3D ones;

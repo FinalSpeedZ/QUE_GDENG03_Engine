@@ -8,7 +8,7 @@ class Plane : public Drawable
 {
 
 public:
-	Plane(std::string name = "Plane", float width = 1.0f, float depth = 2.0f);
+	Plane(std::string name = "Plane", float width = 10.0f, float depth = 10.0f);
 	~Plane() {};
 
 public:
@@ -26,7 +26,7 @@ public:
 private:
 	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;
-	void projectionMat() override;
+	void projectionViewMatrix() override;
 
 private:
 	float width;

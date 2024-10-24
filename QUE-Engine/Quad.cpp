@@ -78,8 +78,8 @@ void Quad::updateConstantBuffer(float deltaTime)
 	Drawable::updateConstantBuffer(deltaTime);
 }
 
-void Quad::projectionMat()
+void Quad::projectionViewMatrix()
 {
-	Drawable::projectionMat();
+	Drawable::projectionViewMatrix();
 }
 

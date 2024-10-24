@@ -5,6 +5,7 @@
 
 #include "AppWindow.h"
 #include "Camera.h"
+#include "SceneCameraHandler.h"
 
 
 Drawable::Drawable(std::string name)
@@ -41,7 +42,7 @@ void Drawable::onUpdate(float deltatime)
 {
 	GameObject::onUpdate(deltatime);
 
-	projectionMat();
+	projectionViewMatrix();
 	updateConstantBuffer(deltatime);
 	draw();
 }
@@ -80,10 +81,7 @@ void Drawable::updateConstantBuffer(float deltaTime)
 {
 	cc.m_time = 0.0f;
 
-	//if (AppWindow::getInstance()->startAnim)
-	//{
-		time += animSpeed * deltaTime;
-	//}
+	time += animSpeed * deltaTime;
 
 	cc.m_time = time;
 
@@ -114,16 +112,13 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	temp.setIdentity();
 	temp.setTranslation(localPosition);
 	cc.m_world *= temp;
+
 }
 
-void Drawable::projectionMat()
+void Drawable::projectionViewMatrix()
 {
-	Camera* cam = dynamic_cast<Camera*>(GameObjectManager::getInstance()->findGameObjectByName("Camera"));
-	if (cam)
-	{
-		cc.m_view = cam->getUpdatedConstantData().m_view;
-		cc.m_projection = cam->getUpdatedConstantData().m_projection;
-	}
+	cc.m_projection = SceneCameraHandler::getInstance()->perspectiveProjection();
+	cc.m_view = SceneCameraHandler::getInstance()->getSceneCameraViewMatrix();
 }
 
 float Drawable::getAnimSpeed()

@@ -122,3 +122,39 @@ void InputSystem::showCursor(bool show)
 {
 	::ShowCursor(show);
 }
+
+bool InputSystem::isKeyDown(int key)
+{
+	for (int i = 0; i < ARRAYSIZE(this->keysState); i++) 
+	{
+		if (this->keysState[i] & 0x80 && i == key) 
+		{
+			return true;
+		}
+		else if (i == key) 
+		{
+			return false;
+		}
+	}
+
+
+	return false;
+}
+
+bool InputSystem::isKeyUp(int key)
+{
+	for (int i = 0; i < ARRAYSIZE(this->keysState); i++) 
+	{
+		if (!(this->keysState[i] & 0x80) && i == key) 
+		{
+			return true;
+		}
+		else if (i == key) 
+		{
+			return false;
+		}
+	}
+
+	return false;
+}
+

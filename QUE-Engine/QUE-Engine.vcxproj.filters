@@ -162,6 +162,9 @@
     <ClCompile Include="Sphere.cpp">
       <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Sphere</Filter>
     </ClCompile>
+    <ClCompile Include="SceneCameraHandler.cpp">
+      <Filter>GameEngine\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Sphere.h">
       <Filter>GameEngine\GraphicsEngine\GameObject\Primitive3D\Sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneCameraHandler.h">
+      <Filter>GameEngine\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

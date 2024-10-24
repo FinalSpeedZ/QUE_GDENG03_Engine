@@ -68,8 +68,8 @@
 		Drawable::updateConstantBuffer(deltaTime);
 	}
 
-	void Circle::projectionMat()
+	void Circle::projectionViewMatrix()
 	{
-		Drawable::projectionMat();
+		Drawable::projectionViewMatrix();
 	}
 

@@ -24,7 +24,7 @@ public:
 private:
     void calculateVertices() override;
     void updateConstantBuffer(float deltaTime) override;
-    void projectionMat() override;
+    void projectionViewMatrix() override;
 
 private:
     float radius;

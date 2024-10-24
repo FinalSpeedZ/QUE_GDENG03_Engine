@@ -6,7 +6,9 @@
 Plane::Plane(std::string name, float width, float depth)
 	: Drawable(name), width(width), depth(depth)
 {
-	localRotation.y = M_PI;
+	localRotation.x = M_PI;
+
+	localPosition.y = -5.0;
 }
 
 void Plane::onCreate()
@@ -123,7 +125,7 @@ void Plane::updateConstantBuffer(float deltaTime)
 	Drawable::updateConstantBuffer(deltaTime);
 }
 
-void Plane::projectionMat()
+void Plane::projectionViewMatrix()
 {
-	Drawable::projectionMat();
+	Drawable::projectionViewMatrix();
 }

@@ -127,7 +127,7 @@ void Sphere::updateConstantBuffer(float deltaTime)
     Drawable::updateConstantBuffer(deltaTime);
 }
 
-void Sphere::projectionMat()
+void Sphere::projectionViewMatrix()
 {
-    Drawable::projectionMat();
+    Drawable::projectionViewMatrix();
 }

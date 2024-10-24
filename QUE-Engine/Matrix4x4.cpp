@@ -54,22 +54,17 @@ void Matrix4x4::setRotationZ(float z)
 
 Vector3D Matrix4x4::getXDirection()
 {
-	return Vector3D(mat[0][0], mat[0][1], mat[0][2]);
+	return Vector3D(mat[0][0], mat[1][0], mat[2][0]); // This is correct for row-major
 }
 
 Vector3D Matrix4x4::getYDirection()
 {
-	return Vector3D(mat[1][0], mat[1][1], mat[1][2]);
+	return Vector3D(mat[0][1], mat[1][1], mat[2][1]); // This is correct for row-major
 }
 
 Vector3D Matrix4x4::getZDirection()
 {
-	return Vector3D(mat[2][0], mat[2][1], mat[2][2]);
-}
-
-Vector3D Matrix4x4::getTranslation()
-{
-	return Vector3D(mat[3][0], mat[3][1], mat[3][2]);
+	return Vector3D(mat[0][2], mat[1][2], mat[2][2]); // This is correct for row-major
 }
 
 void Matrix4x4::inverse()

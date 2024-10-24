@@ -29,6 +29,9 @@ public:
 	void setCursorPosition(const Vector2D& pos);
 	void showCursor(bool show);
 
+	bool isKeyDown(int key);
+	bool isKeyUp(int key);
+
 private:
 	std::unordered_set<InputListener*> setListeners;
 	unsigned char keysState[256] = {};

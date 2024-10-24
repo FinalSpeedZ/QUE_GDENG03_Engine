@@ -73,3 +73,8 @@ Vector3D& Vector3D::operator*=(float scalar)
     z *= scalar;
     return *this;
 }
+
+bool Vector3D::operator!=(const Vector3D& other)
+{
+    return (x != other.x || y != other.y || z != other.z);
+}

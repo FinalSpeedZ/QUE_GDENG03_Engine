@@ -41,6 +41,8 @@ public:
 	void setScale(Vector3D scale);
 	Vector3D getLocalScale();
 
+	Matrix4x4 getLocalMatrix();
+
 public:
 	virtual void onCreate() {};
 	virtual void onUpdate(float deltatime) {};
@@ -51,5 +53,7 @@ protected:
 	Vector3D localPosition;
 	Vector3D localRotation;
 	Vector3D localScale;
+
+	Matrix4x4 localMatrix;
 };
 

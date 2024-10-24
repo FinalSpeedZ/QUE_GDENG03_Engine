@@ -3,18 +3,21 @@
 #include <corecrt_math_defines.h>
 
 #include "AppWindow.h"
+#include "InputSystem.h"
 
-Camera::Camera()
-	: GameObject("Camera")
-{
-	worldCam.setTranslation(Vector3D(0, 0, -5.0f));
-	//worldCam.setTranslation(Vector3D(3.9f, 3.30, 2.0f));
-	//localRotation = Vector3D(0.31833f, -2.2, 0.0f);
-}
 
 Camera::Camera(std::string name)
 	: GameObject(name)
 {
+	localPosition.z = -5.0;
+	this->updateViewMatrix();
+
+	InputSystem::getInstance()->addListener(this);
+}
+
+Camera::~Camera()
+{
+	InputSystem::getInstance()->removeListener(this);
 }
 
 void Camera::onCreate()
@@ -26,7 +29,50 @@ void Camera::onUpdate(float deltatime)
 {
 	GameObject::onUpdate(deltatime);
 
-	updateMatrix();
+	float moveSpeed = 10.0f;
+
+	float x = localPosition.x;
+	float y = localPosition.y;
+	float z = localPosition.z;
+
+	Vector3D newPosition = localPosition;
+
+	if (InputSystem::getInstance()->isKeyDown('W'))
+	{
+		newPosition = newPosition + this->localMatrix.getZDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (InputSystem::getInstance()->isKeyDown('S'))
+	{
+		newPosition = newPosition - this->localMatrix.getZDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (InputSystem::getInstance()->isKeyDown('A'))
+	{
+		newPosition = newPosition - this->localMatrix.getXDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (InputSystem::getInstance()->isKeyDown('D'))
+	{
+		newPosition = newPosition + this->localMatrix.getXDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (InputSystem::getInstance()->isKeyDown('Q'))
+	{
+		newPosition = newPosition + this->localMatrix.getYDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (InputSystem::getInstance()->isKeyDown('E'))
+	{
+		newPosition = newPosition - this->localMatrix.getYDirection() * (moveSpeed * deltatime); 
+	}
+
+	if (newPosition != localPosition)
+	{
+		setPosition(newPosition.x, newPosition.y, newPosition.z);
+		this->updateViewMatrix();
+	}
+
 }
 
 void Camera::onDestroy()
@@ -34,92 +80,90 @@ void Camera::onDestroy()
 	GameObject::onDestroy();
 }
 
-void Camera::updateMatrix()
+void Camera::updateViewMatrix()
 {
-	constant cc;
+	Matrix4x4 worldCam;
+	worldCam.setIdentity();
 
 	Matrix4x4 temp;
-
-	cc.m_world.setIdentity();
-
-	Matrix4x4 tempworldCam;
-	tempworldCam.setIdentity();
-
 	temp.setIdentity();
-	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
-	cc.m_world *= temp;
 
 	temp.setIdentity();
 	temp.setScale(localScale);
-	cc.m_world *= temp;
+	worldCam *= temp;
 
 	temp.setIdentity();
 	temp.setRotationX(localRotation.x);
-	tempworldCam *= temp;
+	worldCam *= temp;
 
 	temp.setIdentity();
 	temp.setRotationY(localRotation.y);
-	tempworldCam *= temp;
+	worldCam *= temp;
 
 	temp.setIdentity();
 	temp.setRotationZ(localRotation.z);
-	cc.m_world *= temp;
+	worldCam *= temp;
 
-	Vector3D newPos = worldCam.getTranslation() + tempworldCam.getZDirection() * (forward * 0.3f);
-	newPos = newPos + tempworldCam.getYDirection() * (upward * 0.3f);
-	newPos = newPos + tempworldCam.getXDirection() * (rightward * 0.3f);
+	temp.setTranslation(localPosition);
+	worldCam *= temp;
 
-	tempworldCam.setTranslation(newPos);
+	worldCam.inverse();
 
-	worldCam = tempworldCam;
-
-	tempworldCam.inverse();
-
-	cc.m_view = tempworldCam;
-
-	//cc.m_projection = getOrthoMatrix();
-	cc.m_projection = getPersMatrix();
-
-	worldViewProj = cc;
-
-	//std::cout << newPos.z << std::endl;
+	this->localMatrix = worldCam;
 }
 
-Matrix4x4 Camera::getOrthoMatrix()
+
+Matrix4x4 Camera::getViewMatrix()
 {
-	RECT rc = AppWindow::getInstance()->getClientWindowRect();
-
-	Matrix4x4 ortho;
-
-	ortho.setOrthoLH
-	(
-		(rc.right - rc.left) / 300.0f,
-		(rc.bottom - rc.top) / 300.0f,
-		-4.0f,
-		4.0f
-	);
-
-	return ortho;
+	return this->localMatrix;
 }
 
-Matrix4x4 Camera::getPersMatrix()
+void Camera::onKeyDown(int key)
 {
-	RECT rc = AppWindow::getInstance()->getClientWindowRect();
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
-
-	Matrix4x4 perspective;
-
-	float degrees = 90;
-
-	float fov = degrees * M_PI / 180.0f;
-
-	perspective.setPerspectiveFovLH(fov, ((float)width / (float)height), 0.1f, 100.0f);
-
-	return perspective;
 }
 
-constant Camera::getUpdatedConstantData()
+void Camera::onKeyUp(int key)
 {
-	return worldViewProj;
 }
+
+void Camera::onMouseMove(const Vector2D& deltaPos)
+{
+
+	if (this->mouseDown)
+	{
+		RECT rc = AppWindow::getInstance()->getClientWindowRect();
+		int width = rc.right - rc.left;
+		int height = rc.bottom - rc.top;
+
+		float x = localRotation.x;
+		float y = localRotation.y;
+		float z = localRotation.z;
+
+		x += 0.1f * (deltaPos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
+		y += 0.1f * (deltaPos.x - (width / 2.0f)) * EngineTime::getDeltaTime();
+
+		this->setRotation(x, y, z);
+		this->updateViewMatrix();
+
+		InputSystem::getInstance()->setCursorPosition(Vector2D(width / 2.0f, height / 2.0));
+	}
+}
+
+void Camera::onLeftMouseDown(const Vector2D& deltaPos)
+{
+}
+
+void Camera::onLeftMouseUp(const Vector2D& deltaPos)
+{
+}
+
+void Camera::onRightMouseDown(const Vector2D& deltaPos)
+{
+	this->mouseDown = true;
+}
+
+void Camera::onRightMouseUp(const Vector2D& deltaPos)
+{
+	this->mouseDown = false;
+}
+

@@ -1,13 +1,13 @@
 #pragma once
 #include "GameObject.h"
+#include "InputListener.h"
 
-class Camera : public GameObject
+class Camera : public GameObject, public InputListener
 {
 
 public:
-	Camera();
-	Camera(std::string name);
-	~Camera() {};
+	Camera(std::string name = "Camera");
+	~Camera();
 
 public:
 	virtual void onCreate() override;
@@ -15,18 +15,25 @@ public:
 	virtual void onDestroy() override;
 
 private:
-	void updateMatrix();
+	void updateViewMatrix();
 
 public:
-	Matrix4x4 getOrthoMatrix();
-	Matrix4x4 getPersMatrix();
+	Matrix4x4 getViewMatrix();
 
 public:
-	constant getUpdatedConstantData();
+	virtual void onKeyDown(int key) override;
+	virtual void onKeyUp(int key) override;
+	virtual void onMouseMove(const Vector2D& deltaPos) override;
+	virtual void onLeftMouseDown(const Vector2D& deltaPos) override;
+	virtual void onLeftMouseUp(const Vector2D& deltaPos) override;
+	virtual void onRightMouseDown(const Vector2D& deltaPos) override;
+	virtual void onRightMouseUp(const Vector2D& deltaPos) override;
+
 
 private:
-	constant worldViewProj;
-	Matrix4x4 worldCam;
+	bool mouseDown = false;
+
+	Matrix4x4 camera;
 
 public:
 	float forward = 0.0f;

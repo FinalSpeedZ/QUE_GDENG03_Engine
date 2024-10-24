@@ -5,11 +5,18 @@
 #include <list>
 
 #include "AppWindow.h"
+#include "InputSystem.h"
 
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	//animSpeed = 3.0f;
+	localPosition.x = randomFloat(-3.0f, 3.0f);
+	localPosition.y = randomFloat(-3.0f, 3.0f);
+	localPosition.z = randomFloat(-3.0f, 3.0f);
+
+	localRotation.x = randomFloat(0, 2 * M_PI);
+	localRotation.y = randomFloat(0, 2 * M_PI);
+	localRotation.z = randomFloat(0, 2 * M_PI);
 }
 
 void Cube::onCreate()
@@ -42,6 +49,7 @@ void Cube::onCreate()
 
 	m_cb = GraphicsEngine::getInstance()->createConstantBuffer();
 	m_cb->load(&cc, sizeof(constant));
+
 }
 
 void Cube::onUpdate(float deltaTime)
@@ -134,29 +142,32 @@ void Cube::calculateVertices()
 
 void Cube::updateConstantBuffer(float deltaTime)
 {
-	// Continuous Rotation XYZ
+
+	//if (InputSystem::getInstance()->isKeyDown('W'))
+	//{
+	//	localRotation.x += 0.2f;
+	//	localRotation.y += 0.2f;
+	//	localRotation.z += 0.2f;
+	//}
+
+	//if (InputSystem::getInstance()->isKeyDown('S'))
+	//{
+	//	localRotation.x -= 0.2f;
+	//	localRotation.y -= 0.2f;
+	//	localRotation.z -= 0.2f;
+	//}
+
 	//this->setRotationX(fmod(localRotation.x, 2 * M_PI));
 	//this->setRotationY(fmod(localRotation.y, 2 * M_PI));
 	//this->setRotationZ(fmod(localRotation.z, 2 * M_PI));
 
-
-	/* TEST CASE 3 */
-	//this->setScale(Vector3D::lerp(Vector3D(1.0f), Vector3D(0.25f), (sin(time * 2.0f) + 1.0f) / 2.0f));
-
-	//this->setPosition(Vector3D::lerp(Vector3D(-3.0f, -3.0f, 0.0f), Vector3D(3.0f, 3.0f, 0.0f), (sin(time) + 1.0f) / 2.0f));
-
-	/* TEST CASE 5 */
-	//if (AppWindow::getInstance()->startAnim)
-	//{
-	//	if (time <= 1)
-	//		this->localScale = Vector3D::lerp(Vector3D(1, 1, 1), Vector3D(5, 0.01, 5), time);
-	//}
-
 	Drawable::updateConstantBuffer(deltaTime);
 }
 
-void Cube::projectionMat()
+void Cube::projectionViewMatrix()
 {
-	Drawable::projectionMat();
+	Drawable::projectionViewMatrix();
 }
+
+
 

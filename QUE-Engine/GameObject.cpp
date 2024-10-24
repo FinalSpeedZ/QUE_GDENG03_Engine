@@ -80,6 +80,11 @@ Vector3D GameObject::getLocalScale()
 	return this->localScale;
 }
 
+Matrix4x4 GameObject::getLocalMatrix()
+{
+	return this->localMatrix;
+}
+
 void GameObject::onDestroy()
 {
 	delete this;

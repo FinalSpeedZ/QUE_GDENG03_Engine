@@ -3,12 +3,13 @@
 #include "GameObject.h"
 
 #include "Drawable.h"
+#include "InputListener.h"
 
 class Cube : public Drawable
 {
 
 public:
-	Cube(std::string name = "Cube", float length = 2.0f);
+	Cube(std::string name = "Cube", float length = 1.0f);
 	~Cube() {};
 
 public:
@@ -25,7 +26,7 @@ public:
 private:
 	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;
-	void projectionMat() override;
+	void projectionViewMatrix() override;
 
 private:
 	IndexBuffer* m_ib;

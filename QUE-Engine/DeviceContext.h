@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <exception>
 
 #include "SwapChain.h"
 
@@ -18,10 +19,9 @@ class DeviceContext
 {
 public:
 	DeviceContext(ID3D11DeviceContext* device_context, RenderSystem* system) : m_system(system), m_device_context(device_context) {};
-	~DeviceContext() {};
+	~DeviceContext();
 
 	void clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha);
-	bool release();
 
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
 

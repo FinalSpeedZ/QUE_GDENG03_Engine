@@ -1,9 +1,8 @@
 #include "IndexBuffer.h"
 
-bool IndexBuffer::load(std::vector<unsigned int>& index_list, UINT size_list)
+IndexBuffer::IndexBuffer(std::vector<unsigned>& index_list, UINT size_list, RenderSystem* system)
+	: m_system(system), m_buffer(0)
 {
-	if (m_buffer)m_buffer->Release();
-
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
 	buff_desc.ByteWidth = 4 * size_list;
@@ -18,20 +17,16 @@ bool IndexBuffer::load(std::vector<unsigned int>& index_list, UINT size_list)
 
 	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		return false;
+		throw std::exception("IndexBuffer not created successfully");
 	}
+}
 
-	return true;
+IndexBuffer::~IndexBuffer()
+{
+	m_buffer->Release();
 }
 
 UINT IndexBuffer::getSizeIndexList()
 {
 	return this->m_size_list;
-}
-
-bool IndexBuffer::release()
-{
-	m_buffer->Release();
-	delete this;
-	return true;
 }

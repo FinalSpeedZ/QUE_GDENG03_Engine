@@ -1,9 +1,8 @@
 #include "ConstantBuffer.h"
 
-bool ConstantBuffer::load(void* buffer, UINT size_buffer)
+ConstantBuffer::ConstantBuffer(void* buffer, UINT size_buffer, RenderSystem* system)
+	: m_system(system)
 {
-	if (m_buffer)m_buffer->Release();
-
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
 	buff_desc.ByteWidth = size_buffer;
@@ -16,20 +15,18 @@ bool ConstantBuffer::load(void* buffer, UINT size_buffer)
 
 	if (FAILED(m_system->m_d3d_device->CreateBuffer(&buff_desc, &init_data, &m_buffer)))
 	{
-		return false;
+		throw std::exception("ConstantBuffer not created successfully");
 	}
 
-	return true;
+}
+
+ConstantBuffer::~ConstantBuffer()
+{
+	if (m_buffer)
+		m_buffer->Release();
 }
 
 void ConstantBuffer::update(DeviceContext* context, void* buffer)
 {
 	context->m_device_context->UpdateSubresource(this->m_buffer, NULL, NULL, buffer, NULL, NULL);
-}
-
-bool ConstantBuffer::release()
-{
-	if (m_buffer)m_buffer->Release();
-	delete this;
-	return true;
 }

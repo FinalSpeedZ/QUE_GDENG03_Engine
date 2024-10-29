@@ -15,20 +15,19 @@ void Plane::onCreate()
 {
 	calculateVertices();
 
-	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer();
 	UINT size_list = vertices.size();
 
-	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer();
 	UINT size_index_list = index_list.size();
 
-	m_ib->load(index_list, size_index_list);
+	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
+
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 	GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
 	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
-	m_vb->load(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
+	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 
@@ -39,8 +38,7 @@ void Plane::onCreate()
 	constant cc;
 	cc.m_time = 0;
 
-	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer();
-	m_cb->load(&cc, sizeof(constant));
+	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 }
 
 void Plane::onUpdate(float deltaTime)
@@ -51,9 +49,6 @@ void Plane::onUpdate(float deltaTime)
 void Plane::onDestroy()
 {
 	Drawable::onDestroy();
-
-	if (m_ib)
-		m_ib->release();
 }
 
 void Plane::draw()

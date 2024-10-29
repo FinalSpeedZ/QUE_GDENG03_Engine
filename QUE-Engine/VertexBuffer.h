@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <d3d11.h>
+#include <exception>
 
 #include "GraphicsEngine.h"
 #include "RenderSystem.h"
@@ -15,12 +16,10 @@ class VertexBuffer
 {
 
 public:
-	VertexBuffer(RenderSystem* system) : m_system(system), m_layout(0), m_buffer(0) {};
-	~VertexBuffer() {};
+	VertexBuffer(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader, RenderSystem* system);
+	~VertexBuffer();
 
-	bool load(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader);
 	UINT getSizeVertexList();
-	bool release();
 
 private:
 	UINT m_size_vertex;

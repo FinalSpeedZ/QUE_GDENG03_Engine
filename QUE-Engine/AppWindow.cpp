@@ -31,10 +31,8 @@ void AppWindow::onCreate()
 
 	SceneCameraHandler::initialize();
 
-	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain();
-
 	RECT rc = this->getClientWindowRect();
-	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
+	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -69,8 +67,6 @@ void AppWindow::onUpdate()
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
-
-	m_swap_chain->release();
 
 	GraphicsEngine::getInstance()->release();
 }

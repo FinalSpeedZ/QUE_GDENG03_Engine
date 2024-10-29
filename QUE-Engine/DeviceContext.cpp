@@ -1,5 +1,10 @@
 #include "DeviceContext.h"
 
+DeviceContext::~DeviceContext()
+{
+	m_device_context->Release();
+}
+
 void DeviceContext::clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha)
 {
 	FLOAT clear_color[] = { red,green,blue,alpha };
@@ -7,13 +12,6 @@ void DeviceContext::clearRenderTargetColor(SwapChain* swap_chain, float red, flo
 	m_device_context->OMSetRenderTargets(1, &swap_chain->m_rtv, NULL);
 	m_device_context->ClearDepthStencilView(swap_chain->m_dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1, 0);
 	m_device_context->OMSetRenderTargets(1, &swap_chain->m_rtv, swap_chain->m_dsv);
-}
-
-bool DeviceContext::release()
-{
-	m_device_context->Release();
-	delete this;
-	return true;
 }
 
 void DeviceContext::setVertexBuffer(VertexBuffer* vertex_buffer)

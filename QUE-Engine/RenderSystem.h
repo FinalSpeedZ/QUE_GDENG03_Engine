@@ -2,6 +2,7 @@
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
+#include <exception>
 
 #include "SwapChain.h"
 #include "DeviceContext.h"
@@ -13,6 +14,8 @@
 
 #include "Prerequisites.h"
 
+#include "Vertex.h"
+
 class RenderSystem
 {
 
@@ -21,12 +24,12 @@ public:
 	bool release();
 
 public:
-	SwapChain* createSwapChain();
+	SwapChain* createSwapChain(HWND hwnd, UINT width, UINT height);
 	DeviceContext* getImmediateDeviceContext();
 
-	VertexBuffer* createVertexBuffer();
-	IndexBuffer* createIndexBuffer();
-	ConstantBuffer* createConstantBuffer();
+	VertexBuffer* createVertexBuffer(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader);
+	IndexBuffer* createIndexBuffer(std::vector<unsigned int>& index_list, UINT size_list);
+	ConstantBuffer* createConstantBuffer(void* buffer, UINT size_buffer);
 
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);

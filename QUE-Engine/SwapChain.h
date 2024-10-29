@@ -1,6 +1,7 @@
 #pragma once
 
 #include <d3d11.h>
+#include <exception>
 
 #include "RenderSystem.h"
 
@@ -10,11 +11,8 @@ class SwapChain
 {
 
 public:
-	SwapChain(RenderSystem* system) : m_system(system) {};
-	~SwapChain() {};
-
-	bool init(HWND hwnd, UINT width, UINT height);
-	bool release();
+	SwapChain(HWND hwnd, UINT width, UINT height, RenderSystem* system);
+	~SwapChain();
 
 public:
 	bool present(bool vsync);

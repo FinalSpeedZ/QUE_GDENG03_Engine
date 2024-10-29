@@ -19,10 +19,8 @@ void Drawable::onCreate()
 
 	cc.m_time = 0.0f;
 
-	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer();
-	m_cb->load(&cc, sizeof(constant));
+	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 
-	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer();
 	UINT size_list = vertices.size();
 
 	void* shader_byte_code = nullptr;
@@ -30,7 +28,7 @@ void Drawable::onCreate()
 	GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
 	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
-	m_vb->load(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
+	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 
 	GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
@@ -49,18 +47,6 @@ void Drawable::onUpdate(float deltatime)
 
 void Drawable::onDestroy()
 {
-	if (m_vb)
-		m_vb->release();
-
-	if (m_vs)
-		m_vs->release();
-
-	if (m_ps)
-		m_ps->release();
-
-	if (m_cb)
-		m_cb->release();
-
 	GameObject::onDestroy();
 }
 

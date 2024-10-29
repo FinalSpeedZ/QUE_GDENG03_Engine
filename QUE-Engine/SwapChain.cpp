@@ -1,6 +1,8 @@
 #include "SwapChain.h"
 
-bool SwapChain::init(HWND hwnd, UINT width, UINT height)
+
+SwapChain::SwapChain(HWND hwnd, UINT width, UINT height, RenderSystem* system)
+	: m_system(system)
 {
 	ID3D11Device* device = m_system->m_d3d_device;
 
@@ -22,7 +24,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 
 	if (FAILED(hr))
 	{
-		return false;
+		throw std::exception("SwapChain not created successfully");
 	}
 
 	ID3D11Texture2D* buffer = NULL;
@@ -30,7 +32,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 
 	if (FAILED(hr))
 	{
-		return false;
+		throw std::exception("SwapChain not created successfully");
 	}
 
 	hr = device->CreateRenderTargetView(buffer, NULL, &m_rtv);
@@ -38,7 +40,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 
 	if (FAILED(hr))
 	{
-		return false;
+		throw std::exception("SwapChain not created successfully");
 	}
 
 	D3D11_TEXTURE2D_DESC texDesc = {};
@@ -58,12 +60,14 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 
 	HRESULT depthStencilResult = device->CreateDepthStencilView(buffer, NULL, &this->m_dsv);
 	buffer->Release();
-
-
-	return true;
 }
 
-
+SwapChain::~SwapChain()
+{
+	m_rtv->Release();
+	m_dsv->Release();
+	m_swap_chain->Release();
+}
 
 bool SwapChain::present(bool vsync)
 {
@@ -71,14 +75,3 @@ bool SwapChain::present(bool vsync)
 
 	return true;
 }
-
-
-bool SwapChain::release()
-{
-	m_swap_chain->Release();
-
-	delete this;
-
-	return true;
-}
-

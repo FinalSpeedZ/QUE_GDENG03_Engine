@@ -1,6 +1,7 @@
 #pragma once
 
 #include <d3d11.h>
+#include <exception>
 
 #include "RenderSystem.h"
 
@@ -9,12 +10,10 @@
 class IndexBuffer
 {
 public:
-	IndexBuffer(RenderSystem* system) : m_system(system), m_buffer(0) {};
-	~IndexBuffer() {};
+	IndexBuffer(std::vector<unsigned int>& index_list, UINT size_list, RenderSystem* system);
+	~IndexBuffer();
 
-	bool load(std::vector<unsigned int>& index_list, UINT size_list);
 	UINT getSizeIndexList();
-	bool release();
 
 private:
 	UINT m_size_list;

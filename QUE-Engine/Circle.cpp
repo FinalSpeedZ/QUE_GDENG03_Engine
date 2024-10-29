@@ -27,7 +27,7 @@
 	{
 		Drawable::draw();
 
-		GraphicsEngine::getInstance()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
 	}
 
 	void Circle::setRadius(float radius)

@@ -1,7 +1,5 @@
 #include "PixelShader.h"
 
-#include "GraphicsEngine.h"
-
 void PixelShader::release()
 {
 	m_ps->Release();
@@ -10,7 +8,7 @@ void PixelShader::release()
 
 bool PixelShader::init(const void* shader_byte_code, size_t byte_code_size)
 {
-	if (!SUCCEEDED(GraphicsEngine::getInstance()->m_d3d_device->CreatePixelShader(shader_byte_code, byte_code_size, nullptr, &m_ps)))
+	if (!SUCCEEDED(m_system->m_d3d_device->CreatePixelShader(shader_byte_code, byte_code_size, nullptr, &m_ps)))
 		return false;
 
 	return true;

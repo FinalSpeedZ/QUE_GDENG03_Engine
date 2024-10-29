@@ -2,14 +2,14 @@
 
 #include <d3d11.h>
 
-#include "GraphicsEngine.h"
+#include "RenderSystem.h"
 
-class DeviceContext;
+#include "Prerequisites.h"
 
 class IndexBuffer
 {
 public:
-	IndexBuffer();
+	IndexBuffer(RenderSystem* system) : m_system(system), m_buffer(0) {};
 	~IndexBuffer() {};
 
 	bool load(std::vector<unsigned int>& index_list, UINT size_list);
@@ -21,7 +21,7 @@ private:
 
 private:
 	ID3D11Buffer* m_buffer;
-
+	RenderSystem* m_system = nullptr;
 private:
 	friend class DeviceContext;
 };

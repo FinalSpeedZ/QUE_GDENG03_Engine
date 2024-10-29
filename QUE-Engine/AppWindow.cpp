@@ -31,7 +31,7 @@ void AppWindow::onCreate()
 
 	SceneCameraHandler::initialize();
 
-	m_swap_chain = GraphicsEngine::getInstance()->createSwapChain();
+	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain();
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
@@ -52,11 +52,11 @@ void AppWindow::onUpdate()
 
 	if (isRunning())
 	{
-		GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 			0.5f, 0.5f, 0.8f, 1);
 
 		RECT rc = this->getClientWindowRect();
-		GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
 		GameObjectManager::getInstance()->updateAll(EngineTime::getDeltaTime());
 

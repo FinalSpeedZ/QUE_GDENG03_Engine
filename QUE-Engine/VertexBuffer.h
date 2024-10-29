@@ -5,16 +5,17 @@
 #include <d3d11.h>
 
 #include "GraphicsEngine.h"
+#include "RenderSystem.h"
 
 #include "Vertex.h"
 
-class DeviceContext;
+#include "Prerequisites.h"
 
 class VertexBuffer
 {
 
 public:
-	VertexBuffer() : m_layout(0), m_buffer(0) {};
+	VertexBuffer(RenderSystem* system) : m_system(system), m_layout(0), m_buffer(0) {};
 	~VertexBuffer() {};
 
 	bool load(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader);
@@ -29,6 +30,7 @@ private:
 	ID3D11Buffer* m_buffer;
 	ID3D11InputLayout* m_layout;
 
+	RenderSystem* m_system = nullptr;
 private:
 	friend class DeviceContext;
 };

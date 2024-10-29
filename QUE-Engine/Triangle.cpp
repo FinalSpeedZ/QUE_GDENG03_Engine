@@ -28,7 +28,7 @@ void Triangle::draw()
 {
 	Drawable::draw();
 
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
 }
 
 void Triangle::setBase(float base)

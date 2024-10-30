@@ -11,8 +11,8 @@ class GraphicsEngine
 {
 
 private:
-	GraphicsEngine() {};
-	~GraphicsEngine() {};
+	GraphicsEngine();
+	~GraphicsEngine();
 	GraphicsEngine(GraphicsEngine const&) {};
 	GraphicsEngine& operator = (GraphicsEngine const&) {};
 
@@ -24,9 +24,6 @@ public:
 public:
 	static void initialize();
 	static void destroy();
-
-	bool init();
-	bool release();
 
 	RenderSystem* getRenderSystem();
 

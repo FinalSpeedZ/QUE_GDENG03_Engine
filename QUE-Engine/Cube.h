@@ -29,7 +29,7 @@ private:
 	void projectionViewMatrix() override;
 
 private:
-	IndexBuffer* m_ib;
+	IndexBufferPtr m_ib;
 	std::vector<unsigned int> index_list;
 
 	float length;

@@ -68,7 +68,11 @@ void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 
-	GraphicsEngine::getInstance()->release();
+	GameObjectManager::destroy();
+	SceneCameraHandler::destroy();
+
+	InputSystem::destroy();
+	GraphicsEngine::destroy();
 }
 
 void AppWindow::onFocus()

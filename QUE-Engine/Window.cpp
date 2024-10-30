@@ -91,7 +91,6 @@ bool Window::init()
 	return true;
 }
 
-
 bool Window::broadcast()
 {
 	EngineTime::LogFrameStart();

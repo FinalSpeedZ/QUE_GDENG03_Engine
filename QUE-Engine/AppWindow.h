@@ -51,7 +51,7 @@ public:
 	virtual void onRightMouseUp(const Vector2D& mousePos) override;
 
 private:
-	SwapChain* m_swap_chain;
+	SwapChainPtr m_swap_chain;
 
 	bool moveCamera = false;
 

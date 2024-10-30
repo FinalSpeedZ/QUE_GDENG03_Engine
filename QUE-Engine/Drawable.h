@@ -41,10 +41,10 @@ protected:
 
 	constant cc;
 
-	VertexBuffer* m_vb;
-	ConstantBuffer* m_cb;
-	VertexShader* m_vs;
-	PixelShader* m_ps;
+	VertexBufferPtr m_vb;
+	ConstantBufferPtr m_cb;
+	VertexShaderPtr m_vs;
+	PixelShaderPtr m_ps;
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;

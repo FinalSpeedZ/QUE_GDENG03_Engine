@@ -16,9 +16,11 @@ public:
 
 private:
 	void updateViewMatrix();
+	Vector3D screenToWorldRay(int )
 
 public:
 	Matrix4x4 getViewMatrix();
+	Matrix4x4 getProjectionMatrix();
 
 public:
 	virtual void onKeyDown(int key) override;
@@ -33,7 +35,7 @@ public:
 private:
 	bool mouseDown = false;
 
-	Matrix4x4 camera;
+	Matrix4x4 projection;
 
 public:
 	float forward = 0.0f;

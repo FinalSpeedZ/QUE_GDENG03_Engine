@@ -26,6 +26,9 @@ public:
 	std::string getName();
 	void setName(std::string name);
 
+	bool isActive();
+	void setActive(bool active);
+
 	void setPosition(float x, float y, float z);
 	void setPosition(Vector3D pos);
 	Vector3D getLocalPosition();
@@ -55,5 +58,7 @@ protected:
 	Vector3D localScale;
 
 	Matrix4x4 localMatrix;
+
+	bool active;
 };
 

@@ -6,6 +6,8 @@ GameObject::GameObject(std::string name)
 	this->localPosition = Vector3D::zeroes;
 	this->localRotation = Vector3D::zeroes;
 	this->localScale = Vector3D::ones;
+
+	active = true;
 }
 
 std::string GameObject::getName()
@@ -16,6 +18,16 @@ std::string GameObject::getName()
 void GameObject::setName(std::string name)
 {
 	this->name = name;
+}
+
+bool GameObject::isActive()
+{
+	return this->active;
+}
+
+void GameObject::setActive(bool active)
+{
+	this->active = active;
 }
 
 void GameObject::setPosition(float x, float y, float z)

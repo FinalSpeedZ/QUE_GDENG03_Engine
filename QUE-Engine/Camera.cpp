@@ -4,6 +4,7 @@
 
 #include "AppWindow.h"
 #include "InputSystem.h"
+#include "SceneCameraHandler.h"
 
 
 Camera::Camera(std::string name)
@@ -11,6 +12,8 @@ Camera::Camera(std::string name)
 {
 	localPosition.z = -5.0;
 	this->updateViewMatrix();
+
+	this->projection = SceneCameraHandler::perspectiveProjection();
 
 	InputSystem::getInstance()->addListener(this);
 }
@@ -116,6 +119,11 @@ void Camera::updateViewMatrix()
 Matrix4x4 Camera::getViewMatrix()
 {
 	return this->localMatrix;
+}
+
+Matrix4x4 Camera::getProjectionMatrix()
+{
+	return this->projection;
 }
 
 void Camera::onKeyDown(int key)

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
@@ -44,11 +45,14 @@
     <ClCompile Include="Drawable.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Quad.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="SceneCameraHandler.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SwapChain.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="Vector2D.cpp" />
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="Vector4D.cpp" />
@@ -58,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h" />
+    <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="Colors.h" />
@@ -85,11 +90,14 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Prerequisites.h" />
     <ClInclude Include="Quad.h" />
+    <ClInclude Include="Ray.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="SceneCameraHandler.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SwapChain.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIScreen.h" />
     <ClInclude Include="Vector2D.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="Vector4D.h" />

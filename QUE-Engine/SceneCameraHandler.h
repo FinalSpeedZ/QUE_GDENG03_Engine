@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "Camera.h"
 #include "Matrix4x4.h"
 
@@ -23,10 +25,9 @@ public:
 	static Matrix4x4 perspectiveProjection();
 	static Matrix4x4 orthographicProjection();
 
-
-	Matrix4x4 getSceneCameraViewMatrix();
+	Camera* getActiveCamera();
 
 private:
-	Camera* sceneCamera;
+	std::vector<Camera*> cameras;
 };
 

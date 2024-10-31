@@ -103,8 +103,8 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 void Drawable::projectionViewMatrix()
 {
-	cc.m_projection = SceneCameraHandler::getInstance()->perspectiveProjection();
-	cc.m_view = SceneCameraHandler::getInstance()->getSceneCameraViewMatrix();
+	cc.m_projection = SceneCameraHandler::getInstance()->getActiveCamera()->getProjectionMatrix();
+	cc.m_view = SceneCameraHandler::getInstance()->getActiveCamera()->getViewMatrix();
 }
 
 float Drawable::getAnimSpeed()

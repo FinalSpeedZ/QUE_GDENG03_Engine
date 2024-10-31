@@ -9,12 +9,16 @@ SceneCameraHandler* SceneCameraHandler::sharedInstance = NULL;
 
 SceneCameraHandler::SceneCameraHandler()
 {
-	this->sceneCamera = new Camera("SceneCamera");
+	this->cameras.push_back(new Camera("MainCamera"));
 }
 
 SceneCameraHandler::~SceneCameraHandler()
 {
-	delete this->sceneCamera;
+	for (auto cam : cameras)
+	{
+		delete cam; 
+	}
+	cameras.clear(); 
 }
 
 SceneCameraHandler* SceneCameraHandler::getInstance()
@@ -34,7 +38,10 @@ void SceneCameraHandler::destroy()
 
 void SceneCameraHandler::update()
 {
-    this->sceneCamera->onUpdate(EngineTime::getDeltaTime());
+	for (auto& cam : cameras)
+	{
+		cam->onUpdate(EngineTime::getDeltaTime());
+	}
 }
 
 Matrix4x4 SceneCameraHandler::perspectiveProjection()
@@ -71,7 +78,13 @@ Matrix4x4 SceneCameraHandler::orthographicProjection()
 	return ortho;
 }
 
-Matrix4x4 SceneCameraHandler::getSceneCameraViewMatrix()
+Camera* SceneCameraHandler::getActiveCamera()
 {
-    return this->sceneCamera->getViewMatrix();
+	for (auto& cam : cameras)
+	{
+		if (cam->isActive())
+			return cam;
+	}
+
+	return cameras.empty() ? nullptr : cameras[0];
 }

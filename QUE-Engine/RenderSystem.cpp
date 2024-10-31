@@ -70,6 +70,16 @@ DeviceContextPtr RenderSystem::getImmediateDeviceContext()
 	return this->m_imm_device_context;
 }
 
+ID3D11Device* RenderSystem::getDevice()
+{
+	return this->m_d3d_device;
+}
+
+ID3D11DeviceContext* RenderSystem::getContext()
+{
+	return this->m_imm_context;
+}
+
 VertexBufferPtr RenderSystem::createVertexBuffer(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader)
 {
 	VertexBufferPtr vb = nullptr;

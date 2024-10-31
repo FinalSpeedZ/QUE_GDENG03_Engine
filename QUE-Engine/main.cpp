@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "AppWindow.h"
+#include "InputSystem.h"
+#include "SceneCameraHandler.h"
 
 int main()
 {
@@ -11,6 +13,12 @@ int main()
 	{
 		runningApp->broadcast();
 	}
+
+	GameObjectManager::destroy();
+	SceneCameraHandler::destroy();
+
+	InputSystem::destroy();
+	GraphicsEngine::destroy();
 
 	return 0;
 }

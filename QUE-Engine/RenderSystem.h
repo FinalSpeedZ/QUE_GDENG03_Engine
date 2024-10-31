@@ -26,6 +26,8 @@ public:
 public:
 	SwapChainPtr createSwapChain(HWND hwnd, UINT width, UINT height);
 	DeviceContextPtr getImmediateDeviceContext();
+	ID3D11Device* getDevice();
+	ID3D11DeviceContext* getContext();
 
 	VertexBufferPtr createVertexBuffer(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader);
 	IndexBufferPtr createIndexBuffer(std::vector<unsigned int>& index_list, UINT size_list);

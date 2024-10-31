@@ -71,7 +71,17 @@ void AppWindow::onUpdate()
 
 		if (ui_running)
 		{
-			
+			ImGuiStyle& style = ImGui::GetStyle();
+			ImGui::StyleColorsDark();
+
+			style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.00f);
+			style.Colors[ImGuiCol_TitleBg] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
+			style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.4f, 0.0f, 0.0f, 1.00f);
+			style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.4f, 0.0f, 0.0f, 0.5f);
+			style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
+			style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
+			style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
+
 			ImGui_ImplDX11_NewFrame();
 			ImGui_ImplWin32_NewFrame();
 			ImGui::NewFrame();

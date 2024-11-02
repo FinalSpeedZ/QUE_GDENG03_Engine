@@ -55,5 +55,5 @@ private:
 
 	bool moveCamera = false;
 
-	bool ui_running = true;
+	bool ui_running = false;
 };

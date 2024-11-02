@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "BoundingBox.h"
 #include "GameObject.h"
 #include "VertexBuffer.h"
 
@@ -30,6 +31,7 @@ protected:
 
 public:
 	float getAnimSpeed();
+	BoundingBox getBoundingBox() const;
 
 protected:
 	float randomFloat(float min, float max);

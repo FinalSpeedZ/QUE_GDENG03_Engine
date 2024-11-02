@@ -51,9 +51,10 @@ void Triangle::calculateVertices()
 {
 	vertices.clear();
 
-	vertices.push_back({ Vector3D(-base / 2, -height / 2, 0.0f), Colors::YELLOW, Colors::ORANGE}); // Bottom left
-	vertices.push_back({ Vector3D(0.0f, height / 2, 0.0f), Colors::RED, Colors::WHITE });          // Top
-	vertices.push_back({ Vector3D(base / 2, -height / 2, 0.0f), Colors::BLUE, Colors::GREEN });    // Bottom right   // Bottom right
+	// Ensure you're creating Vector3D objects correctly
+	vertices.push_back({ localPosition + Vector3D(-base / 2, -height / 2, 0.0f), Colors::YELLOW, Colors::ORANGE }); // Bottom left
+	vertices.push_back({ localPosition + Vector3D(0.0f, height / 2, 0.0f), Colors::RED, Colors::WHITE });          // Top
+	vertices.push_back({ localPosition + Vector3D(base / 2, -height / 2, 0.0f), Colors::BLUE, Colors::GREEN });    // Bottom right
 }
 
 void Triangle::updateConstantBuffer(float deltaTime)

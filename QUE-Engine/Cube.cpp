@@ -14,9 +14,9 @@ Cube::Cube(std::string name, float length)
 	localPosition.y = randomFloat(-3.0f, 3.0f);
 	localPosition.z = randomFloat(-3.0f, 3.0f);
 
-	localRotation.x = randomFloat(0, 2 * M_PI);
-	localRotation.y = randomFloat(0, 2 * M_PI);
-	localRotation.z = randomFloat(0, 2 * M_PI);
+	//localRotation.x = randomFloat(0, 2 * M_PI);
+	//localRotation.y = randomFloat(0, 2 * M_PI);
+	//localRotation.z = randomFloat(0, 2 * M_PI);
 }
 
 void Cube::onCreate()

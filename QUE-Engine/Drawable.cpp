@@ -1,5 +1,6 @@
 #include "Drawable.h"
 
+#include <algorithm>
 #include <corecrt_math_defines.h>
 #include <iostream>
 
@@ -110,6 +111,25 @@ void Drawable::projectionViewMatrix()
 float Drawable::getAnimSpeed()
 {
 	return animSpeed;
+}
+
+BoundingBox Drawable::getBoundingBox() const
+{
+	Vector3D min =
+	{
+		this->localPosition.x - (this->localScale.x * 0.5f),
+		this->localPosition.y - (this->localScale.y * 0.5f),
+		this->localPosition.z - (this->localScale.z * 0.5f)
+	};
+
+	Vector3D max =
+	{
+		this->localPosition.x + (this->localScale.x * 0.5f),
+		this->localPosition.y + (this->localScale.y * 0.5f),
+		this->localPosition.z + (this->localScale.z * 0.5f)
+	};
+
+	return BoundingBox(min, max);
 }
 
 float Drawable::randomFloat(float min, float max)

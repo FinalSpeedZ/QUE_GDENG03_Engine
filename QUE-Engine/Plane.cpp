@@ -8,7 +8,7 @@ Plane::Plane(std::string name, float width, float depth)
 {
 	localRotation.x = M_PI;
 
-	localPosition.y = -5.0;
+	localPosition.y = 0.0;
 }
 
 void Plane::onCreate()

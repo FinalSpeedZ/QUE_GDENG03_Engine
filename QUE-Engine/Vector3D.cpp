@@ -1,6 +1,8 @@
 #include "Vector3D.h"
 
 #include "Vertex.h"
+#include <cmath>
+#include <iostream>
 
 const Vector3D Vector3D::zeroes = Vector3D(0.0f, 0.0f, 0.0f);
 const Vector3D Vector3D::ones = Vector3D(1.0f, 1.0f, 1.0f);
@@ -35,6 +37,23 @@ Vector3D Vector3D::lerp(const Vector3D& start, const Vector3D& end, float delta)
 	return v;
 }
 
+float Vector3D::length() const
+{
+    return std::sqrt(x * x + y * y + z * z);
+}
+
+Vector3D Vector3D::normalize() const
+{
+    float magnitude = std::sqrt(x * x + y * y + z * z);
+
+    if (magnitude > 0)
+    {
+        return Vector3D(x / magnitude, y / magnitude, z / magnitude);
+    }
+
+    return Vector3D(0, 0, 0); 
+}
+
 Vector3D Vector3D::operator+(const Vector3D& other) const
 {
     return Vector3D(x + other.x, y + other.y, z + other.z);
@@ -50,7 +69,20 @@ Vector3D Vector3D::operator*(float scalar) const
     return Vector3D(x * scalar, y * scalar, z * scalar);
 }
 
-Vector3D& Vector3D::operator+=(const Vector3D& other) 
+Vector3D Vector3D::operator/(float scalar) const
+{
+    if (scalar != 0) {
+        return Vector3D(x / scalar, y / scalar, z / scalar);
+    }
+    return Vector3D(0, 0, 0);
+}
+
+Vector3D Vector3D::operator/(const Vector3D& other) const
+{
+    return Vector3D(x / other.x, y / other.y, z / other.z);
+}
+
+Vector3D& Vector3D::operator+=(const Vector3D& other)
 {
     x += other.x;
     y += other.y;
@@ -58,7 +90,7 @@ Vector3D& Vector3D::operator+=(const Vector3D& other)
     return *this;
 }
 
-Vector3D& Vector3D::operator-=(const Vector3D& other) 
+Vector3D& Vector3D::operator-=(const Vector3D& other)
 {
     x -= other.x;
     y -= other.y;
@@ -66,7 +98,7 @@ Vector3D& Vector3D::operator-=(const Vector3D& other)
     return *this;
 }
 
-Vector3D& Vector3D::operator*=(float scalar) 
+Vector3D& Vector3D::operator*=(float scalar)
 {
     x *= scalar;
     y *= scalar;
@@ -74,7 +106,7 @@ Vector3D& Vector3D::operator*=(float scalar)
     return *this;
 }
 
-bool Vector3D::operator!=(const Vector3D& other)
+bool Vector3D::operator!=(const Vector3D& other) const
 {
     return (x != other.x || y != other.y || z != other.z);
 }

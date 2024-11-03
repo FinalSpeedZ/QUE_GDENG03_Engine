@@ -54,17 +54,17 @@ void Matrix4x4::setRotationZ(float z)
 
 Vector3D Matrix4x4::getXDirection()
 {
-	return Vector3D(mat[0][0], mat[1][0], mat[2][0]); 
+	return Vector3D(mat[0][0], mat[0][1], mat[0][2]);
 }
 
 Vector3D Matrix4x4::getYDirection()
 {
-	return Vector3D(mat[0][1], mat[1][1], mat[2][1]); 
+	return Vector3D(mat[1][0], mat[1][1], mat[1][2]);
 }
 
 Vector3D Matrix4x4::getZDirection()
 {
-	return Vector3D(mat[0][2], mat[1][2], mat[2][2]); 
+	return Vector3D(mat[2][0], mat[2][1], mat[2][2]);
 }
 
 void Matrix4x4::setZDirection(Vector3D zDir)
@@ -74,17 +74,15 @@ void Matrix4x4::setZDirection(Vector3D zDir)
 	mat[2][2] = zDir.z;
 }
 
-Matrix4x4 Matrix4x4::inverse() 
+void Matrix4x4::inverse()
 {
 	int a, i, j;
 	Matrix4x4 out;
 	Vector4D v, vec[3];
-	float det = this->getDeterminant();
+	float det = 0.0f;
 
-	if (det == 0.0f) {
-		return Matrix4x4(); 
-	}
-
+	det = this->getDeterminant();
+	if (!det) return;
 	for (i = 0; i < 4; i++)
 	{
 		for (j = 0; j < 4; j++)
@@ -93,10 +91,10 @@ Matrix4x4 Matrix4x4::inverse()
 			{
 				a = j;
 				if (j > i) a = a - 1;
-				vec[a].x = this->mat[j][0];
-				vec[a].y = this->mat[j][1];
-				vec[a].z = this->mat[j][2];
-				vec[a].w = this->mat[j][3];
+				vec[a].x = (this->mat[j][0]);
+				vec[a].y = (this->mat[j][1]);
+				vec[a].z = (this->mat[j][2]);
+				vec[a].w = (this->mat[j][3]);
 			}
 		}
 		v.cross(vec[0], vec[1], vec[2]);
@@ -107,7 +105,7 @@ Matrix4x4 Matrix4x4::inverse()
 		out.mat[3][i] = pow(-1.0f, i) * v.w / det;
 	}
 
-	return out; 
+	this->setMatrix(out);
 }
 
 void Matrix4x4::setOrthoLH(float width, float height, float near_plane, float far_plane)
@@ -124,12 +122,11 @@ void Matrix4x4::setPerspectiveFovLH(float fov, float aspect, float znear, float 
 {
 	setIdentity();
 
-	float yscale = 1.0f / tan(fov / 2.0f);
-	float xscale = yscale / aspect;
+	float yScale = 1.0f / tan(fov / 2.0f);
+	float xScale = yScale / aspect;
 
-
-	mat[0][0] = xscale;
-	mat[1][1] = yscale;
+	mat[0][0] = xScale;
+	mat[1][1] = yScale;
 	mat[2][2] = zfar / (zfar - znear);
 	mat[2][3] = 1.0f;
 	mat[3][2] = (-znear * zfar) / (zfar - znear);

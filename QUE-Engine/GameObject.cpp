@@ -39,7 +39,6 @@ void GameObject::setPosition(float x, float y, float z)
 void GameObject::setPosition(Vector3D pos)
 {
 	this->localPosition = pos;
-	onCreate();
 }
 
 Vector3D GameObject::getLocalPosition()

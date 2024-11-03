@@ -113,25 +113,6 @@ float Drawable::getAnimSpeed()
 	return animSpeed;
 }
 
-BoundingBox Drawable::getBoundingBox() const
-{
-	Vector3D min =
-	{
-		this->localPosition.x - (this->localScale.x * 0.5f),
-		this->localPosition.y - (this->localScale.y * 0.5f),
-		this->localPosition.z - (this->localScale.z * 0.5f)
-	};
-
-	Vector3D max =
-	{
-		this->localPosition.x + (this->localScale.x * 0.5f),
-		this->localPosition.y + (this->localScale.y * 0.5f),
-		this->localPosition.z + (this->localScale.z * 0.5f)
-	};
-
-	return BoundingBox(min, max);
-}
-
 float Drawable::randomFloat(float min, float max)
 {
 	float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));

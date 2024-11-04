@@ -50,6 +50,8 @@ Matrix4x4 SceneCameraHandler::perspectiveProjection()
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
 
+	//std::cout << width << ", " << height << std::endl;
+
 	Matrix4x4 perspective;
 
 	float degrees = 90;

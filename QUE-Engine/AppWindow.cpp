@@ -42,12 +42,12 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 	}
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
 
 }
 
@@ -64,9 +64,9 @@ void AppWindow::onUpdate()
 		RECT rc = this->getClientWindowRect();
 		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-		GameObjectManager::getInstance()->updateAll(EngineTime::getDeltaTime());
-
 		SceneCameraHandler::getInstance()->update();
+
+		GameObjectManager::getInstance()->updateAll(EngineTime::getDeltaTime());
 
 
 		if (ui_running)

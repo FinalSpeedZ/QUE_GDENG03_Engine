@@ -20,6 +20,7 @@ public:
 
 	RECT getClientWindowRect();
 	void setHWND(HWND hwnd);
+	HWND getHWND();
 
 	// EVENTS
 	virtual void onCreate() {};

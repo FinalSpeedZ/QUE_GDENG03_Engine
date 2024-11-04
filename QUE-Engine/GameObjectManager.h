@@ -1,7 +1,8 @@
 #pragma once
 
+#include <string>
+#include <vector>
 #include <map>
-
 #include "Drawable.h"
 
 enum class PrimitiveType
@@ -49,7 +50,6 @@ public:
 	void deleteGameObjectByName(std::string name);
 
 	std::vector<GameObject*> getAllObjects();
-	std::vector<GameObject*> getObjectsByPrimitive(PrimitiveType primitive);
 	GameObject* getObjectAtIndex(size_t index);
 	GameObject* getLastObject();
 

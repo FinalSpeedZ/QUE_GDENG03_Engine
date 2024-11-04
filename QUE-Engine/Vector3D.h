@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Vector3D
 {
 
@@ -13,16 +15,26 @@ public:
 
 	static Vector3D lerp(const Vector3D& start, const Vector3D& end, float delta);
 
+	float length() const;
+	Vector3D normalize() const;
+
 	Vector3D operator+(const Vector3D& other) const;
 	Vector3D operator-(const Vector3D& other) const;
 	Vector3D operator*(float scalar) const;
 	Vector3D& operator+=(const Vector3D& other);
 	Vector3D& operator-=(const Vector3D& other);
 	Vector3D& operator*=(float scalar);
-	bool operator!=(const Vector3D& other);
+	Vector3D operator/(float scalar) const;
+	Vector3D operator/(const Vector3D& other) const;
+	bool operator!=(const Vector3D& other) const;
 
 	static const Vector3D zeroes;
 	static const Vector3D ones;
+
+	void print() const
+	{
+		std::cout << "Vector3D(" << x << ", " << y << ", " << z << ")" << std::endl;
+	}
 
 public:
 	float x, y, z;

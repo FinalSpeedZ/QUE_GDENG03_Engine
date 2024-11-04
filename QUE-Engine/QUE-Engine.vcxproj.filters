@@ -85,6 +85,12 @@
     <Filter Include="GameEngine\ImGUI">
       <UniqueIdentifier>{7d9b46e2-ef66-4b65-a449-761e43806926}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\Math\Physics">
+      <UniqueIdentifier>{e25b1a80-29b7-4fe1-a724-673aa14cbb49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\UISystem">
+      <UniqueIdentifier>{cd45f2d7-5546-4251-aad2-3a33cab7ad0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -194,6 +200,14 @@
     </ClCompile>
     <ClCompile Include="imgui_impl_dx11.cpp">
       <Filter>GameEngine\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UIScreen.cpp" />
+    <ClCompile Include="Ray.cpp">
+      <Filter>GameEngine\Math\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>GameEngine\Math\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +330,14 @@
     </ClInclude>
     <ClInclude Include="imgui_impl_win32.h">
       <Filter>GameEngine\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UIScreen.h" />
+    <ClInclude Include="Ray.h">
+      <Filter>GameEngine\Math\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>GameEngine\Math\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

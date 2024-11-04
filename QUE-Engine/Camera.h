@@ -1,7 +1,6 @@
 #pragma once
 #include "GameObject.h"
 #include "InputListener.h"
-#include "Ray.h"
 
 class Camera : public GameObject, public InputListener
 {
@@ -17,9 +16,7 @@ public:
 
 private:
 	void updateViewMatrix();
-	Ray screenToWorldRay(const Vector2D& screenPos);
-
-	void pickObject(const Vector2D& mousePos);
+	Vector3D screenToWorldRay(int )
 
 public:
 	Matrix4x4 getViewMatrix();

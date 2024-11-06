@@ -70,12 +70,8 @@ void Camera::onUpdate(float deltatime)
 		newPosition = newPosition - this->localMatrix.getYDirection() * (moveSpeed * deltatime);
 	}
 
-	if (newPosition != localPosition)
-	{
-		setPosition(newPosition.x, newPosition.y, newPosition.z);
-		this->updateViewMatrix();
-	}
-
+	setPosition(newPosition.x, newPosition.y, newPosition.z);
+	this->updateViewMatrix();
 }
 
 void Camera::onDestroy()
@@ -90,10 +86,6 @@ void Camera::updateViewMatrix()
 
 	Matrix4x4 temp;
 	temp.setIdentity();
-
-	temp.setIdentity();
-	temp.setScale(localScale);
-	worldCam *= temp;
 
 	temp.setIdentity();
 	temp.setRotationX(localRotation.x);
@@ -122,7 +114,7 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
 
-	POINT clientPos = { static_cast<LONG>(screenPos.x), static_cast<LONG>(screenPos.y) };
+	POINT clientPos = {static_cast<LONG>(screenPos.x), static_cast<LONG>(screenPos.y)};
 	HWND hwnd = AppWindow::getInstance()->getHWND();
 	ScreenToClient(hwnd, &clientPos);
 
@@ -139,14 +131,7 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	// Transform to view space
 	Vector4D viewSpacePos = invProj * clipSpacePos;
 	Vector3D zDirection = this->localMatrix.getZDirection();
-	// Normalize the direction
 	zDirection = zDirection.normalize();
-
-	// Clamp small values
-	const float epsilon = 0.0001f;
-	if (fabs(zDirection.x) < epsilon) zDirection.x = 0.0f;
-	if (fabs(zDirection.y) < epsilon) zDirection.y = 0.0f;
-	if (fabs(zDirection.z) < epsilon) zDirection.z = 0.0f;
 
 	if (fabs(zDirection.x) > fabs(zDirection.y) && fabs(zDirection.x) > fabs(zDirection.z)) 
 	{
@@ -160,22 +145,22 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	{
 		viewSpacePos.z = 1.0f;
 	}
+
 	viewSpacePos.w = 0.0f;
 
 	// Transform to world space
 	this->localMatrix.setZDirection(zDirection);
 
-	Matrix4x4 invView = this->localMatrix.inverse(); // Inverse of view matrix
+	Matrix4x4 invView = this->localMatrix.inverse(); 
 	Vector4D worldSpacePos = invView * viewSpacePos;
 
 	// The direction of the ray
 	Vector3D rayDirection(worldSpacePos.x, worldSpacePos.y, worldSpacePos.z);
-	rayDirection = rayDirection.normalize(); // Ensure direction is normalized
+	rayDirection = rayDirection.normalize(); 
 
 	Vector3D finalDirection = (zDirection + rayDirection);
 	finalDirection = finalDirection.normalize();
 
-	// Create and return the ray
 	return Ray(localPosition, finalDirection);
 }
 
@@ -197,9 +182,9 @@ void Camera::pickObject(const Vector2D& mousePos)
 			{
 				Vector3D intersectionPoint = ray.getOrigin() + ray.getDirection() * t;
 
-				drawable->setPosition(intersectionPoint.x, intersectionPoint.y, drawable->getLocalPosition().z);
-
-				std::cout << "Moved object to: " << intersectionPoint.x << ", " << intersectionPoint.y << std::endl;
+				drawable->setPosition(intersectionPoint.x, intersectionPoint.y, 0);
+	
+				break;
 			}
 		}
 	}

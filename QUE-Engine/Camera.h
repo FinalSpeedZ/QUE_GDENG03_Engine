@@ -19,7 +19,6 @@ private:
 	void updateViewMatrix();
 
 	Ray screenToWorldRay(const Vector2D& screenPos);
-	Vector3D screenToWorldCoordinates(const Vector2D& screenPos);
 
 	void pickObject(const Vector2D& mousePos);
 

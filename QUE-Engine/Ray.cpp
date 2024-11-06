@@ -16,23 +16,71 @@ bool Ray::intersects(const BoundingBox& box, float& t) const
     const Vector3D& max = box.max;
 
     // Define inverse direction and check for zero direction
-    Vector3D invDir(
-        (direction.x != 0) ? (1.0f / direction.x) : 0,
-        (direction.y != 0) ? (1.0f / direction.y) : 0,
-        (direction.z != 0) ? (1.0f / direction.z) : 0
-    );
+    float invX, invY, invZ;
+    if (direction.x != 0) 
+    {
+        invX = 1.0f / direction.x;
+    }
+    else 
+    {
+        invX = 0;
+    }
+
+    if (direction.y != 0) 
+    {
+        invY = 1.0f / direction.y;
+    }
+    else 
+    {
+        invY = 0;
+    }
+
+    if (direction.z != 0) 
+    {
+        invZ = 1.0f / direction.z;
+    }
+    else 
+    {
+        invZ = 0;
+    }
+
+    Vector3D invDir(invX, invY, invZ);
 
     float t0[3], t1[3];
 
     // Calculate t values for box min and max corners
-    t0[0] = (direction.x != 0) ? (min.x - origin.x) * invDir.x : -std::numeric_limits<float>::infinity();
-    t1[0] = (direction.x != 0) ? (max.x - origin.x) * invDir.x : std::numeric_limits<float>::infinity();
+    if (direction.x != 0) 
+    {
+        t0[0] = (min.x - origin.x) * invDir.x;
+        t1[0] = (max.x - origin.x) * invDir.x;
+    }
+    else 
+    {
+        t0[0] = -std::numeric_limits<float>::infinity();
+        t1[0] = std::numeric_limits<float>::infinity();
+    }
 
-    t0[1] = (direction.y != 0) ? (min.y - origin.y) * invDir.y : -std::numeric_limits<float>::infinity();
-    t1[1] = (direction.y != 0) ? (max.y - origin.y) * invDir.y : std::numeric_limits<float>::infinity();
+    if (direction.y != 0) 
+    {
+        t0[1] = (min.y - origin.y) * invDir.y;
+        t1[1] = (max.y - origin.y) * invDir.y;
+    }
+    else 
+    {
+        t0[1] = -std::numeric_limits<float>::infinity();
+        t1[1] = std::numeric_limits<float>::infinity();
+    }
 
-    t0[2] = (direction.z != 0) ? (min.z - origin.z) * invDir.z : -std::numeric_limits<float>::infinity();
-    t1[2] = (direction.z != 0) ? (max.z - origin.z) * invDir.z : std::numeric_limits<float>::infinity();
+    if (direction.z != 0) 
+    {
+        t0[2] = (min.z - origin.z) * invDir.z;
+        t1[2] = (max.z - origin.z) * invDir.z;
+    }
+    else
+    {
+        t0[2] = -std::numeric_limits<float>::infinity();
+        t1[2] = std::numeric_limits<float>::infinity();
+    }
 
     // Swap t0 and t1 based on the ray direction
     if (direction.x < 0.0f) std::swap(t0[0], t1[0]);
@@ -49,9 +97,16 @@ bool Ray::intersects(const BoundingBox& box, float& t) const
         return false; // No intersection
     }
 
-    // Return the intersection distance (if valid)
-    t = tNear >= 0 ? tNear : tFar;
-    return true; // Ray intersects the box
+    // Return the intersection distance 
+    if (tNear >= 0) 
+    {
+        t = tNear;
+    }
+    else 
+    {
+        t = tFar;
+    }
+    return true; 
 }
 
 Vector3D Ray::getOrigin() const

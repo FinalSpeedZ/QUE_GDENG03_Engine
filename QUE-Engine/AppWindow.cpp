@@ -42,9 +42,10 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
-	GameObjectManager::getInstance()->getLastObject()->setPosition(3, 3, 0);
+	for (int i = 0; i < 1; i++)
+	{
+		GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	}
 
 	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
 

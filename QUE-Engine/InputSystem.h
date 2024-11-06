@@ -27,6 +27,7 @@ public:
 	void removeListener(InputListener* listener);
 
 	void setCursorPosition(const Vector2D& pos);
+	Vector2D getMousePos();
 	void showCursor(bool show);
 
 	bool isKeyDown(int key);
@@ -38,6 +39,7 @@ private:
 	unsigned char oldKeysState[256] = {};
 
 	Vector2D oldMousePos;
+	Vector2D mousePos;
 	bool firstTime = true;
 };
 

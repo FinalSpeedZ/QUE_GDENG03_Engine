@@ -39,6 +39,7 @@ public:
 
 private:
 	bool mouseDown = false;
+	bool mouseDownLeft = false;
 
 	Matrix4x4 projection;
 

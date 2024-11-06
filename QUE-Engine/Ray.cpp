@@ -10,7 +10,7 @@ Ray::Ray(const Vector3D& origin, const Vector3D& direction)
     this->direction = direction.normalize();
 }
 
-bool Ray::intersects(const BoundingBox& box) const
+bool Ray::intersects(const BoundingBox& box, float& t) const
 {
     const Vector3D& min = box.min;
     const Vector3D& max = box.max;
@@ -43,43 +43,15 @@ bool Ray::intersects(const BoundingBox& box) const
     float tNear = std::max(std::max(t0[0], t0[1]), t0[2]);
     float tFar = std::min(std::min(t1[0], t1[1]), t1[2]);
 
-    // Debugging output
-   /* std::cout << "Ray Origin: " << origin.x << ", " << origin.y << ", " << origin.z << std::endl;
-    std::cout << "Ray Direction: " << direction.x << ", " << direction.y << ", " << direction.z << std::endl;*/
-    //std::cout << "Bounding Box Min: " << min.x << ", " << min.y << ", " << min.z << std::endl;
-    //std::cout << "Bounding Box Max: " << max.x << ", " << max.y << ", " << max.z << std::endl;
-    //std::cout << "t0: [" << t0[0] << ", " << t0[1] << ", " << t0[2] << "]" << std::endl;
-    //std::cout << "t1: [" << t1[0] << ", " << t1[1] << ", " << t1[2] << "]" << std::endl;
-    //std::cout << "tNear: " << tNear << ", tFar: " << tFar << std::endl;
-
-    // Check for parallel rays
-    if (direction.x == 0 && (origin.x < min.x || origin.x > max.x))
+    // Check for parallel rays (no intersection)
+    if (tNear > tFar || tFar < 0)
     {
-		//std::cout << "No intersection." << std::endl;
-        return false;
-    }
-    if (direction.y == 0 && (origin.y < min.y || origin.y > max.y))
-    {
-        //std::cout << "No intersection." << std::endl;
-        return false;
-    }
-    if (direction.z == 0 && (origin.z < min.z || origin.z > max.z))
-    {
-        //std::cout << "No intersection." << std::endl;
-        return false;
+        return false; // No intersection
     }
 
-    // Check if tNear is less than or equal to tFar
-    if (tNear <= tFar)
-    {
-        // We also need to check if the intersection is in the forward direction of the ray
-        if (tNear >= 0) {
-           // std::cout << "Intersection occurs!" << std::endl;
-            return true; // Ray intersects the box
-        }
-    }
-    //std::cout << "No intersection." << std::endl;
-    return false; // No intersection
+    // Return the intersection distance (if valid)
+    t = tNear >= 0 ? tNear : tFar;
+    return true; // Ray intersects the box
 }
 
 Vector3D Ray::getOrigin() const

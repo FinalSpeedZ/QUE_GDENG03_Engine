@@ -33,6 +33,9 @@ public:
 	float getAnimSpeed();
 	BoundingBox getBoundingBox() const;
 
+	void setSelected(bool selected);
+	bool getSelected();
+
 protected:
 	float randomFloat(float min, float max);
 	Vector4D randomColor();
@@ -50,6 +53,8 @@ protected:
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;
+
+	bool selected = false;
 
 };
 

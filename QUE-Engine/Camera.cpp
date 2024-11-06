@@ -6,8 +6,6 @@
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
 
-#include <DirectXMath.h>
-
 Camera::Camera(std::string name)
 	: GameObject(name)
 {
@@ -119,6 +117,7 @@ void Camera::updateViewMatrix()
 
 Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 {
+	// Get the dimensions of the viewport
 	RECT rc = AppWindow::getInstance()->getClientWindowRect();
 	int width = rc.right - rc.left;
 	int height = rc.bottom - rc.top;
@@ -127,124 +126,80 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	HWND hwnd = AppWindow::getInstance()->getHWND();
 	ScreenToClient(hwnd, &clientPos);
 
-	float xNDC = (2.0f * clientPos.x / width) - 1.0f; 
-	float yNDC = 1.0f - (2.0f * clientPos.y / height); 
+	// Convert screen coordinates to normalized device coordinates (NDC)
+	float xNDC = (2.0f * clientPos.x) / width - 1.0f; // x in [-1, 1]
+	float yNDC = 1.0f - (2.0f * clientPos.y) / height; // y in [-1, 1]
 
-	DirectX::XMVECTOR clipSpacePos = DirectX::XMVectorSet(xNDC, yNDC, -1.0f, 1.0f);  
+	// Create the clip space position
+	Vector4D clipSpacePos(xNDC, yNDC, -1.0f, 1.0f);
 
-	DirectX::XMMATRIX invProj = DirectX::XMMatrixInverse(nullptr,
-		DirectX::XMMatrixSet(
-			projection.mat[0][0], projection.mat[0][1], projection.mat[0][2], projection.mat[0][3], 
-			projection.mat[1][0], projection.mat[1][1], projection.mat[1][2], projection.mat[1][3],  
-			projection.mat[2][0], projection.mat[2][1], projection.mat[2][2], projection.mat[2][3],  
-			projection.mat[3][0], projection.mat[3][1], projection.mat[3][2], projection.mat[3][3]   
-		));
+	// Get the inverse projection matrix and view matrix
+	Matrix4x4 invProj = this->projection.inverse(); // Inverse of projection matrix
 
-	DirectX::XMVECTOR viewSpacePos = DirectX::XMVector3TransformCoord(clipSpacePos, invProj);
+	// Transform to view space
+	Vector4D viewSpacePos = invProj * clipSpacePos;
+	Vector3D zDirection = this->localMatrix.getZDirection();
+	// Normalize the direction
+	zDirection = zDirection.normalize();
 
-	DirectX::XMMATRIX viewMatrix = DirectX::XMMatrixSet(
-		localMatrix.mat[0][0], localMatrix.mat[0][1], localMatrix.mat[0][2], localMatrix.mat[0][3],  
-		localMatrix.mat[1][0], localMatrix.mat[1][1], localMatrix.mat[1][2], localMatrix.mat[1][3],  
-		localMatrix.mat[2][0], localMatrix.mat[2][1], localMatrix.mat[2][2], localMatrix.mat[2][3],  
-		localMatrix.mat[3][0], localMatrix.mat[3][1], localMatrix.mat[3][2], localMatrix.mat[3][3]   
-	);
+	// Clamp small values
+	const float epsilon = 0.0001f;
+	if (fabs(zDirection.x) < epsilon) zDirection.x = 0.0f;
+	if (fabs(zDirection.y) < epsilon) zDirection.y = 0.0f;
+	if (fabs(zDirection.z) < epsilon) zDirection.z = 0.0f;
 
-	DirectX::XMVECTOR zDirection = DirectX::XMVectorSet(localMatrix.getZDirection().x,
-			localMatrix.getZDirection().y,
-			localMatrix.getZDirection().z, 0.0f);
-	zDirection = DirectX::XMVector3Normalize(zDirection);
+	if (fabs(zDirection.x) > fabs(zDirection.y) && fabs(zDirection.x) > fabs(zDirection.z)) 
+	{
+		viewSpacePos.x = 1.0f;
+	}
+	else if (fabs(zDirection.y) > fabs(zDirection.x) && fabs(zDirection.y) > fabs(zDirection.z)) 
+	{
+		viewSpacePos.y = 1.0f;
+	}
+	else if (fabs(zDirection.z) > fabs(zDirection.x) && fabs(zDirection.z) > fabs(zDirection.y)) 
+	{
+		viewSpacePos.z = 1.0f;
+	}
+	viewSpacePos.w = 0.0f;
 
-	DirectX::XMMATRIX invView = DirectX::XMMatrixInverse(nullptr, viewMatrix);  
-	DirectX::XMVECTOR worldSpacePos = DirectX::XMVector3TransformCoord(viewSpacePos, invView);
+	// Transform to world space
+	this->localMatrix.setZDirection(zDirection);
 
-	DirectX::XMVECTOR cameraPosition = DirectX::XMVectorSet(localPosition.x, localPosition.y, localPosition.z, 1.0f);
+	Matrix4x4 invView = this->localMatrix.inverse(); // Inverse of view matrix
+	Vector4D worldSpacePos = invView * viewSpacePos;
 
-	DirectX::XMVECTOR rayDirection = DirectX::XMVectorSubtract(worldSpacePos, cameraPosition);
-	rayDirection = DirectX::XMVector3Normalize(rayDirection);  
+	// The direction of the ray
+	Vector3D rayDirection(worldSpacePos.x, worldSpacePos.y, worldSpacePos.z);
+	rayDirection = rayDirection.normalize(); // Ensure direction is normalized
 
-	DirectX::XMVECTOR finalDirection = DirectX::XMVectorAdd(zDirection, rayDirection);
-	finalDirection = DirectX::XMVector3Normalize(finalDirection);
+	Vector3D finalDirection = (zDirection + rayDirection);
+	finalDirection = finalDirection.normalize();
 
-	Vector3D finalDirVector = Vector3D(DirectX::XMVectorGetX(finalDirection),
-		DirectX::XMVectorGetY(finalDirection),
-		DirectX::XMVectorGetZ(finalDirection));
-
-	return Ray(localPosition, finalDirVector);
+	// Create and return the ray
+	return Ray(localPosition, finalDirection);
 }
 
-Vector3D Camera::screenToWorldCoordinates(const Vector2D& screenPos)
-{
-	RECT rc = AppWindow::getInstance()->getClientWindowRect();
-	int width = rc.right - rc.left;
-	int height = rc.bottom - rc.top;
-
-	float xNDC = (screenPos.x / width) * 2.0f - 1.0f;
-	float yNDC = 1.0f - (screenPos.y / height) * 2.0f;
-
-	DirectX::XMVECTOR clipSpacePos = DirectX::XMVectorSet(xNDC, yNDC, -1.0f, 1.0f);  
-
-	DirectX::XMMATRIX invProj = DirectX::XMMatrixInverse(nullptr,
-		DirectX::XMMatrixSet(
-			projection.mat[0][0], projection.mat[0][1], projection.mat[0][2], projection.mat[0][3],  
-			projection.mat[1][0], projection.mat[1][1], projection.mat[1][2], projection.mat[1][3],  
-			projection.mat[2][0], projection.mat[2][1], projection.mat[2][2], projection.mat[2][3],  
-			projection.mat[3][0], projection.mat[3][1], projection.mat[3][2], projection.mat[3][3]   
-		));
-
-	DirectX::XMVECTOR viewSpacePos = DirectX::XMVector3TransformCoord(clipSpacePos, invProj);
-
-	DirectX::XMMATRIX viewMatrix = DirectX::XMMatrixSet(
-		localMatrix.mat[0][0], localMatrix.mat[0][1], localMatrix.mat[0][2], localMatrix.mat[0][3],  
-		localMatrix.mat[1][0], localMatrix.mat[1][1], localMatrix.mat[1][2], localMatrix.mat[1][3], 
-		localMatrix.mat[2][0], localMatrix.mat[2][1], localMatrix.mat[2][2], localMatrix.mat[2][3], 
-		localMatrix.mat[3][0], localMatrix.mat[3][1], localMatrix.mat[3][2], localMatrix.mat[3][3]   
-	);
-
-	DirectX::XMMATRIX invView = DirectX::XMMatrixInverse(nullptr, viewMatrix);
-
-	DirectX::XMVECTOR worldSpacePos = DirectX::XMVector3TransformCoord(viewSpacePos, invView);
-
-	Vector3D worldPos = Vector3D(DirectX::XMVectorGetX(worldSpacePos),
-						DirectX::XMVectorGetY(worldSpacePos),
-						0.0f); 
-
-	return worldPos;
-}
 
 void Camera::pickObject(const Vector2D& mousePos)
 {
-	//Ray ray = screenToWorldRay(mousePos);
-
-	//for (GameObject* obj : GameObjectManager::getInstance()->getAllObjects())
-	//{
-	//	Drawable* drawable = dynamic_cast<Drawable*>(obj);
-	//	if (drawable && ray.intersects(drawable->getBoundingBox())) 
-	//	{
-	//		std::cout << "Selected: " << drawable->getName() << std::endl;
-	//		break;
-	//	}
-
-	//}
-
-	Vector3D worldPos = screenToWorldCoordinates(mousePos);
-
-	std::cout << worldPos.x << ", " << worldPos.y << std::endl;
+	Ray ray = screenToWorldRay(mousePos); // Get the ray from screen to world space
 
 	for (GameObject* obj : GameObjectManager::getInstance()->getAllObjects())
 	{
 		Drawable* drawable = dynamic_cast<Drawable*>(obj);
 		if (drawable)
 		{
-			BoundingBox boundingBox = drawable->getBoundingBox();
+			BoundingBox bbox = drawable->getBoundingBox();
 
-			Vector3D min = boundingBox.min;
-			Vector3D max = boundingBox.max;
+			float t = 0.0f;
 
-			if (worldPos.x >= min.x && worldPos.x <= max.x &&
-				worldPos.y >= min.y && worldPos.y <= max.y)
+			if (ray.intersects(bbox, t)) 
 			{
-				std::cout << "Selected: " << drawable->getName() << std::endl;
-				break;
+				Vector3D intersectionPoint = ray.getOrigin() + ray.getDirection() * t;
+
+				drawable->setPosition(intersectionPoint.x, intersectionPoint.y, drawable->getLocalPosition().z);
+
+				std::cout << "Moved object to: " << intersectionPoint.x << ", " << intersectionPoint.y << std::endl;
 			}
 		}
 	}
@@ -289,15 +244,22 @@ void Camera::onMouseMove(const Vector2D& deltaPos)
 
 		InputSystem::getInstance()->setCursorPosition(Vector2D(width / 2.0f, height / 2.0));
 	}
+
+	if (this->mouseDownLeft)
+	{
+		this->pickObject(deltaPos);
+	}
 }
 
 void Camera::onLeftMouseDown(const Vector2D& deltaPos)
 {
+	this->mouseDownLeft = true;
 	this->pickObject(deltaPos);
 }
 
 void Camera::onLeftMouseUp(const Vector2D& deltaPos)
 {
+	this->mouseDownLeft = false;
 }
 
 void Camera::onRightMouseDown(const Vector2D& deltaPos)

@@ -48,7 +48,7 @@ void InputSystem::update()
 		}
 	}
 	oldMousePos = Vector2D(currMousePos.x, currMousePos.y);
-
+	this->mousePos = oldMousePos;
 
 	if (::GetKeyboardState(keysState))
 	{
@@ -116,6 +116,11 @@ void InputSystem::removeListener(InputListener* listener)
 void InputSystem::setCursorPosition(const Vector2D& pos)
 {
 	::SetCursorPos(pos.x, pos.y);
+}
+
+Vector2D InputSystem::getMousePos()
+{
+	return this->mousePos;
 }
 
 void InputSystem::showCursor(bool show)

@@ -134,6 +134,16 @@ BoundingBox Drawable::getBoundingBox() const
 	return BoundingBox(min, max);
 }
 
+void Drawable::setSelected(bool selected)
+{
+	this->selected = selected;
+}
+
+bool Drawable::getSelected()
+{
+	return this->selected;
+}
+
 float Drawable::randomFloat(float min, float max)
 {
 	float random = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (max - min));

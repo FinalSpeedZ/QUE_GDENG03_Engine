@@ -43,6 +43,8 @@ void AppWindow::onCreate()
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	GameObjectManager::getInstance()->getLastObject()->setPosition(3, 3, 0);
 
 	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
 

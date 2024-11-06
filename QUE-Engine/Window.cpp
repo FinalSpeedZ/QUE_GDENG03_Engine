@@ -77,12 +77,10 @@ bool Window::init()
 	if (!::RegisterClassEx(&wc))
 		return false;
 
-	RECT rc = { 0, 0, 1024 + 4, 768 + 4};
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
 	//Creation of the window
 	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"QUE_DirectX Application",
-		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top,
+		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 764,
 		NULL, NULL, NULL, this);
 
 

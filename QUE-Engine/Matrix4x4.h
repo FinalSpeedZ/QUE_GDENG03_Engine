@@ -14,6 +14,7 @@ public:
 
 	void setIdentity();
 	void setTranslation(const Vector3D& translation);
+	Vector3D getTranslation();
 	void setScale(const Vector3D& scale);
 
 	void setRotationX(float x);
@@ -46,6 +47,8 @@ public:
 		}
 		std::cout << std::endl;
 	}
+
+
 
 private:
 	float getDeterminant();

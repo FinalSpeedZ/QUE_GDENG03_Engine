@@ -10,9 +10,9 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	localPosition.x = randomFloat(-3.0f, 3.0f);
-	localPosition.y = randomFloat(-3.0f, 3.0f);
-	localPosition.z = randomFloat(-3.0f, 3.0f);
+	//localPosition.x = randomFloat(-3.0f, 3.0f);
+	//localPosition.y = randomFloat(-3.0f, 3.0f);
+	//localPosition.z = randomFloat(-3.0f, 3.0f);
 
 	//localRotation.x = randomFloat(0, 2 * M_PI);
 	//localRotation.y = randomFloat(0, 2 * M_PI);

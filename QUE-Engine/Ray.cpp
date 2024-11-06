@@ -82,9 +82,6 @@ bool Ray::intersects(const BoundingBox& box) const
     return false; // No intersection
 }
 
-
-
-
 Vector3D Ray::getOrigin() const
 {
     return this->origin;

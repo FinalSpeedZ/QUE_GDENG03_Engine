@@ -21,6 +21,11 @@ void Matrix4x4::setTranslation(const Vector3D& translation)
 	mat[3][2] = translation.z;
 }
 
+Vector3D Matrix4x4::getTranslation()
+{
+	return Vector3D(this->mat[3][0], this->mat[3][1], this->mat[3][2]);
+}
+
 void Matrix4x4::setScale(const Vector3D& scale)
 {
 	mat[0][0] = scale.x;

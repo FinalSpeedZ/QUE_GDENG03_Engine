@@ -7,16 +7,14 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(248,45): w
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(253,79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Circle.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp(44,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  ConstantBuffer.cpp
   Cube.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(26,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(28,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
-  DeviceContext.cpp
+  Drawable.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp(25,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
   EngineTime.cpp
   GameObject.cpp
   GameObjectManager.cpp
-  GraphicsEngine.cpp
-  IndexBuffer.cpp
   InputSystem.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(35,54): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(35,38): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
@@ -34,24 +32,17 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(91,67
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(91,51): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(118,27): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\InputSystem.cpp(118,20): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-  main.cpp
   Matrix4x4.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp(104,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp(105,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp(106,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp(107,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  PixelShader.cpp
-  Drawable.cpp
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp(25,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
   Plane.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Plane.cpp(9,20): warning C4305: '=': truncation from 'double' to 'float'
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Plane.cpp(18,17): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Plane.cpp(20,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
   Quad.cpp
   Ray.cpp
-  Generating Code...
-  Compiling...
-  RenderSystem.cpp
   SceneCameraHandler.cpp
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SceneCameraHandler.cpp(43,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SceneCameraHandler.cpp(59,12): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
@@ -60,15 +51,13 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp(16,20): wa
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp(18,26): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp(72,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp(73,26): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  SwapChain.cpp
   Triangle.cpp
-  UIManager.cpp
-  Vector3D.cpp
-  VertexBuffer.cpp
-  VertexShader.cpp
-  Window.cpp
+  main.cpp
   Generating Code...
   LINK : C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe not found or not built by the last incremental link; performing full link
+ConstantBuffer.obj : warning LNK4099: PDB '' was not found with 'ConstantBuffer.obj' or at ''; linking object as if no debug info
+DeviceContext.obj : warning LNK4099: PDB '' was not found with 'DeviceContext.obj' or at ''; linking object as if no debug info
+GraphicsEngine.obj : warning LNK4099: PDB '' was not found with 'GraphicsEngine.obj' or at ''; linking object as if no debug info
 imgui.obj : warning LNK4099: PDB '' was not found with 'imgui.obj' or at ''; linking object as if no debug info
 imgui_demo.obj : warning LNK4099: PDB '' was not found with 'imgui_demo.obj' or at ''; linking object as if no debug info
 imgui_draw.obj : warning LNK4099: PDB '' was not found with 'imgui_draw.obj' or at ''; linking object as if no debug info
@@ -76,7 +65,16 @@ imgui_impl_dx11.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_dx1
 imgui_impl_win32.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_win32.obj' or at ''; linking object as if no debug info
 imgui_tables.obj : warning LNK4099: PDB '' was not found with 'imgui_tables.obj' or at ''; linking object as if no debug info
 imgui_widgets.obj : warning LNK4099: PDB '' was not found with 'imgui_widgets.obj' or at ''; linking object as if no debug info
+IndexBuffer.obj : warning LNK4099: PDB '' was not found with 'IndexBuffer.obj' or at ''; linking object as if no debug info
+PixelShader.obj : warning LNK4099: PDB '' was not found with 'PixelShader.obj' or at ''; linking object as if no debug info
+RenderSystem.obj : warning LNK4099: PDB '' was not found with 'RenderSystem.obj' or at ''; linking object as if no debug info
+SwapChain.obj : warning LNK4099: PDB '' was not found with 'SwapChain.obj' or at ''; linking object as if no debug info
+UIManager.obj : warning LNK4099: PDB '' was not found with 'UIManager.obj' or at ''; linking object as if no debug info
 UIScreen.obj : warning LNK4099: PDB '' was not found with 'UIScreen.obj' or at ''; linking object as if no debug info
 Vector2D.obj : warning LNK4099: PDB '' was not found with 'Vector2D.obj' or at ''; linking object as if no debug info
+Vector3D.obj : warning LNK4099: PDB '' was not found with 'Vector3D.obj' or at ''; linking object as if no debug info
 Vector4D.obj : warning LNK4099: PDB '' was not found with 'Vector4D.obj' or at ''; linking object as if no debug info
+VertexBuffer.obj : warning LNK4099: PDB '' was not found with 'VertexBuffer.obj' or at ''; linking object as if no debug info
+VertexShader.obj : warning LNK4099: PDB '' was not found with 'VertexShader.obj' or at ''; linking object as if no debug info
+Window.obj : warning LNK4099: PDB '' was not found with 'Window.obj' or at ''; linking object as if no debug info
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

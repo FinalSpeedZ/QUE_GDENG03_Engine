@@ -82,14 +82,20 @@
     <Filter Include="GameEngine\GraphicsEngine\RenderSystem\DeviceContext">
       <UniqueIdentifier>{e5d5a809-891c-488a-9f9f-5aae555e0f58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\ImGUI">
-      <UniqueIdentifier>{7d9b46e2-ef66-4b65-a449-761e43806926}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\Math\Physics">
       <UniqueIdentifier>{e25b1a80-29b7-4fe1-a724-673aa14cbb49}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEngine\GraphicsEngine\UISystem">
       <UniqueIdentifier>{cd45f2d7-5546-4251-aad2-3a33cab7ad0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UISystem">
+      <UniqueIdentifier>{0297a135-7597-4c1f-aaa1-1548c13b7dc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UISystem\ImGUI">
+      <UniqueIdentifier>{7d9b46e2-ef66-4b65-a449-761e43806926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Math\Utils">
+      <UniqueIdentifier>{0b03c712-e04f-42f8-9f1e-f47bddc5db57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +119,6 @@
     </ClCompile>
     <ClCompile Include="DeviceContext.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\DeviceContext</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3D.cpp">
-      <Filter>GameEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject</Filter>
@@ -144,9 +147,6 @@
     <ClCompile Include="ConstantBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\ConstantBuffer</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix4x4.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Cube.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
     </ClCompile>
@@ -155,12 +155,6 @@
     </ClCompile>
     <ClCompile Include="InputSystem.cpp">
       <Filter>GameEngine\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector4D.cpp">
-      <Filter>GameEngine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Plane</Filter>
@@ -181,33 +175,49 @@
       <Filter>GameEngine\GraphicsEngine\RenderSystem</Filter>
     </ClCompile>
     <ClCompile Include="imgui.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_demo.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_draw.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_tables.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_widgets.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_impl_win32.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
     <ClCompile Include="imgui_impl_dx11.cpp">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
-    <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="UIScreen.cpp" />
     <ClCompile Include="Ray.cpp">
       <Filter>GameEngine\Math\Physics</Filter>
     </ClCompile>
     <ClCompile Include="BoundingBox.cpp">
       <Filter>GameEngine\Math\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="UIScreen.cpp">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4x4.cpp">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector4D.cpp">
+      <Filter>GameEngine\Math\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +241,6 @@
     </ClInclude>
     <ClInclude Include="Colors.h">
       <Filter>HelperFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3D.h">
-      <Filter>GameEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject</Filter>
@@ -262,9 +269,6 @@
     <ClInclude Include="ConstantBuffer.h">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\ConstantBuffer</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix4x4.h">
-      <Filter>GameEngine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Cube.h">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
     </ClInclude>
@@ -274,14 +278,8 @@
     <ClInclude Include="InputSystem.h">
       <Filter>GameEngine\InputSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Vector2D.h">
-      <Filter>GameEngine\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Vertex.h">
       <Filter>HelperFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4D.h">
-      <Filter>GameEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Plane</Filter>
@@ -308,36 +306,52 @@
       <Filter>GameEngine\GraphicsEngine</Filter>
     </ClInclude>
     <ClInclude Include="imconfig.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imgui.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imgui_internal.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imstb_rectpack.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imstb_textedit.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imstb_truetype.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imgui_impl_dx11.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
     <ClInclude Include="imgui_impl_win32.h">
-      <Filter>GameEngine\ImGUI</Filter>
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClInclude>
-    <ClInclude Include="UIManager.h" />
-    <ClInclude Include="UIScreen.h" />
     <ClInclude Include="Ray.h">
       <Filter>GameEngine\Math\Physics</Filter>
     </ClInclude>
     <ClInclude Include="BoundingBox.h">
       <Filter>GameEngine\Math\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="UIScreen.h">
+      <Filter>GameEngine\UISystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
+      <Filter>GameEngine\Math\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4D.h">
+      <Filter>GameEngine\Math\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

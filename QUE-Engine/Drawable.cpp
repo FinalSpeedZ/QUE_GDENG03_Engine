@@ -39,6 +39,8 @@ void Drawable::onCreate()
 
 void Drawable::onUpdate(float deltatime)
 {
+	onCreate();
+
 	GameObject::onUpdate(deltatime);
 
 	projectionViewMatrix();

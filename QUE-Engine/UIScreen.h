@@ -9,7 +9,7 @@ class UIScreen
 
 protected:
 	UIScreen(std::string name);
-	~UIScreen();
+	~UIScreen() {};
 
 public:
 	virtual void drawUI() = 0;

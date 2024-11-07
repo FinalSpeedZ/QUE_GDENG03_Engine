@@ -33,7 +33,6 @@ void GameObject::setActive(bool active)
 void GameObject::setPosition(float x, float y, float z)
 {
 	this->localPosition = Vector3D(x, y, z);
-	onCreate();
 }
 
 void GameObject::setPosition(Vector3D pos)

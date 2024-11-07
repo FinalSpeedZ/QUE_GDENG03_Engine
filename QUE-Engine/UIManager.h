@@ -13,15 +13,11 @@
 
 class UINames
 {
+
 public:
-	const std::string PROFILER_SCREEN = "PROFILER_SCREEN";
 	const std::string MENU_SCREEN = "MENU_SCREEN";
-	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
-	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
-	const std::string PLAYBACK_SCREEN = "PLAYBACK_SCREEN";
-	const std::string ACTION_SCREEN = "ACTION_SCREEN";
-	const std::string CONSOLE_SCREEN = "CONSOLE_SCREEN";
-	const std::string MATERIAL_SCREEN = "MATERIAL_SCREEN";
+	const std::string CREDITS_SCREEN = "CREDITS_SCREEN";
+	const std::string COLOR_PICKER_SCREEN = "COLOR_PICKER_SCREEN";
 };
 
 class UIManager
@@ -41,12 +37,15 @@ public:
 	static void initialize(HWND hwnd);
 	static void destroy();
 
+	void enableUI(std::string name);
+
+	void drawAllUI();
+
 public:
 	static const int WINDOW_WIDTH = 1920;
-	static const int WINDOW_HEIGHT = 1200;
+	static const int WINDOW_HEIGHT = 1080;
 
 private:
-	std::vector<UIScreen*> UIList; // list for rendering
-	std::unordered_map<std::string, UIScreen*> UITable; // access specific UI Screen (lookup table)
+	std::vector<UIScreen*> uiList; // list for rendering
+	std::unordered_map<std::string, UIScreen*> uiTable; // access specific UI Screen (lookup table)
 };
-

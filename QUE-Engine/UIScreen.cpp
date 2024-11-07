@@ -6,10 +6,6 @@ UIScreen::UIScreen(std::string name)
 	this->enabled = true;
 }
 
-UIScreen::~UIScreen()
-{
-}
-
 std::string UIScreen::getName()
 {
 	return this->name;

@@ -69,7 +69,6 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	cc.m_time = 0.0f;
 
 	time += animSpeed * deltaTime;
-
 	cc.m_time = time;
 
 	Matrix4x4 temp;
@@ -77,19 +76,7 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	cc.m_world.setIdentity();
 
 	temp.setIdentity();
-	temp.setTranslation(Vector3D(-localPosition.x, -localPosition.y, -localPosition.z));
-	cc.m_world *= temp;
-
-	temp.setIdentity();
 	temp.setScale(getLocalScale());
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationZ(getLocalRotation().z);
-	cc.m_world *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(getLocalRotation().y);
 	cc.m_world *= temp;
 
 	temp.setIdentity();
@@ -97,9 +84,16 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	cc.m_world *= temp;
 
 	temp.setIdentity();
-	temp.setTranslation(localPosition);
+	temp.setRotationY(getLocalRotation().y);
 	cc.m_world *= temp;
 
+	temp.setIdentity();
+	temp.setRotationZ(getLocalRotation().z);
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setTranslation(localPosition);
+	cc.m_world *= temp;
 }
 
 void Drawable::projectionViewMatrix()

@@ -9,6 +9,7 @@
 #include "imgui.h"
 #include "imgui_impl_dx11.h"
 #include "imgui_impl_win32.h"
+#include "UIManager.h"
 
 AppWindow* AppWindow::sharedInstance = NULL;
 
@@ -34,10 +35,7 @@ void AppWindow::onCreate()
 
 	SceneCameraHandler::initialize();
 
-	ImGui::CreateContext();
-	ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getRenderSystem()->getDevice(), GraphicsEngine::getInstance()->getRenderSystem()->getContext());
-	ImGui_ImplWin32_Init(this->m_hwnd);
-
+	UIManager::initialize(this->m_hwnd);
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
@@ -65,48 +63,48 @@ void AppWindow::onUpdate()
 
 		GameObjectManager::getInstance()->updateAll(EngineTime::getDeltaTime());
 
+		UIManager::getInstance()->drawAllUI();
+		//if (ui_running)
+		//{
+		//	ImGuiStyle& style = ImGui::GetStyle();
+		//	ImGui::StyleColorsDark();
 
-		if (ui_running)
-		{
-			ImGuiStyle& style = ImGui::GetStyle();
-			ImGui::StyleColorsDark();
+		//	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.00f);
+		//	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
+		//	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.4f, 0.0f, 0.0f, 1.00f);
+		//	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.4f, 0.0f, 0.0f, 0.5f);
+		//	style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
+		//	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
+		//	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
 
-			style.Colors[ImGuiCol_WindowBg] = ImVec4(0.1f, 0.1f, 0.1f, 1.00f);
-			style.Colors[ImGuiCol_TitleBg] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
-			style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.4f, 0.0f, 0.0f, 1.00f);
-			style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.4f, 0.0f, 0.0f, 0.5f);
-			style.Colors[ImGuiCol_Button] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
-			style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.2f, 0.2f, 0.2f, 1.00f);
-			style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.5f, 0.0f, 0.0f, 1.00f);
+		//	ImGui_ImplDX11_NewFrame();
+		//	ImGui_ImplWin32_NewFrame();
+		//	ImGui::NewFrame();
 
-			ImGui_ImplDX11_NewFrame();
-			ImGui_ImplWin32_NewFrame();
-			ImGui::NewFrame();
+		//	ImGui::SetNextWindowSize(ImVec2(500, 0), ImGuiCond_Always);
 
-			ImGui::SetNextWindowSize(ImVec2(500, 0), ImGuiCond_Always);
+		//	ImGui::Begin("About", nullptr);
 
-			ImGui::Begin("About", nullptr);
+		//	ImGui::PushTextWrapPos(ImGui::GetWindowSize().x - 20);
+		//	ImGui::TextColored(ImVec4(0.75f, 0.043f, 0.031f, 1), "QUEngine Scene Editor V0.01");
+		//	ImGui::TextColored(ImVec4(1, 1, 1, 1), "Developer: Zachary Gadjiel Breinard Que");
+		//	ImGui::TextColored(ImVec4(1, 1, 1, 1), "This is the first version of my scene editor for GDENG03 Class. \nRecent changes: Added UI Credits\n\n\n");
+		//	ImGui::PopTextWrapPos();
 
-			ImGui::PushTextWrapPos(ImGui::GetWindowSize().x - 20);
-			ImGui::TextColored(ImVec4(0.75f, 0.043f, 0.031f, 1), "QUEngine Scene Editor V0.01");
-			ImGui::TextColored(ImVec4(1, 1, 1, 1), "Developer: Zachary Gadjiel Breinard Que");
-			ImGui::TextColored(ImVec4(1, 1, 1, 1), "This is the first version of my scene editor for GDENG03 Class. \nRecent changes: Added UI Credits\n\n\n");
-			ImGui::PopTextWrapPos();
+		//	float buttonWidth = 100.0f; 
+		//	float availableWidth = ImGui::GetContentRegionAvail().x; 
+		//	ImGui::SetCursorPosX((availableWidth - buttonWidth) * 0.5f); 
 
-			float buttonWidth = 100.0f; 
-			float availableWidth = ImGui::GetContentRegionAvail().x; 
-			ImGui::SetCursorPosX((availableWidth - buttonWidth) * 0.5f); 
+		//	if (ImGui::Button("Close", ImVec2(buttonWidth, 0)))
+		//	{
+		//		ui_running = false;
+		//	}
 
-			if (ImGui::Button("Close", ImVec2(buttonWidth, 0)))
-			{
-				ui_running = false;
-			}
+		//	ImGui::End();
 
-			ImGui::End();
-
-			ImGui::Render();
-			ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-		}
+		//	ImGui::Render();
+		//	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+		//}
 
 		m_swap_chain->present(true);
 	}

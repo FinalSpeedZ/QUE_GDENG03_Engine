@@ -4,6 +4,7 @@
 #include <d3dcompiler.h>
 
 #include "RenderSystem.h"
+#include "TextureManager.h"
 
 #include "Prerequisites.h"
 
@@ -26,8 +27,10 @@ public:
 	static void destroy();
 
 	RenderSystem* getRenderSystem();
+	TextureManager* getTextureManager();
 
 private:
-	RenderSystem* m_render_system = nullptr;
+	RenderSystem* render_system = nullptr;
+	TextureManager* texture_manager = nullptr;
 };
 

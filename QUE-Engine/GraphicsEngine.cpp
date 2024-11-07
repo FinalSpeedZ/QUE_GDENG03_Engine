@@ -6,15 +6,22 @@ GraphicsEngine::GraphicsEngine()
 {
 	try
 	{
-		m_render_system = new RenderSystem();
+		render_system = new RenderSystem();
 	}
-	catch (...) { throw std::exception("Graphics Engine not created successfully"); }
+	catch (...) { throw std::exception("RenderSystem not created successfully"); }
+
+	try
+	{
+		texture_manager = new TextureManager();
+	}
+	catch (...) { throw std::exception("TextureManager not created successfully"); }
 }
 
 GraphicsEngine::~GraphicsEngine()
 {
 	GraphicsEngine::sharedInstance = nullptr;
-	delete m_render_system;
+	delete render_system;
+	delete texture_manager;
 }
 
 GraphicsEngine* GraphicsEngine::getInstance()
@@ -28,7 +35,6 @@ void GraphicsEngine::initialize()
 		throw std::exception("Graphics Engine already created");
 
 	sharedInstance = new GraphicsEngine();
-	
 }
 
 void GraphicsEngine::destroy()
@@ -40,5 +46,10 @@ void GraphicsEngine::destroy()
 
 RenderSystem* GraphicsEngine::getRenderSystem()
 {
-	return m_render_system;
+	return render_system;
+}
+
+TextureManager* GraphicsEngine::getTextureManager()
+{
+	return texture_manager;
 }

@@ -27,9 +27,13 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp;C:\Users
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Plane.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Plane.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Quad.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Quad.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\RenderSystem.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\RenderSystem.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Resource.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Resource.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\ResourceManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\ResourceManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SceneCameraHandler.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\SceneCameraHandler.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Sphere.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SwapChain.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\SwapChain.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Texture.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Texture.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\TextureManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\TextureManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Triangle.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Triangle.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\UIManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\UIManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\UIScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\UIScreen.obj

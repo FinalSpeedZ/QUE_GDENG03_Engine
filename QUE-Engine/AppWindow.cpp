@@ -34,15 +34,16 @@ void AppWindow::onCreate()
 
 	SceneCameraHandler::initialize();
 
+	srand(time(NULL));
+
 	ImGui::CreateContext();
 	ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getRenderSystem()->getDevice(), GraphicsEngine::getInstance()->getRenderSystem()->getContext());
 	ImGui_ImplWin32_Init(this->m_hwnd);
 
-
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 	}

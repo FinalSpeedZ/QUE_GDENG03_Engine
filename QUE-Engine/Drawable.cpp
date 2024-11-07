@@ -109,7 +109,7 @@ float Drawable::getAnimSpeed()
 	return animSpeed;
 }
 
-BoundingBox Drawable::getBoundingBox() const
+BoundingBox Drawable::getBoundingBox() 
 {
 	Vector3D min =
 	{

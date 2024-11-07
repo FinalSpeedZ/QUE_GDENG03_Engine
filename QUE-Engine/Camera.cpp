@@ -119,8 +119,8 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	ScreenToClient(hwnd, &clientPos);
 
 	// Convert screen coordinates to normalized device coordinates (NDC)
-	float xNDC = (2.0f * clientPos.x) / width - 1.0f; // x in [-1, 1]
-	float yNDC = 1.0f - (2.0f * clientPos.y) / height; // y in [-1, 1]
+	float xNDC = (2.0f * clientPos.x) / width - 1.0f; 
+	float yNDC = 1.0f - (2.0f * clientPos.y) / height; 
 
 	// Create the clip space position
 	Vector4D clipSpacePos(xNDC, yNDC, -1.0f, 1.0f);
@@ -133,19 +133,7 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 	Vector3D zDirection = this->localMatrix.getZDirection();
 	zDirection = zDirection.normalize();
 
-	if (fabs(zDirection.x) > fabs(zDirection.y) && fabs(zDirection.x) > fabs(zDirection.z)) 
-	{
-		viewSpacePos.x = 1.0f;
-	}
-	else if (fabs(zDirection.y) > fabs(zDirection.x) && fabs(zDirection.y) > fabs(zDirection.z)) 
-	{
-		viewSpacePos.y = 1.0f;
-	}
-	else if (fabs(zDirection.z) > fabs(zDirection.x) && fabs(zDirection.z) > fabs(zDirection.y)) 
-	{
-		viewSpacePos.z = 1.0f;
-	}
-
+	viewSpacePos.z = 1.0f;
 	viewSpacePos.w = 0.0f;
 
 	// Transform to world space
@@ -167,7 +155,7 @@ Ray Camera::screenToWorldRay(const Vector2D& screenPos)
 
 void Camera::pickObject(const Vector2D& mousePos)
 {
-	Ray ray = screenToWorldRay(mousePos); // Get the ray from screen to world space
+	Ray ray = screenToWorldRay(mousePos);
 
 	for (GameObject* obj : GameObjectManager::getInstance()->getAllObjects())
 	{
@@ -182,7 +170,7 @@ void Camera::pickObject(const Vector2D& mousePos)
 			{
 				Vector3D intersectionPoint = ray.getOrigin() + ray.getDirection() * t;
 
-				drawable->setPosition(intersectionPoint.x, intersectionPoint.y, 0);
+				drawable->setPosition(intersectionPoint.x, intersectionPoint.y, drawable->getLocalPosition().z);
 	
 				break;
 			}

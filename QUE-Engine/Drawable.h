@@ -31,7 +31,7 @@ protected:
 
 public:
 	float getAnimSpeed();
-	BoundingBox getBoundingBox() const;
+	BoundingBox getBoundingBox();
 
 	void setSelected(bool selected);
 	bool getSelected();

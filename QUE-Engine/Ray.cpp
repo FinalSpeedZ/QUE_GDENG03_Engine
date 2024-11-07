@@ -15,7 +15,7 @@ bool Ray::intersects(const BoundingBox& box, float& t) const
     const Vector3D& min = box.min;
     const Vector3D& max = box.max;
 
-    // Define inverse direction and check for zero direction
+    // Check for Zero Division
     float invX, invY, invZ;
     if (direction.x != 0) 
     {
@@ -83,13 +83,18 @@ bool Ray::intersects(const BoundingBox& box, float& t) const
     }
 
     // Swap t0 and t1 based on the ray direction
-    if (direction.x < 0.0f) std::swap(t0[0], t1[0]);
-    if (direction.y < 0.0f) std::swap(t0[1], t1[1]);
-    if (direction.z < 0.0f) std::swap(t0[2], t1[2]);
+    if (direction.x < 0.0f) 
+        std::swap(t0[0], t1[0]);
+    if (direction.y < 0.0f) 
+        std::swap(t0[1], t1[1]);
+    if (direction.z < 0.0f) 
+        std::swap(t0[2], t1[2]);
 
     // Calculate the nearest and farthest intersections
-    float tNear = std::max(std::max(t0[0], t0[1]), t0[2]);
-    float tFar = std::min(std::min(t1[0], t1[1]), t1[2]);
+    float tNear = std::max(std::max(t0[0], 
+        t0[1]), t0[2]);
+    float tFar = std::min(std::min(t1[0],
+        t1[1]), t1[2]);
 
     // Check for parallel rays (no intersection)
     if (tNear > tFar || tFar < 0)

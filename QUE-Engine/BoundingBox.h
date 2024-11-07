@@ -9,9 +9,6 @@ public:
 	~BoundingBox() {};
 
 public:
-	bool contains(const Vector3D& point) const;
-
-public:
 	Vector3D min;
 	Vector3D max;
 };

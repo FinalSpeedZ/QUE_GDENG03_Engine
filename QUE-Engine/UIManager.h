@@ -18,6 +18,9 @@ public:
 	const std::string MENU_SCREEN = "MENU_SCREEN";
 	const std::string CREDITS_SCREEN = "CREDITS_SCREEN";
 	const std::string COLOR_PICKER_SCREEN = "COLOR_PICKER_SCREEN";
+	const std::string PROFILER_SCREEN = "PROFILER_SCREEN";
+	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
+	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
 };
 
 class UIManager

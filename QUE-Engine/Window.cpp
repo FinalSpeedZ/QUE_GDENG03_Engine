@@ -1,5 +1,6 @@
 #include "Window.h"
 
+#include "UIManager.h"
 #include "Libs/imgui/imgui.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -81,7 +82,7 @@ bool Window::init()
 
 	//Creation of the window
 	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"QUE_DirectX Application",
-		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
+		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, UIManager::WINDOW_WIDTH, UIManager::WINDOW_HEIGHT,
 		NULL, NULL, NULL, this);
 
 

@@ -1,7 +1,5 @@
 #include "ColorPickerScreen.h"
 
-#include <iostream>
-
 #include "Libs/imgui/imgui.h"
 
 ColorPickerScreen::ColorPickerScreen()

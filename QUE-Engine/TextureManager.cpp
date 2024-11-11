@@ -4,14 +4,31 @@
 
 #include "Texture.h"
 
+TextureManager* TextureManager::sharedInstance = NULL;
+
 TextureManager::TextureManager() : ResourceManager()
 {
 	std::cout << "[TextureManager]: initialized" << std::endl;
 }
 
-
-TextureManager::~TextureManager()
+TextureManager* TextureManager::getInstance()
 {
+	return sharedInstance;
+}
+
+void TextureManager::initialize()
+{
+	if (TextureManager::sharedInstance)
+		throw std::exception("TextureManager already created");
+
+	sharedInstance = new TextureManager();
+}
+
+void TextureManager::destroy()
+{
+	if (!TextureManager::sharedInstance)
+		return;
+	delete sharedInstance;
 }
 
 TexturePtr TextureManager::createTextureFromFile(const wchar_t* file_path)

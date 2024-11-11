@@ -18,7 +18,7 @@ void CreditsScreen::drawUI()
 
 	ImGui::Begin("Credits", nullptr);
 
-	TexturePtr tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets/Textures/Logo.jpg");
+	TexturePtr tex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/Logo.jpg");
 
 	float imageWidth = 290.0f;
 	float availableWidth = ImGui::GetContentRegionAvail().x;

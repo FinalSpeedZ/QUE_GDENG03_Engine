@@ -29,6 +29,7 @@ void AppWindow::onCreate()
 	Window::onCreate();
 
 	GraphicsEngine::initialize();
+	TextureManager::initialize();
 	InputSystem::initialize();
 	GameObjectManager::initialize();
 	SceneCameraHandler::initialize();

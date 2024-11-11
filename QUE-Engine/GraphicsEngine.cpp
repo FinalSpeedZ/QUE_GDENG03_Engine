@@ -10,12 +10,6 @@ GraphicsEngine::GraphicsEngine()
 	}
 	catch (...) { throw std::exception("RenderSystem not created successfully"); }
 
-	try
-	{
-		texture_manager = new TextureManager();
-	}
-	catch (...) { throw std::exception("TextureManager not created successfully"); }
-
 	std::cout << "[GraphicsEngine]: initialized" << std::endl;
 }
 
@@ -23,7 +17,6 @@ GraphicsEngine::~GraphicsEngine()
 {
 	GraphicsEngine::sharedInstance = nullptr;
 	delete render_system;
-	delete texture_manager;
 }
 
 GraphicsEngine* GraphicsEngine::getInstance()
@@ -51,7 +44,4 @@ RenderSystem* GraphicsEngine::getRenderSystem()
 	return render_system;
 }
 
-TextureManager* GraphicsEngine::getTextureManager()
-{
-	return texture_manager;
-}
+

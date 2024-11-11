@@ -7,10 +7,15 @@
 
 class ResourceManager
 {
-public:
-	ResourceManager();
-	virtual ~ResourceManager();
+protected:
+	ResourceManager() {};
+	virtual ~ResourceManager() {};
 
+private:
+	ResourceManager(ResourceManager const&) {};            
+	ResourceManager& operator=(ResourceManager const&) {};
+
+public:
 	ResourcePtr createResourceFromFile(const wchar_t* file_path);
 
 protected:

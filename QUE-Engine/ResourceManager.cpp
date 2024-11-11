@@ -11,14 +11,6 @@
 #include <filesystem>
 #endif
 
-ResourceManager::ResourceManager()
-{
-}
-
-
-ResourceManager::~ResourceManager()
-{
-}
 
 ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* file_path)
 {

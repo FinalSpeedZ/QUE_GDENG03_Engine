@@ -4,10 +4,21 @@
 
 class TextureManager : public ResourceManager
 {
+private:
+	TextureManager();
+	~TextureManager() {};
+	TextureManager(TextureManager const&) {};
+	TextureManager& operator = (TextureManager const&) {};
+
+	static TextureManager* sharedInstance;
 
 public:
-	TextureManager();
-	~TextureManager();
+	static TextureManager* getInstance();
+
+public:
+	static void initialize();
+	static void destroy();
+
 	TexturePtr createTextureFromFile(const wchar_t* file_path);
 
 protected:

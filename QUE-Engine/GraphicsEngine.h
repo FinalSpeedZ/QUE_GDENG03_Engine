@@ -27,10 +27,8 @@ public:
 	static void destroy();
 
 	RenderSystem* getRenderSystem();
-	TextureManager* getTextureManager();
 
 private:
 	RenderSystem* render_system = nullptr;
-	TextureManager* texture_manager = nullptr;
 };
 

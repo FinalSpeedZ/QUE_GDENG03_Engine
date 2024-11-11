@@ -18,7 +18,7 @@ Drawable::Drawable(std::string name)
 
 void Drawable::onCreate()
 {
-	m_tex = GraphicsEngine::getInstance()->getTextureManager()->createTextureFromFile(L"Assets/Textures/Wood.jpg");
+	m_tex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/Wood.jpg");
 
 	cc.m_time = 0.0f;
 

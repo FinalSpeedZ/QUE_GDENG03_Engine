@@ -37,6 +37,10 @@ UIManager::UIManager(HWND hwnd)
 	ColorPickerScreen* colorPickerScreen = new ColorPickerScreen();
 	this->uiTable[uiNames.COLOR_PICKER_SCREEN] = colorPickerScreen;
 	this->uiList.push_back(colorPickerScreen);
+
+
+
+	std::cout << "[UIManager]: initialized" << std::endl;
 }
 
 UIManager::~UIManager()

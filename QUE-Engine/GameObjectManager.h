@@ -24,7 +24,7 @@ class GameObjectManager
 {
 
 private:
-	GameObjectManager() {};
+	GameObjectManager();
 	~GameObjectManager() {};
 	GameObjectManager(GameObjectManager const&) {};           
 	GameObjectManager& operator=(GameObjectManager const&) {};

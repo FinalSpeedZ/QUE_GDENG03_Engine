@@ -106,6 +106,12 @@
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\TextureManager">
       <UniqueIdentifier>{1276113b-5bd8-4415-8de6-8c2faf359424}</UniqueIdentifier>
     </Filter>
+    <Filter Include="App\PixelShaders">
+      <UniqueIdentifier>{ad3f0377-f7b1-47b5-8248-980e006552a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\VertexShaders">
+      <UniqueIdentifier>{fb71c759-c733-4c2e-81db-f1c6c09f1fe8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -195,27 +201,6 @@
     <ClCompile Include="RenderSystem.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem</Filter>
     </ClCompile>
-    <ClCompile Include="imgui.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_demo.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_draw.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_tables.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_widgets.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_impl_win32.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="imgui_impl_dx11.cpp">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClCompile>
     <ClCompile Include="UIManager.cpp">
       <Filter>GameEngine\UISystem</Filter>
     </ClCompile>
@@ -242,6 +227,27 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\TextureManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_demo.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_draw.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_impl_dx11.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_impl_win32.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_tables.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_widgets.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,30 +347,6 @@
     <ClInclude Include="Prerequisites.h">
       <Filter>GameEngine\GraphicsEngine</Filter>
     </ClInclude>
-    <ClInclude Include="imconfig.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui_internal.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imstb_rectpack.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imstb_textedit.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imstb_truetype.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui_impl_dx11.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="imgui_impl_win32.h">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </ClInclude>
     <ClInclude Include="UIManager.h">
       <Filter>GameEngine\UISystem</Filter>
     </ClInclude>
@@ -392,13 +374,48 @@
     <ClInclude Include="Texture.h">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\TextureManager</Filter>
     </ClInclude>
+    <ClInclude Include="Libs\imgui\imconfig.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imgui.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imgui_impl_dx11.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imgui_impl_win32.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imgui_internal.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imstb_rectpack.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imstb_textedit.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imstb_truetype.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
-      <Filter>App</Filter>
+      <Filter>App\PixelShaders</Filter>
+    </FxCompile>
+    <FxCompile Include="TexturedVertexShader.hlsl">
+      <Filter>App\VertexShaders</Filter>
     </FxCompile>
     <FxCompile Include="VertexShader.hlsl">
-      <Filter>App</Filter>
+      <Filter>App\VertexShaders</Filter>
     </FxCompile>
+    <FxCompile Include="TexturedPixelShader.hlsl">
+      <Filter>App\PixelShaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libs\imgui\imgui.ini">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </None>
   </ItemGroup>
 </Project>

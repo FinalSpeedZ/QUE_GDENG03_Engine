@@ -53,7 +53,4 @@ public:
 private:
 	SwapChainPtr m_swap_chain;
 
-	bool moveCamera = false;
-
-	bool ui_running = true;
 };

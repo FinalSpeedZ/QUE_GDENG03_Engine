@@ -64,13 +64,13 @@ void Quad::calculateVertices()
 		Vector3D(halfWidth, halfHeight, 0.0f)
 	};
 
-	vertices =
-	{
-		{ initPositions[0], Colors::RED, Colors::BLUE}, // Bottom Left
-		{ initPositions[1], Colors::YELLOW, Colors::GREEN}, // Top Left
-		{ initPositions[2], Colors::GREEN, Colors::YELLOW}, // Bottom Right
-		{ initPositions[3], Colors::BLUE, Colors::RED}  // Top Right
-	};
+	//vertices =
+	//{
+	//	{ initPositions[0], Colors::RED, Colors::BLUE}, // Bottom Left
+	//	{ initPositions[1], Colors::YELLOW, Colors::GREEN}, // Top Left
+	//	{ initPositions[2], Colors::GREEN, Colors::YELLOW}, // Bottom Right
+	//	{ initPositions[3], Colors::BLUE, Colors::RED}  // Top Right
+	//};
 }
 
 void Quad::updateConstantBuffer(float deltaTime)

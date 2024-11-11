@@ -1,5 +1,7 @@
 #include "ResourceManager.h"
 
+#include <iostream>
+
 #if __cplusplus <= 201402L 
 #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
 #include <experimental/filesystem>
@@ -33,6 +35,7 @@ ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* file_path)
 
 	if (it != m_map_resources.end())
 		return it->second;
+
 
 	Resource* raw_res = this->createResourceFromFileConcrete(full_path.c_str());
 

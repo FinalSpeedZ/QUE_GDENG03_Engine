@@ -82,7 +82,7 @@ void Sphere::calculateVertices()
             float y = radius * cos(phi);
             float z = radius * sin(phi) * sin(theta);
 
-            vertices.push_back({ Vector3D(x, y, z), Colors::WHITE, Colors::RED });
+            //vertices.push_back({ Vector3D(x, y, z), Colors::WHITE, Colors::RED });
         }
     }
 
@@ -90,8 +90,8 @@ void Sphere::calculateVertices()
     {
 	    if (i % 2 == 1)
 	    {
-            vertices[i].rgba = Colors::BLUE;
-            vertices[i].rgba1 = Colors::WHITE;
+            //vertices[i].rgba = Colors::BLUE;
+            //vertices[i].rgba1 = Colors::WHITE;
 	    }
     }
 

@@ -2,6 +2,7 @@
 #include <DirectXTex.h>
 #include "GraphicsEngine.h"
 
+
 Texture::Texture(const wchar_t* full_path) : Resource(full_path)
 {
 	DirectX::ScratchImage image_data;

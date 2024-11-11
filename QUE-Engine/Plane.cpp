@@ -97,13 +97,13 @@ void Plane::calculateVertices()
 		Vector3D(halfWidth, 0.0f, halfDepth) + localPosition,    // Top Right Front
 	};
 
-	vertices =
-	{
-		{ initPositions[0], Colors::WHITE, Colors::WHITE }, // Bottom Left Front
-		{ initPositions[1], Colors::WHITE, Colors::WHITE }, // Top Left Front
-		{ initPositions[2], Colors::WHITE, Colors::WHITE }, // Bottom Right Front
-		{ initPositions[3], Colors::WHITE, Colors::WHITE }  // Top Right Front
-	};
+	//vertices =
+	//{
+	//	{ initPositions[0], Colors::WHITE, Colors::WHITE }, // Bottom Left Front
+	//	{ initPositions[1], Colors::WHITE, Colors::WHITE }, // Top Left Front
+	//	{ initPositions[2], Colors::WHITE, Colors::WHITE }, // Bottom Right Front
+	//	{ initPositions[3], Colors::WHITE, Colors::WHITE }  // Top Right Front
+	//};
 
 	index_list =
 	{

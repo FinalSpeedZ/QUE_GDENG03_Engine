@@ -43,7 +43,7 @@
 	{
 		float angleIncrement = 2.0f * M_PI / numSegments;
 
-		vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
+		/*vertices.push_back({ Vector3D(0.0f, 0.0f, 0.0f), Colors::RED }); 
 
 		for (int i = 0; i <= numSegments; ++i)
 		{
@@ -60,7 +60,7 @@
 			}
 		}
 
-		vertices.push_back({ Vector3D(radius, 0.0f, 0.0f), Colors::WHITE, Colors::RED});
+		vertices.push_back({ Vector3D(radius, 0.0f, 0.0f), Colors::WHITE, Colors::RED});*/
 	}
 
 	void Circle::updateConstantBuffer(float deltaTime)

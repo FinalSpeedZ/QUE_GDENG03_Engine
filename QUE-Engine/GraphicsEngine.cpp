@@ -15,6 +15,8 @@ GraphicsEngine::GraphicsEngine()
 		texture_manager = new TextureManager();
 	}
 	catch (...) { throw std::exception("TextureManager not created successfully"); }
+
+	std::cout << "[GraphicsEngine]: initialized" << std::endl;
 }
 
 GraphicsEngine::~GraphicsEngine()

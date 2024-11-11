@@ -12,6 +12,11 @@
 
 GameObjectManager* GameObjectManager::sharedInstance = NULL;
 
+GameObjectManager::GameObjectManager()
+{
+	std::cout << "[GameObjectManager]: initialized" << std::endl;
+}
+
 GameObjectManager* GameObjectManager::getInstance()
 {
 	return sharedInstance;
@@ -74,7 +79,6 @@ void GameObjectManager::addGameObject(GameObject* gameObject)
 
 	gameObjectsIndexMap[gameObject->getName()] = gameObjects.size();
 	gameObjects.push_back(gameObject);
-	gameObject->onCreate();
 }
 
 void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string name)

@@ -1,9 +1,12 @@
 #include "TextureManager.h"
 
+#include <iostream>
+
 #include "Texture.h"
 
 TextureManager::TextureManager() : ResourceManager()
 {
+	std::cout << "[TextureManager]: initialized" << std::endl;
 }
 
 

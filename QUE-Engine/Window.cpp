@@ -1,6 +1,6 @@
 #include "Window.h"
 
-#include "imgui.h"
+#include "Libs/imgui/imgui.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -58,6 +58,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 
 bool Window::init()
 {
+	m_is_run = true;
+
 	// Setting up WNDCLASSEX Object
 	WNDCLASSEX wc;
 	wc.cbClsExtra = NULL;
@@ -77,12 +79,9 @@ bool Window::init()
 	if (!::RegisterClassEx(&wc))
 		return false;
 
-	RECT rc = { 0, 0, 1024 + 4, 768 + 4};
-	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
-
 	//Creation of the window
 	m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"QUE_DirectX Application",
-		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, rc.right - rc.left, rc.bottom - rc.top,
+		WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768,
 		NULL, NULL, NULL, this);
 
 
@@ -90,14 +89,11 @@ bool Window::init()
 	if (!m_hwnd)
 		return false;
 
+	EngineTime::initialize();
+
 	// show the window
 	::ShowWindow(m_hwnd, SW_SHOW);
 	::UpdateWindow(m_hwnd);
-
-	// Set this flag to true to indicate that the window is initializzed and running
-	m_is_run = true;
-
-	EngineTime::initialize();
 
 	return true;
 }

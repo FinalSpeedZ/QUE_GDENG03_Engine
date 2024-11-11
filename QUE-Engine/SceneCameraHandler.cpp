@@ -10,6 +10,8 @@ SceneCameraHandler* SceneCameraHandler::sharedInstance = NULL;
 SceneCameraHandler::SceneCameraHandler()
 {
 	this->cameras.push_back(new Camera("MainCamera"));
+
+	std::cout << "[SceneCameraHandler]: initialized" << std::endl;
 }
 
 SceneCameraHandler::~SceneCameraHandler()

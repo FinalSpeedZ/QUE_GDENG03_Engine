@@ -1,6 +1,6 @@
 struct VS_INPUT
 {
-    float4 position : POSITION;
+    float4 position : POSITION0;
     float4 color : COLOR;
     float4 color1 : COLOR1;
 };
@@ -31,8 +31,8 @@ VS_OUTPUT vsmain(VS_INPUT input)
 	// screen space
     output.position = mul(output.position, m_proj);
 
-    //output.position = lerp(input.position, input.position1, (sin(m_time) + 1.0f) / 2.0f);
     output.color = input.color;
     output.color1 = input.color1;
+
     return output;
 }

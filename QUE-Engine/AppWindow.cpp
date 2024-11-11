@@ -6,9 +6,9 @@
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
 
-#include "imgui.h"
-#include "imgui_impl_dx11.h"
-#include "imgui_impl_win32.h"
+#include "Libs/imgui/imgui.h"
+#include "Libs/imgui/imgui_impl_dx11.h"
+#include "Libs/imgui/imgui_impl_win32.h"
 #include "UIManager.h"
 
 AppWindow* AppWindow::sharedInstance = NULL;
@@ -27,28 +27,24 @@ void AppWindow::initialize()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
+
 	GraphicsEngine::initialize();
-
 	InputSystem::initialize();
-
 	GameObjectManager::initialize();
-
 	SceneCameraHandler::initialize();
-
 	UIManager::initialize(this->m_hwnd);
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
 
 	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
-
 }
 
 void AppWindow::onUpdate()
 {
-	Window::onUpdate();
 	InputSystem::getInstance()->update();
 
 	if (isRunning())

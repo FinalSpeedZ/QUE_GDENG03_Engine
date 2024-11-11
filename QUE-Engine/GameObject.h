@@ -48,10 +48,12 @@ public:
 
 public:
 	virtual void onCreate() {};
-	virtual void onUpdate(float deltatime) {};
+	virtual void onUpdate(float deltatime);
 	virtual void onDestroy();
 
 protected:
+	bool firstTime = true;
+
 	std::string name;
 	Vector3D localPosition;
 	Vector3D localRotation;

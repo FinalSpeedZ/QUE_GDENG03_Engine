@@ -95,6 +95,15 @@ Matrix4x4 GameObject::getLocalMatrix()
 	return this->localMatrix;
 }
 
+void GameObject::onUpdate(float deltatime)
+{
+	if (firstTime)
+	{
+		this->onCreate();
+		firstTime = false;
+	}
+}
+
 void GameObject::onDestroy()
 {
 	delete this;

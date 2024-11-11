@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "GraphicsEngine.h"
-#include "imgui.h"
+#include "Libs/imgui/imgui.h"
 #include "Texture.h"
 
 CreditsScreen::CreditsScreen()

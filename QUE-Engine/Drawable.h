@@ -46,6 +46,8 @@ protected:
 	VertexShaderPtr m_vs;
 	PixelShaderPtr m_ps;
 
+	TexturePtr m_tex;
+
 	float time = 0.0f;
 	float animSpeed = 1.0f;
 

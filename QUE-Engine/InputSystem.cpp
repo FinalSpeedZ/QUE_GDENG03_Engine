@@ -4,6 +4,11 @@
 
 InputSystem* InputSystem::sharedInstance = NULL;
 
+InputSystem::InputSystem()
+{
+	std::cout << "[InputSystem]: initialized" << std::endl;
+}
+
 InputSystem* InputSystem::getInstance()
 {
 	return sharedInstance;

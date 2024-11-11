@@ -23,29 +23,11 @@ void Cube::onCreate()
 {
 	calculateVertices();
 
-	UINT size_list = vertices.size();
-
 	UINT size_index_list = index_list.size();
 
 	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
 
-	void* shader_byte_code = nullptr;
-	size_t size_shader = 0;
-	GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
-
-	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
-	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
-
-	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
-
-	GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
-	m_ps = GraphicsEngine::getInstance()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
-	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
-
-	constant cc;
-	cc.m_time = 0;
-
-	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
+	Drawable::onCreate();
 }
 
 void Cube::onUpdate(float deltaTime)
@@ -85,31 +67,75 @@ void Cube::calculateVertices()
 
 	float halfLength = length / 2.0f;
 
-	Vector3D initPositions[8] =
-	{
-		Vector3D(-halfLength, -halfLength, -halfLength) + localPosition,
-		Vector3D(-halfLength, halfLength, -halfLength) + localPosition,
-		Vector3D(halfLength, halfLength, -halfLength) + localPosition,
-		Vector3D(halfLength, -halfLength, -halfLength) + localPosition,
 
-		Vector3D(halfLength, -halfLength, halfLength) + localPosition,
-		Vector3D(halfLength, halfLength, halfLength) + localPosition,
-		Vector3D(-halfLength, halfLength, halfLength) + localPosition,
-		Vector3D(-halfLength, -halfLength, halfLength) + localPosition,
+	Vector3D position_list[] =
+	{
+		{Vector3D(-halfLength, -halfLength, -halfLength) + localPosition},
+		{Vector3D(-halfLength, halfLength, -halfLength) + localPosition},
+		{Vector3D(halfLength, halfLength, -halfLength) + localPosition},
+		{Vector3D(halfLength, -halfLength, -halfLength) + localPosition},
+
+		{Vector3D(halfLength, -halfLength, halfLength) + localPosition},
+		{Vector3D(halfLength, halfLength, halfLength) + localPosition},
+		{Vector3D(-halfLength, halfLength, halfLength) + localPosition},
+		{Vector3D(-halfLength, -halfLength, halfLength) + localPosition},
+	};
+
+	Vector2D texcoord_list[] =
+	{
+		{Vector2D(0.0f, 0.0f)},
+		{Vector2D(0.0f, 1.0f)},
+		{Vector2D(1.0f, 0.0f)},
+		{Vector2D(1.0f, 1.0f)}
 	};
 
 	vertices =
 	{
-		{ initPositions[0], Colors::RED, Colors::RED},
-		{ initPositions[1], Colors::YELLOW, Colors::YELLOW},
-		{ initPositions[2], Colors::GREEN, Colors::GREEN},
-		{ initPositions[3], Colors::BLUE, Colors::BLUE},
+		{ position_list[0],texcoord_list[1] },
+		{ position_list[1],texcoord_list[0] },
+		{ position_list[2],texcoord_list[2] },
+		{ position_list[3],texcoord_list[3] },
 
-		{ initPositions[4], Colors::RED, Colors::RED},
-		{ initPositions[5], Colors::YELLOW, Colors::YELLOW},
-		{ initPositions[6], Colors::GREEN, Colors::GREEN},
-		{ initPositions[7], Colors::BLUE, Colors::BLUE},
+
+		{ position_list[4],texcoord_list[1] },
+		{ position_list[5],texcoord_list[0] },
+		{ position_list[6],texcoord_list[2] },
+		{ position_list[7],texcoord_list[3] },
+
+
+		{ position_list[1],texcoord_list[1] },
+		{ position_list[6],texcoord_list[0] },
+		{ position_list[5],texcoord_list[2] },
+		{ position_list[2],texcoord_list[3] },
+
+		{ position_list[7],texcoord_list[1] },
+		{ position_list[0],texcoord_list[0] },
+		{ position_list[3],texcoord_list[2] },
+		{ position_list[4],texcoord_list[3] },
+
+		{ position_list[3],texcoord_list[1] },
+		{ position_list[2],texcoord_list[0] },
+		{ position_list[5],texcoord_list[2] },
+		{ position_list[4],texcoord_list[3] },
+
+		{ position_list[7],texcoord_list[1] },
+		{ position_list[6],texcoord_list[0] },
+		{ position_list[1],texcoord_list[2] },
+		{ position_list[0],texcoord_list[3] }
 	};
+
+	//vertices =
+	//{
+	//	{ initPositions[0], Colors::RED, Colors::RED},
+	//	{ initPositions[1], Colors::YELLOW, Colors::YELLOW},
+	//	{ initPositions[2], Colors::GREEN, Colors::GREEN},
+	//	{ initPositions[3], Colors::BLUE, Colors::BLUE},
+
+	//	{ initPositions[4], Colors::RED, Colors::RED},
+	//	{ initPositions[5], Colors::YELLOW, Colors::YELLOW},
+	//	{ initPositions[6], Colors::GREEN, Colors::GREEN},
+	//	{ initPositions[7], Colors::BLUE, Colors::BLUE},
+	//};
 
 	index_list =
 	{
@@ -120,17 +146,17 @@ void Cube::calculateVertices()
 		4,5,6,
 		6,7,4,
 		//TOP SIDE
-		1,6,5,
-		5,2,1,
+		8,9,10,
+		10,11,8,
 		//BOTTOM SIDE
-		7,0,3,
-		3,4,7,
+		12,13,14,
+		14,15,12,
 		//RIGHT SIDE
-		3,2,5,
-		5,4,3,
+		16,17,18,
+		18,19,16,
 		//LEFT SIDE
-		7,6,1,
-		1,0,7
+		20,21,22,
+		22,23,20
 	};
 }
 

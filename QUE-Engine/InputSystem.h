@@ -9,7 +9,7 @@ class InputSystem
 {
 
 private:
-	InputSystem() {};
+	InputSystem();
 	~InputSystem() {};
 	InputSystem(InputSystem const&) {};
 	InputSystem& operator= (InputSystem const&) {};

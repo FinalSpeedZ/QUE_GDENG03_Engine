@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "Libs/imgui/imgui.h"
+
 class UIManager;
 
 class UIScreen

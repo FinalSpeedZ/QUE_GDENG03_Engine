@@ -1,8 +1,5 @@
 #include "MenuScreen.h"
 
-#include <iostream>
-
-#include "Libs/imgui/imgui.h"
 #include "UIManager.h"
 
 MenuScreen::MenuScreen()
@@ -21,6 +18,12 @@ void MenuScreen::drawUI()
             {
                 UINames uiNames;
                 UIManager::getInstance()->enableUI(uiNames.INSPECTOR_SCREEN);
+            }
+
+            if (ImGui::MenuItem("Hierarchy"))
+            {
+                UINames uiNames;
+                UIManager::getInstance()->enableUI(uiNames.HIERARCHY_SCREEN);
             }
 
             if (ImGui::MenuItem("Profiler"))

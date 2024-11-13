@@ -5,6 +5,7 @@
 #include "MenuScreen.h"
 #include "CreditsScreen.h"
 #include "ColorPickerScreen.h"
+#include "HierarchyScreen.h"
 #include "InspectorScreen.h"
 #include "ProfilerScreen.h"
 
@@ -46,6 +47,10 @@ UIManager::UIManager(HWND hwnd)
 	InspectorScreen* inspectorScreen = new InspectorScreen();
 	this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
 	this->uiList.push_back(inspectorScreen);
+
+	HierarchyScreen* hierarchyScreen = new HierarchyScreen();
+	this->uiTable[uiNames.HIERARCHY_SCREEN] = hierarchyScreen;
+	this->uiList.push_back(hierarchyScreen);
 
 	std::cout << "[UIManager]: initialized" << std::endl;
 }

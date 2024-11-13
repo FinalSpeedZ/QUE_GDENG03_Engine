@@ -1,7 +1,5 @@
 #include "ProfilerScreen.h"
 
-#include "Libs/imgui/imgui.h"
-
 #include "UIManager.h"
 
 ProfilerScreen::ProfilerScreen()

@@ -2,7 +2,6 @@
 
 #include "GameObjectManager.h"
 
-#include "Libs/imgui/imgui.h"
 #include "Libs/imgui/imgui_stdlib.h"
 
 #include "UIManager.h"
@@ -16,7 +15,7 @@ void InspectorScreen::drawUI()
 {
 	ImGui::Begin("Inspector", &enabled);
 
-	this->gameObject = GameObjectManager::getInstance()->getLastObject();
+	this->gameObject = GameObjectManager::getInstance()->getSelectedObject();
 
 	if (this->gameObject)
 	{

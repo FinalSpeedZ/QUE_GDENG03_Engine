@@ -1,9 +1,8 @@
 #include "CreditsScreen.h"
 
-#include <iostream>
+#include "Prerequisites.h"
+#include "TextureManager.h"
 
-#include "GraphicsEngine.h"
-#include "Libs/imgui/imgui.h"
 #include "Texture.h"
 
 CreditsScreen::CreditsScreen()

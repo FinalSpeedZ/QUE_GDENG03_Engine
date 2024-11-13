@@ -118,6 +118,12 @@
     <Filter Include="GameEngine\UISystem\Screens\InspectorScreen">
       <UniqueIdentifier>{09f9ffbb-61e9-42ea-9456-ebae784628a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\UISystem\Screens\HierarchyScreen">
+      <UniqueIdentifier>{9ff3297f-b8cd-4ea7-a9e3-e6fb7f5a6045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\UISystem\Screens\PlaceActorScreen">
+      <UniqueIdentifier>{579d02e5-8701-4d59-a484-a4f04062706b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -263,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="Libs\imgui\imgui_stdlib.cpp">
       <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="HierarchyScreen.cpp">
+      <Filter>GameEngine\UISystem\Screens\HierarchyScreen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="Libs\imgui\imgui_stdlib.h">
       <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="HierarchyScreen.h">
+      <Filter>GameEngine\UISystem\Screens\HierarchyScreen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

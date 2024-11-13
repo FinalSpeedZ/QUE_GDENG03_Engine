@@ -17,7 +17,12 @@ enum class PrimitiveType
 	// 3D Primitives
 	CUBE,
 	PLANE,
-	SPHERE
+	SPHERE,
+
+	// 3D Meshes
+	TEAPOT,
+	BUNNY,
+	ARMADILLO
 };
 
 class GameObjectManager

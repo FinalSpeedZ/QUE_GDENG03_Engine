@@ -19,10 +19,6 @@ public:
 protected:
 	void draw() override;
 
-public:
-	void setBase(float base);
-	void setHeight(float height);
-
 private:
 	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;

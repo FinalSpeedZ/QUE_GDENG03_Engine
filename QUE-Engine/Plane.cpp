@@ -51,24 +51,6 @@ void Plane::draw()
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
-void Plane::setWidth(float width)
-{
-	this->width = width;
-
-	calculateVertices();
-
-	onCreate();
-}
-
-void Plane::setDepth(float depth)
-{
-	this->depth = depth;
-
-	calculateVertices();
-
-	onCreate();
-}
-
 void Plane::calculateVertices()
 {
 

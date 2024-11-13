@@ -11,13 +11,14 @@ Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
 	calculateVertices();
+
 }
 
 void Cube::onCreate()
 {
-	//UINT size_index_list = index_list.size();
+	UINT size_index_list = index_list.size();
 
-	//m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
+	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
 
 	Drawable::onCreate();
 }
@@ -38,18 +39,9 @@ void Cube::draw()
 {
 	Drawable::draw();
 
-	/*GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);*/
-}
-
-void Cube::setLength(float length)
-{
-	this->length = length;
-
-	calculateVertices();
-
-	onCreate();
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
 void Cube::calculateVertices()

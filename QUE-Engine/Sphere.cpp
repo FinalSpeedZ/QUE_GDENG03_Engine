@@ -57,13 +57,6 @@ void Sphere::draw()
     GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
-void Sphere::setRadius(float radius)
-{
-    this->radius = radius;
-    calculateVertices(); 
-    onCreate();
-}
-
 void Sphere::calculateVertices()
 {
     vertices.clear();

@@ -30,15 +30,6 @@
 		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
 	}
 
-	void Circle::setRadius(float radius)
-	{
-		this->radius = radius;
-
-		calculateVertices();
-
-		onCreate();
-	}
-
 	void Circle::calculateVertices()
 	{
 		float angleIncrement = 2.0f * M_PI / numSegments;

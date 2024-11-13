@@ -37,7 +37,6 @@ protected:
 
 protected:
 	std::vector<vertex> vertices;
-	std::vector<Vector4D> colors;
 
 	constant cc;
 

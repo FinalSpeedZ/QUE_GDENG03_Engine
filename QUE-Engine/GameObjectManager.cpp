@@ -1,5 +1,7 @@
 #include "GameObjectManager.h"
 
+#include "Armadillo.h"
+#include "Bunny.h"
 #include "Camera.h"
 #include "GameObject.h"
 #include "Drawable.h"
@@ -9,6 +11,7 @@
 #include "Cube.h"
 #include "Plane.h"
 #include "Sphere.h"
+#include "Teapot.h"
 
 GameObjectManager* GameObjectManager::sharedInstance = NULL;
 
@@ -145,18 +148,58 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 
 		addGameObject(plane);
 	}
+
+	else if (primitive == PrimitiveType::TEAPOT)
+	{
+		Teapot* teapot;
+		if (name.empty())
+			teapot = new Teapot();
+		else
+			teapot = new Teapot(name);
+
+		addGameObject(teapot);
+	}
+
+	else if (primitive == PrimitiveType::BUNNY)
+	{
+		Bunny* bunny;
+		if (name.empty())
+			bunny = new Bunny();
+		else
+			bunny = new Bunny(name);
+
+		addGameObject(bunny);
+	}
+
+	else if (primitive == PrimitiveType::ARMADILLO)
+	{
+		Armadillo* armadillo;
+		if (name.empty())
+			armadillo = new Armadillo();
+		else
+			armadillo = new Armadillo(name);
+
+		addGameObject(armadillo);
+	}
 }
 
 void GameObjectManager::deleteGameObject(GameObject* gameObject)
 {
-	if (gameObject) 
+	if (gameObject)
 	{
 		auto it = gameObjectsMap.find(gameObject->getName());
-
-		if (it != gameObjectsMap.end()) 
+		if (it != gameObjectsMap.end())
 		{
 			gameObjectsMap.erase(it);
 		}
+
+		auto vecIt = std::find(gameObjects.begin(), gameObjects.end(), gameObject);
+		if (vecIt != gameObjects.end())
+		{
+			gameObjects.erase(vecIt);
+		}
+
+		delete gameObject;
 	}
 }
 

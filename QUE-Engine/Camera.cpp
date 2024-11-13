@@ -9,9 +9,7 @@
 Camera::Camera(std::string name)
 	: GameObject(name)
 {
-	localPosition.y = 3.0;
 	localPosition.z = -5.0;
-	localRotation.x = M_PI / 6;
 
 	this->projection = SceneCameraHandler::perspectiveProjection();
 
@@ -36,7 +34,7 @@ void Camera::onUpdate(float deltatime)
 
 	this->updateViewMatrix();
 
-	float moveSpeed = 10.0f;
+	float moveSpeed = 3.0f;
 
 	float x = localPosition.x;
 	float y = localPosition.y;

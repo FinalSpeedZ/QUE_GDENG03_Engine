@@ -15,13 +15,36 @@ void PlaceObjectScreen::drawUI()
     ImGui::Text("3D Primitives");
     ImGui::Separator();  
 
-    if (ImGui::Button("Cube"))
+    float windowWidth = ImGui::GetWindowSize().x;
+
+    float buttonWidth = windowWidth - 15;
+    float buttonHeight = 20;
+
+    if (ImGui::Button("Cube", ImVec2(buttonWidth, buttonHeight)))
     {
         GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
     }
-    if (ImGui::Button("Plane"))
+    if (ImGui::Button("Plane", ImVec2(buttonWidth, buttonHeight)))
     {
         GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+    }
+
+    ImGui::NewLine();
+
+    ImGui::Text("3D Meshes");
+    ImGui::Separator();
+
+    if (ImGui::Button("Teapot", ImVec2(buttonWidth, buttonHeight)))
+    {
+        GameObjectManager::getInstance()->createPrimitive(PrimitiveType::TEAPOT);
+    }
+    if (ImGui::Button("Bunny", ImVec2(buttonWidth, buttonHeight)))
+    {
+        GameObjectManager::getInstance()->createPrimitive(PrimitiveType::BUNNY);
+    }
+    if (ImGui::Button("Armadillo", ImVec2(buttonWidth, buttonHeight)))
+    {
+        GameObjectManager::getInstance()->createPrimitive(PrimitiveType::ARMADILLO);
     }
 
 	ImGui::End();

@@ -20,9 +20,6 @@ public:
 protected:
 	void draw() override;
 
-public:
-	void setLength(float length);
-
 private:
 	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;

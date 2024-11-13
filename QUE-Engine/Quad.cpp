@@ -31,24 +31,6 @@ void Quad::draw()
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
 }
 
-void Quad::setWidth(float width)
-{
-	this->width = width;
-
-	calculateVertices();
-
-	onCreate();
-}
-
-void Quad::setHeight(float height)
-{
-	this->height = height;
-
-	calculateVertices();
-
-	onCreate();
-}
-
 void Quad::calculateVertices()
 {
 	vertices.clear();

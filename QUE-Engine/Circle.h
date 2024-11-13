@@ -18,9 +18,6 @@ public:
 protected:
     void draw() override;
 
-public:
-    void setRadius(float radius);
-
 private:
     void calculateVertices() override;
     void updateConstantBuffer(float deltaTime) override;

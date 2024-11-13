@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AppWindow.cpp" />
+    <ClCompile Include="Armadillo.cpp" />
+    <ClCompile Include="Bunny.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="ColorPickerScreen.cpp" />
@@ -60,6 +62,7 @@
     <ClCompile Include="SceneCameraHandler.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SwapChain.cpp" />
+    <ClCompile Include="Teapot.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Triangle.cpp" />
@@ -75,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h" />
+    <ClInclude Include="Armadillo.h" />
+    <ClInclude Include="Bunny.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Circle.h" />
     <ClInclude Include="ColorPickerScreen.h" />
@@ -118,6 +123,7 @@
     <ClInclude Include="SceneCameraHandler.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SwapChain.h" />
+    <ClInclude Include="Teapot.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Triangle.h" />

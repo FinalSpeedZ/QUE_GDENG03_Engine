@@ -1,2 +1,21 @@
-﻿  VertexBuffer.cpp
+﻿  Cube.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp(19,23): warning C4267: 'initializing': conversion from 'size_t' to 'UINT', possible loss of data
+ColorPickerScreen.obj : warning LNK4099: PDB '' was not found with 'ColorPickerScreen.obj' or at ''; linking object as if no debug info
+GameObject.obj : warning LNK4099: PDB '' was not found with 'GameObject.obj' or at ''; linking object as if no debug info
+imgui.obj : warning LNK4099: PDB '' was not found with 'imgui.obj' or at ''; linking object as if no debug info
+imgui_demo.obj : warning LNK4099: PDB '' was not found with 'imgui_demo.obj' or at ''; linking object as if no debug info
+imgui_draw.obj : warning LNK4099: PDB '' was not found with 'imgui_draw.obj' or at ''; linking object as if no debug info
+imgui_impl_dx11.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_dx11.obj' or at ''; linking object as if no debug info
+imgui_impl_win32.obj : warning LNK4099: PDB '' was not found with 'imgui_impl_win32.obj' or at ''; linking object as if no debug info
+imgui_stdlib.obj : warning LNK4099: PDB '' was not found with 'imgui_stdlib.obj' or at ''; linking object as if no debug info
+imgui_tables.obj : warning LNK4099: PDB '' was not found with 'imgui_tables.obj' or at ''; linking object as if no debug info
+imgui_widgets.obj : warning LNK4099: PDB '' was not found with 'imgui_widgets.obj' or at ''; linking object as if no debug info
+Matrix4x4.obj : warning LNK4099: PDB '' was not found with 'Matrix4x4.obj' or at ''; linking object as if no debug info
+MenuScreen.obj : warning LNK4099: PDB '' was not found with 'MenuScreen.obj' or at ''; linking object as if no debug info
+ProfilerScreen.obj : warning LNK4099: PDB '' was not found with 'ProfilerScreen.obj' or at ''; linking object as if no debug info
+Resource.obj : warning LNK4099: PDB '' was not found with 'Resource.obj' or at ''; linking object as if no debug info
+UIScreen.obj : warning LNK4099: PDB '' was not found with 'UIScreen.obj' or at ''; linking object as if no debug info
+Vector2D.obj : warning LNK4099: PDB '' was not found with 'Vector2D.obj' or at ''; linking object as if no debug info
+Vector4D.obj : warning LNK4099: PDB '' was not found with 'Vector4D.obj' or at ''; linking object as if no debug info
+Window.obj : warning LNK4099: PDB '' was not found with 'Window.obj' or at ''; linking object as if no debug info
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

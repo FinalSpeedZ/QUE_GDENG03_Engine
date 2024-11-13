@@ -40,7 +40,6 @@ void AppWindow::onCreate()
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
 	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
-	//GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
 }
 
 void AppWindow::onUpdate()

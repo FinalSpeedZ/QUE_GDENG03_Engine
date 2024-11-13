@@ -31,6 +31,8 @@ public:
 
 	VertexBufferPtr createVertexBuffer(std::vector<vertex>& list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, size_t size_byte_shader);
 	IndexBufferPtr createIndexBuffer(std::vector<unsigned int>& index_list, UINT size_list);
+	VertexBufferPtr createVertexBuffer(void* list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, UINT size_byte_shader);
+	IndexBufferPtr createIndexBuffer(void* list_indices, UINT size_list);
 	ConstantBufferPtr createConstantBuffer(void* buffer, UINT size_buffer);
 
 	VertexShaderPtr createVertexShader(const void* shader_byte_code, size_t byte_code_size);

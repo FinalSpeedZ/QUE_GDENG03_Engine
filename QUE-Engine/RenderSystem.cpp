@@ -104,6 +104,29 @@ IndexBufferPtr RenderSystem::createIndexBuffer(std::vector<unsigned int>& index_
 	return ib;
 }
 
+VertexBufferPtr RenderSystem::createVertexBuffer(void* list_vertices, UINT size_vertex, UINT size_list, void* shader_byte_code, UINT size_byte_shader)
+{
+
+	VertexBufferPtr vb = nullptr;
+	try
+	{
+		vb = std::make_shared<VertexBuffer>(list_vertices, size_vertex, size_list, shader_byte_code, size_byte_shader, this);
+	}
+	catch (...) {}
+	return vb;
+}
+
+IndexBufferPtr RenderSystem::createIndexBuffer(void* list_indices, UINT size_list)
+{
+	IndexBufferPtr ib = nullptr;
+	try
+	{
+		ib = std::make_shared<IndexBuffer>(list_indices, size_list, this);
+	}
+	catch (...) {}
+	return ib;
+}
+
 
 ConstantBufferPtr RenderSystem::createConstantBuffer(void* buffer, UINT size_buffer)
 {

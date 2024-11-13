@@ -8,6 +8,8 @@
 #include "Camera.h"
 #include "SceneCameraHandler.h"
 
+#include "Mesh.h"
+
 
 Drawable::Drawable(std::string name)
 	: GameObject(name)
@@ -18,7 +20,10 @@ Drawable::Drawable(std::string name)
 
 void Drawable::onCreate()
 {
-	m_tex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/Wood.jpg");
+	m_tex = TextureManager::getInstance() ->createTextureFromFile(L"Assets\\Textures\\brick.png");
+	m_mesh = GraphicsEngine::getInstance()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
+
+	std::cout << m_mesh << std::endl;
 
 	cc.m_time = 0.0f;
 	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
@@ -27,14 +32,16 @@ void Drawable::onCreate()
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
-	GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"TexturedVertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
+	GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"TexturedVertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
+
 	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 
 	GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"TexturedPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::getInstance()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
+
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 }
 
@@ -60,10 +67,15 @@ void Drawable::draw()
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setRenderConfig(m_vs, m_ps);
 
+	//GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_mesh->getVertexBuffer());
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_mesh->getIndexBuffer());
+
 	if (m_tex != NULL)
 		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_tex);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_mesh->getIndexBuffer()->getSizeIndexList(), 0, 0);
 }
 
 void Drawable::updateConstantBuffer(float deltaTime)

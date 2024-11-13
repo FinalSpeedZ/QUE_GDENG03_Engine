@@ -15,9 +15,9 @@ Cube::Cube(std::string name, float length)
 
 void Cube::onCreate()
 {
-	UINT size_index_list = index_list.size();
+	//UINT size_index_list = index_list.size();
 
-	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
+	//m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
 
 	Drawable::onCreate();
 }
@@ -38,9 +38,9 @@ void Cube::draw()
 {
 	Drawable::draw();
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
+	/*GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);*/
 }
 
 void Cube::setLength(float length)
@@ -83,37 +83,35 @@ void Cube::calculateVertices()
 
 	vertices =
 	{
-		{ position_list[0], {}, {}, texcoord_list[1] },
-		{ position_list[1],  {}, {}, texcoord_list[0] },
-		{ position_list[2],  {}, {}, texcoord_list[2] },
-		{ position_list[3],  {}, {}, texcoord_list[3] },
+		{ position_list[0],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[1],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[2],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[3],  Colors::BLUE, Colors::BLUE, texcoord_list[3] },
 
+		{ position_list[4],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[5],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[6],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[7],  Colors::BLUE, Colors::BLUE, texcoord_list[3] },
 
-		{ position_list[4],  {}, {}, texcoord_list[1] },
-		{ position_list[5],  {}, {}, texcoord_list[0] },
-		{ position_list[6],  {}, {}, texcoord_list[2] },
-		{ position_list[7],  {}, {}, texcoord_list[3] },
+		{ position_list[1],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[6],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[5],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[2],  Colors::BLUE, Colors::BLUE, texcoord_list[3] },
 
+		{ position_list[7],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[0],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[3],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[4],  Colors::BLUE, Colors::BLUE, texcoord_list[3] },
 
-		{ position_list[1],  {}, {}, texcoord_list[1] },
-		{ position_list[6],  {}, {}, texcoord_list[0] },
-		{ position_list[5],  {}, {}, texcoord_list[2] },
-		{ position_list[2],  {}, {}, texcoord_list[3] },
+		{ position_list[3],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[2],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[5],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[4],  Colors::BLUE, Colors::BLUE, texcoord_list[3] },
 
-		{ position_list[7],  {}, {}, texcoord_list[1] },
-		{ position_list[0],  {}, {}, texcoord_list[0] },
-		{ position_list[3],  {}, {}, texcoord_list[2] },
-		{ position_list[4],  {}, {}, texcoord_list[3] },
-
-		{ position_list[3],  {}, {}, texcoord_list[1] },
-		{ position_list[2],  {}, {}, texcoord_list[0] },
-		{ position_list[5],  {}, {}, texcoord_list[2] },
-		{ position_list[4],  {}, {}, texcoord_list[3] },
-
-		{ position_list[7],  {}, {}, texcoord_list[1] },
-		{ position_list[6],  {}, {}, texcoord_list[0] },
-		{ position_list[1],  {}, {}, texcoord_list[2] },
-		{ position_list[0],  {}, {}, texcoord_list[3] }
+		{ position_list[7],  Colors::RED, Colors::RED, texcoord_list[1] },
+		{ position_list[6],  Colors::GREEN, Colors::GREEN, texcoord_list[0] },
+		{ position_list[1],  Colors::YELLOW, Colors::YELLOW, texcoord_list[2] },
+		{ position_list[0],  Colors::BLUE, Colors::BLUE, texcoord_list[3] }
 	};
 
 	index_list =

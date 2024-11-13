@@ -1,16 +1,12 @@
 struct VS_INPUT
 {
     float4 position : POSITION0;
-    //float4 color : COLOR;
-    //float4 color1 : COLOR1;
     float2 texcoord : TEXCOORD0;
 };
 
 struct VS_OUTPUT
 {
     float4 position : SV_POSITION;
-    //float4 color : COLOR;
-    //float4 color1 : COLOR1;
     float2 texcoord : TEXCOORD0;
 };
 
@@ -32,10 +28,6 @@ VS_OUTPUT vsmain(VS_INPUT input)
     output.position = mul(output.position, m_view);
 	// screen space
     output.position = mul(output.position, m_proj);
-
-    //output.position = lerp(input.position, input.position1, (sin(m_time) + 1.0f) / 2.0f);
-    //output.color = input.color;
-    //output.color1 = input.color1;
 
     output.texcoord = input.texcoord;
 

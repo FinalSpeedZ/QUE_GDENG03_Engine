@@ -11,6 +11,8 @@ class IndexBuffer
 {
 public:
 	IndexBuffer(std::vector<unsigned int>& index_list, UINT size_list, RenderSystem* system);
+	IndexBuffer(void* list_indices, UINT size_list, RenderSystem* system);
+
 	~IndexBuffer();
 
 	UINT getSizeIndexList();

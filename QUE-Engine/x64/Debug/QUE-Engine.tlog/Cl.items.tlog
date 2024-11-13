@@ -25,6 +25,8 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Libs\imgui\imgui_widg
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\main.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\main.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Matrix4x4.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MenuScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\MenuScreen.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Mesh.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Mesh.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MeshManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\MeshManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PixelShader.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PixelShader.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Drawable.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PlaceObjectScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PlaceObjectScreen.obj
@@ -46,5 +48,6 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Vector2D.cpp;C:\Users
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Vector3D.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Vector3D.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Vector4D.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Vector4D.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\VertexBuffer.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\VertexBuffer.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\VertexMesh.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\VertexMesh.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\VertexShader.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\VertexShader.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Window.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Window.obj

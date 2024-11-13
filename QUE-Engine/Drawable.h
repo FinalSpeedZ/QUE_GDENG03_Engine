@@ -47,6 +47,7 @@ protected:
 	PixelShaderPtr m_ps;
 
 	TexturePtr m_tex;
+	MeshPtr m_mesh;
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;

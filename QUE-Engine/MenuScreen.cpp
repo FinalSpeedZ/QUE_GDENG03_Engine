@@ -17,6 +17,12 @@ void MenuScreen::drawUI()
     {
         if (ImGui::BeginMenu("Window"))
         {
+            if (ImGui::MenuItem("Inspector"))
+            {
+                UINames uiNames;
+                UIManager::getInstance()->enableUI(uiNames.INSPECTOR_SCREEN);
+            }
+
             if (ImGui::MenuItem("Profiler"))
             {
                 UINames uiNames;

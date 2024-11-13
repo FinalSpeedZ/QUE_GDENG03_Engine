@@ -5,6 +5,7 @@
 #include "MenuScreen.h"
 #include "CreditsScreen.h"
 #include "ColorPickerScreen.h"
+#include "InspectorScreen.h"
 #include "ProfilerScreen.h"
 
 UIManager* UIManager::sharedInstance = NULL;
@@ -41,6 +42,10 @@ UIManager::UIManager(HWND hwnd)
 	ProfilerScreen* profilerScreen = new ProfilerScreen();
 	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
 	this->uiList.push_back(profilerScreen);
+
+	InspectorScreen* inspectorScreen = new InspectorScreen();
+	this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
+	this->uiList.push_back(inspectorScreen);
 
 	std::cout << "[UIManager]: initialized" << std::endl;
 }

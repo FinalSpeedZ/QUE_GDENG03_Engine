@@ -115,6 +115,9 @@
     <Filter Include="GameEngine\UISystem\Screens\ProfilerScreen">
       <UniqueIdentifier>{796c7f1f-6cd6-4be9-a9e2-eaf931cc0f6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\UISystem\Screens\InspectorScreen">
+      <UniqueIdentifier>{09f9ffbb-61e9-42ea-9456-ebae784628a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -254,6 +257,12 @@
     </ClCompile>
     <ClCompile Include="ProfilerScreen.cpp">
       <Filter>GameEngine\UISystem\Screens\ProfilerScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorScreen.cpp">
+      <Filter>GameEngine\UISystem\Screens\InspectorScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Libs\imgui\imgui_stdlib.cpp">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +416,12 @@
     <ClInclude Include="ProfilerScreen.h">
       <Filter>GameEngine\UISystem\Screens\ProfilerScreen</Filter>
     </ClInclude>
+    <ClInclude Include="InspectorScreen.h">
+      <Filter>GameEngine\UISystem\Screens\InspectorScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="Libs\imgui\imgui_stdlib.h">
+      <Filter>GameEngine\UISystem\ImGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
@@ -421,10 +436,5 @@
     <FxCompile Include="TexturedPixelShader.hlsl">
       <Filter>App\PixelShaders</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Libs\imgui\imgui.ini">
-      <Filter>GameEngine\UISystem\ImGUI</Filter>
-    </None>
   </ItemGroup>
 </Project>

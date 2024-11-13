@@ -49,6 +49,10 @@ public:
 	void deleteGameObject(GameObject* gameObject);
 	void deleteGameObjectByName(std::string name);
 
+	void setSelectedObject(std::string name);
+	void setSelectedObject(GameObject* gameObject);
+	GameObject* getSelectedObject();
+
 	std::vector<GameObject*> getAllObjects();
 	GameObject* getObjectAtIndex(size_t index);
 	GameObject* getLastObject();
@@ -57,6 +61,8 @@ public:
 
 private:
 	std::vector<GameObject*> gameObjects;
-	std::map<std::string, size_t> gameObjectsIndexMap;
+	std::map<std::string, GameObject*> gameObjectsMap;
+
+	GameObject* selectedObject = NULL;
 };
 

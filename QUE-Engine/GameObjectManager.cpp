@@ -30,7 +30,7 @@ void GameObjectManager::initialize()
 void GameObjectManager::destroy()
 {
 	sharedInstance->gameObjects.clear();
-	sharedInstance->gameObjectsIndexMap.clear();
+	sharedInstance->gameObjectsMap.clear();
 
 	delete sharedInstance;
 }
@@ -39,7 +39,7 @@ void GameObjectManager::updateAll(float deltaTime)
 {
 	for (const auto& object : gameObjects) 
 	{
-		if (object) 
+		if (object->isActive()) 
 		{
 			object->onUpdate(deltaTime);
 		}
@@ -48,36 +48,32 @@ void GameObjectManager::updateAll(float deltaTime)
 
 GameObject* GameObjectManager::findGameObjectByName(std::string name)
 {
-	auto it = gameObjectsIndexMap.find(name);
+	auto it = this->gameObjectsMap.find(name);
 
-	if (it != gameObjectsIndexMap.end()) 
+	if (it != this->gameObjectsMap.end())
 	{
-		return gameObjects[it->second];
+		return it->second; 
 	}
-
-	else 
+	else
 	{
-		return nullptr;
+		return nullptr; 
 	}
 }
 
 void GameObjectManager::addGameObject(GameObject* gameObject)
 {
-	if (gameObjectsIndexMap.find(gameObject->getName()) != gameObjectsIndexMap.end())
+	std::string baseName = gameObject->getName();
+	std::string name = baseName;
+	int count = 1;
+
+	while (gameObjectsMap.find(name) != gameObjectsMap.end())
 	{
-		int count = 1;
-		std::string name = gameObject->getName() + " (" + std::to_string(count) + ")";
-
-		while (gameObjectsIndexMap.find(name) != gameObjectsIndexMap.end()) 
-		{
-			count++;
-			name = gameObject->getName() + " (" + std::to_string(count) + ")";
-		}
-
-		gameObject->setName(name);
+		name = baseName + " (" + std::to_string(count) + ")";
+		count++;
 	}
 
-	gameObjectsIndexMap[gameObject->getName()] = gameObjects.size();
+	gameObject->setName(name);
+	gameObjectsMap[name] = gameObject;
 	gameObjects.push_back(gameObject);
 }
 
@@ -149,31 +145,17 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 
 		addGameObject(plane);
 	}
-
-	//else if (primitive == PrimitiveType::SPHERE)
-	//{
-	//	Sphere* sphere = new Sphere();
-	//	addGameObject(sphere);
-	//}
 }
 
 void GameObjectManager::deleteGameObject(GameObject* gameObject)
 {
 	if (gameObject) 
 	{
-		auto it = gameObjectsIndexMap.find(gameObject->getName());
+		auto it = gameObjectsMap.find(gameObject->getName());
 
-		if (it != gameObjectsIndexMap.end()) 
+		if (it != gameObjectsMap.end()) 
 		{
-			size_t index = it->second;
-
-			gameObjects.erase(gameObjects.begin() + index);
-			gameObjectsIndexMap.erase(it);
-
-			for (size_t i = index; i < gameObjects.size(); ++i) 
-			{
-				gameObjectsIndexMap[gameObjects[i]->getName()] = i; 
-			}
+			gameObjectsMap.erase(it);
 		}
 	}
 }
@@ -186,6 +168,26 @@ void GameObjectManager::deleteGameObjectByName(std::string name)
 		deleteGameObject(obj);
 	}
 }
+
+void GameObjectManager::setSelectedObject(std::string name)
+{
+	auto it = this->gameObjectsMap.find(name);
+	if (it != this->gameObjectsMap.end())
+	{
+		this->setSelectedObject(it->second);
+	}
+}
+
+void GameObjectManager::setSelectedObject(GameObject* gameObject)
+{
+	this->selectedObject = gameObject;
+}
+
+GameObject* GameObjectManager::getSelectedObject()
+{
+	return this->selectedObject;
+}
+
 
 std::vector<GameObject*> GameObjectManager::getAllObjects()
 {

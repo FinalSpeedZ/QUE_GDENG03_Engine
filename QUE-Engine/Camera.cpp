@@ -9,7 +9,9 @@
 Camera::Camera(std::string name)
 	: GameObject(name)
 {
+	localPosition.y = 3.0;
 	localPosition.z = -5.0;
+	localRotation.x = M_PI / 6;
 
 	this->projection = SceneCameraHandler::perspectiveProjection();
 
@@ -138,7 +140,7 @@ void Camera::onMouseMove(const Vector2D& deltaPos)
 		float y = localRotation.y;
 		float z = localRotation.z;
 
-		x += 0.1f * (deltaPos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
+		x += 0.05f * (deltaPos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
 		y += 0.1f * (deltaPos.x - (width / 2.0f)) * EngineTime::getDeltaTime();
 
 		this->setRotation(x, y, z);

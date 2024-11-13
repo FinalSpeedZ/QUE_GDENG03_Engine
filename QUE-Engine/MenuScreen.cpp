@@ -12,6 +12,12 @@ void MenuScreen::drawUI()
 {
     if (ImGui::BeginMainMenuBar())
     {
+        if (ImGui::BeginMenu("Place Objects"))
+        {
+            UINames uiNames;
+            UIManager::getInstance()->enableUI(uiNames.PLACE_OBJECT_SCREEN);
+        }
+
         if (ImGui::BeginMenu("Window"))
         {
             if (ImGui::MenuItem("Inspector"))

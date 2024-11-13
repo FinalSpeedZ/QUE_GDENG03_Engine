@@ -121,7 +121,7 @@
     <Filter Include="GameEngine\UISystem\Screens\HierarchyScreen">
       <UniqueIdentifier>{9ff3297f-b8cd-4ea7-a9e3-e6fb7f5a6045}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\UISystem\Screens\PlaceActorScreen">
+    <Filter Include="GameEngine\UISystem\Screens\PlaceGameObjectScreen">
       <UniqueIdentifier>{579d02e5-8701-4d59-a484-a4f04062706b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -272,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="HierarchyScreen.cpp">
       <Filter>GameEngine\UISystem\Screens\HierarchyScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaceObjectScreen.cpp">
+      <Filter>GameEngine\UISystem\Screens\PlaceGameObjectScreen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="HierarchyScreen.h">
       <Filter>GameEngine\UISystem\Screens\HierarchyScreen</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaceObjectScreen.h">
+      <Filter>GameEngine\UISystem\Screens\PlaceGameObjectScreen</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

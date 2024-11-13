@@ -1,2 +1,6 @@
-﻿  HierarchyScreen.cpp
+﻿  Camera.cpp
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(14,25): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(143,47): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(144,45): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp(148,79): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   QUE-Engine.vcxproj -> C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\x64\Debug\QUE-Engine.exe

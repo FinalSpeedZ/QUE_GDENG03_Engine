@@ -6,21 +6,18 @@
 Plane::Plane(std::string name, float width, float depth)
 	: Drawable(name), width(width), depth(depth)
 {
-	localRotation.x = M_PI;
-
-	localPosition.y = 0.0;
+	calculateVertices();
 }
 
 void Plane::onCreate()
 {
-	calculateVertices();
+	cc.m_time = 0.0f;
+	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 
 	UINT size_list = vertices.size();
-
 	UINT size_index_list = index_list.size();
 
 	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
-
 
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
@@ -28,17 +25,11 @@ void Plane::onCreate()
 
 	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
 	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
-
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 
 	GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::getInstance()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
-
-	constant cc;
-	cc.m_time = 0;
-
-	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 }
 
 void Plane::onUpdate(float deltaTime)
@@ -55,10 +46,8 @@ void Plane::draw()
 {
 	Drawable::draw();
 
-	// Set the index buffer
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
 
-	// Draw the plane using the index buffer
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
 
@@ -97,13 +86,13 @@ void Plane::calculateVertices()
 		Vector3D(halfWidth, 0.0f, halfDepth) + localPosition,    // Top Right Front
 	};
 
-	//vertices =
-	//{
-	//	{ initPositions[0], Colors::WHITE, Colors::WHITE }, // Bottom Left Front
-	//	{ initPositions[1], Colors::WHITE, Colors::WHITE }, // Top Left Front
-	//	{ initPositions[2], Colors::WHITE, Colors::WHITE }, // Bottom Right Front
-	//	{ initPositions[3], Colors::WHITE, Colors::WHITE }  // Top Right Front
-	//};
+	vertices =
+	{
+		{ initPositions[0], Colors::WHITE, Colors::WHITE }, // Bottom Left Front
+		{ initPositions[1], Colors::WHITE, Colors::WHITE }, // Top Left Front
+		{ initPositions[2], Colors::WHITE, Colors::WHITE }, // Bottom Right Front
+		{ initPositions[3], Colors::WHITE, Colors::WHITE }  // Top Right Front
+	};
 
 	index_list =
 	{

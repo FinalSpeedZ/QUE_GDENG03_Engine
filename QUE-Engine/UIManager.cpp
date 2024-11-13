@@ -7,6 +7,7 @@
 #include "ColorPickerScreen.h"
 #include "HierarchyScreen.h"
 #include "InspectorScreen.h"
+#include "PlaceObjectScreen.h"
 #include "ProfilerScreen.h"
 
 UIManager* UIManager::sharedInstance = NULL;
@@ -51,6 +52,10 @@ UIManager::UIManager(HWND hwnd)
 	HierarchyScreen* hierarchyScreen = new HierarchyScreen();
 	this->uiTable[uiNames.HIERARCHY_SCREEN] = hierarchyScreen;
 	this->uiList.push_back(hierarchyScreen);
+
+	PlaceObjectScreen* placeObjectScreen = new PlaceObjectScreen();
+	this->uiTable[uiNames.PLACE_OBJECT_SCREEN] = placeObjectScreen;
+	this->uiList.push_back(placeObjectScreen);
 
 	std::cout << "[UIManager]: initialized" << std::endl;
 }

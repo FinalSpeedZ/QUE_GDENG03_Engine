@@ -10,19 +10,11 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	//localPosition.x = randomFloat(-3.0f, 3.0f);
-	//localPosition.y = randomFloat(-3.0f, 3.0f);
-	//localPosition.z = randomFloat(-3.0f, 3.0f);
-
-	//localRotation.x = randomFloat(0, 2 * M_PI);
-	//localRotation.y = randomFloat(0, 2 * M_PI);
-	//localRotation.z = randomFloat(0, 2 * M_PI);
+	calculateVertices();
 }
 
 void Cube::onCreate()
 {
-	calculateVertices();
-
 	UINT size_index_list = index_list.size();
 
 	m_ib = GraphicsEngine::getInstance()->getRenderSystem()->createIndexBuffer(index_list, size_index_list);
@@ -91,51 +83,38 @@ void Cube::calculateVertices()
 
 	vertices =
 	{
-		{ position_list[0],texcoord_list[1] },
-		{ position_list[1],texcoord_list[0] },
-		{ position_list[2],texcoord_list[2] },
-		{ position_list[3],texcoord_list[3] },
+		{ position_list[0], {}, {}, texcoord_list[1] },
+		{ position_list[1],  {}, {}, texcoord_list[0] },
+		{ position_list[2],  {}, {}, texcoord_list[2] },
+		{ position_list[3],  {}, {}, texcoord_list[3] },
 
 
-		{ position_list[4],texcoord_list[1] },
-		{ position_list[5],texcoord_list[0] },
-		{ position_list[6],texcoord_list[2] },
-		{ position_list[7],texcoord_list[3] },
+		{ position_list[4],  {}, {}, texcoord_list[1] },
+		{ position_list[5],  {}, {}, texcoord_list[0] },
+		{ position_list[6],  {}, {}, texcoord_list[2] },
+		{ position_list[7],  {}, {}, texcoord_list[3] },
 
 
-		{ position_list[1],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[2],texcoord_list[3] },
+		{ position_list[1],  {}, {}, texcoord_list[1] },
+		{ position_list[6],  {}, {}, texcoord_list[0] },
+		{ position_list[5],  {}, {}, texcoord_list[2] },
+		{ position_list[2],  {}, {}, texcoord_list[3] },
 
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[0],texcoord_list[0] },
-		{ position_list[3],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
+		{ position_list[7],  {}, {}, texcoord_list[1] },
+		{ position_list[0],  {}, {}, texcoord_list[0] },
+		{ position_list[3],  {}, {}, texcoord_list[2] },
+		{ position_list[4],  {}, {}, texcoord_list[3] },
 
-		{ position_list[3],texcoord_list[1] },
-		{ position_list[2],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
+		{ position_list[3],  {}, {}, texcoord_list[1] },
+		{ position_list[2],  {}, {}, texcoord_list[0] },
+		{ position_list[5],  {}, {}, texcoord_list[2] },
+		{ position_list[4],  {}, {}, texcoord_list[3] },
 
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[1],texcoord_list[2] },
-		{ position_list[0],texcoord_list[3] }
+		{ position_list[7],  {}, {}, texcoord_list[1] },
+		{ position_list[6],  {}, {}, texcoord_list[0] },
+		{ position_list[1],  {}, {}, texcoord_list[2] },
+		{ position_list[0],  {}, {}, texcoord_list[3] }
 	};
-
-	//vertices =
-	//{
-	//	{ initPositions[0], Colors::RED, Colors::RED},
-	//	{ initPositions[1], Colors::YELLOW, Colors::YELLOW},
-	//	{ initPositions[2], Colors::GREEN, Colors::GREEN},
-	//	{ initPositions[3], Colors::BLUE, Colors::BLUE},
-
-	//	{ initPositions[4], Colors::RED, Colors::RED},
-	//	{ initPositions[5], Colors::YELLOW, Colors::YELLOW},
-	//	{ initPositions[6], Colors::GREEN, Colors::GREEN},
-	//	{ initPositions[7], Colors::BLUE, Colors::BLUE},
-	//};
 
 	index_list =
 	{

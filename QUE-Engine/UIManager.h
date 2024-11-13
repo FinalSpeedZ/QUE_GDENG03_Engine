@@ -21,6 +21,7 @@ public:
 	const std::string PROFILER_SCREEN = "PROFILER_SCREEN";
 	const std::string INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
 	const std::string HIERARCHY_SCREEN = "HIERARCHY_SCREEN";
+	const std::string PLACE_OBJECT_SCREEN = "HIERARCHY_SCREEN";
 };
 
 class UIManager

@@ -86,6 +86,7 @@ VertexBufferPtr RenderSystem::createVertexBuffer(std::vector<vertex>& list_verti
 	try
 	{
 		vb = std::make_shared<VertexBuffer>(list_vertices, size_vertex, size_list, shader_byte_code, size_byte_shader, this);
+		std::cout << vb << std::endl;
 	}
 	catch(...) {}
 

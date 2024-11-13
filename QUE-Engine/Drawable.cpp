@@ -21,7 +21,6 @@ void Drawable::onCreate()
 	m_tex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/Wood.jpg");
 
 	cc.m_time = 0.0f;
-
 	m_cb = GraphicsEngine::getInstance()->getRenderSystem()->createConstantBuffer(&cc, sizeof(constant));
 
 	UINT size_list = vertices.size();
@@ -37,7 +36,6 @@ void Drawable::onCreate()
 	GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"TexturedPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::getInstance()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
-
 }
 
 void Drawable::onUpdate(float deltatime)
@@ -62,7 +60,8 @@ void Drawable::draw()
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setRenderConfig(m_vs, m_ps);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_tex);
+	if (m_tex != NULL)
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_tex);
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 }

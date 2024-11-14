@@ -138,7 +138,7 @@ void Camera::onMouseMove(const Vector2D& deltaPos)
 		float y = localRotation.y;
 		float z = localRotation.z;
 
-		x += 0.05f * (deltaPos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
+		x += 0.1f * (deltaPos.y - (height / 2.0f)) * EngineTime::getDeltaTime();
 		y += 0.1f * (deltaPos.x - (width / 2.0f)) * EngineTime::getDeltaTime();
 
 		this->setRotation(x, y, z);

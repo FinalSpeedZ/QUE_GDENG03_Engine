@@ -124,6 +124,21 @@
     <Filter Include="GameEngine\UISystem\Screens\PlaceGameObjectScreen">
       <UniqueIdentifier>{579d02e5-8701-4d59-a484-a4f04062706b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes">
+      <UniqueIdentifier>{0019407a-502e-48ea-930e-6db648122bc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Armadillo">
+      <UniqueIdentifier>{ce67bda6-3957-4aac-836f-0dde874e6778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Bunny">
+      <UniqueIdentifier>{928a24ca-0b1c-48bd-b6c2-96b5610e4df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Teapot">
+      <UniqueIdentifier>{47eb251c-3185-44c6-adb6-2a8e2964a296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\ResourceManager\MeshManager">
+      <UniqueIdentifier>{c3c84848-54b7-4267-a9e8-cdefcec792fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -275,6 +290,24 @@
     </ClCompile>
     <ClCompile Include="PlaceObjectScreen.cpp">
       <Filter>GameEngine\UISystem\Screens\PlaceGameObjectScreen</Filter>
+    </ClCompile>
+    <ClCompile Include="Armadillo.cpp">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Armadillo</Filter>
+    </ClCompile>
+    <ClCompile Include="Bunny.cpp">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Bunny</Filter>
+    </ClCompile>
+    <ClCompile Include="Teapot.cpp">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Teapot</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshManager.cpp">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexMesh.cpp">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -440,6 +473,24 @@
     <ClInclude Include="PlaceObjectScreen.h">
       <Filter>GameEngine\UISystem\Screens\PlaceGameObjectScreen</Filter>
     </ClInclude>
+    <ClInclude Include="Armadillo.h">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Armadillo</Filter>
+    </ClInclude>
+    <ClInclude Include="Bunny.h">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Bunny</Filter>
+    </ClInclude>
+    <ClInclude Include="Teapot.h">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\3DMeshes\Teapot</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshManager.h">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexMesh.h">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
@@ -453,6 +504,9 @@
     </FxCompile>
     <FxCompile Include="TexturedPixelShader.hlsl">
       <Filter>App\PixelShaders</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexMeshLayoutShader.hlsl">
+      <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

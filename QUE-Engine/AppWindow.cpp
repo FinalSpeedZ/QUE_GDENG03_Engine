@@ -1,15 +1,15 @@
 #include "AppWindow.h"
 
-#include <corecrt_math_defines.h>
-
+#include "BaseComponentSystem.h"
 #include "Camera.h"
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
+#include "PhysicsSystem.h"
 
+#include "UIManager.h"
 #include "Libs/imgui/imgui.h"
 #include "Libs/imgui/imgui_impl_dx11.h"
 #include "Libs/imgui/imgui_impl_win32.h"
-#include "UIManager.h"
 
 AppWindow* AppWindow::sharedInstance = NULL;
 
@@ -33,13 +33,19 @@ void AppWindow::onCreate()
 	InputSystem::initialize();
 	GameObjectManager::initialize();
 	SceneCameraHandler::initialize();
+	BaseComponentSystem::initialize();
 	UIManager::initialize(this->m_hwnd);
 
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain = GraphicsEngine::getInstance()->getRenderSystem()->createSwapChain(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	for (int i = 0; i < 10; i++)
+	{
+		GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+	}
+	GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);
+
 }
 
 void AppWindow::onUpdate()
@@ -56,6 +62,7 @@ void AppWindow::onUpdate()
 
 		SceneCameraHandler::getInstance()->update();
 
+		BaseComponentSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
 		GameObjectManager::getInstance()->updateAll(EngineTime::getDeltaTime());
 
 		UIManager::getInstance()->drawAllUI();
@@ -67,6 +74,12 @@ void AppWindow::onUpdate()
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
+
+	GraphicsEngine::destroy();
+	TextureManager::destroy();
+	GameObjectManager::destroy();
+	BaseComponentSystem::destroy();
+	SceneCameraHandler::destroy();
 
 	ImGui_ImplDX11_Shutdown();
 	ImGui_ImplWin32_Shutdown();
@@ -85,6 +98,11 @@ void AppWindow::onKillFocus()
 	Window::onKillFocus();
 
 	InputSystem::getInstance()->removeListener(this);
+
+	if (!isRunning())
+	{
+		InputSystem::destroy();
+	}
 }
 
 void AppWindow::onKeyDown(int key)

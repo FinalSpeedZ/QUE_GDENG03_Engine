@@ -1,9 +1,11 @@
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\AppWindow.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\AppWindow.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Armadillo.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Armadillo.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\BaseComponentSystem.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\BaseComponentSystem.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Bunny.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Bunny.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Camera.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Camera.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Circle.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Circle.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\ColorPickerScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\ColorPickerScreen.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Component.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Component.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\ConstantBuffer.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\ConstantBuffer.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\CreditsScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\CreditsScreen.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Cube.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Cube.obj
@@ -29,6 +31,9 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Matrix4x4.cpp;C:\User
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MenuScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\MenuScreen.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Mesh.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Mesh.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MeshManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\MeshManager.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsComponent.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsComponent.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsPlane.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsPlane.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsSystem.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsSystem.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PixelShader.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PixelShader.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Drawable.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Drawable.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PlaceObjectScreen.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PlaceObjectScreen.obj

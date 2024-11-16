@@ -31,11 +31,6 @@ public:
 	static const Vector3D zeroes;
 	static const Vector3D ones;
 
-	void print() const
-	{
-		std::cout << "Vector3D(" << x << ", " << y << ", " << z << ")" << std::endl;
-	}
-
 public:
 	float x, y, z;
 };

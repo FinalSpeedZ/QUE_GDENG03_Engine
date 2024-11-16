@@ -10,8 +10,11 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	calculateVertices();
+	this->localPosition.y = 3.0f;
 
+	calculateVertices();
+	//this->physicsComponent = new PhysicsComponent("PhysicsComponent_" + this->name, this);
+	//this->attachComponent(physicsComponent);
 }
 
 void Cube::onCreate()
@@ -32,7 +35,6 @@ void Cube::onUpdate(float deltaTime)
 void Cube::onDestroy()
 {
 	Drawable::onDestroy();
-
 }
 
 void Cube::draw()
@@ -131,25 +133,6 @@ void Cube::calculateVertices()
 
 void Cube::updateConstantBuffer(float deltaTime)
 {
-
-	//if (InputSystem::getInstance()->isKeyDown('W'))
-	//{
-	//	localRotation.x += 0.2f;
-	//	localRotation.y += 0.2f;
-	//	localRotation.z += 0.2f;
-	//}
-
-	//if (InputSystem::getInstance()->isKeyDown('S'))
-	//{
-	//	localRotation.x -= 0.2f;
-	//	localRotation.y -= 0.2f;
-	//	localRotation.z -= 0.2f;
-	//}
-
-	//this->setRotationX(fmod(localRotation.x, 2 * M_PI));
-	//this->setRotationY(fmod(localRotation.y, 2 * M_PI));
-	//this->setRotationZ(fmod(localRotation.z, 2 * M_PI));
-
 	Drawable::updateConstantBuffer(deltaTime);
 }
 

@@ -14,11 +14,5 @@ int main()
 		runningApp->broadcast();
 	}
 
-	GameObjectManager::destroy();
-	SceneCameraHandler::destroy();
-
-	InputSystem::destroy();
-	GraphicsEngine::destroy();
-
 	return 0;
 }

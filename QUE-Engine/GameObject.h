@@ -2,9 +2,13 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Matrix4x4.h"
 #include "Vector3D.h"
+
+#include "Component.h"
+
 
 __declspec(align(16))
 struct constant
@@ -45,6 +49,16 @@ public:
 	Vector3D getLocalScale();
 
 	Matrix4x4 getLocalMatrix();
+	float* getPhysicsLocalMatrix();
+	void recomputeMatrix(float matrix[16]);
+	void computeLocalMatrix();
+
+	void attachComponent(Component* component);
+	void detachComponent(Component* component);
+
+	Component* findComponentByName(std::string name);
+	Component* findComponentOfType(ComponentType type, std::string name);
+	std::vector<Component*> getComponentsOfType(ComponentType type);
 
 public:
 	virtual void onCreate() {};
@@ -62,5 +76,9 @@ protected:
 	Matrix4x4 localMatrix;
 
 	bool active;
+
+	std::vector<Component*> componentList;
+
+	bool overrideMatrix = false;
 };
 

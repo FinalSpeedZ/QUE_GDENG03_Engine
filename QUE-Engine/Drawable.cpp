@@ -56,6 +56,9 @@ void Drawable::onUpdate(float deltatime)
 void Drawable::onDestroy()
 {
 	GameObject::onDestroy();
+
+	this->detachComponent(this->physicsComponent);
+	delete this->physicsComponent;
 }
 
 void Drawable::draw()
@@ -95,29 +98,41 @@ void Drawable::updateConstantBuffer(float deltaTime)
 	time += animSpeed * deltaTime;
 	cc.m_time = time;
 
-	Matrix4x4 temp;
+	if (this->overrideMatrix) 
+	{
+		cc.m_world = this->localMatrix;
+	}
 
-	cc.m_world.setIdentity();
+	else
+	{
+		Matrix4x4 matrix;
+		Matrix4x4 temp;
 
-	temp.setIdentity();
-	temp.setScale(getLocalScale());
-	cc.m_world *= temp;
+		matrix.setIdentity();
 
-	temp.setIdentity();
-	temp.setRotationX(getLocalRotation().x);
-	cc.m_world *= temp;
+		temp.setIdentity();
+		temp.setScale(getLocalScale());
+		matrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationY(getLocalRotation().y);
-	cc.m_world *= temp;
+		temp.setIdentity();
+		temp.setRotationX(getLocalRotation().x);
+		matrix *= temp;
 
-	temp.setIdentity();
-	temp.setRotationZ(getLocalRotation().z);
-	cc.m_world *= temp;
+		temp.setIdentity();
+		temp.setRotationY(getLocalRotation().y);
+		matrix *= temp;
 
-	temp.setIdentity();
-	temp.setTranslation(localPosition);
-	cc.m_world *= temp;
+		temp.setIdentity();
+		temp.setRotationZ(getLocalRotation().z);
+		matrix *= temp;
+
+		temp.setIdentity();
+		temp.setTranslation(localPosition);
+		matrix *= temp;
+
+		this->localMatrix = matrix;
+		this->cc.m_world = matrix;
+	}
 }
 
 void Drawable::projectionViewMatrix()

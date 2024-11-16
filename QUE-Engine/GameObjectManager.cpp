@@ -9,6 +9,7 @@
 #include "Quad.h"
 #include "Circle.h"
 #include "Cube.h"
+#include "PhysicsPlane.h"
 #include "Plane.h"
 #include "Sphere.h"
 #include "Teapot.h"
@@ -140,11 +141,11 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 
 	else if (primitive == PrimitiveType::PLANE)
 	{
-		Plane* plane;
+		PhysicsPlane* plane;
 		if (name.empty())
-			plane = new Plane();
+			plane = new PhysicsPlane();
 		else
-			plane = new Plane(name);
+			plane = new PhysicsPlane(name);
 
 		addGameObject(plane);
 	}

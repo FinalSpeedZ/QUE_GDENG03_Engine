@@ -19,13 +19,13 @@ public:
 
 protected:
 	void draw() override;
+	void calculateVertices() override;
 
 private:
-	void calculateVertices() override;
 	void updateConstantBuffer(float deltaTime) override;
 	void projectionViewMatrix() override;
 
-private:
+protected:
 	IndexBufferPtr m_ib;
 	std::vector<unsigned int> index_list;
 

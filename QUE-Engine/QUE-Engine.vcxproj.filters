@@ -139,6 +139,15 @@
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\MeshManager">
       <UniqueIdentifier>{c3c84848-54b7-4267-a9e8-cdefcec792fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\PhysicsSystem">
+      <UniqueIdentifier>{c1f32129-5b3b-43b9-8f44-1eeee3b2cd01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\ECS">
+      <UniqueIdentifier>{ac8be2ca-a6ab-4175-8976-ce9416dbb92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\ECS\PhysicsComponent">
+      <UniqueIdentifier>{ba15ea94-e70f-47dc-9599-6657d14d1bfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -309,6 +318,19 @@
     <ClCompile Include="VertexMesh.cpp">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>GameEngine\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>GameEngine\ECS\PhysicsComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseComponentSystem.cpp">
+      <Filter>GameEngine\ECS</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsPlane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -491,6 +513,19 @@
     <ClInclude Include="VertexMesh.h">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>GameEngine\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>GameEngine\ECS\PhysicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseComponentSystem.h">
+      <Filter>GameEngine\ECS</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsPlane.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">

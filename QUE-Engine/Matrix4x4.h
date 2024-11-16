@@ -9,7 +9,7 @@
 class Matrix4x4
 {
 public:
-	Matrix4x4() {};
+	Matrix4x4();
 	~Matrix4x4() {};
 
 	void setIdentity();
@@ -35,11 +35,13 @@ public:
 	Vector4D operator*(const Vector4D& vec) const;
 
 	void setMatrix(const Matrix4x4& matrix);
+	void setMatrix(float matrix[4][4]);
+	float* getMatrix();
 
 private:
 	float getDeterminant();
 
-private:
+public:
 	float mat[4][4];
 };
 

@@ -6,6 +6,7 @@
 #include "VertexBuffer.h"
 
 #include "Matrix4x4.h"
+#include "PhysicsComponent.h"
 
 
 class Drawable : public  GameObject
@@ -50,6 +51,8 @@ protected:
 
 	float time = 0.0f;
 	float animSpeed = 1.0f;
+
+	PhysicsComponent* physicsComponent;
 
 };
 

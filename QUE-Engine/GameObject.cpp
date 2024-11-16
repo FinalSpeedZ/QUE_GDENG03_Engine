@@ -166,26 +166,35 @@ void GameObject::recomputeMatrix(float matrix[16])
 
 void GameObject::computeLocalMatrix()
 {
-	Matrix4x4 translationMatrix;
-	translationMatrix.setIdentity();
-	translationMatrix.setTranslation(this->localPosition);
-
+	Matrix4x4 transform;
 	Matrix4x4 scaleMatrix;
+	Matrix4x4 rotationMatrix;
+	Matrix4x4 translationMatrix;
+	Matrix4x4 temp;
+
 	scaleMatrix.setIdentity();
 	scaleMatrix.setScale(this->localScale);
 
-	Matrix4x4 xMatrix, yMatrix, zMatrix;
-	xMatrix.setRotationX(this->localRotation.x);
-	yMatrix.setRotationY(this->localRotation.y);
-	zMatrix.setRotationZ(this->localRotation.z);
+	rotationMatrix.setIdentity();
 
-	Matrix4x4 transformedMatrix = translationMatrix;
-	transformedMatrix *= xMatrix;
-	transformedMatrix *= yMatrix;
-	transformedMatrix *= zMatrix;
-	transformedMatrix *= scaleMatrix;
+	temp.setIdentity();
+	temp.setRotationZ(this->localRotation.z);
+	rotationMatrix *= temp;
 
-	this->localMatrix = transformedMatrix;
+	temp.setIdentity();
+	temp.setRotationY(this->localRotation.y);
+	rotationMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(this->localRotation.x);
+	rotationMatrix *= temp;
+
+	translationMatrix.setIdentity();
+	translationMatrix.setTranslation(this->localPosition);
+
+	transform = translationMatrix * rotationMatrix * scaleMatrix;
+
+	this->localMatrix = transform;
 }
 
 void GameObject::attachComponent(Component* component)

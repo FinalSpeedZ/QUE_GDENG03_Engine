@@ -5,8 +5,10 @@ PhysicsPlane::PhysicsPlane(std::string name)
 {
 	calculateVertices();
 
-	this->setPosition(0.0f, -5.0f, 0.0f);
-	this->setScale(25.0f, 0.1f, 25.0f);
+	this->setPosition(0.0f, -8.0f, 0.0f);
+	this->setScale(25, 0.1f, 25);
+
+	this->computeLocalMatrix();
 
 	this->physicsComponent = new PhysicsComponent("PhysicsComponent_" + this->name, this);
 	this->attachComponent(physicsComponent);
@@ -38,20 +40,20 @@ void PhysicsPlane::calculateVertices()
 	vertices.clear();
 	index_list.clear();
 
-	float halfLength = length / 2.0f;
+	float halfLength = length / 1.0f;
 
 
 	Vector3D position_list[] =
 	{
-		{Vector3D(-halfLength, -halfLength, -halfLength) + localPosition},
-		{Vector3D(-halfLength, halfLength, -halfLength) + localPosition},
-		{Vector3D(halfLength, halfLength, -halfLength) + localPosition},
-		{Vector3D(halfLength, -halfLength, -halfLength) + localPosition},
+		{Vector3D(-halfLength, -halfLength, -halfLength)},
+		{Vector3D(-halfLength, halfLength, -halfLength)},
+		{Vector3D(halfLength, halfLength, -halfLength)},
+		{Vector3D(halfLength, -halfLength, -halfLength)},
 
-		{Vector3D(halfLength, -halfLength, halfLength) + localPosition},
-		{Vector3D(halfLength, halfLength, halfLength) + localPosition},
-		{Vector3D(-halfLength, halfLength, halfLength) + localPosition},
-		{Vector3D(-halfLength, -halfLength, halfLength) + localPosition},
+		{Vector3D(halfLength, -halfLength, halfLength)},
+		{Vector3D(halfLength, halfLength, halfLength)},
+		{Vector3D(-halfLength, halfLength, halfLength)},
+		{Vector3D(-halfLength, -halfLength, halfLength)},
 	};
 
 	Vector2D texcoord_list[] =

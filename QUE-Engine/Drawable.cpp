@@ -105,33 +105,8 @@ void Drawable::updateConstantBuffer(float deltaTime)
 
 	else
 	{
-		Matrix4x4 matrix;
-		Matrix4x4 temp;
-
-		matrix.setIdentity();
-
-		temp.setIdentity();
-		temp.setScale(getLocalScale());
-		matrix *= temp;
-
-		temp.setIdentity();
-		temp.setRotationX(getLocalRotation().x);
-		matrix *= temp;
-
-		temp.setIdentity();
-		temp.setRotationY(getLocalRotation().y);
-		matrix *= temp;
-
-		temp.setIdentity();
-		temp.setRotationZ(getLocalRotation().z);
-		matrix *= temp;
-
-		temp.setIdentity();
-		temp.setTranslation(localPosition);
-		matrix *= temp;
-
-		this->localMatrix = matrix;
-		this->cc.m_world = matrix;
+		this->computeLocalMatrix();
+		cc.m_world = this->localMatrix;
 	}
 }
 

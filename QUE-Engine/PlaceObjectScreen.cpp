@@ -20,10 +20,19 @@ void PlaceObjectScreen::drawUI()
     float buttonWidth = windowWidth - 15;
     float buttonHeight = 20;
 
-    if (ImGui::Button("Cube", ImVec2(buttonWidth, buttonHeight)))
+    if (ImGui::Button("Physics Cube", ImVec2(buttonWidth, buttonHeight)))
     {
         GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
     }
+
+    if (ImGui::Button("Physics Cube x20", ImVec2(buttonWidth, buttonHeight)))
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            GameObjectManager::getInstance()->createPrimitive(PrimitiveType::CUBE);
+        }
+    }
+
     if (ImGui::Button("Plane", ImVec2(buttonWidth, buttonHeight)))
     {
         GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PLANE);

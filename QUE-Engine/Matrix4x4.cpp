@@ -37,7 +37,6 @@ void Matrix4x4::setScale(const Vector3D& scale)
 
 void Matrix4x4::setRotationX(float x)
 {
-	this->setIdentity();
 	mat[1][1] = cos(x);
 	mat[1][2] = sin(x);
 	mat[2][1] = -sin(x);
@@ -46,7 +45,6 @@ void Matrix4x4::setRotationX(float x)
 
 void Matrix4x4::setRotationY(float y)
 {
-	this->setIdentity();
 	mat[0][0] = cos(y);
 	mat[0][2] = -sin(y);
 	mat[2][0] = sin(y);
@@ -55,7 +53,6 @@ void Matrix4x4::setRotationY(float y)
 
 void Matrix4x4::setRotationZ(float z)
 {
-	this->setIdentity();
 	mat[0][0] = cos(z);
 	mat[0][1] = sin(z);
 	mat[1][0] = -sin(z);

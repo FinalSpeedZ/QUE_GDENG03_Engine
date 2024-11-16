@@ -17,7 +17,7 @@ PhysicsComponent::PhysicsComponent(std::string name, GameObject* owner)
 	Transform transform;
 	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
 
-	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.x / 2, scale.y / 2, scale.z) / 2); //half extent
+	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.x, scale.y, scale.z));
 
 	this->rigidBody = physicsWorld->createRigidBody(transform);
 	this->rigidBody->addCollider(boxShape, transform);

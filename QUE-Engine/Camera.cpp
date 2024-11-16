@@ -9,8 +9,8 @@
 Camera::Camera(std::string name)
 	: GameObject(name)
 {
-	localPosition.z = -20.0;
-	localPosition.y = 2.0f;
+	localPosition.z = -30.0;
+	localPosition.y = 5.0f;
 
 	this->projection = SceneCameraHandler::perspectiveProjection();
 

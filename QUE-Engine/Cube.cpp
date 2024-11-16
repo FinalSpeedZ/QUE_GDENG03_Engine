@@ -10,11 +10,14 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	this->localPosition.y = 3.0f;
+	this->setPosition(Vector3D(0, 10, 0));
+	this->setScale(Vector3D(1, 1, 1));
+
+	this->computeLocalMatrix();
 
 	calculateVertices();
-	//this->physicsComponent = new PhysicsComponent("PhysicsComponent_" + this->name, this);
-	//this->attachComponent(physicsComponent);
+	this->physicsComponent = new PhysicsComponent("PhysicsComponent_" + this->name, this);
+	this->attachComponent(physicsComponent);
 }
 
 void Cube::onCreate()
@@ -51,20 +54,20 @@ void Cube::calculateVertices()
 	vertices.clear();
 	index_list.clear();
 
-	float halfLength = length / 2.0f;
+	float halfLength = length / 1.0f;
 
 
 	Vector3D position_list[] =
 	{
-		{Vector3D(-halfLength, -halfLength, -halfLength) + localPosition},
-		{Vector3D(-halfLength, halfLength, -halfLength) + localPosition},
-		{Vector3D(halfLength, halfLength, -halfLength) + localPosition},
-		{Vector3D(halfLength, -halfLength, -halfLength) + localPosition},
+		{Vector3D(-halfLength, -halfLength, -halfLength)},
+		{Vector3D(-halfLength, halfLength, -halfLength) },
+		{Vector3D(halfLength, halfLength, -halfLength)},
+		{Vector3D(halfLength, -halfLength, -halfLength)},
 
-		{Vector3D(halfLength, -halfLength, halfLength) + localPosition},
-		{Vector3D(halfLength, halfLength, halfLength) + localPosition},
-		{Vector3D(-halfLength, halfLength, halfLength) + localPosition},
-		{Vector3D(-halfLength, -halfLength, halfLength) + localPosition},
+		{Vector3D(halfLength, -halfLength, halfLength)},
+		{Vector3D(halfLength, halfLength, halfLength)},
+		{Vector3D(-halfLength, halfLength, halfLength)},
+		{Vector3D(-halfLength, -halfLength, halfLength)},
 	};
 
 	Vector2D texcoord_list[] =

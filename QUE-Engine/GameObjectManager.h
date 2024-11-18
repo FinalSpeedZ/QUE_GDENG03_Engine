@@ -20,6 +20,7 @@ enum class PrimitiveType
 
 	// 3D Primitvies Physics
 	PHYSICS_CUBE,
+	PHYSICS_PLANE,
 
 	// 3D Meshes
 	TEAPOT,

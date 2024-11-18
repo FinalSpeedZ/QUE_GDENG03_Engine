@@ -104,33 +104,37 @@ Matrix4x4 GameObject::getLocalMatrix()
 
 float* GameObject::getPhysicsLocalMatrix()
 {
-	Matrix4x4 allMatrix;
-	allMatrix.setIdentity();
-
+	Matrix4x4 transform;
 	Matrix4x4 scaleMatrix;
-	scaleMatrix.setIdentity();
-	scaleMatrix.setScale(Vector3D(1,1,1));
-	allMatrix *= scaleMatrix;
-
+	Matrix4x4 rotationMatrix;
+	Matrix4x4 translationMatrix;
 	Matrix4x4 temp;
+
+	transform.setIdentity();
+
+	scaleMatrix.setIdentity();
+	scaleMatrix.setScale(Vector3D::ones);
+
+	rotationMatrix.setIdentity();
+
 	temp.setIdentity();
 	temp.setRotationZ(this->localRotation.z);
-	allMatrix *= temp;
+	rotationMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationY(this->localRotation.y);
-	allMatrix *= temp;
+	rotationMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationX(this->localRotation.x);
-	allMatrix *= temp;
+	rotationMatrix *= temp;
 
-	Matrix4x4 translationMatrix;
 	translationMatrix.setIdentity();
 	translationMatrix.setTranslation(this->localPosition);
-	allMatrix *= translationMatrix;
 
-	return allMatrix.getMatrix();
+	transform = scaleMatrix * rotationMatrix * translationMatrix;
+
+	return transform.getMatrix();
 }
 
 void GameObject::recomputeMatrix(float matrix[16])
@@ -164,7 +168,7 @@ void GameObject::recomputeMatrix(float matrix[16])
 	Matrix4x4 transMatrix;
 	transMatrix.setTranslation(this->localPosition);
 
-	this->localMatrix = scaleMatrix * (transMatrix * (newMatrix));
+	this->localMatrix = scaleMatrix * transMatrix * newMatrix;
 	this->overrideMatrix = true;
 }
 
@@ -175,6 +179,8 @@ void GameObject::computeLocalMatrix()
 	Matrix4x4 rotationMatrix;
 	Matrix4x4 translationMatrix;
 	Matrix4x4 temp;
+
+	transform.setIdentity();
 
 	scaleMatrix.setIdentity();
 	scaleMatrix.setScale(this->localScale);
@@ -196,7 +202,7 @@ void GameObject::computeLocalMatrix()
 	translationMatrix.setIdentity();
 	translationMatrix.setTranslation(this->localPosition);
 
-	transform = translationMatrix * rotationMatrix * scaleMatrix;
+	transform = scaleMatrix * rotationMatrix * translationMatrix;
 
 	this->localMatrix = transform;
 }

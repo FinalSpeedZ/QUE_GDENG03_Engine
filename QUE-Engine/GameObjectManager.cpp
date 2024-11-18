@@ -139,6 +139,17 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 		addGameObject(cube);
 	}
 
+	else if (primitive == PrimitiveType::PLANE)
+	{
+		Plane* plane;
+		if (name.empty())
+			plane = new Plane();
+		else
+			plane = new Plane(name);
+
+		addGameObject(plane);
+	}
+
 	else if (primitive == PrimitiveType::PHYSICS_CUBE)
 	{
 		PhysicsCube* cube;
@@ -150,7 +161,7 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 		addGameObject(cube);
 	}
 
-	else if (primitive == PrimitiveType::PLANE)
+	else if (primitive == PrimitiveType::PHYSICS_PLANE)
 	{
 		PhysicsPlane* plane;
 		if (name.empty())

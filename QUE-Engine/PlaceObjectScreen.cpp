@@ -40,6 +40,11 @@ void PlaceObjectScreen::drawUI()
         GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PHYSICS_CUBE);
     }
 
+    if (ImGui::Button("Physics Plane", ImVec2(buttonWidth, buttonHeight)))
+    {
+        GameObjectManager::getInstance()->createPrimitive(PrimitiveType::PHYSICS_PLANE);
+    }
+
     ImGui::NewLine();
 
     ImGui::Text("3D Meshes");

@@ -9,9 +9,9 @@
 #include "Quad.h"
 #include "Circle.h"
 #include "Cube.h"
+#include "PhysicsCube.h"
 #include "PhysicsPlane.h"
 #include "Plane.h"
-#include "Sphere.h"
 #include "Teapot.h"
 
 GameObjectManager* GameObjectManager::sharedInstance = NULL;
@@ -135,6 +135,17 @@ void GameObjectManager::createPrimitive(PrimitiveType primitive, std::string nam
 			cube = new Cube();
 		else
 			cube = new Cube(name);
+
+		addGameObject(cube);
+	}
+
+	else if (primitive == PrimitiveType::PHYSICS_CUBE)
+	{
+		PhysicsCube* cube;
+		if (name.empty())
+			cube = new PhysicsCube();
+		else
+			cube = new PhysicsCube(name);
 
 		addGameObject(cube);
 	}

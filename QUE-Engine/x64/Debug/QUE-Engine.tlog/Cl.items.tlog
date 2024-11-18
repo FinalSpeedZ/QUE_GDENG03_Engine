@@ -32,6 +32,7 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MenuScreen.cpp;C:\Use
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Mesh.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Mesh.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\MeshManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\MeshManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsComponent.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsComponent.obj
+C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsCube.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsCube.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsPlane.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsPlane.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PhysicsSystem.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PhysicsSystem.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\PixelShader.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\PixelShader.obj
@@ -44,7 +45,6 @@ C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\RenderSystem.cpp;C:\U
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Resource.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Resource.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\ResourceManager.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\ResourceManager.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SceneCameraHandler.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\SceneCameraHandler.obj
-C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Sphere.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Sphere.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\SwapChain.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\SwapChain.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Teapot.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Teapot.obj
 C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\Texture.cpp;C:\Users\asus\Coding\GDENG03\QUE_GDENG03_Engine\QUE-Engine\x64\Debug\Texture.obj

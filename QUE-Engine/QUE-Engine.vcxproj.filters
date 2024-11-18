@@ -73,9 +73,6 @@
     <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Plane">
       <UniqueIdentifier>{4aca81bb-593a-46be-ae55-d0ded2fa49cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Sphere">
-      <UniqueIdentifier>{31a1d5fb-f8f9-416b-b596-68f0a3374d5b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\RenderSystem\ConstantBuffer">
       <UniqueIdentifier>{c2512d6a-ca9e-4adf-be3f-28ef71edbfcf}</UniqueIdentifier>
     </Filter>
@@ -228,9 +225,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>GameEngine\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Sphere</Filter>
-    </ClCompile>
     <ClCompile Include="SceneCameraHandler.cpp">
       <Filter>GameEngine\Camera</Filter>
     </ClCompile>
@@ -330,7 +324,12 @@
     <ClCompile Include="BaseComponentSystem.cpp">
       <Filter>GameEngine\ECS</Filter>
     </ClCompile>
-    <ClCompile Include="PhysicsPlane.cpp" />
+    <ClCompile Include="PhysicsPlane.cpp">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCube.cpp">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -416,9 +415,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>GameEngine\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Sphere</Filter>
     </ClInclude>
     <ClInclude Include="SceneCameraHandler.h">
       <Filter>GameEngine\Camera</Filter>
@@ -525,7 +521,12 @@
     <ClInclude Include="BaseComponentSystem.h">
       <Filter>GameEngine\ECS</Filter>
     </ClInclude>
-    <ClInclude Include="PhysicsPlane.h" />
+    <ClInclude Include="PhysicsPlane.h">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCube.h">
+      <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">

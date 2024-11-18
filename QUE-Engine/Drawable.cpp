@@ -56,9 +56,6 @@ void Drawable::onUpdate(float deltatime)
 void Drawable::onDestroy()
 {
 	GameObject::onDestroy();
-
-	this->detachComponent(this->physicsComponent);
-	delete this->physicsComponent;
 }
 
 void Drawable::draw()

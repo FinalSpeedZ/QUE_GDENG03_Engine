@@ -1,5 +1,7 @@
 #include "GameObject.h"
 
+#include <reactphysics3d/mathematics/Quaternion.h>
+
 GameObject::GameObject(std::string name)
 {
 	this->name = name;
@@ -99,6 +101,7 @@ Matrix4x4 GameObject::getLocalMatrix()
 	return this->localMatrix;
 }
 
+
 float* GameObject::getPhysicsLocalMatrix()
 {
 	Matrix4x4 allMatrix;
@@ -106,7 +109,8 @@ float* GameObject::getPhysicsLocalMatrix()
 
 	Matrix4x4 scaleMatrix;
 	scaleMatrix.setIdentity();
-	scaleMatrix.setScale(Vector3D(1,1,1));  
+	scaleMatrix.setScale(Vector3D(1,1,1));
+	allMatrix *= scaleMatrix;
 
 	Matrix4x4 temp;
 	temp.setIdentity();

@@ -10,14 +10,12 @@
 Cube::Cube(std::string name, float length)
 	: Drawable(name), length(length)
 {
-	this->setPosition(Vector3D(0, 10, 0));
-	this->setScale(Vector3D(1, 1, 1));
+	this->setPosition(Vector3D(0, 0, 0));
 
 	this->computeLocalMatrix();
 
 	calculateVertices();
-	this->physicsComponent = new PhysicsComponent("PhysicsComponent_" + this->name, this);
-	this->attachComponent(physicsComponent);
+
 }
 
 void Cube::onCreate()

@@ -5,8 +5,8 @@ PhysicsPlane::PhysicsPlane(std::string name)
 {
 	calculateVertices();
 
-	this->setPosition(0.0f, -8.0f, 0.0f);
-	this->setScale(25, 0.1f, 25);
+	this->setPosition(Vector3D(0.0f, -8.0f, 0.0f));
+	this->setScale(Vector3D(25, 0.1f, 25));
 
 	this->computeLocalMatrix();
 

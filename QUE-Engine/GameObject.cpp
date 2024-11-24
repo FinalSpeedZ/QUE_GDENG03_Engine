@@ -44,6 +44,7 @@ void GameObject::setPosition(float x, float y, float z)
 void GameObject::setPosition(Vector3D pos)
 {
 	this->localPosition = pos;
+	this->computeLocalMatrix();
 }
 
 Vector3D GameObject::getLocalPosition()
@@ -84,11 +85,13 @@ Vector3D GameObject::getLocalRotation()
 void GameObject::setScale(float x, float y, float z)
 {
 	this->localScale = Vector3D(x, y, z);
+	this->computeLocalMatrix();
 }
 
 void GameObject::setScale(Vector3D scale)
 {
 	this->localScale = scale;
+	this->computeLocalMatrix();
 }
 
 Vector3D GameObject::getLocalScale()

@@ -103,12 +103,6 @@
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\TextureManager">
       <UniqueIdentifier>{1276113b-5bd8-4415-8de6-8c2faf359424}</UniqueIdentifier>
     </Filter>
-    <Filter Include="App\PixelShaders">
-      <UniqueIdentifier>{ad3f0377-f7b1-47b5-8248-980e006552a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="App\VertexShaders">
-      <UniqueIdentifier>{fb71c759-c733-4c2e-81db-f1c6c09f1fe8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\UISystem\Screens\ProfilerScreen">
       <UniqueIdentifier>{796c7f1f-6cd6-4be9-a9e2-eaf931cc0f6a}</UniqueIdentifier>
     </Filter>
@@ -144,6 +138,15 @@
     </Filter>
     <Filter Include="GameEngine\ECS\PhysicsComponent">
       <UniqueIdentifier>{ba15ea94-e70f-47dc-9599-6657d14d1bfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Shaders">
+      <UniqueIdentifier>{85f32a75-a12d-4077-ba92-37c5a3795731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Shaders\PixelShaders">
+      <UniqueIdentifier>{ad3f0377-f7b1-47b5-8248-980e006552a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Shaders\VertexShaders">
+      <UniqueIdentifier>{fb71c759-c733-4c2e-81db-f1c6c09f1fe8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -329,6 +332,9 @@
     </ClCompile>
     <ClCompile Include="PhysicsCube.cpp">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderLibrary.cpp">
+      <Filter>App\Shaders</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -527,19 +533,22 @@
     <ClInclude Include="PhysicsCube.h">
       <Filter>GameEngine\GraphicsEngine\RenderSystem\GameObject\Primitive3D\Cube</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderLibrary.h">
+      <Filter>App\Shaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelShader.hlsl">
-      <Filter>App\PixelShaders</Filter>
+      <Filter>App\Shaders\PixelShaders</Filter>
     </FxCompile>
     <FxCompile Include="TexturedVertexShader.hlsl">
-      <Filter>App\VertexShaders</Filter>
+      <Filter>App\Shaders\VertexShaders</Filter>
     </FxCompile>
     <FxCompile Include="VertexShader.hlsl">
-      <Filter>App\VertexShaders</Filter>
+      <Filter>App\Shaders\VertexShaders</Filter>
     </FxCompile>
     <FxCompile Include="TexturedPixelShader.hlsl">
-      <Filter>App\PixelShaders</Filter>
+      <Filter>App\Shaders\PixelShaders</Filter>
     </FxCompile>
     <FxCompile Include="VertexMeshLayoutShader.hlsl">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>

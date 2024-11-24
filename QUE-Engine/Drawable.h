@@ -43,8 +43,6 @@ protected:
 
 	VertexBufferPtr m_vb;
 	ConstantBufferPtr m_cb;
-	VertexShaderPtr m_vs;
-	PixelShaderPtr m_ps;
 
 	TexturePtr m_tex;
 	MeshPtr m_mesh;

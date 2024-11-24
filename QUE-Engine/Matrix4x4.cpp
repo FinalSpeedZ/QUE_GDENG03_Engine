@@ -81,6 +81,7 @@ void Matrix4x4::setZDirection(Vector3D zDir)
 	mat[2][2] = zDir.z;
 }
 
+
 void Matrix4x4::inverse()
 {
 	int a, i, j;

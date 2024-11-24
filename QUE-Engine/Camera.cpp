@@ -76,7 +76,7 @@ void Camera::onUpdate(float deltatime)
 		newPosition = newPosition - viewMatrix.getYDirection() * (moveSpeed * deltatime);
 	}
 
-	setPosition(newPosition.x, newPosition.y, newPosition.z);
+	this->setPosition(newPosition.x, newPosition.y, newPosition.z);
 
 }
 

@@ -5,6 +5,7 @@
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
 #include "PhysicsSystem.h"
+#include "ShaderLibrary.h"
 
 #include "UIManager.h"
 #include "Libs/imgui/imgui.h"
@@ -33,6 +34,7 @@ void AppWindow::onCreate()
 	InputSystem::initialize();
 	GameObjectManager::initialize();
 	SceneCameraHandler::initialize();
+	ShaderLibrary::initialize();
 	BaseComponentSystem::initialize();
 	UIManager::initialize(this->m_hwnd);
 

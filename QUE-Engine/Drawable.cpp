@@ -9,6 +9,7 @@
 #include "SceneCameraHandler.h"
 
 #include "Mesh.h"
+#include "ShaderLibrary.h"
 
 
 Drawable::Drawable(std::string name)
@@ -26,22 +27,13 @@ void Drawable::onCreate()
 	void* shader_byte_code = nullptr;
 	size_t size_shader = 0;
 
-	if (m_tex != NULL)
-		GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"TexturedVertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
-	else
-		GraphicsEngine::getInstance()->getRenderSystem()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
-	m_vs = GraphicsEngine::getInstance()->getRenderSystem()->createVertexShader(shader_byte_code, size_shader);
 
+	ShaderNames shaderNames;
+
+	ShaderLibrary::getInstance()->requestVertexShaderData(shaderNames.BASE_VERTEX_SHADER_NAME, &shader_byte_code, &size_shader);
 	m_vb = GraphicsEngine::getInstance()->getRenderSystem()->createVertexBuffer(vertices, sizeof(vertex), size_list, shader_byte_code, size_shader);
-	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
 
-	if (m_tex != NULL)
-		GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"TexturedPixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
-	else
-		GraphicsEngine::getInstance()->getRenderSystem()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
-	m_ps = GraphicsEngine::getInstance()->getRenderSystem()->createPixelShader(shader_byte_code, size_shader);
-
-	GraphicsEngine::getInstance()->getRenderSystem()->releaseCompiledShader();
+	ShaderLibrary::getInstance()->requestPixelShaderData(shaderNames.BASE_PIXEL_SHADER_NAME, &shader_byte_code, &size_shader);
 }
 
 void Drawable::onUpdate(float deltatime)
@@ -64,7 +56,10 @@ void Drawable::draw()
 
 	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setConstantBuffer(m_cb);
 
-	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setRenderConfig(m_vs, m_ps);
+	ShaderNames shaderNames;
+	GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setRenderConfig(
+		ShaderLibrary::getInstance()->getVertexShader(shaderNames.BASE_VERTEX_SHADER_NAME),
+		ShaderLibrary::getInstance()->getPixelShader(shaderNames.BASE_PIXEL_SHADER_NAME));
 
 	if (m_mesh != NULL)
 	{
@@ -79,7 +74,9 @@ void Drawable::draw()
 
 	if (m_tex != NULL)
 	{
-		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(m_ps, m_tex);
+		GraphicsEngine::getInstance()->getRenderSystem()->getImmediateDeviceContext()->setTexture(
+			ShaderLibrary::getInstance()->getPixelShader(shaderNames.TEXTURED_PIXEL_SHADER_NAME),
+			m_tex);
 	}
 
 	if (m_mesh != NULL)

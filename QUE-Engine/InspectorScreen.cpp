@@ -56,7 +56,13 @@ void InspectorScreen::drawTransform()
 	std::string labels[3] = { "Position", "Rotation", "Scale" };
 
 	Vector3D transform[3];
-	transform[0] = gameObject->getLocalPosition();
+
+	Vector3D pos = Vector3D(gameObject->getLocalMatrix().mat[3][0],
+		gameObject->getLocalMatrix().mat[3][1],
+		gameObject->getLocalMatrix().mat[3][2]);
+
+
+	transform[0] = pos;
 	transform[1] = gameObject->getLocalRotation();
 	transform[2] = gameObject->getLocalScale();
 

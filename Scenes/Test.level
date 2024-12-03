@@ -1,149 +1,137 @@
-[
-	{
-		"ObjectName" : "Cube",
-		"ObjectType" : "Cube",
-		"PhysicsComponent" : null,
-		"Position" : 
-		[
-			0.0,
-			0.0,
-			0.0
-		],
-		"Rotation" : 
-		[
-			0.0,
-			0.0,
-			0.0
-		],
-		"Scale" : 
-		[
-			1.0,
-			0.4699999988079071,
-			1.0
-		]
-	},
-	{
-		"ObjectName" : "Cube 1",
-		"ObjectType" : "Cube",
-		"PhysicsComponent" : null,
-		"Position" : 
-		[
-			0.0,
-			-2.0399999618530273,
-			0.0
-		],
-		"Rotation" : 
-		[
-			0.0,
-			0.0,
-			0.0
-		],
-		"Scale" : 
-		[
-			1.0,
-			0.31999999284744263,
-			1.0
-		]
-	},
-	{
-		"ObjectName" : "Cube 2",
-		"ObjectType" : "Cube",
-		"PhysicsComponent" : null,
-		"Position" : 
-		[
-			-1.75,
-			0.0,
-			0.46000000834465027
-		],
-		"Rotation" : 
-		[
-			0.0,
-			0.0,
-			0.0
-		],
-		"Scale" : 
-		[
-			1.5499999523162842,
-			1.8300000429153442,
-			1.0
-		]
-	},
-	{
-		"ObjectName" : "Ball",
-		"ObjectType" : "Sphere",
-		"PhysicsComponent" : 
+{
+	"Objects" : 
+	[
 		{
-			"AngularConstraints" : 
+			"ObjectName" : "Cube",
+			"ObjectType" : "Cube",
+			"PhysicsComponent" : 
+			{
+				"AngularConstraints" : [],
+				"AngularDrag" : 0.0,
+				"BodyType" : 2,
+				"Gravity" : "Yes",
+				"LinearDrag" : 0.0,
+				"Mass" : 1000.0,
+				"Physics" : "Yes",
+				"PositionConstraints" : []
+			},
+			"Position" : 
 			[
-				"Y"
+				0.0,
+				0.0,
+				0.0
 			],
-			"AngularDrag" : 0.0,
-			"BodyType" : 1,
-			"Gravity" : "Yes",
-			"LinearDrag" : 0.0,
-			"Mass" : 5.0,
-			"PositionConstraints" : 
+			"Rotation" : 
 			[
-				"X",
-				"Z"
+				0.0,
+				0.0,
+				0.0
+			],
+			"Scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
 			]
 		},
-		"Position" : 
-		[
-			-3.630000114440918,
-			0.0,
-			0.0
-		],
-		"Rotation" : 
-		[
-			0.0,
-			0.0,
-			0.0
-		],
-		"Scale" : 
-		[
-			1.0,
-			1.0,
-			1.0
-		]
-	},
-	{
-		"ObjectName" : "Capsule",
-		"ObjectType" : "Capsule",
-		"PhysicsComponent" : 
 		{
-			"AngularConstraints" : 
+			"ObjectName" : "Plane",
+			"ObjectType" : "Plane",
+			"PhysicsComponent" : 
+			{
+				"AngularConstraints" : 
+				[
+					"X",
+					"Z"
+				],
+				"AngularDrag" : 0.0,
+				"BodyType" : 1,
+				"Gravity" : "No",
+				"LinearDrag" : 0.0,
+				"Mass" : 10.0,
+				"Physics" : "Yes",
+				"PositionConstraints" : 
+				[
+					"Y"
+				]
+			},
+			"Position" : 
 			[
-				"X",
-				"Z"
+				0.56999999284744263,
+				-1.8300000429153442,
+				0.0
 			],
-			"AngularDrag" : 0.0,
-			"BodyType" : 2,
-			"Gravity" : "Yes",
-			"LinearDrag" : 0.0,
-			"Mass" : 1000.0,
-			"PositionConstraints" : 
+			"Rotation" : 
 			[
-				"Y"
+				0.0,
+				-1.4299999475479126,
+				0.40999999642372131
+			],
+			"Scale" : 
+			[
+				2.0499999523162842,
+				1.0,
+				1.75
 			]
 		},
-		"Position" : 
-		[
-			1.8200000524520874,
-			0.0,
-			0.0
-		],
-		"Rotation" : 
-		[
-			0.0,
-			0.0,
-			-0.40318992733955383
-		],
-		"Scale" : 
-		[
-			1.0,
-			1.0,
-			1.0
-		]
-	}
-]
+		{
+			"ObjectName" : "Sphere",
+			"ObjectType" : "Sphere",
+			"PhysicsComponent" : 
+			{
+				"AngularConstraints" : [],
+				"AngularDrag" : 11.0,
+				"BodyType" : 0,
+				"Gravity" : "Yes",
+				"LinearDrag" : 11.0,
+				"Mass" : 1000.0,
+				"Physics" : "Yes",
+				"PositionConstraints" : []
+			},
+			"Position" : 
+			[
+				-1.8600000143051147,
+				0.0,
+				0.0
+			],
+			"Rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"Scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			]
+		},
+		{
+			"ObjectName" : "Capsule",
+			"ObjectType" : "Capsule",
+			"PhysicsComponent" : 
+			{
+				"Physics" : "No"
+			},
+			"Position" : 
+			[
+				2.2899999618530273,
+				-0.76999998092651367,
+				0.60000002384185791
+			],
+			"Rotation" : 
+			[
+				0.0,
+				0.0,
+				0.0
+			],
+			"Scale" : 
+			[
+				1.0,
+				1.0,
+				1.0
+			]
+		}
+	]
+}

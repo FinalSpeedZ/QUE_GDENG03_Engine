@@ -40,7 +40,10 @@ namespace GDEngine
 
         GameObjectManager::GameObjectList objectList = GameObjectManager::getInstance()->getAllObjects();
 
-        Json::Value root;  // Root JSON object
+        Json::Value root;  // Root JSON object for the wrapper
+
+        // Create an array to hold all objects
+        Json::Value objectsJson(Json::arrayValue);
 
         for (AGameObject* gameObject : objectList)
         {
@@ -73,12 +76,16 @@ namespace GDEngine
             // PhysicsComponent (if exists)
             Json::Value physicsJson;
             AGameObject::ComponentList physicsList = gameObject->getComponentsOfType(AComponent::ComponentType::Physics);
+
+            // If a physics component exists, set it to "Yes", otherwise "No"
             if (!physicsList.empty())
             {
                 PhysicsComponent* physicsComponent = dynamic_cast<PhysicsComponent*>(physicsList[0]);
 
                 if (physicsComponent)
                 {
+                    physicsJson["Physics"] = "Yes";  // Indicate that this object has a physics component
+
                     physicsJson["Mass"] = physicsComponent->getMass();
                     physicsJson["Gravity"] = (physicsComponent->getUseGravity() ? "Yes" : "No");
                     physicsJson["BodyType"] = static_cast<int>(physicsComponent->getBodyType());
@@ -99,16 +106,23 @@ namespace GDEngine
                     physicsJson["AngularConstraints"] = angularConstraints;
                 }
             }
+            else
+            {
+                physicsJson["Physics"] = "No";  // Indicate that this object does not have a physics component
+            }
 
-            objectJson["PhysicsComponent"] = physicsJson;
+            objectJson["PhysicsComponent"] = physicsJson; // Add physics data (either Yes or No)
 
-            root.append(objectJson); // Add this object to the root JSON array
+            // Add this object to the "Objects" array
+            objectsJson.append(objectJson);
         }
+
+        // Wrap the objects in a root object under the "Objects" key
+        root["Objects"] = objectsJson;
 
         // Writing the JSON object to file
         sceneFile << root.toStyledString();
 
         sceneFile.close();
     }
-
 }

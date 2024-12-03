@@ -15,6 +15,7 @@ namespace GDEngine
 
 		std::string getOwnerName();
 		Vector3D getStoredPosition();
+		Vector3D getStoredRotation();
 		Vector3D getStoredScale();
 		AGameObject::AQuaternion getStoredOrientation();
 		Matrix4x4 getStoredMatrix();
@@ -22,6 +23,7 @@ namespace GDEngine
 	private:
 		std::string m_name;
 		Vector3D m_localPosition;
+		Vector3D m_localRotation;
 		Vector3D m_localScale;
 		Vector4D m_orientation;
 		Matrix4x4 m_localMatrix;

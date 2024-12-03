@@ -143,7 +143,6 @@ namespace GDEngine {
 		Vector3D m_localPosition;
 		Vector3D m_localScale;
 		Vector3D m_localRotation;
-		AQuaternion m_orientation;
 		Matrix4x4 m_localMatrix;
 
 		Vector3D m_worldPosition;

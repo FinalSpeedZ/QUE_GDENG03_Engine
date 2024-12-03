@@ -6,6 +6,7 @@ namespace GDEngine
 	{
 		m_name = gameObject->getName();
 		m_localPosition = gameObject->getLocalPosition();
+		m_localRotation = gameObject->getLocalRotation();
 		m_localScale = gameObject->getLocalScale();
 		m_orientation = gameObject->getOrientation();
 		m_localMatrix.setMatrix(gameObject->getLocalMatrix());
@@ -23,6 +24,11 @@ namespace GDEngine
 	Vector3D EditorAction::getStoredPosition()
 	{
 		return m_localPosition;
+	}
+
+	Vector3D EditorAction::getStoredRotation()
+	{
+		return m_localRotation;
 	}
 
 	Vector3D EditorAction::getStoredScale()

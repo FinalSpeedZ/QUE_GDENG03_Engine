@@ -24,7 +24,6 @@ namespace GDEngine
 		this->m_localPosition = Vector3D::zero();
 		this->m_localRotation = Vector3D::zero();
 		this->m_localScale = Vector3D::one();
-		this->m_orientation = AQuaternion(0, 0, 0, 1);
 		this->m_physics = false;
 
 		this->m_worldPosition = this->m_localPosition;
@@ -50,7 +49,6 @@ namespace GDEngine
 		this->m_localPosition = Vector3D::zero();
 		this->m_localRotation = Vector3D::zero();
 		this->m_localScale = Vector3D::one();
-		this->m_orientation = AQuaternion(0, 0, 0, 1);
 		this->m_physics = false;
 
 		this->m_worldPosition = this->m_localPosition;
@@ -194,7 +192,6 @@ namespace GDEngine
 		}
 
 		reactphysics3d::Quaternion quat = reactphysics3d::Quaternion::fromEulerAngles(m_worldRotation.x, m_worldRotation.y, m_worldRotation.z);
-		this->m_orientation = Vector4D(quat.x, quat.y, quat.z, quat.w);
 
 		for (AGameObject* child : m_children)
 		{
@@ -219,7 +216,6 @@ namespace GDEngine
 		}
 
 		reactphysics3d::Quaternion quat = reactphysics3d::Quaternion::fromEulerAngles(m_worldRotation.x, m_worldRotation.y, m_worldRotation.z);
-		this->m_orientation = Vector4D(quat.x, quat.y, quat.z, quat.w);
 
 		for (AGameObject* child : m_children)
 		{
@@ -232,12 +228,11 @@ namespace GDEngine
 
 	void AGameObject::setOrientation(AQuaternion orientation)
 	{
-		this->m_orientation = orientation;
 	}
 
 	Vector4D AGameObject::getOrientation()
 	{
-		return m_orientation;
+		return Vector4D();
 	}
 
 	Vector3D AGameObject::getLocalRotation()
@@ -298,19 +293,19 @@ namespace GDEngine
 
 
 			// Scale * Rotation
-			/*rotation.setIdentity();
-			rotation.setRotationZ(this->m_localRotation.z);
-
-			temp.setIdentity();
-			temp.setRotationY(this->m_localRotation.y);
-			rotation *= temp;
-
-			temp.setIdentity();
-			temp.setRotationX(this->m_localRotation.x);
-			rotation *= temp;*/
-
 			rotationMatrix.setIdentity();
-			rotationMatrix.setRotation(this->m_orientation);
+			rotationMatrix.setRotationZ(this->m_worldRotation.z);
+
+			temp.setIdentity();
+			temp.setRotationY(this->m_worldRotation.y);
+			rotationMatrix *= temp;
+
+			temp.setIdentity();
+			temp.setRotationX(this->m_worldRotation.x);
+			rotationMatrix *= temp;
+
+			//rotationMatrix.setIdentity();
+			//rotationMatrix.setRotation(this->m_orientation);
 
 			translationMatrix.setIdentity();
 			translationMatrix.setTranslation(this->m_worldPosition);
@@ -403,7 +398,7 @@ namespace GDEngine
 		Matrix4x4 transform, scale, translate, temp;
 
 		this->m_localPosition = position;
-		this->m_orientation = orientation;
+		//this->m_orientation = orientation;
 
 		scale.setIdentity();
 		scale.setScale(this->m_localScale);
@@ -435,17 +430,17 @@ namespace GDEngine
 
 		// Scale * Rotation
 		rotation.setIdentity();
-		/*rotation.setRotationZ(this->m_orientation.z);
+		rotation.setRotationZ(this->m_localRotation.z);
 
 		temp.setIdentity();
-		temp.setRotationY(this->m_orientation.y);
+		temp.setRotationY(this->m_localRotation.y);
 		rotation *= temp;
 
 		temp.setIdentity();
-		temp.setRotationX(this->m_orientation.x);
-		rotation *= temp;*/
+		temp.setRotationX(this->m_localRotation.x);
+		rotation *= temp;
 
-		rotation.setRotation(this->m_orientation);
+		//rotation.setRotation(this->m_orientation);
 
 		transform *= rotation;
 		// Scale * Rotation * Translation
@@ -591,7 +586,7 @@ namespace GDEngine
 		{
 			m_localPosition = m_lastEditState->getStoredPosition();
 			m_localScale = m_lastEditState->getStoredScale();
-			m_orientation = m_lastEditState->getStoredOrientation();
+			m_localRotation = m_lastEditState->getStoredRotation();
 			m_localMatrix = m_lastEditState->getStoredMatrix();
 
 			ComponentList physicsList = getComponentsOfType(AComponent::Physics);

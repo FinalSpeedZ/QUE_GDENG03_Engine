@@ -18,11 +18,6 @@ namespace GDEngine
 		GameObjectList m_gameObjectList;
 		AGameObject* m_selectedObject;
 
-		std::vector<AGameObject*> m_selectedObjects;
-		std::vector<AGameObject*> m_viewables;
-
-		bool m_multiselectMode;
-
 	public:
 		void createCube();
 		void createPhysicsCube();
@@ -51,19 +46,12 @@ namespace GDEngine
 		void setSelectedObject(GUID guid);
 		void setSelectedObject(AGameObject* gameObject);
 		AGameObject* getSelectedObject();
-		std::vector<AGameObject*> getSelectedObjects();
-		bool isSelected(AGameObject* obj);
-		bool isViewable(AGameObject* obj);
 
 		void saveEditStates();
 		void restoreEditStates();
 		void applyAction(EditorAction* action);
 
 		void setPhysics(bool physics);
-		bool getMultiselectMode();
-		void setMultiselectMode(bool multiselect);
-
-		void setViewableObjects(std::vector<AGameObject*> viewables);
 
 		AGameObject* createObjectFromFile(std::string objectGuid, std::string objectName, std::string classType, Vector3D position, Vector3D rotation, Vector3D scale);
 

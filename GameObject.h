@@ -85,7 +85,7 @@ namespace GDEngine {
 		void attachComponent(AComponent* component);
 		void detachComponent(AComponent* component);
 
-		
+
 		AComponent* findComponentByName(std::string name);
 		AComponent* findComponentOfType(AComponent::ComponentType type, std::string name);
 		ComponentList getComponentsOfType(AComponent::ComponentType type);

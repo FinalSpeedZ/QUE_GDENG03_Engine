@@ -603,7 +603,7 @@ namespace GDEngine
 
 	void AGameObject::setParent(AGameObject* parent)
 	{
-		if (parent == this) 
+		if (parent == this)
 		{
 			return;
 		}
@@ -648,8 +648,8 @@ namespace GDEngine
 
 		if (std::find(m_children.begin(), m_children.end(), child) == m_children.end())
 		{
-			m_children.push_back(child);  
-			if (child->getParent() != this)  
+			m_children.push_back(child);
+			if (child->getParent() != this)
 			{
 				child->setParent(this);
 			}
@@ -660,9 +660,9 @@ namespace GDEngine
 
 	void AGameObject::removeChild(AGameObject* child)
 	{
-		if (child == nullptr) 
+		if (child == nullptr)
 		{
-			return; 
+			return;
 		}
 
 		auto it = std::find(m_children.begin(), m_children.end(), child);

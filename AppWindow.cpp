@@ -80,8 +80,8 @@ void AppWindow::onUpdate()
 			backend->endFrameStep();
 		}
 	}
-	
-	
+
+
 
 	UIManager::getInstance()->draw();
 
@@ -133,35 +133,25 @@ void AppWindow::onKillFocus()
 
 void AppWindow::onKeyDown(int key)
 {
-	if (key == VK_SHIFT)
-	{
-		// Multiple Selection 
-		GameObjectManager::getInstance()->setMultiselectMode(true);
-	}
+
 }
 
 void AppWindow::onKeyUp(int key)
 {
-	if (key == 90) 
+	if (key == 90)
 	{
-		if (ActionHistory::getInstance()->hasRemainingUndoActions()) 
+		if (ActionHistory::getInstance()->hasRemainingUndoActions())
 		{
 			GameObjectManager::getInstance()->applyAction(ActionHistory::getInstance()->undoAction());
 		}
 	}
 
-	if (key == 89) 
+	if (key == 89)
 	{
 		if (ActionHistory::getInstance()->hasRemainingRedoActions())
 		{
 			GameObjectManager::getInstance()->applyAction(ActionHistory::getInstance()->redoAction());
 		}
-	}
-
-	if (key == VK_SHIFT)
-	{
-		// Multiple Selection 
-		GameObjectManager::getInstance()->setMultiselectMode(false);
 	}
 }
 
@@ -201,7 +191,7 @@ void AppWindow::initializeEngine()
 		BaseComponentSystem::initialize();
 		CameraManager::initialize();
 		UIManager::initialize(m_windowHandle);
-		
+
 	}
 	catch (...)
 	{
@@ -286,7 +276,7 @@ void AppWindow::initialize()
 	if (P_SHARED_INSTANCE)
 		GDEngine::Logger::throw_exception("App Window already created");
 	P_SHARED_INSTANCE = new AppWindow();
-	
+
 }
 
 void AppWindow::destroy()

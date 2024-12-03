@@ -41,7 +41,7 @@ namespace GDEngine {
 	{
 		RenderSystem* renderSystem = GraphicsEngine::getInstance()->getRenderSystem();
 
-		renderSystem->getImmediateDeviceContext()->clearRenderTargetColor(this->renderTexture, 0.83, 0.58, 0.895, 1);
+		renderSystem->getImmediateDeviceContext()->clearRenderTargetColor(this->renderTexture, 0.45882, 0.03137, 0.07059, 1);
 
 		// Push Style so Window has no padding
 		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));

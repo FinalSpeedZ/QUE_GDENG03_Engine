@@ -78,26 +78,10 @@ void SceneCamera::setControllable(bool controllable)
 
 void SceneCamera::onKeyDown(int key)
 {
-	if (key == VK_SHIFT) 
-	{
-		this->speed = 20.0f;
-
-		// Multiple Selection 
-		GameObjectManager::getInstance()->setMultiselectMode(true);
-		Logger::log("Scene Camera Shift Key Down, Speed : " + std::to_string(speed));
-	}
 }
 
 void SceneCamera::onKeyUp(int key)
 {
-	if (key == VK_SHIFT)
-	{
-		this->speed = 1.0f;
-
-		// Multiple Selection 
-		GameObjectManager::getInstance()->setMultiselectMode(false);
-		Logger::log("Scene Camera Shift Key Up, Speed : " + std::to_string(speed));
-	}
 }
 
 void SceneCamera::onMouseMove(const Vector2D& deltaMousePosition)

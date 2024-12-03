@@ -50,12 +50,6 @@ void GameObjectManager::createPhysicsPlane()
 	plane->attachComponent(new PhysicsComponent("PhysicsComponent " + plane->getName(), plane));
 	PhysicsComponent* component = (PhysicsComponent*)plane->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent " + plane->getName());
 	component->getRigidBody()->setType(BodyType::KINEMATIC);
-
-	/*Plane* plane = new Plane("Physics Plane");
-	plane->attachComponent(new PhysicsComponent("PhysicsComponent", plane));
-	PhysicsComponent* component = (PhysicsComponent*)plane->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent");
-	component->getRigidBody()->setType(BodyType::KINEMATIC);
-	this->addObject(plane);*/
 }
 
 void GameObjectManager::createTexturedCube()
@@ -230,6 +224,7 @@ void GameObjectManager::deleteAllObjects()
 	{
 		for (AGameObject* gameObject : this->m_gameObjectList)
 			gameObject->onDestroy();
+
 		this->m_gameObjectList.clear();
 		this->m_gameObjectTable.clear();
 	}

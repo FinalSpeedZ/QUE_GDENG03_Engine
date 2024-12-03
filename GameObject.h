@@ -16,7 +16,9 @@
 
 namespace GDEngine
 {
-	enum GameObjectType : int;
+	enum class GameObjectType : int
+	{
+	};
 }
 
 namespace GDEngine {

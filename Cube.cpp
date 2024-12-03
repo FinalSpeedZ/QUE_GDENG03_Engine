@@ -286,12 +286,12 @@ void Cube::draw(int height, int width)
 	renderSystem->getImmediateDeviceContext()->setVertexBuffer(m_vertexBuffer);
 	renderSystem->getImmediateDeviceContext()->setIndexBuffer(m_indexBuffer);
 
-	renderSystem->getImmediateDeviceContext()->drawIndexedTriangleList(m_indexBuffer->getSizeIndexList(),0,0);
+	renderSystem->getImmediateDeviceContext()->drawIndexedTriangleList(m_indexBuffer->getSizeIndexList(), 0, 0);
 }
 
 void Cube::onDestroy()
 {
-	
+
 }
 
 void Cube::setSpeed(float speed)

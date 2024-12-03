@@ -262,11 +262,7 @@ namespace GDEngine
 
 	std::string AGameObject::getGuidString()
 	{
-		/*RPC_CSTR rpcString = NULL;
 
-		UuidToStringA(&m_guid, &rpcString);
-		std::string guidString = (char*)rpcString;
-		::RpcStringFreeA(&rpcString);*/
 		return StringUtility::GuidToString(m_guid);
 	}
 

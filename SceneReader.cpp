@@ -46,6 +46,7 @@ namespace GDEngine
 		Vector3D scale;
 		while (std::getline(sceneFile, readLine))
 		{
+
 			if (index == 0)
 			{
 				objectGuid = readLine;
@@ -71,8 +72,6 @@ namespace GDEngine
 				std::vector<std::string> stringSplit = StringUtility::split(readLine, ' ');
 				scale = Vector3D(std::stof(stringSplit[1]), std::stof(stringSplit[2]), std::stof(stringSplit[3]));
 				index = 0;
-
-				//GameObjectManager::getInstance()->createObjectFromFile(objectGuid, objectName, position, rotation, scale);
 			}
 		}
 	}
@@ -96,10 +95,14 @@ namespace GDEngine
 			guidList.push_back(id);
 		}
 
+		GameObjectManager::getInstance()->deleteAllObjects();
+
 		for (std::string guid : guidList)
 		{
 			std::string name = scene[guid]["name"].asString();
 			std::string type = scene[guid]["type"].asString();
+
+			Logger::log(type);
 
 			Vector3D position;
 			position.x = scene[guid]["position"]["x"].asFloat();

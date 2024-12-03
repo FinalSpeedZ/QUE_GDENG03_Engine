@@ -9,7 +9,6 @@ namespace GDEngine {
 		~SceneWriter();
 
 		void writeToFile();
-		void writeToJson();
 
 	private:
 		std::string m_directory;

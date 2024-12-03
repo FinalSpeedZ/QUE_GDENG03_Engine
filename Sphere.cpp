@@ -15,6 +15,8 @@ using namespace GDEngine;
 
 Sphere::Sphere(std::string name) : AGameObject(name)
 {
+	this->m_type = GameObjectType::Sphere;
+
 	// Initialize Default Values
 	this->rings = 32;
 	this->sectors = 32;
@@ -91,6 +93,9 @@ Sphere::Sphere(std::string name) : AGameObject(name)
 
 GDEngine::Sphere::Sphere(std::string guid, std::string name) : AGameObject(guid, name)
 {
+
+	this->m_type = GameObjectType::Sphere;
+
 	// Initialize Default Values
 	this->rings = 32;
 	this->sectors = 32;

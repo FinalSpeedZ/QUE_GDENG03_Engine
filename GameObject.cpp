@@ -262,13 +262,23 @@ namespace GDEngine
 
 	std::string AGameObject::getGuidString()
 	{
-
 		return StringUtility::GuidToString(m_guid);
 	}
 
 	std::string AGameObject::getType()
 	{
-		return typeid(*this).raw_name();
+		switch (m_type)
+		{
+			case GameObjectType::Cube: return "Cube";
+			case GameObjectType::Plane: return "Plane";
+			case GameObjectType::Sphere: return "Sphere";
+			case GameObjectType::Cylinder: return "Cylinder";
+			case GameObjectType::Capsule: return "Capsule";
+			case GameObjectType::Teapot: return "Teapot";
+			case GameObjectType::Bunny: return "Bunny";
+			case GameObjectType::Armadillo: return "Armadillo";
+			default: return "Unknown";
+		}
 	}
 
 	void AGameObject::updateLocalMatrix()

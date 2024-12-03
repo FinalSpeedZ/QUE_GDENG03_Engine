@@ -1,5 +1,4 @@
 #include "SceneWriter.h"
-
 #include <json/json.h>
 #include <fstream>
 
@@ -13,143 +12,103 @@
 
 namespace GDEngine
 {
-	SceneWriter::SceneWriter(std::string directory)
-	{
-		m_directory = directory;
-	}
+    SceneWriter::SceneWriter(std::string directory)
+    {
+        m_directory = directory;
+    }
 
-	SceneWriter::~SceneWriter()
-	{
-	}
+    SceneWriter::~SceneWriter()
+    {
+    }
 
-	void SceneWriter::writeToFile()
-	{
-		std::string fileDirectory = m_directory + ".iet";
+    void SceneWriter::writeToFile()
+    {
+        std::string fileDirectory = m_directory + ".level";
+        if (m_directory.find(".level") != std::string::npos)
+        {
+            fileDirectory = m_directory; // Use directory as file name if it contains .level
+        }
 
-		if (m_directory.find(".iet") != std::string::npos)
-		{
-			
-		}
+        std::ofstream sceneFile(fileDirectory);
+        if (!sceneFile.is_open())
+        {
+            Logger::log("Failed to open file for writing: " + fileDirectory);
+            return;
+        }
 
-		std::fstream sceneFile;
-		sceneFile.open(fileDirectory, std::ios::out);
+        Logger::log("Writing scene to file: " + fileDirectory);
 
-		Logger::log("Selected File Name : " + fileDirectory);
+        GameObjectManager::GameObjectList objectList = GameObjectManager::getInstance()->getAllObjects();
 
-		GameObjectManager::GameObjectList objectList = GameObjectManager::getInstance()->getAllObjects();
+        Json::Value root;  // Root JSON object
 
-		for (AGameObject* gameObject : objectList)
-		{
-			sceneFile <<  gameObject->getGuidString() << std::endl;
-			sceneFile << "Name: " << gameObject->getName() << std::endl;
+        for (AGameObject* gameObject : objectList)
+        {
+            Json::Value objectJson;
 
-			Vector3D position = gameObject->getLocalPosition();
-			Vector3D rotation = gameObject->getLocalRotation();
-			Vector3D scale = gameObject->getLocalScale();
+            // ObjectType and ObjectName
+            objectJson["ObjectType"] = gameObject->getType();
+            objectJson["ObjectName"] = gameObject->getName();
 
-			sceneFile << "Position: " << position.x << " " << position.y << " " << position.z << std::endl;
-			sceneFile << "Rotation: " << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
-			sceneFile << "Scale: " << scale.x << " " << scale.y << " " << scale.z << std::endl;
-		}
-		sceneFile.close();
-	}
+            // Position, rotation, and scale
+            Vector3D position = gameObject->getLocalPosition();
+            Vector3D rotation = gameObject->getLocalRotation();
+            Vector3D scale = gameObject->getLocalScale();
 
-	void SceneWriter::writeToJson()
-	{
-		std::string fileDirectory = m_directory + ".level";
+            objectJson["Position"] = Json::Value(Json::arrayValue);
+            objectJson["Position"].append(position.x);
+            objectJson["Position"].append(position.y);
+            objectJson["Position"].append(position.z);
 
-		if (m_directory.find(".level") != std::string::npos)
-		{
+            objectJson["Rotation"] = Json::Value(Json::arrayValue);
+            objectJson["Rotation"].append(rotation.x);
+            objectJson["Rotation"].append(rotation.y);
+            objectJson["Rotation"].append(rotation.z);
 
-		}
+            objectJson["Scale"] = Json::Value(Json::arrayValue);
+            objectJson["Scale"].append(scale.x);
+            objectJson["Scale"].append(scale.y);
+            objectJson["Scale"].append(scale.z);
 
-		std::fstream sceneFile;
-		sceneFile.open(fileDirectory, std::ios::out);
+            // PhysicsComponent (if exists)
+            Json::Value physicsJson;
+            AGameObject::ComponentList physicsList = gameObject->getComponentsOfType(AComponent::ComponentType::Physics);
+            if (!physicsList.empty())
+            {
+                PhysicsComponent* physicsComponent = dynamic_cast<PhysicsComponent*>(physicsList[0]);
 
-		Logger::log("Selected File Name : " + fileDirectory);
+                if (physicsComponent)
+                {
+                    physicsJson["Mass"] = physicsComponent->getMass();
+                    physicsJson["Gravity"] = (physicsComponent->getUseGravity() ? "Yes" : "No");
+                    physicsJson["BodyType"] = static_cast<int>(physicsComponent->getBodyType());
+                    physicsJson["LinearDrag"] = physicsComponent->getLinearDrag();
+                    physicsJson["AngularDrag"] = physicsComponent->getAngularDrag();
 
-		Json::Value root;
+                    uint8_t constraints = physicsComponent->getConstraints();
+                    Json::Value positionConstraints = Json::arrayValue;
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionX)) positionConstraints.append("X");
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionY)) positionConstraints.append("Y");
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionZ)) positionConstraints.append("Z");
+                    physicsJson["PositionConstraints"] = positionConstraints;
 
-		GameObjectManager::GameObjectList objectList = GameObjectManager::getInstance()->getAllObjects();
+                    Json::Value angularConstraints = Json::arrayValue;
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationX)) angularConstraints.append("X");
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationY)) angularConstraints.append("Y");
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationZ)) angularConstraints.append("Z");
+                    physicsJson["AngularConstraints"] = angularConstraints;
+                }
+            }
 
-		for (AGameObject* gameObject : objectList)
-		{
-			std::string guid = gameObject->getGuidString();
+            objectJson["PhysicsComponent"] = physicsJson;
 
-			root[guid];
-			root[guid]["name"] = gameObject->getName();
-			root[guid]["type"] = gameObject->getType();
+            root.append(objectJson); // Add this object to the root JSON array
+        }
 
-			Vector3D position = gameObject->getLocalPosition();
-			Vector3D rotation = gameObject->getLocalRotation();
-			Vector3D scale = gameObject->getLocalScale();
+        // Writing the JSON object to file
+        sceneFile << root.toStyledString();
 
-			root[guid]["position"]["x"] = position.x;
-			root[guid]["position"]["y"] = position.y;
-			root[guid]["position"]["z"] = position.z;
+        sceneFile.close();
+    }
 
-			root[guid]["rotation"]["x"] = rotation.x;
-			root[guid]["rotation"]["y"] = rotation.y;
-			root[guid]["rotation"]["z"] = rotation.z;
-
-			root[guid]["scale"]["x"] = scale.x;
-			root[guid]["scale"]["y"] = scale.y;
-			root[guid]["scale"]["z"] = scale.z;
-
-			AGameObject::ComponentList physicsList = gameObject->getComponentsOfType(AComponent::ComponentType::Physics);
-			for (AComponent* component : physicsList)
-			{
-				PhysicsComponent* physicsComponent = dynamic_cast<PhysicsComponent*>(component);
-				std::string componentGuid = component->getGuidString();
-
-				root[guid]["components"][componentGuid];
-				root[guid]["components"][componentGuid]["name"] = physicsComponent->getName();
-				root[guid]["components"][componentGuid]["class"] = physicsComponent->getClassType();
-				root[guid]["components"][componentGuid]["type"] = physicsComponent->getType();
-
-				root[guid]["components"][componentGuid]["mass"] = physicsComponent->getMass();
-				root[guid]["components"][componentGuid]["gravity"] = physicsComponent->getUseGravity();
-				root[guid]["components"][componentGuid]["body_type"] = static_cast<int>(physicsComponent->getBodyType());
-				root[guid]["components"][componentGuid]["linear_drag"] = physicsComponent->getLinearDrag();
-				root[guid]["components"][componentGuid]["angular_drag"] = physicsComponent->getAngularDrag();
-				root[guid]["components"][componentGuid]["constraints"] = physicsComponent->getConstraints();
-			}
-			AGameObject::ComponentList texList = gameObject->getComponentsOfType(AComponent::ComponentType::Tex);
-			for (AComponent* component : texList)
-			{
-				std::string componentGuid = component->getGuidString();
-				root[guid]["components"][componentGuid];
-				root[guid]["components"][componentGuid]["name"] = component->getName();
-				root[guid]["components"][componentGuid]["class"] = component->getClassType();
-				root[guid]["components"][componentGuid]["type"] = component->getType();
-				if (component->getClassType() == typeid(TextureComponent).raw_name())
-				{
-					TextureComponent* textureComponent = dynamic_cast<TextureComponent*>(component);
-					root[guid]["components"][componentGuid]["texture_name"] = textureComponent->getTexName();
-				}
-			}
-
-			AGameObject::ComponentList rendererList = gameObject->getComponentsOfType(AComponent::ComponentType::Renderer);
-			for (AComponent* component : rendererList)
-			{
-				std::string componentGuid = component->getGuidString();
-				root[guid]["components"][componentGuid];
-				root[guid]["components"][componentGuid]["name"] = component->getName();
-				root[guid]["components"][componentGuid]["class"] = component->getClassType();
-				root[guid]["components"][componentGuid]["type"] = component->getType();
-
-				if (component->getClassType() == typeid(MeshRenderer).raw_name())
-				{
-					MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component);
-					root[guid]["components"][componentGuid]["file_path"] = meshRenderer->getMesh()->getFilePath();
-				}
-			}
-		}
-
-		std::cout << root << "\n";
-
-		Json::StyledWriter styledWriter;
-		sceneFile << styledWriter.write(root);
-		sceneFile.close();
-	}
 }

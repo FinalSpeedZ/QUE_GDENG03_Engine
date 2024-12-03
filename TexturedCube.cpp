@@ -8,6 +8,8 @@
 namespace GDEngine {
 	TexturedCube::TexturedCube(std::string name) : Cube(name)
 	{
+		this->m_type = GameObjectType::Cube;
+
 		Vector3D positionList[] =
 		{
 			Vector3D(-0.5f,-0.5f,-0.5f),

@@ -299,84 +299,84 @@ void GameObjectManager::setPhysics(bool physics)
 	}
 }
 
-AGameObject* GameObjectManager::createObjectFromFile(std::string objectGuid, std::string objectName, std::string classType, Vector3D position, Vector3D rotation,
+AGameObject* GameObjectManager::createObjectFromFile(std::string objectName, std::string classType, Vector3D position, Vector3D rotation,
 	Vector3D scale)
 {
-	if (classType == typeid(Cube).raw_name())
+	if (classType == "Cube")
 	{
-		Cube* cube = new Cube(objectGuid, objectName);
+		Cube* cube = new Cube(objectName);
 		cube->setPosition(position);
 		cube->setRotation(rotation);
 		cube->setScale(scale);
 		this->addObject(cube);
 		return cube;
 	}
-	if (classType == typeid(Cylinder).raw_name())
+	if (classType == "Cylinder")
 	{
-		Cylinder* cylinder = new Cylinder(objectGuid, objectName);
+		Cylinder* cylinder = new Cylinder(objectName);
 		cylinder->setPosition(position);
 		cylinder->setRotation(rotation);
 		cylinder->setScale(scale);
 		this->addObject(cylinder);
 		return cylinder;
 	}
-	if (classType == typeid(Capsule).raw_name())
+	if (classType == "Capsule")
 	{
-		Capsule* capsule = new Capsule(objectGuid, objectName);
+		Capsule* capsule = new Capsule(objectName);
 		capsule->setPosition(position);
 		capsule->setRotation(rotation);
 		capsule->setScale(scale);
 		this->addObject(capsule);
 		return capsule;
 	}
-	if (classType == typeid(Sphere).raw_name())
+	if (classType == "Sphere")
 	{
-		Sphere* sphere = new Sphere(objectGuid, objectName);
+		Sphere* sphere = new Sphere(objectName);
 		sphere->setPosition(position);
 		sphere->setRotation(rotation);
 		sphere->setScale(scale);
 		this->addObject(sphere);
 		return sphere;
 	}
-	if (classType == typeid(Plane).raw_name())
+	if (classType == "Plane")
 	{
-		Plane* plane = new Plane(objectGuid, objectName);
+		Plane* plane = new Plane( objectName);
 		plane->setPosition(position);
 		plane->setRotation(rotation);
 		plane->setScale(scale);
 		this->addObject(plane);
 		return plane;
 	}
-	if (classType == typeid(Quad).raw_name())
+	if (classType == "Quad")
 	{
-		Quad* quad = new Quad(objectGuid, objectName);
+		Quad* quad = new Quad(objectName);
 		quad->setPosition(position);
 		quad->setRotation(rotation);
 		quad->setScale(scale);
 		this->addObject(quad);
 		return quad;
 	}
-	if (classType == typeid(Teapot).raw_name())
+	if (classType == "Teapot")
 	{
-		Teapot* teapot = new Teapot(objectGuid, objectName);
+		Teapot* teapot = new Teapot(objectName);
 		teapot->setPosition(position);
 		teapot->setRotation(rotation);
 		teapot->setScale(scale);
 		this->addObject(teapot);
 		return teapot;
 	}
-	if (classType == typeid(Bunny).raw_name())
+	if (classType == "Bunny")
 	{
-		Bunny* bunny = new Bunny(objectGuid, objectName);
+		Bunny* bunny = new Bunny( objectName);
 		bunny->setPosition(position);
 		bunny->setRotation(rotation);
 		bunny->setScale(scale);
 		this->addObject(bunny);
 		return bunny;
 	}
-	if (classType == typeid(Armadillo).raw_name())
+	if (classType == "Armadillo")
 	{
-		Armadillo* armadillo = new Armadillo(objectGuid, objectName);
+		Armadillo* armadillo = new Armadillo(objectName);
 		armadillo->setPosition(position);
 		armadillo->setRotation(rotation);
 		armadillo->setScale(scale);

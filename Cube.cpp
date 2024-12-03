@@ -19,15 +19,15 @@ Cube::Cube(std::string name) : AGameObject(name)
 	this->texture = TextureLibrary::getInstance()->getTexture(TextureName::DEFAULT);
 	Vector3D positionList[] =
 	{
-		Vector3D(-1.0f,-1.0f,-1.0f),
-		Vector3D(-1.0f,1.0f, -1.0f),
-		Vector3D(1.0f, 1.0f, -1.0f),
-		Vector3D(1.0f, -1.0f,-1.0f),
+		Vector3D(-0.5,-0.5,-0.5),
+		Vector3D(-0.5,0.5, -0.5),
+		Vector3D(0.5, 0.5, -0.5),
+		Vector3D(0.5, -0.5,-0.5),
 
-		Vector3D(1.0f, -1.0f,1.0f),
-		Vector3D(1.0f, 1.0f, 1.0f),
-		Vector3D(-1.0f,1.0f, 1.0f),
-		Vector3D(-1.0f,-1.0f,1.0f)
+		Vector3D(0.5, -0.5,0.5),
+		Vector3D(0.5, 0.5, 0.5),
+		Vector3D(-0.5,0.5, 0.5),
+		Vector3D(-0.5,-0.5,0.5)
 	};
 
 	Vector2D texCoordList[] =
@@ -112,21 +112,25 @@ Cube::Cube(std::string name) : AGameObject(name)
 
 	speed = 1.0f;
 	deltaRotation = 0.0f;
+	this->m_type = GameObjectType::Cube;
+
 }
 
 Cube::Cube(std::string guid, std::string name) : AGameObject(guid, name)
 {
+	this->m_type = GameObjectType::Cube;
+	this->texture = TextureLibrary::getInstance()->getTexture(TextureName::DEFAULT);
 	Vector3D positionList[] =
 	{
-		Vector3D(-1.0f,-1.0f,-1.0f),
-		Vector3D(-1.0f,1.0f, -1.0f),
-		Vector3D(1.0f, 1.0f, -1.0f),
-		Vector3D(1.0f, -1.0f,-1.0f),
+		Vector3D(-0.5,-0.5,-0.5),
+		Vector3D(-0.5,0.5, -0.5),
+		Vector3D(0.5, 0.5, -0.5),
+		Vector3D(0.5, -0.5,-0.5),
 
-		Vector3D(1.0f, -1.0f,1.0f),
-		Vector3D(1.0f, 1.0f, 1.0f),
-		Vector3D(-1.0f,1.0f, 1.0f),
-		Vector3D(-1.0f,-1.0f,1.0f)
+		Vector3D(0.5, -0.5,0.5),
+		Vector3D(0.5, 0.5, 0.5),
+		Vector3D(-0.5,0.5, 0.5),
+		Vector3D(-0.5,-0.5,0.5)
 	};
 
 	Vector2D texCoordList[] =
@@ -308,23 +312,23 @@ void GDEngine::Cube::toggleTexture()
 	{
 		Vector3D positionList[] =
 		{
-			Vector3D(-1.0f,-1.0f,-1.0f),
-			Vector3D(-1.0f, 1.0f, -1.0f),
-			Vector3D(1.0f, 1.0f, -1.0f),
-			Vector3D(1.0f, -1.0f,-1.0f),
+			Vector3D(-0.5,-0.5,-0.5),
+			Vector3D(-0.5,0.5, -0.5),
+			Vector3D(0.5, 0.5, -0.5),
+			Vector3D(0.5, -0.5,-0.5),
 
-			Vector3D(1.0f, -1.0f,1.0f),
-			Vector3D(1.0f, 1.0f, 1.0f),
-			Vector3D(-1.0f, 1.0f, 1.0f),
-			Vector3D(-1.0f,-1.0f,1.0f)
+			Vector3D(0.5, -0.5,0.5),
+			Vector3D(0.5, 0.5, 0.5),
+			Vector3D(-0.5,0.5, 0.5),
+			Vector3D(-0.5,-0.5,0.5)
 		};
 
 		Vector2D texCoordList[] =
 		{
 			Vector2D(0.0f, 0.0f),
-			Vector2D(0.0f, 1.0f),
-			Vector2D(1.0f, 0.0f),
-			Vector2D(1.0f, 1.0f),
+			Vector2D(0.0f, 2.0f),
+			Vector2D(2.0f, 0.0f),
+			Vector2D(2.0f, 2.0f),
 		};
 
 		texVertex vertexList[] =

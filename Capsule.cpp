@@ -15,6 +15,9 @@ using namespace GDEngine;
 
 Capsule::Capsule(std::string name) : AGameObject(name)
 {
+
+	this->m_type = GameObjectType::Capsule;
+
 	// Initialize Default Values
 	this->stacks = 32;
 	this->slices = 32;
@@ -172,6 +175,8 @@ Capsule::Capsule(std::string name) : AGameObject(name)
 
 GDEngine::Capsule::Capsule(std::string guid, std::string name) : AGameObject(guid, name)
 {
+	this->m_type = GameObjectType::Capsule;
+
 	// Initialize Default Values
 	this->stacks = 32;
 	this->slices = 32;

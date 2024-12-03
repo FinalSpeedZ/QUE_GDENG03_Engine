@@ -15,6 +15,9 @@ using namespace GDEngine;
 
 Cylinder::Cylinder(std::string name) : AGameObject(name)
 {
+
+	this->m_type = GameObjectType::Cylinder;
+
 	// Initialize Default Values
 	this->height = 2.0f;
 	this->slices = 32.0f;
@@ -137,6 +140,8 @@ Cylinder::Cylinder(std::string name) : AGameObject(name)
 
 GDEngine::Cylinder::Cylinder(std::string guid, std::string name) : AGameObject(guid, name)
 {
+	this->m_type = GameObjectType::Cylinder;
+
 	// Initialize Default Values
 	this->height = 2.0f;
 	this->slices = 32.0f;

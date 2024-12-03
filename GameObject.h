@@ -18,6 +18,15 @@ namespace GDEngine
 {
 	enum class GameObjectType : int
 	{
+		Cube = 0,
+		Plane,
+		Sphere,
+		Cylinder,
+		Capsule,
+
+		Teapot,
+		Bunny,
+		Armadillo
 	};
 }
 

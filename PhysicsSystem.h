@@ -29,7 +29,7 @@ namespace GDEngine
 		~PhysicsSystem();
 
 	public:
-		void createComponentFromFile(std::string guid, std::string name, AGameObject* gameObject,
+		void createComponentFromFile(std::string name, AGameObject* gameObject,
 			AComponent::ComponentType type, float mass, bool gravity, BodyType bodyType, float linearDrag, float angularDrag, uint8_t constraints);
 
 		void registerComponent(PhysicsComponent* component);

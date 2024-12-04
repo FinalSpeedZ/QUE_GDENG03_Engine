@@ -1,39 +1,11 @@
 using UnityEditor;
 using UnityEngine;
-
-[System.Serializable]
-public class PhysicsComponent
-{
-    public string[] AngularConstraints = null;
-    public float AngularDrag = 0f;
-    public int BodyType = 0;
-    public string Gravity = "No";
-    public float LinearDrag = 0f;
-    public float Mass = 0f;
-    public string[] PositionConstraints = null;
-    public string Physics = "No"; // Check if physics is enabled
-}
-
-[System.Serializable]
-public class GameObjectData
-{
-    public string ObjectName;
-    public string ObjectType;
-    public PhysicsComponent PhysicsComponent;
-    public float[] Position;
-    public float[] Rotation;
-    public float[] Scale;
-}
-
-[System.Serializable]
-public class GameObjectDataArray
-{
-    public GameObjectData[] Objects;
-}
+using System.IO;
+using System.Collections.Generic;
 
 public class LevelLoader : EditorWindow
 {
-    private TextAsset levelFile;  // File reference for level JSON
+    private string filePath;
 
     [MenuItem("Tools/Level Loader")]
     public static void ShowWindow()
@@ -41,28 +13,22 @@ public class LevelLoader : EditorWindow
         GetWindow<LevelLoader>("Level Loader");
     }
 
-    private string filePath; // Store the selected file path
-
     private void OnGUI()
     {
         GUILayout.Label("Load Level File", EditorStyles.boldLabel);
 
-        // Display the current file path
         EditorGUILayout.LabelField("Selected File:", filePath ?? "No file selected");
 
-        // Button to open file browser
         if (GUILayout.Button("Browse File"))
         {
             filePath = EditorUtility.OpenFilePanel("Select Level File", "", "level");
         }
 
-        // Load level if a valid file is selected
         if (!string.IsNullOrEmpty(filePath))
         {
             if (GUILayout.Button("Load Level"))
             {
-                TextAsset levelFile = new TextAsset(System.IO.File.ReadAllText(filePath));
-                LoadLevel(levelFile);
+                LoadLevel(filePath);
             }
         }
         else
@@ -71,22 +37,19 @@ public class LevelLoader : EditorWindow
         }
     }
 
-
-    private void LoadLevel(TextAsset file)
+    private void LoadLevel(string path)
     {
-        if (file == null)
+        if (string.IsNullOrEmpty(path) || !File.Exists(path))
         {
-            Debug.LogError("No file selected!");
+            Debug.LogError("Invalid file path!");
             return;
         }
 
-        // Delete all existing GameObjects in the scene
         foreach (GameObject obj in Object.FindObjectsOfType<GameObject>())
         {
             DestroyImmediate(obj);
         }
 
-        // Add a main camera
         GameObject camera = new GameObject("Main Camera");
         Camera camComponent = camera.AddComponent<Camera>();
         camera.tag = "MainCamera";
@@ -94,58 +57,129 @@ public class LevelLoader : EditorWindow
         camera.transform.position = new Vector3(0, 5, -10);
         camera.transform.LookAt(Vector3.zero);
 
-        // Add a directional light
         GameObject light = new GameObject("Directional Light");
         Light lightComponent = light.AddComponent<Light>();
         lightComponent.type = LightType.Directional;
         light.transform.rotation = Quaternion.Euler(50, -30, 0);
 
-        // Deserialize the JSON directly into an array of GameObjectData objects
-        GameObjectDataArray gameObjectDataArray = JsonUtility.FromJson<GameObjectDataArray>(file.text);
+        string[] lines = File.ReadAllLines(path);
+        ParseLevelData(lines);
+    }
 
-        if (gameObjectDataArray == null || gameObjectDataArray.Objects == null)
-        {
-            Debug.LogError("Failed to parse JSON data!");
-            return;
-        }
+    private void ParseLevelData(string[] lines)
+    {
+        string objectName = "", objectType = "";
+        Vector3 position = Vector3.zero, rotation = Vector3.zero, scale = Vector3.one;
+        bool hasPhysics = false;
+        float mass = 0f, linearDrag = 0f, angularDrag = 0f;
+        bool useGravity = false;
+        int bodyType = 0;
+        List<string> positionConstraints = new List<string>();
+        List<string> angularConstraints = new List<string>();
 
-        // Create GameObjects from the deserialized data    
-        foreach (var data in gameObjectDataArray.Objects)
+        foreach (string line in lines)
         {
-            CreateGameObject(data);
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            // Parse each line
+            if (line.StartsWith("Object Name:"))
+            {
+                objectName = line.Substring(line.IndexOf(":") + 2);
+            }
+            else if (line.StartsWith("Object Type:"))
+            {
+                objectType = line.Substring(line.IndexOf(":") + 2);
+            }
+            else if (line.StartsWith("Position:"))
+            {
+                position = ParseVector3(line);
+            }
+            else if (line.StartsWith("Rotation:"))
+            {
+                rotation = ParseVector3(line);
+            }
+            else if (line.StartsWith("Scale:"))
+            {
+                scale = ParseVector3(line);
+            }
+            else if (line.StartsWith("Physics:"))
+            {
+                hasPhysics = line.Substring(line.IndexOf(":") + 2).Trim() == "Yes";
+            }
+            else if (line.StartsWith("Mass:"))
+            {
+                mass = float.Parse(line.Substring(line.IndexOf(":") + 2));
+            }
+            else if (line.StartsWith("Gravity:"))
+            {
+                useGravity = line.Substring(line.IndexOf(":") + 2).Trim() == "Yes";
+            }
+            else if (line.StartsWith("BodyType:"))
+            {
+                bodyType = int.Parse(line.Substring(line.IndexOf(":") + 2));
+            }
+            else if (line.StartsWith("LinearDrag:"))
+            {
+                linearDrag = float.Parse(line.Substring(line.IndexOf(":") + 2));
+            }
+            else if (line.StartsWith("AngularDrag:"))
+            {
+                angularDrag = float.Parse(line.Substring(line.IndexOf(":") + 2));
+            }
+            else if (line.StartsWith("Position Constraints:"))
+            {
+                positionConstraints = ParseConstraints(line);
+            }
+            else if (line.StartsWith("Angular Constraints:"))
+            {
+                angularConstraints = ParseConstraints(line);
+            }
+            else if (line.Trim() == "---")
+            {
+                // Create the GameObject
+                CreateGameObject(objectName, objectType, position, rotation, scale, hasPhysics, mass, linearDrag, angularDrag, useGravity, bodyType, positionConstraints, angularConstraints);
+
+                // Reset values for the next object
+                objectName = objectType = "";
+                position = rotation = Vector3.zero;
+                scale = Vector3.one;
+                hasPhysics = false;
+                mass = linearDrag = angularDrag = 0f;
+                useGravity = false;
+                bodyType = 0;
+                positionConstraints.Clear();
+                angularConstraints.Clear();
+            }
         }
     }
 
-    private void CreateGameObject(GameObjectData data)
+    private Vector3 ParseVector3(string line)
     {
-        if (data == null)
-        {
-            Debug.LogError("GameObjectData is null!");
-            return;
-        }
+        float x, y, z;
+        string vectorString = line.Substring(line.IndexOf("(") + 1).Trim(')');
+        string[] values = vectorString.Split(',');
+        x = float.Parse(values[0]);
+        y = float.Parse(values[1]);
+        z = float.Parse(values[2]);
+        return new Vector3(x, y, z);
+    }
 
-        if (string.IsNullOrEmpty(data.ObjectName))
+    private List<string> ParseConstraints(string line)
+    {
+        List<string> constraints = new List<string>();
+        string constraintsString = line.Substring(line.IndexOf(":") + 2).Trim();
+        if (!string.IsNullOrEmpty(constraintsString))
         {
-            Debug.LogError("GameObject name is missing!");
-            return;
+            constraints.AddRange(constraintsString.Split(new[] { ' ', ',' }, System.StringSplitOptions.RemoveEmptyEntries));
         }
+        return constraints;
+    }
 
-        if (string.IsNullOrEmpty(data.ObjectType))
-        {
-            Debug.LogError("GameObject type is missing!");
-            return;
-        }
-
-        if (data.Position == null || data.Rotation == null || data.Scale == null)
-        {
-            Debug.LogError($"Position, Rotation, or Scale data is missing for GameObject: {data.ObjectName}");
-            return;
-        }
-
+    private void CreateGameObject(string name, string type, Vector3 position, Vector3 rotation, Vector3 scale, bool hasPhysics, float mass, float linearDrag, float angularDrag, bool useGravity, int bodyType, List<string> positionConstraints, List<string> angularConstraints)
+    {
         GameObject obj;
 
-        // Map the "ObjectType" to a Unity primitive
-        switch (data.ObjectType.ToLower())
+        switch (type.ToLower())
         {
             case "cube":
                 obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -163,75 +197,57 @@ public class LevelLoader : EditorWindow
                 obj = GameObject.CreatePrimitive(PrimitiveType.Plane);
                 break;
             default:
-                Debug.LogWarning($"Unknown ObjectType: {data.ObjectType}");
+                Debug.LogWarning($"Unknown ObjectType: {type}");
                 return;
         }
 
-        // Set object properties (position, rotation, scale)
-        obj.name = data.ObjectName;
-        obj.transform.position = new Vector3(data.Position[0], data.Position[1], data.Position[2]);
-        obj.transform.eulerAngles = new Vector3(data.Rotation[0], data.Rotation[1], data.Rotation[2]);
-        obj.transform.localScale = new Vector3(data.Scale[0], data.Scale[1], data.Scale[2]);
+        obj.name = name;
+        obj.transform.position = position;
+        obj.transform.eulerAngles = rotation;
+        obj.transform.localScale = scale;
 
-        // Check if Physics is enabled and PhysicsComponent is provided
-        if (data.PhysicsComponent != null && data.PhysicsComponent.Physics == "Yes")
+        if (hasPhysics)
         {
-            // Debug log to verify that Physics is enabled
-            Debug.Log($"Physics enabled for GameObject: {data.ObjectName}");
-
-            // Add Rigidbody only if Physics is enabled
             Rigidbody rb = obj.AddComponent<Rigidbody>();
-            rb.mass = data.PhysicsComponent.Mass;
-            rb.drag = data.PhysicsComponent.LinearDrag;
-            rb.angularDrag = data.PhysicsComponent.AngularDrag;
-            rb.useGravity = data.PhysicsComponent.Gravity == "Yes";
-            rb.isKinematic = data.PhysicsComponent.BodyType == 2;
+            rb.mass = mass;
+            rb.drag = linearDrag;
+            rb.angularDrag = angularDrag;
+            rb.useGravity = useGravity;
+            rb.isKinematic = bodyType == 2;
 
-            // Apply position constraints if any
             rb.constraints = RigidbodyConstraints.None;
-            if (data.PhysicsComponent.PositionConstraints != null)
+
+            foreach (string constraint in positionConstraints)
             {
-                foreach (var axis in data.PhysicsComponent.PositionConstraints)
+                switch (constraint.ToLower())
                 {
-                    switch (axis.ToLower())
-                    {
-                        case "x":
-                            rb.constraints |= RigidbodyConstraints.FreezePositionX;
-                            break;
-                        case "y":
-                            rb.constraints |= RigidbodyConstraints.FreezePositionY;
-                            break;
-                        case "z":
-                            rb.constraints |= RigidbodyConstraints.FreezePositionZ;
-                            break;
-                    }
+                    case "x":
+                        rb.constraints |= RigidbodyConstraints.FreezePositionX;
+                        break;
+                    case "y":
+                        rb.constraints |= RigidbodyConstraints.FreezePositionY;
+                        break;
+                    case "z":
+                        rb.constraints |= RigidbodyConstraints.FreezePositionZ;
+                        break;
                 }
             }
 
-            // Apply angular constraints if any
-            if (data.PhysicsComponent.AngularConstraints != null)
+            foreach (string constraint in angularConstraints)
             {
-                foreach (var axis in data.PhysicsComponent.AngularConstraints)
+                switch (constraint.ToLower())
                 {
-                    switch (axis.ToLower())
-                    {
-                        case "x":
-                            rb.constraints |= RigidbodyConstraints.FreezeRotationX;
-                            break;
-                        case "y":
-                            rb.constraints |= RigidbodyConstraints.FreezeRotationY;
-                            break;
-                        case "z":
-                            rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
-                            break;
-                    }
+                    case "x":
+                        rb.constraints |= RigidbodyConstraints.FreezeRotationX;
+                        break;
+                    case "y":
+                        rb.constraints |= RigidbodyConstraints.FreezeRotationY;
+                        break;
+                    case "z":
+                        rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+                        break;
                 }
             }
-        }
-        else
-        {
-            // Log when physics is disabled
-            Debug.Log($"Physics disabled for GameObject: {data.ObjectName}. Skipping Rigidbody.");
         }
     }
 }

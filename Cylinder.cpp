@@ -21,7 +21,7 @@ Cylinder::Cylinder(std::string name) : AGameObject(name)
 	// Initialize Default Values
 	this->height = 2.0f;
 	this->slices = 32.0f;
-	this->radius = 0.5f;
+	this->radius = 1.0f;
 	this->stacks = 1.0f;
 
 	RenderSystem* renderSystem = GraphicsEngine::getInstance()->getRenderSystem();

@@ -26,7 +26,7 @@ namespace GDEngine
         std::string fileDirectory = m_directory + ".level";
         if (m_directory.find(".level") != std::string::npos)
         {
-            fileDirectory = m_directory; // Use directory as file name if it contains .level
+            fileDirectory = m_directory; 
         }
 
         std::ifstream sceneFile(fileDirectory);
@@ -40,103 +40,120 @@ namespace GDEngine
 
         GameObjectManager::getInstance()->deleteAllObjects();
 
-        Json::Value root;
-        sceneFile >> root; // Parse the whole file into the root Json object
+        std::string line;
+        std::string objectName, objectType;
+        Vector3D position, rotation, scale;
+        bool hasPhysics = false;
+        float mass = 0.0f, linearDrag = 0.0f, angularDrag = 0.0f;
+        bool gravity = false;
+        int bodyType = 0;
+        uint8_t constraints = 0;
+        std::vector<std::string> positionConstraints, angularConstraints;
 
-        // Ensure that we are accessing the "Objects" array (from the previous exporter)
-        const Json::Value& objectsJson = root["Objects"];
-        
-        if (objectsJson.isArray())
+        while (std::getline(sceneFile, line))
         {
-            // Iterate through each object in the "Objects" array
-            for (const auto& objectJson : objectsJson)
+            if (line.empty()) continue;
+
+            // Parse each line
+            if (line.find("Object Name:") != std::string::npos)
             {
-                std::string classType = objectJson["ObjectType"].asString();
-                std::string name = objectJson["ObjectName"].asString();
-
-                // Read Position, Rotation, Scale as arrays
-                const Json::Value& positionJson = objectJson["Position"];
-                Vector3D position(positionJson[0].asFloat(), positionJson[1].asFloat(), positionJson[2].asFloat());
-
-                const Json::Value& rotationJson = objectJson["Rotation"];
-                Vector3D rotation(rotationJson[0].asFloat(), rotationJson[1].asFloat(), rotationJson[2].asFloat());
-
-                const Json::Value& scaleJson = objectJson["Scale"];
-                Vector3D scale(scaleJson[0].asFloat(), scaleJson[1].asFloat(), scaleJson[2].asFloat());
-
-                // Create the game object using the extracted data
-                AGameObject* currentObject = GameObjectManager::getInstance()->createObjectFromFile(name, classType, position, rotation, scale);
-
-                // Read PhysicsComponent if it exists
-                const Json::Value& physicsJson = objectJson["PhysicsComponent"];
-                if (!physicsJson.isNull() && physicsJson["Physics"].asString() == "Yes")
+                objectName = line.substr(line.find(":") + 2);
+            }
+            else if (line.find("Object Type:") != std::string::npos)
+            {
+                objectType = line.substr(line.find(":") + 2);
+            }
+            else if (line.find("Position:") != std::string::npos)
+            {
+                sscanf(line.c_str(), "Position: (%f, %f, %f)", &position.x, &position.y, &position.z);
+            }
+            else if (line.find("Rotation:") != std::string::npos)
+            {
+                sscanf(line.c_str(), "Rotation: (%f, %f, %f)", &rotation.x, &rotation.y, &rotation.z);
+            }
+            else if (line.find("Scale:") != std::string::npos)
+            {
+                sscanf(line.c_str(), "Scale: (%f, %f, %f)", &scale.x, &scale.y, &scale.z);
+            }
+            else if (line.find("Physics:") != std::string::npos)
+            {
+                hasPhysics = (line.substr(line.find(":") + 2) == "Yes");
+            }
+            else if (line.find("Mass:") != std::string::npos)
+            {
+                mass = std::stof(line.substr(line.find(":") + 2));
+            }
+            else if (line.find("Gravity:") != std::string::npos)
+            {
+                gravity = (line.substr(line.find(":") + 2) == "Yes");
+            }
+            else if (line.find("BodyType:") != std::string::npos)
+            {
+                bodyType = std::stoi(line.substr(line.find(":") + 2));
+            }
+            else if (line.find("LinearDrag:") != std::string::npos)
+            {
+                linearDrag = std::stof(line.substr(line.find(":") + 2));
+            }
+            else if (line.find("AngularDrag:") != std::string::npos)
+            {
+                angularDrag = std::stof(line.substr(line.find(":") + 2));
+            }
+            else if (line.find("Position Constraints:") != std::string::npos)
+            {
+                positionConstraints.clear();
+                std::istringstream stream(line.substr(line.find(":") + 2));
+                std::string constraint;
+                while (stream >> constraint)
                 {
-                    // Extract physics properties from JSON
-                    float mass = physicsJson["Mass"].asFloat();
-                    bool gravity = (physicsJson["Gravity"].asString() == "Yes");
-                    BodyType bodyType = static_cast<BodyType>(physicsJson["BodyType"].asInt());
-                    float linearDrag = physicsJson["LinearDrag"].asFloat();
-                    float angularDrag = physicsJson["AngularDrag"].asFloat();
-                    uint8_t constraints = 0;
-
-                    const Json::Value& positionConstraintsJson = physicsJson["PositionConstraints"];
-                    if (!positionConstraintsJson.isNull())
-                    {
-                        for (const auto& constraint : positionConstraintsJson)
-                        {
-                            std::string constraintStr = constraint.asString();
-                            if (constraintStr == "X")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionX);
-                            }
-                            else if (constraintStr == "Y")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionY);
-                            }
-                            else if (constraintStr == "Z")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionZ);
-                            }
-                        }
-                    }
-
-                    const Json::Value& angularConstraintsJson = physicsJson["AngularConstraints"];
-                    if (!angularConstraintsJson.isNull())
-                    {
-                        for (const auto& constraint : angularConstraintsJson)
-                        {
-                            std::string constraintStr = constraint.asString();
-                            if (constraintStr == "X")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationX);
-                            }
-                            else if (constraintStr == "Y")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationY);
-                            }
-                            else if (constraintStr == "Z")
-                            {
-                                constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationZ);
-                            }
-                        }
-                    }
-
-                    // Use PhysicsSystem to create and attach the PhysicsComponent
-                    BaseComponentSystem::getInstance()->getPhysicsSystem()->createComponentFromFile(
-                        "PhysicsComponent",
-                        currentObject,
-                        AComponent::ComponentType::Physics,
-                        mass,
-                        gravity,
-                        bodyType,
-                        linearDrag,
-                        angularDrag,
-                        constraints
-                    );
+                    if (constraint == "X")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionX);
+                    else if (constraint == "Y")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionY);
+                    else if (constraint == "Z")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionZ);
                 }
+            }
+            else if (line.find("Angular Constraints:") != std::string::npos)
+            {
+                angularConstraints.clear();
+                std::istringstream stream(line.substr(line.find(":") + 2));
+                std::string constraint;
+                while (stream >> constraint)
+                {
+                    if (constraint == "X")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationX);
+                    else if (constraint == "Y")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationY);
+                    else if (constraint == "Z")
+                        constraints |= static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationZ);
+                }
+            }
+            else if (line == "---")
+            {
+                // Create the object and assign components
+                AGameObject* currentObject = GameObjectManager::getInstance()->createObjectFromFile(
+                    objectName, objectType, position, rotation, scale);
+
+                if (hasPhysics)
+                {
+                    BaseComponentSystem::getInstance()->getPhysicsSystem()->createComponentFromFile(
+                        "PhysicsComponent", currentObject, AComponent::ComponentType::Physics,
+                        mass, gravity, static_cast<BodyType>(bodyType), linearDrag, angularDrag, constraints);
+                }
+
+                // Reset variables for the next object
+                objectName = objectType = "";
+                position = rotation = scale = Vector3D();
+                hasPhysics = false;
+                mass = linearDrag = angularDrag = 0.0f;
+                gravity = false;
+                bodyType = 0;
+                constraints = 0;
             }
         }
 
         sceneFile.close();
     }
+
 }

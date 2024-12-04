@@ -1,31 +1,42 @@
-{
-	"Objects" : 
-	[
-		{
-			"ObjectName" : "Cylinder",
-			"ObjectType" : "Cylinder",
-			"PhysicsComponent" : 
-			{
-				"Physics" : "No"
-			},
-			"Position" : 
-			[
-				0.0,
-				0.0,
-				0.0
-			],
-			"Rotation" : 
-			[
-				0.0,
-				0.0,
-				0.0
-			],
-			"Scale" : 
-			[
-				1.0,
-				1.0,
-				1.0
-			]
-		}
-	]
-}
+Object Name: Cube
+Object Type: Cube
+Position: (0, 0, 0)
+Rotation: (0, 0, 0)
+Scale: (1, 1, 1)
+Physics: Yes
+Mass: 1000
+Gravity: Yes
+BodyType: 2
+LinearDrag: 0
+AngularDrag: 0
+Position Constraints: 
+Angular Constraints: 
+---
+Object Name: Plane
+Object Type: Plane
+Position: (0, -2.06, 0)
+Rotation: (0, 0, 0)
+Scale: (1, 1, 1)
+Physics: Yes
+Mass: 1000
+Gravity: Yes
+BodyType: 0
+LinearDrag: 0
+AngularDrag: 0
+Position Constraints: 
+Angular Constraints: 
+---
+Object Name: Sphere
+Object Type: Sphere
+Position: (-2, 0, 0)
+Rotation: (0, 0, 0)
+Scale: (2, 1, 1)
+Physics: No
+---
+Object Name: Capsule
+Object Type: Capsule
+Position: (2.03, 0, 0)
+Rotation: (0, 0, 60)
+Scale: (1, 1, 1)
+Physics: No
+---

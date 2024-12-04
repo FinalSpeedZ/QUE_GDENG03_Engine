@@ -26,7 +26,7 @@ namespace GDEngine
         std::string fileDirectory = m_directory + ".level";
         if (m_directory.find(".level") != std::string::npos)
         {
-            fileDirectory = m_directory; // Use directory as file name if it contains .level
+            fileDirectory = m_directory; 
         }
 
         std::ofstream sceneFile(fileDirectory);
@@ -40,88 +40,58 @@ namespace GDEngine
 
         GameObjectManager::GameObjectList objectList = GameObjectManager::getInstance()->getAllObjects();
 
-        Json::Value root;  // Root JSON object for the wrapper
-
-        // Create an array to hold all objects
-        Json::Value objectsJson(Json::arrayValue);
-
         for (AGameObject* gameObject : objectList)
         {
-            Json::Value objectJson;
+            sceneFile << "Object Name: " << gameObject->getName() << "\n";
+            sceneFile << "Object Type: " << gameObject->getType() << "\n";
 
-            // ObjectType and ObjectName
-            objectJson["ObjectType"] = gameObject->getType();
-            objectJson["ObjectName"] = gameObject->getName();
-
-            // Position, rotation, and scale
+            // Position
             Vector3D position = gameObject->getLocalPosition();
+            sceneFile << "Position: (" << position.x << ", " << position.y << ", " << position.z << ")\n";
+
+            // Rotation
             Vector3D rotation = gameObject->getLocalRotation();
+            sceneFile << "Rotation: (" << rotation.x << ", " << rotation.y << ", " << rotation.z << ")\n";
+
+            // Scale
             Vector3D scale = gameObject->getLocalScale();
-
-            objectJson["Position"] = Json::Value(Json::arrayValue);
-            objectJson["Position"].append(position.x);
-            objectJson["Position"].append(position.y);
-            objectJson["Position"].append(position.z);
-
-            objectJson["Rotation"] = Json::Value(Json::arrayValue);
-            objectJson["Rotation"].append(rotation.x);
-            objectJson["Rotation"].append(rotation.y);
-            objectJson["Rotation"].append(rotation.z);
-
-            objectJson["Scale"] = Json::Value(Json::arrayValue);
-            objectJson["Scale"].append(scale.x);
-            objectJson["Scale"].append(scale.y);
-            objectJson["Scale"].append(scale.z);
+            sceneFile << "Scale: (" << scale.x << ", " << scale.y << ", " << scale.z << ")\n";
 
             // PhysicsComponent (if exists)
-            Json::Value physicsJson;
             AGameObject::ComponentList physicsList = gameObject->getComponentsOfType(AComponent::ComponentType::Physics);
-
-            // If a physics component exists, set it to "Yes", otherwise "No"
             if (!physicsList.empty())
             {
                 PhysicsComponent* physicsComponent = dynamic_cast<PhysicsComponent*>(physicsList[0]);
-
                 if (physicsComponent)
                 {
-                    physicsJson["Physics"] = "Yes";  // Indicate that this object has a physics component
-
-                    physicsJson["Mass"] = physicsComponent->getMass();
-                    physicsJson["Gravity"] = (physicsComponent->getUseGravity() ? "Yes" : "No");
-                    physicsJson["BodyType"] = static_cast<int>(physicsComponent->getBodyType());
-                    physicsJson["LinearDrag"] = physicsComponent->getLinearDrag();
-                    physicsJson["AngularDrag"] = physicsComponent->getAngularDrag();
+                    sceneFile << "Physics: Yes\n";
+                    sceneFile << "Mass: " << physicsComponent->getMass() << "\n";
+                    sceneFile << "Gravity: " << (physicsComponent->getUseGravity() ? "Yes" : "No") << "\n";
+                    sceneFile << "BodyType: " << static_cast<int>(physicsComponent->getBodyType()) << "\n";
+                    sceneFile << "LinearDrag: " << physicsComponent->getLinearDrag() << "\n";
+                    sceneFile << "AngularDrag: " << physicsComponent->getAngularDrag() << "\n";
 
                     uint8_t constraints = physicsComponent->getConstraints();
-                    Json::Value positionConstraints = Json::arrayValue;
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionX)) positionConstraints.append("X");
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionY)) positionConstraints.append("Y");
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionZ)) positionConstraints.append("Z");
-                    physicsJson["PositionConstraints"] = positionConstraints;
+                    sceneFile << "Position Constraints: ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionX)) sceneFile << "X ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionY)) sceneFile << "Y ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezePositionZ)) sceneFile << "Z ";
+                    sceneFile << "\n";
 
-                    Json::Value angularConstraints = Json::arrayValue;
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationX)) angularConstraints.append("X");
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationY)) angularConstraints.append("Y");
-                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationZ)) angularConstraints.append("Z");
-                    physicsJson["AngularConstraints"] = angularConstraints;
+                    sceneFile << "Angular Constraints: ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationX)) sceneFile << "X ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationY)) sceneFile << "Y ";
+                    if (constraints & static_cast<uint8_t>(PhysicsComponent::EConstraints::FreezeRotationZ)) sceneFile << "Z ";
+                    sceneFile << "\n";
                 }
             }
             else
             {
-                physicsJson["Physics"] = "No";  // Indicate that this object does not have a physics component
+                sceneFile << "Physics: No\n";
             }
 
-            objectJson["PhysicsComponent"] = physicsJson; // Add physics data (either Yes or No)
-
-            // Add this object to the "Objects" array
-            objectsJson.append(objectJson);
+            sceneFile << "---\n"; // Separator for objects
         }
-
-        // Wrap the objects in a root object under the "Objects" key
-        root["Objects"] = objectsJson;
-
-        // Writing the JSON object to file
-        sceneFile << root.toStyledString();
 
         sceneFile.close();
     }

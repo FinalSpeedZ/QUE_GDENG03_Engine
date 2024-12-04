@@ -6,6 +6,10 @@
 #include "Vector3D.h"
 #include "Vector4D.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 namespace GDEngine
 {
 	class Matrix4x4
@@ -43,26 +47,29 @@ namespace GDEngine
 
 		void setRotationX(float x)
 		{
-			m_mat[1][1] = cos(x);
-			m_mat[1][2] = sin(x);
-			m_mat[2][1] = -sin(x);
-			m_mat[2][2] = cos(x);
+			float radX = x * M_PI / 180.0f; // Convert degrees to radians
+			m_mat[1][1] = cos(radX);
+			m_mat[1][2] = sin(radX);
+			m_mat[2][1] = -sin(radX);
+			m_mat[2][2] = cos(radX);
 		}
 
 		void setRotationY(float y)
 		{
-			m_mat[0][0] = cos(y);
-			m_mat[0][2] = -sin(y);
-			m_mat[2][0] = sin(y);
-			m_mat[2][2] = cos(y);
+			float radY = y * M_PI / 180.0f; // Convert degrees to radians
+			m_mat[0][0] = cos(radY);
+			m_mat[0][2] = -sin(radY);
+			m_mat[2][0] = sin(radY);
+			m_mat[2][2] = cos(radY);
 		}
 
 		void setRotationZ(float z)
 		{
-			m_mat[0][0] = cos(z);
-			m_mat[0][1] = sin(z);
-			m_mat[1][0] = -sin(z);
-			m_mat[1][1] = cos(z);
+			float radZ = z * M_PI / 180.0f; // Convert degrees to radians
+			m_mat[0][0] = cos(radZ);
+			m_mat[0][1] = sin(radZ);
+			m_mat[1][0] = -sin(radZ);
+			m_mat[1][1] = cos(radZ);
 		}
 
 		void setRotation(Vector4D& orientation)

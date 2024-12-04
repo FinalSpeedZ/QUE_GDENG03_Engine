@@ -15,11 +15,31 @@ public class LevelExporter : EditorWindow
     private void OnGUI()
     {
         GUILayout.Label("Export Level Data", EditorStyles.boldLabel);
-        filePath = EditorGUILayout.TextField("File Path", filePath);
 
+        // Display current file path
+        EditorGUILayout.LabelField("Current File Path:", filePath);
+
+        // Button to open a save file panel
+        if (GUILayout.Button("Select File Path"))
+        {
+            string selectedPath = EditorUtility.SaveFilePanel("Save Level Data", "Assets/Scenes", "LevelData", "level");
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                filePath = selectedPath;
+            }
+        }
+
+        // Export level data
         if (GUILayout.Button("Export Level"))
         {
-            ExportLevel(filePath);
+            if (string.IsNullOrEmpty(filePath))
+            {
+                Debug.LogError("Please select a valid file path to export the level data.");
+            }
+            else
+            {
+                ExportLevel(filePath);
+            }
         }
     }
 
@@ -61,6 +81,8 @@ public class LevelExporter : EditorWindow
                     data.ObjectType = "Sphere";
                 else if (meshName.Contains("Capsule"))
                     data.ObjectType = "Capsule";
+                else if (meshName.Contains("Cylinder"))
+                    data.ObjectType = "Cylinder";
                 else
                     data.ObjectType = "Unknown";
             }

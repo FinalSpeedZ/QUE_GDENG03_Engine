@@ -41,23 +41,36 @@ public class LevelLoader : EditorWindow
         GetWindow<LevelLoader>("Level Loader");
     }
 
+    private string filePath; // Store the selected file path
+
     private void OnGUI()
     {
         GUILayout.Label("Load Level File", EditorStyles.boldLabel);
-        levelFile = (TextAsset)EditorGUILayout.ObjectField("Level File", levelFile, typeof(TextAsset), false);
 
-        if (levelFile != null)
+        // Display the current file path
+        EditorGUILayout.LabelField("Selected File:", filePath ?? "No file selected");
+
+        // Button to open file browser
+        if (GUILayout.Button("Browse File"))
+        {
+            filePath = EditorUtility.OpenFilePanel("Select Level File", "", "level");
+        }
+
+        // Load level if a valid file is selected
+        if (!string.IsNullOrEmpty(filePath))
         {
             if (GUILayout.Button("Load Level"))
             {
+                TextAsset levelFile = new TextAsset(System.IO.File.ReadAllText(filePath));
                 LoadLevel(levelFile);
             }
         }
         else
         {
-            EditorGUILayout.HelpBox("Drag and drop a .level file here", MessageType.Info);
+            EditorGUILayout.HelpBox("Please select a valid .level file to proceed.", MessageType.Info);
         }
     }
+
 
     private void LoadLevel(TextAsset file)
     {

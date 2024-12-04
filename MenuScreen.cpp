@@ -89,10 +89,10 @@ namespace GDEngine {
                         {
                             GameObjectManager::getInstance()->createTexturedCapsule();
                         }
-                        //if (ImGui::MenuItem("Cylinder"))
-                        //{
-                        //    GameObjectManager::getInstance()->createTexturedCylinder();
-                        //}
+                        if (ImGui::MenuItem("Cylinder"))
+                        {
+                            GameObjectManager::getInstance()->createTexturedCylinder();
+                        }
                         //if (ImGui::MenuItem("Quad"))
                         //{
                         //    GameObjectManager::getInstance()->createQuad();

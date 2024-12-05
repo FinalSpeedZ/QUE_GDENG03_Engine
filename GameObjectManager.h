@@ -33,11 +33,15 @@ namespace GDEngine
 		void createArmadillo();
 		void createLucy();
 
+		void createPhysicsScene();
+
 		void update(float deltaTime);
 		void draw(int width, int height);
 
 		GameObjectList getAllObjects();
+		AGameObject* getLastObject();
 		AGameObject* findObjectByName(std::string name);
+
 		void addObject(AGameObject* gameObject);
 		void deleteObject(AGameObject* gameObject);
 		void deleteObjectByName(std::string name);

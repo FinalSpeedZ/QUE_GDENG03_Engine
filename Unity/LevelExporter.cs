@@ -61,7 +61,17 @@ public class LevelExporter : EditorWindow
                 writer.WriteLine($"Rotation: ({NormalizeAngle(obj.transform.rotation.eulerAngles.x)}, " +
                                  $"{NormalizeAngle(obj.transform.rotation.eulerAngles.y)}, " +
                                  $"{NormalizeAngle(obj.transform.rotation.eulerAngles.z)})");
-                writer.WriteLine($"Scale: ({obj.transform.localScale.x * 5}, {obj.transform.localScale.y * 5}, {obj.transform.localScale.z * 5})");
+
+                if (GetObjectType(obj).ToLower() == "plane")
+                {
+                    obj.transform.localScale *= 5;
+                }
+                writer.WriteLine($"Scale: ({obj.transform.localScale.x}, {obj.transform.localScale.y}, {obj.transform.localScale.z})");
+
+                if (GetObjectType(obj).ToLower() == "plane")
+                {
+                    obj.transform.localScale /= 5;
+                }
 
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
                 if (rb != null)
@@ -69,7 +79,7 @@ public class LevelExporter : EditorWindow
                     writer.WriteLine($"Physics: Yes");
                     writer.WriteLine($"Mass: {rb.mass}");
                     writer.WriteLine($"Gravity: {(rb.useGravity ? "Yes" : "No")}");
-                    writer.WriteLine($"BodyType: {(rb.isKinematic ? 1 : 2)}"); // 0: Kinematic, 2: Dynamic
+                    writer.WriteLine($"BodyType: {(rb.isKinematic ? 1 : 2)}"); 
                     writer.WriteLine($"LinearDrag: {rb.drag}");
                     writer.WriteLine($"AngularDrag: {rb.angularDrag}");
 

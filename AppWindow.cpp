@@ -26,6 +26,8 @@
 #include "EngineBackend.h"
 #include "ShaderLibrary.h"
 
+#include "PhysicsComponent.h"
+
 #include "Logger.h"
 
 using namespace GDEngine;
@@ -80,8 +82,6 @@ void AppWindow::onUpdate()
 			backend->endFrameStep();
 		}
 	}
-
-
 
 	UIManager::getInstance()->draw();
 
@@ -177,6 +177,8 @@ void AppWindow::onRightMouseUp(const Vector2D& mousePosition)
 
 void AppWindow::initializeEngine()
 {
+	std::srand(static_cast<unsigned int>(std::time(0)));
+
 	// Try Initializing Managers
 	try
 	{
@@ -219,6 +221,7 @@ void AppWindow::initializeEngine()
 	this->wireframeState = renderSystem->createRasterizerState(D3D11_FILL_WIREFRAME, D3D11_CULL_NONE);
 
 	GDEngine::Logger::log(this, "Initialized Engine");
+
 }
 
 void AppWindow::draw(int width, int height, EFillMode fillMode)

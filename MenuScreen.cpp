@@ -9,6 +9,8 @@
 #include "SceneWriter.h"
 #include "ViewportManager.h"
 
+#include "Cube.h"
+
 namespace GDEngine {
     MenuScreen::MenuScreen() : UIScreen("MenuScreen")
     {
@@ -119,14 +121,17 @@ namespace GDEngine {
                     }
                     if (ImGui::BeginMenu("Physics Objects"))
                     {
-                        if (ImGui::MenuItem("100 Physics Cube")) {
-                            for (int i = 0; i < 100; i++)
+                        if (ImGui::MenuItem("50 Physics Cube")) {
+                            for (int i = 0; i < 50; i++)
                             {
                                 GameObjectManager::getInstance()->createPhysicsCube();
                             }
                         }
                         if (ImGui::MenuItem("Physics Plane")) {
                             GameObjectManager::getInstance()->createPhysicsPlane();
+                        }
+                        if (ImGui::MenuItem("Physics Scene")) {
+                            GameObjectManager::getInstance()->createPhysicsScene();
                         }
                         ImGui::EndMenu();
                     }

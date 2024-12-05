@@ -1,22 +1,15 @@
-Object Name: Capsule
-Object Type: Capsule
-Position: (0, -3, 0)
-Rotation: (0, 0, 0)
-Scale: (1, 1, 1)
-Physics: No
----
 Object Name: Cube (3)
 Object Type: Cube
-Position: (0, -3.2, -5)
+Position: (0, -2.5, 5)
 Rotation: (0, 0, 0)
-Scale: (10, 3.5, 0.2)
+Scale: (10, 5, 0.2)
 Physics: No
 ---
 Object Name: Cube (2)
 Object Type: Cube
-Position: (-5, -2.5, 0)
-Rotation: (0, -90, 0)
-Scale: (10, 5, 0.2)
+Position: (0, -3.2, -5)
+Rotation: (0, 0, 0)
+Scale: (10, 3.5, 0.2)
 Physics: No
 ---
 Object Name: Cube (1)
@@ -28,9 +21,16 @@ Physics: No
 ---
 Object Name: Cube
 Object Type: Cube
-Position: (0, -2.5, 5)
-Rotation: (0, 0, 0)
+Position: (-5, -2.5, 0)
+Rotation: (0, -90, 0)
 Scale: (10, 5, 0.2)
+Physics: No
+---
+Object Name: Capsule
+Object Type: Capsule
+Position: (0, -3, 0)
+Rotation: (0, 0, 0)
+Scale: (1, 1, 1)
 Physics: No
 ---
 Object Name: Plane

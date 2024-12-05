@@ -97,8 +97,8 @@ void SceneCamera::onMouseMove(const Vector2D& deltaMousePosition)
 
 		InputSystem::getInstance()->setCursorPosition(position);*/
 
-		m_localRotation.x += ((deltaMousePosition.y) - (InputSystem::getInstance()->getOldMousePosition().y)) * 0.2f * EngineTime::getDeltaTime();
-		m_localRotation.y += ((deltaMousePosition.x) - (InputSystem::getInstance()->getOldMousePosition().x)) * 0.2f * EngineTime::getDeltaTime();
+		m_localRotation.x += ((deltaMousePosition.y) - (InputSystem::getInstance()->getOldMousePosition().y)) * 0.2f * EngineTime::getDeltaTime() * (180 / M_PI);
+		m_localRotation.y += ((deltaMousePosition.x) - (InputSystem::getInstance()->getOldMousePosition().x)) * 0.2f * EngineTime::getDeltaTime() * (180 / M_PI);
 	}
 }
 

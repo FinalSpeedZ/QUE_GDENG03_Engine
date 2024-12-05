@@ -41,7 +41,7 @@ struct FObjectData
     float AngularDrag;
 };
 
-UCLASS(BlueprintType)
+UCLASS()
 class UNREALENGINE_API UFileReader : public UBlueprintFunctionLibrary
 {
     GENERATED_BODY()

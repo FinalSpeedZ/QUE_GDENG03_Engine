@@ -74,11 +74,18 @@ void UFileWriter::WriteStaticMeshesToFile(const FString& FilePath, UWorld* World
 
         FString Line = FString::Printf(TEXT("Object Name: %s\n"), *ObjectName);
         Line += FString::Printf(TEXT("Object Type: %s\n"), *ObjectType);
-        Line += FString::Printf(TEXT("Position: (%f, %f, %f)\n"), Position.X, Position.Z, Position.Y);
+        Line += FString::Printf(TEXT("Position: (%f, %f, %f)\n"), -Position.X, Position.Z, Position.Y);
         Line += FString::Printf(TEXT("Rotation: (%f, %f, %f)\n"), -Rotation.Roll, Rotation.Yaw, Rotation.Pitch);
+
+
+        if (ObjectType == "Plane") 
+        {
+            Scale /= 2;
+        }
+
         Line += FString::Printf(TEXT("Scale: (%f, %f, %f)\n"), Scale.X, Scale.Z, Scale.Y);
 
-        bool bPhysics = MeshComponent->ComponentHasTag(TEXT("No Physics"));
+        bool bPhysics = MeshComponent->IsSimulatingPhysics();
         FString Physics = bPhysics ? "Yes" : "No";
         Line += FString::Printf(TEXT("Physics: %s\n"), *Physics);
 
@@ -88,14 +95,16 @@ void UFileWriter::WriteStaticMeshesToFile(const FString& FilePath, UWorld* World
             Line += FString::Printf(TEXT("Gravity: %s\n"), MeshComponent->IsGravityEnabled() ? TEXT("Yes") : TEXT("No"));
 
             int32 BodyType = 0;
-            if (MeshComponent->ComponentHasTag(TEXT("Dynamic")))
+
+            if (MeshComponent->Mobility == EComponentMobility::Movable)
             {
-                BodyType = 2;
+                BodyType = 2; 
             }
-            else if (MeshComponent->ComponentHasTag(TEXT("Kinematic")))
+            else if (MeshComponent->Mobility == EComponentMobility::Stationary)
             {
-                BodyType = 1;
+                BodyType = 1; 
             }
+
             Line += FString::Printf(TEXT("BodyType: %d\n"), BodyType);
 
             Line += FString::Printf(TEXT("LinearDrag: %f\n"), MeshComponent->GetLinearDamping());

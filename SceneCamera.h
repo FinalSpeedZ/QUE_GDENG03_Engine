@@ -9,7 +9,7 @@ namespace GDEngine
 	class SceneCamera : public Camera, public InputListener
 	{
 	private:
-		float speed = 10.0f;
+		float speed = 15.0f;
 
 		bool isControllable = false;
 

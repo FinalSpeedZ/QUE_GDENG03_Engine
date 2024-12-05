@@ -1,0 +1,42 @@
+Object Name: Plane
+Object Type: Plane
+Position: (-0.000000, -2.000000, 0.000000)
+Rotation: (-0.000000, 0.000000, 0.000000)
+Scale: (10.000000, 10.000000, 10.000000)
+Physics: No
+---
+Object Name: Cube
+Object Type: Cube
+Position: (-0.000000, -0.250000, -5.000000)
+Rotation: (-0.000000, 0.000000, 0.000000)
+Scale: (10.000000, 3.500000, 0.200000)
+Physics: No
+---
+Object Name: Cube2
+Object Type: Cube
+Position: (-0.000000, 0.500000, 5.000000)
+Rotation: (-0.000000, 0.000000, 0.000000)
+Scale: (10.000000, 5.000000, 0.200000)
+Physics: No
+---
+Object Name: Cube3
+Object Type: Cube
+Position: (5.000000, -0.250000, 0.000000)
+Rotation: (-0.000000, 90.000000, 0.000000)
+Scale: (10.000000, 3.500000, 0.200000)
+Physics: No
+---
+Object Name: Cube4
+Object Type: Cube
+Position: (-5.000000, 0.500000, 0.000000)
+Rotation: (-0.000000, 90.000000, 0.000000)
+Scale: (10.000000, 5.000000, 0.200000)
+Physics: No
+---
+Object Name: Capsule
+Object Type: Capsule
+Position: (-0.000000, 0.000000, 0.000000)
+Rotation: (-0.000000, 0.000000, 0.000000)
+Scale: (1.000000, 1.000000, 1.000000)
+Physics: No
+---

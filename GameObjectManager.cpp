@@ -34,8 +34,13 @@ void GameObjectManager::createCube()
 void GameObjectManager::createPhysicsCube()
 {
 	Cube* cube = new Cube("Physics Cube");
-	cube->setPosition(0.0f, 20.0f, 0.0f);
-	cube->update(0);
+
+	float randomX = (rand() % 201 - 100) / 100.0f;
+	float randomY = 3.0f + (rand() % 201) / 100.0f;
+	float randomZ = (rand() % 201 - 100) / 100.0f;
+
+	cube->setPosition(randomX, randomY, randomZ);
+
 	this->addObject(cube);
 	cube->attachComponent(new PhysicsComponent("PhysicsComponent " + cube->getName(), cube));
 	cube->setPhysics(true);
@@ -44,7 +49,9 @@ void GameObjectManager::createPhysicsCube()
 void GameObjectManager::createPhysicsPlane()
 {
 	Cube* plane = new Cube("Physics Plane");
-	plane->setScale(64, 0.5f, 64);
+	plane->setPosition(0.0f, -5.0f, 0.0f);
+	plane->setScale(20.0f, 0.5f, 20.f);
+
 	plane->setPhysics(true);
 	this->addObject(plane);
 	plane->attachComponent(new PhysicsComponent("PhysicsComponent " + plane->getName(), plane));
@@ -113,6 +120,59 @@ void GDEngine::GameObjectManager::createLucy()
 	this->addObject(lucy);
 }
 
+void GameObjectManager::createPhysicsScene() 
+{
+	PhysicsComponent* component = nullptr;
+
+	GameObjectManager::getInstance()->createPhysicsPlane();
+	AGameObject* floor = GameObjectManager::getInstance()->getLastObject();
+	floor->setTexture(TextureLibrary::getInstance()->getTexture(TextureName::DLSU));
+
+	// USE CUBE 
+	GameObjectManager::getInstance()->createCube();
+	AGameObject* wall1 = GameObjectManager::getInstance()->getLastObject();
+	wall1->setPosition(-7.5f, -1.0f, 0.0f);
+	wall1->setScale(0.5f, 10.0f, 15.0f);
+	wall1->setTexture(TextureLibrary::getInstance()->getTexture(TextureName::BRICK));
+	wall1->setPhysics(true);
+	wall1->attachComponent(new PhysicsComponent("PhysicsComponent " + wall1->getName(), wall1));
+	component = (PhysicsComponent*)wall1->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent " + wall1->getName());
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+
+	// USE CUBE 
+	GameObjectManager::getInstance()->createCube();
+	AGameObject* wall2 = GameObjectManager::getInstance()->getLastObject();
+	wall2->setPosition(7.5f, 0.0f, 0.0f);
+	wall2->setScale(0.5f, 12.0f, 15.0f);
+	wall2->setTexture(TextureLibrary::getInstance()->getTexture(TextureName::BRICK));
+	wall2->setPhysics(true);
+	wall2->attachComponent(new PhysicsComponent("PhysicsComponent " + wall2->getName(), wall2));
+	component = (PhysicsComponent*)wall2->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent " + wall2->getName());
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+
+	// USE CUBE 
+	GameObjectManager::getInstance()->createCube();
+	AGameObject* wall3 = GameObjectManager::getInstance()->getLastObject();
+	wall3->setPosition(0.0f, -1.0f, -7.5f);
+	wall3->setScale(15.0f, 10.0f, 0.5f);
+	wall3->setTexture(TextureLibrary::getInstance()->getTexture(TextureName::BRICK));
+	wall3->setPhysics(true);
+	wall3->attachComponent(new PhysicsComponent("PhysicsComponent " + wall3->getName(), wall3));
+	component = (PhysicsComponent*)wall3->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent " + wall3->getName());
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+
+	// USE CUBE 
+	GameObjectManager::getInstance()->createCube();
+	AGameObject* wall4 = GameObjectManager::getInstance()->getLastObject();
+	wall4->setPosition(0.0f, 0.0f, 7.5f);
+	wall4->setScale(15.0f, 12.0f, 0.5f);
+	wall4->setTexture(TextureLibrary::getInstance()->getTexture(TextureName::BRICK));
+	wall4->setPhysics(true);
+	wall4->attachComponent(new PhysicsComponent("PhysicsComponent " + wall4->getName(), wall4));
+	component = (PhysicsComponent*)wall4->findComponentOfType(AComponent::ComponentType::Physics, "PhysicsComponent " + wall4->getName());
+	component->getRigidBody()->setType(BodyType::KINEMATIC);
+}
+
 void GameObjectManager::update(float deltaTime)
 {
 	for (AGameObject* gameObject : this->m_gameObjectList)
@@ -136,6 +196,14 @@ void GameObjectManager::draw(int width, int height)
 GameObjectManager::GameObjectList GameObjectManager::getAllObjects()
 {
 	return this->m_gameObjectList;
+}
+
+AGameObject* GameObjectManager::getLastObject() 
+{
+	if (m_gameObjectList.empty()) {
+		return nullptr; 
+	}
+	return m_gameObjectList.back(); 
 }
 
 AGameObject* GameObjectManager::findObjectByName(std::string name)

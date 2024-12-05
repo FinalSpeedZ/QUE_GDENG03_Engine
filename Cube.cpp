@@ -112,6 +112,8 @@ Cube::Cube(std::string name) : AGameObject(name)
 
 	speed = 1.0f;
 	deltaRotation = 0.0f;
+
+
 	this->m_type = GameObjectType::Cube;
 
 }

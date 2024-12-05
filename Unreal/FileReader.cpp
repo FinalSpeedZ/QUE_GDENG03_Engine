@@ -188,9 +188,12 @@ void UFileReader::SpawnObjectsFromFile(const FString& FilePath, UWorld* World)
 
     for (const FObjectData& ObjectData : ParsedObjects)
     {
+
     	FVector SpawnLocation = ObjectData.Position;
     	FRotator SpawnRotation = ObjectData.Rotation;
     	FVector SpawnScale = ObjectData.Scale;
+
+        SpawnLocation.X *= -1;
 
     	FActorSpawnParameters SpawnParams;
 
@@ -271,7 +274,9 @@ void UFileReader::SpawnObjectsFromFile(const FString& FilePath, UWorld* World)
                 else if (ObjectData.BodyType == 1) // Kinemaatic
                 {
                     MeshComp->SetSimulatePhysics(true);
-                    MeshComp->SetMobility(EComponentMobility::Movable);
+                    MeshComp->SetMobility(EComponentMobility::Stationary);
+
+                    MeshComp->SetEnableGravity(false);
 
                     SpawnedActor->Tags.Add("Kinematic");
                 }
@@ -302,7 +307,16 @@ void UFileReader::SpawnObjectsFromFile(const FString& FilePath, UWorld* World)
                 MeshComp->SetEnableGravity(false);
             }
 
-    		SpawnedActor->SetActorScale3D(SpawnScale);
+
+            if (ObjectData.ObjectType.Equals(TEXT("Plane")))
+            {
+    			SpawnedActor->SetActorScale3D(SpawnScale * 2);
+            }
+            else
+            {
+                SpawnedActor->SetActorScale3D(SpawnScale);
+            }
+
     		SpawnedActor->SetActorLabel(ObjectData.ObjectName);
     	}
     }

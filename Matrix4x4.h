@@ -14,7 +14,7 @@ namespace GDEngine
 {
 	class Matrix4x4
 	{
-	private:
+	public:
 		float m_mat[4][4] = {};
 
 	public:

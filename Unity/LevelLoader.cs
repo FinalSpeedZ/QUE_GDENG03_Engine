@@ -206,6 +206,11 @@ public class LevelLoader : EditorWindow
         obj.transform.eulerAngles = rotation;
         obj.transform.localScale = scale;
 
+        if (type.ToLower() == "plane")
+        {
+            obj.transform.localScale /= 5;
+        }
+
         if (hasPhysics)
         {
             Rigidbody rb = obj.AddComponent<Rigidbody>();

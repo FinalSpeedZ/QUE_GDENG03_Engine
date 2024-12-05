@@ -15,15 +15,15 @@ namespace GDEngine {
 
 		Vector3D positionList[] =
 		{
-			Vector3D(-3.0f, 0.0f, -3.0f),
-			Vector3D(-3.0f, 0.0f, -3.0f),
-			Vector3D(3.0f, 0.0f, -3.0f),
-			Vector3D(3.0f, 0.0f, -3.0f),
+			Vector3D(-1.0f, 0.0f, -1.0f),
+			Vector3D(-1.0f, 0.0f, -1.0f),
+			Vector3D(1.0f, 0.0f, -1.0f),
+			Vector3D(1.0f, 0.0f, -1.0f),
 
-			Vector3D(3.0f, 0.0f, 3.0f),
-			Vector3D(3.0f, 0.0f, 3.0f),
-			Vector3D(-3.0f, 0.0f, 3.0f),
-			Vector3D(-3.0f, 0.0f, 3.0f)
+			Vector3D(1.0f, 0.0f, 1.0f),
+			Vector3D(1.0f, 0.0f, 1.0f),
+			Vector3D(-1.0f, 0.0f, 1.0f),
+			Vector3D(-1.0f, 0.0f, 1.0f)
 		};
 
 		Vector2D texCoordList[] =
@@ -115,15 +115,15 @@ namespace GDEngine {
 
 		Vector3D positionList[] =
 		{
-			Vector3D(-3.0f, 0.0f, -3.0f),
-			Vector3D(-3.0f, 0.0f, -3.0f),
-			Vector3D(3.0f, 0.0f, -3.0f),
-			Vector3D(3.0f, 0.0f, -3.0f),
+			Vector3D(-1.0f, 0.0f, -1.0f),
+			Vector3D(-1.0f, 0.0f, -1.0f),
+			Vector3D(1.0f, 0.0f, -1.0f),
+			Vector3D(1.0f, 0.0f, -1.0f),
 
-			Vector3D(3.0f, 0.0f, 3.0f),
-			Vector3D(3.0f, 0.0f, 3.0f),
-			Vector3D(-3.0f, 0.0f, 3.0f),
-			Vector3D(-3.0f, 0.0f, 3.0f)
+			Vector3D(1.0f, 0.0f, 1.0f),
+			Vector3D(1.0f, 0.0f, 1.0f),
+			Vector3D(-1.0f, 0.0f, 1.0f),
+			Vector3D(-1.0f, 0.0f, 1.0f)
 		};
 
 		Vector2D texCoordList[] =

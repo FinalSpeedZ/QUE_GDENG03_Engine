@@ -61,7 +61,7 @@ public class LevelExporter : EditorWindow
                 writer.WriteLine($"Rotation: ({NormalizeAngle(obj.transform.rotation.eulerAngles.x)}, " +
                                  $"{NormalizeAngle(obj.transform.rotation.eulerAngles.y)}, " +
                                  $"{NormalizeAngle(obj.transform.rotation.eulerAngles.z)})");
-                writer.WriteLine($"Scale: ({obj.transform.localScale.x}, {obj.transform.localScale.y}, {obj.transform.localScale.z})");
+                writer.WriteLine($"Scale: ({obj.transform.localScale.x * 5}, {obj.transform.localScale.y * 5}, {obj.transform.localScale.z * 5})");
 
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
                 if (rb != null)
